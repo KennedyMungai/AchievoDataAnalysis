@@ -7,6 +7,7 @@
 	"settings": {
 		"cSpell.words": [
 			"Achievo",
+			"autoflush",
 			"dotenv",
 			"fastapi",
 			"pymysql",

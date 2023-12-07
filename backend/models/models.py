@@ -22,6 +22,7 @@ class Regions(Base):
 
     incidents = relationship("Incidents", back_populates="regions")
 
+
 class Stores(Base):
     """The stores table class. This is the class for the stores table.
 
@@ -38,6 +39,7 @@ class Stores(Base):
     updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
 
     incidents = relationship("Incidents", back_populates="stores")
+
 
 class Employees(Base):
     """The employees table class. This is the class for the employees table.
@@ -76,6 +78,7 @@ class StoreSections(Base):
 
     incidents = relationship("Incidents", back_populates="store_sections")
 
+
 class Incidents(Base):
     """The incidents class for the incidents table
 
@@ -93,7 +96,10 @@ class Incidents(Base):
     product_price = Column(Integer, nullable=False, unique=True)
     is_resolved = Column(Boolean, nullable=False, unique=True)
 
-    store_section_id = Column(Integer, ForeignKey("store_sections.store_section_id"), nullable=False)
-    employee_id = Column(Integer, ForeignKey("employees.employee_id"), nullable=False)
+    store_section_id = Column(Integer, ForeignKey(
+        "store_sections.store_section_id"), nullable=False)
+    employee_id = Column(Integer, ForeignKey(
+        "employees.employee_id"), nullable=False)
     store_id = Column(Integer, ForeignKey("stores.store_id"), nullable=False)
-    region_id = Column(Integer, ForeignKey("regions.region_id"), nullable=False)
+    region_id = Column(Integer, ForeignKey(
+        "regions.region_id"), nullable=False)

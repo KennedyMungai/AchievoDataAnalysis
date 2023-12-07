@@ -2,7 +2,7 @@
 from datetime import datetime
 
 from database.db import Base
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Float
 from sqlalchemy.orm import relationship
 
 
@@ -106,7 +106,7 @@ class Incidents(Base):
     product_name = Column(String(50), nullable=False, unique=True)
     product_code = Column(String(50), nullable=False, unique=True)
     product_quantity = Column(Integer, nullable=False, unique=True)
-    product_price = Column(Integer, nullable=False, unique=True)
+    product_price = Column(Float, nullable=False, unique=True)
     is_resolved = Column(Boolean, nullable=False, unique=True)
 
     store_section_id = Column(Integer, ForeignKey(

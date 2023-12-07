@@ -41,7 +41,7 @@ class ReadIncident(IncidentBase):
     """
     incident_id: int
     created_at: datetime
-    updated_at: datetime
+    updated_at: Optional[datetime]
 
     class Config:
         """The config class for reading data from the database

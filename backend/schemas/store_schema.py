@@ -37,7 +37,7 @@ class ReadStore(StoreBase):
     """
     store_id: int
     created_at: datetime
-    updated_at: datetime
+    updated_at: Optional[datetime]
 
     incident: List[ReadIncident]
     store_sections: List[ReadStoreSection]

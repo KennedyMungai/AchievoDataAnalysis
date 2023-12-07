@@ -34,7 +34,7 @@ class ReadRegion(RegionBase):
     """
     region_id: int
     created_at: datetime
-    updated_at: datetime
+    updated_at: Optional[datetime] = None
 
     incidents: List[ReadIncident]
     employees: List[ReadEmployee]

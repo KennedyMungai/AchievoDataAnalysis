@@ -16,6 +16,8 @@ class StoreBase(BaseModel):
     """
     store_name: str
     store_location: str
+    
+    region_id: int
 
 
 class CreateStore(StoreBase):

@@ -22,6 +22,7 @@ class Regions(Base):
 
     incidents = relationship("Incidents", back_populates="regions")
     employees = relationship("Employees", back_populates="regions")
+    stores = relationship("Stores", back_populates="regions")
 
 
 class Stores(Base):
@@ -38,6 +39,8 @@ class Stores(Base):
     store_location = Column(String(50), nullable=False, unique=True)
     created_at = Column(String(50), nullable=False, default=datetime.utcnow)
     updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
+
+    region_id = Column(Integer, ForeignKey("regions.region_id"), nullable=False)
 
     incidents = relationship("Incidents", back_populates="stores")
     store_sections = relationship("StoreSections", back_populates="stores")

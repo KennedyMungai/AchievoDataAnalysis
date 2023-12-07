@@ -48,7 +48,7 @@ def retrieve_one_region_service(_region_id: int, _db: Session) -> ReadRegion:
     return _db.query(Regions).filter(Regions.region_id == _region_id).first()
 
 
-def update_region_endpoint(
+def update_region_service(
     _region_id: int,
     _update_region_data: UpdateRegion,
     _db: Session

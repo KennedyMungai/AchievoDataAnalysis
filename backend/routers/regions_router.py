@@ -29,11 +29,7 @@ async def retrieve_all_regions_endpoint(
     Returns:
         List[ReadRegion]: A list of all regions
     """
-    try:
-        return retrieve_all_regions_service(_db)
-    except Exception as exc:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail="Failed to retrieve all regions") from exc
+    return retrieve_all_regions_service(_db)
 
 
 @regions_router.get("/{region_id}")

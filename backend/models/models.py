@@ -2,7 +2,7 @@
 from datetime import datetime
 
 from database.db import Base
-from sqlalchemy import Boolean, Column, Integer, String, Text
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import relationship
 
 
@@ -87,3 +87,8 @@ class Incidents(Base):
     product_quantity = Column(Integer, nullable=False, unique=True)
     product_price = Column(Integer, nullable=False, unique=True)
     is_resolved = Column(Boolean, nullable=False, unique=True)
+
+    store_section_id = Column(Integer, ForeignKey("store_sections.store_section_id"), nullable=False)
+    employee_id = Column(Integer, ForeignKey("employees.employee_id"), nullable=False)
+    store_id = Column(Integer, ForeignKey("stores.store_id"), nullable=False)
+    region_id = Column(Integer, ForeignKey("regions.region_id"), nullable=False)

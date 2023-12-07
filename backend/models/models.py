@@ -20,6 +20,7 @@ class Regions(Base):
     created_at = Column(String(50), nullable=False, default=datetime.utcnow)
     updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
 
+    incidents = relationship("Incidents", back_populates="regions")
 
 class Stores(Base):
     """The stores table class. This is the class for the stores table.
@@ -36,6 +37,7 @@ class Stores(Base):
     created_at = Column(String(50), nullable=False, default=datetime.utcnow)
     updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
 
+    incidents = relationship("Incidents", back_populates="stores")
 
 class Employees(Base):
     """The employees table class. This is the class for the employees table.
@@ -55,6 +57,8 @@ class Employees(Base):
     created_at = Column(String(50), nullable=False, default=datetime.utcnow)
     updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
 
+    incidents = relationship("Incidents", back_populates="employees")
+
 
 class StoreSections(Base):
     """The store sections table class. This is the class for the store sections table.
@@ -70,6 +74,7 @@ class StoreSections(Base):
     created_at = Column(String(50), nullable=False, default=datetime.utcnow)
     updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
 
+    incidents = relationship("Incidents", back_populates="store_sections")
 
 class Incidents(Base):
     """The incidents class for the incidents table

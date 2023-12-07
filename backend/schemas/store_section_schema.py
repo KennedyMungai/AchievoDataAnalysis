@@ -3,6 +3,7 @@ from datetime import datetime
 from typing import List, Optional
 
 from pydantic import BaseModel
+from schemas.incident_schema import ReadIncident
 
 
 class StoreSectionBase(BaseModel):
@@ -34,7 +35,7 @@ class ReadStoreSection(StoreSectionBase):
     created_at: datetime
     updated_at: datetime
 
-    # incidents
+    incidents: List[ReadIncident]
 
     class Config:
         """The config class for reading data from the database

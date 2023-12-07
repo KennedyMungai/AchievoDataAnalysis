@@ -1,7 +1,11 @@
 """The stores schema file"""
 from datetime import datetime
 from typing import List, Optional
+
 from pydantic import BaseModel
+from schemas.employee_schema import ReadEmployee
+from schemas.incident_schema import ReadIncident
+from schemas.store_section_schema import ReadStoreSection
 
 
 class StoreBase(BaseModel):
@@ -33,9 +37,9 @@ class ReadStore(StoreBase):
     created_at: datetime
     updated_at: datetime
 
-    # incident
-    # store_sections
-    # employees
+    incident: List[ReadIncident]
+    store_sections: List[ReadStoreSection]
+    employees: List[ReadEmployee]
 
     class Config:
         """The configuration class for the schema"""

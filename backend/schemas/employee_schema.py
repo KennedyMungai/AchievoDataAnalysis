@@ -3,6 +3,7 @@ from datetime import datetime
 from typing import List, Optional
 
 from pydantic import BaseModel, EmailStr
+from schemas.incident_schema import ReadIncident
 
 
 class EmployeeBase(BaseModel):
@@ -39,7 +40,7 @@ class ReadEmployee(EmployeeBase):
     created_at: datetime
     updated_at: datetime
 
-    # incidents
+    incidents: List[ReadIncident]
 
     class Config:
         """The config subclass for reading data from the database

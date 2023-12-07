@@ -1,7 +1,11 @@
 """The region's schema file"""
 from datetime import datetime
 from typing import List, Optional
+
 from pydantic import BaseModel
+from schemas.employee_schema import ReadEmployee
+from schemas.incident_schema import ReadIncident
+from schemas.store_schema import ReadStore
 
 
 class RegionBase(BaseModel):
@@ -32,9 +36,9 @@ class ReadRegion(RegionBase):
     created_at: datetime
     updated_at: datetime
 
-    # incidents
-    # employees
-    # stores
+    incidents: List[ReadIncident]
+    employees: List[ReadEmployee]
+    stores: List[ReadStore]
 
     class Config:
         """Config subclass for reading database data

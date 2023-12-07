@@ -102,7 +102,7 @@ class Incidents(Base):
 
     incident_id = Column(Integer, primary_key=True,
                          index=True, autoincrement=True, unique=True)
-    incident_description = Column(Text(10000), nullable=False, unique=True)
+    incident_description = Column(Text, nullable=False, unique=True)
     product_name = Column(String(50), nullable=False, unique=True)
     product_code = Column(String(50), nullable=False, unique=True)
     product_quantity = Column(Integer, nullable=False, unique=True)

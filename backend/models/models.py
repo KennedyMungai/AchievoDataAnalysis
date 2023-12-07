@@ -20,9 +20,9 @@ class Regions(Base):
     created_at = Column(String(50), nullable=False, default=datetime.utcnow)
     updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
 
-    incidents = relationship("Incidents", back_populates="regions")
-    employees = relationship("Employees", back_populates="regions")
-    stores = relationship("Stores", back_populates="regions")
+    incidents = relationship("Incidents", backref="regions")
+    employees = relationship("Employees", backref="regions")
+    stores = relationship("Stores", backref="regions")
 
 
 class Stores(Base):

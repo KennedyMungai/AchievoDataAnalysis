@@ -40,7 +40,8 @@ class Stores(Base):
     created_at = Column(String(50), nullable=False, default=datetime.utcnow)
     updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
 
-    region_id = Column(Integer, ForeignKey("regions.region_id"), nullable=False)
+    region_id = Column(Integer, ForeignKey(
+        "regions.region_id"), nullable=False)
 
     incidents = relationship("Incidents", back_populates="stores")
     store_sections = relationship("StoreSections", back_populates="stores")

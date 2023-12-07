@@ -108,6 +108,8 @@ class Incidents(Base):
     product_quantity = Column(Integer, nullable=False, unique=True)
     product_price = Column(Float, nullable=False, unique=True)
     is_resolved = Column(Boolean, nullable=False, unique=True)
+    created_at = Column(String(50), nullable=False, default=datetime.utcnow)
+    updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
 
     store_section_id = Column(Integer, ForeignKey(
         "store_sections.store_section_id"), nullable=False)

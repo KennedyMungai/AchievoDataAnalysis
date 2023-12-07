@@ -21,6 +21,7 @@ class Regions(Base):
     updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
 
     incidents = relationship("Incidents", back_populates="regions")
+    employees = relationship("Employees", back_populates="regions")
 
 
 class Stores(Base):
@@ -40,6 +41,7 @@ class Stores(Base):
 
     incidents = relationship("Incidents", back_populates="stores")
     store_sections = relationship("StoreSections", back_populates="stores")
+    employees = relationship("Employees", back_populates="stores")
 
 
 class Employees(Base):
@@ -59,6 +61,9 @@ class Employees(Base):
     employee_password = Column(String(50), nullable=False, unique=True)
     created_at = Column(String(50), nullable=False, default=datetime.utcnow)
     updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
+
+    store_id = Column(Integer, ForeignKey("stores.store_id"), nullable=False)
+    region_id = Column(Integer, ForeignKey("regions.region_id"), nullable=False)
 
     incidents = relationship("Incidents", back_populates="employees")
 

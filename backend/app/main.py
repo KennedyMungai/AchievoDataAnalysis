@@ -1,5 +1,6 @@
 """The main file for the application"""
 from fastapi import FastAPI
+from routers.regions_router import regions_router
 
 
 app = FastAPI(title="Achievo Data Analysis Backend",
@@ -15,3 +16,6 @@ async def root():
         dict: A simple message
     """
     return {"message": "Hello World"}
+
+
+app.include_router(regions_router)

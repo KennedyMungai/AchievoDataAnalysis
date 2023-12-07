@@ -43,9 +43,9 @@ class Stores(Base):
     region_id = Column(Integer, ForeignKey(
         "regions.region_id"), nullable=False)
 
-    incidents = relationship("Incidents", back_populates="stores")
-    store_sections = relationship("StoreSections", back_populates="stores")
-    employees = relationship("Employees", back_populates="stores")
+    incidents = relationship("Incidents", backref="stores")
+    store_sections = relationship("StoreSections", backref="stores")
+    employees = relationship("Employees", backref="stores")
 
 
 class Employees(Base):
@@ -70,7 +70,7 @@ class Employees(Base):
     region_id = Column(Integer, ForeignKey(
         "regions.region_id"), nullable=False)
 
-    incidents = relationship("Incidents", back_populates="employees")
+    incidents = relationship("Incidents", backref="employees")
 
 
 class StoreSections(Base):
@@ -89,7 +89,7 @@ class StoreSections(Base):
 
     store_id = Column(Integer, ForeignKey("stores.store_id"), nullable=False)
 
-    incidents = relationship("Incidents", back_populates="store_sections")
+    incidents = relationship("Incidents", backref="store_sections")
 
 
 class Incidents(Base):

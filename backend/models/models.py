@@ -63,7 +63,8 @@ class Employees(Base):
     updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
 
     store_id = Column(Integer, ForeignKey("stores.store_id"), nullable=False)
-    region_id = Column(Integer, ForeignKey("regions.region_id"), nullable=False)
+    region_id = Column(Integer, ForeignKey(
+        "regions.region_id"), nullable=False)
 
     incidents = relationship("Incidents", back_populates="employees")
 

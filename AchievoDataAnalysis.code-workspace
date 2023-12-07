@@ -7,7 +7,11 @@
 	"settings": {
 		"cSpell.words": [
 			"Achievo",
-			"fastapi"
+			"dotenv",
+			"fastapi",
+			"pymysql",
+			"sessionmaker",
+			"sqlalchemy"
 		]
 	}
 }

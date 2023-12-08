@@ -29,7 +29,11 @@ async def retrieve_all_regions_endpoint(
     Returns:
         List[ReadRegion]: A list of all regions
     """
-    return retrieve_all_regions_service(_db)
+    try:
+        return retrieve_all_regions_service(_db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
 
 @regions_router.get("/{region_id}")
@@ -53,7 +57,7 @@ async def retrieve_one_region_endpoint(
         return retrieve_one_region_service(_region_id, _db)
     except Exception as exc:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail=f'The region with id {_region_id} not found') from exc
+                            detail=str(exc)) from exc
 
 
 @regions_router.post("/", status_code=status.HTTP_201_CREATED)
@@ -74,7 +78,7 @@ async def create_region_endpoint(
         return create_region_service(_region_data, _db)
     except Exception as exc:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail="Failed to create region") from exc
+                            detail=str(exc)) from exc
 
 
 @regions_router.put("/{region_id}", status_code=status.HTTP_202_ACCEPTED)
@@ -100,7 +104,7 @@ async def update_region_endpoint(
         return update_region_service(_region_id, _region_data, _db)
     except Exception as exc:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail='Something went wrong') from exc
+                            detail=str(exc)) from exc
 
 
 @regions_router.delete("/{region_id}", status_code=status.HTTP_204_NO_CONTENT)
@@ -118,4 +122,4 @@ async def delete_region_endpoint(_region_id: int, _db: Session = Depends(get_db)
         return delete_region_service(_region_id, _db)
     except Exception as exc:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail='Something went wrong') from exc
+                            detail=str(exc)) from exc

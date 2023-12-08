@@ -6,7 +6,7 @@ from schemas.region_schema import CreateRegion, ReadRegion, UpdateRegion
 from sqlalchemy.orm import Session
 
 
-def create_region_service(_region_data: CreateRegion, _db: Session) -> ReadRegion:
+async def create_region_service(_region_data: CreateRegion, _db: Session) -> ReadRegion:
     """The service function to add a region to the database
 
     Args:
@@ -23,7 +23,7 @@ def create_region_service(_region_data: CreateRegion, _db: Session) -> ReadRegio
     return region
 
 
-def retrieve_all_regions_service(_db: Session) -> List[ReadRegion]:
+async def retrieve_all_regions_service(_db: Session) -> List[ReadRegion]:
     """The service function to retrieve all regions from the database
 
     Args:
@@ -35,7 +35,7 @@ def retrieve_all_regions_service(_db: Session) -> List[ReadRegion]:
     return _db.query(Regions).all()
 
 
-def retrieve_one_region_service(_region_id: int, _db: Session) -> ReadRegion:
+async def retrieve_one_region_service(_region_id: int, _db: Session) -> ReadRegion:
     """The service function to retrieve a region from the database
 
     Args:
@@ -48,7 +48,7 @@ def retrieve_one_region_service(_region_id: int, _db: Session) -> ReadRegion:
     return _db.query(Regions).filter(Regions.region_id == _region_id).first()
 
 
-def update_region_service(
+async def update_region_service(
     _region_id: int,
     _update_region_data: UpdateRegion,
     _db: Session
@@ -72,7 +72,7 @@ def update_region_service(
     return region
 
 
-def delete_region_service(_region_id: int, _db: Session) -> None:
+async def delete_region_service(_region_id: int, _db: Session) -> None:
     """The service function to delete a region from the database
 
     Args:

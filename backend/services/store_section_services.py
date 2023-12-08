@@ -5,7 +5,7 @@ from schemas.store_section_schema import CreateStoreSection, UpdateStoreSection,
 from models.models import StoreSections
 
 
-def create_store_section_service(
+async def create_store_section_service(
     _store_section_data: CreateStoreSection, _db: Session
 ) -> ReadStoreSection:
     """The service function to create store sections
@@ -23,7 +23,7 @@ def create_store_section_service(
     _db.refresh(new_store_section)
 
 
-def retrieve_all_store_sections_in_store(_store_id: int, _db: Session) -> List[ReadStoreSection]:
+async def retrieve_all_store_sections_in_store(_store_id: int, _db: Session) -> List[ReadStoreSection]:
     """The service function to retrieve all store sections in a store
 
     Args:
@@ -36,7 +36,7 @@ def retrieve_all_store_sections_in_store(_store_id: int, _db: Session) -> List[R
     return _db.query(StoreSections).filter(StoreSections.store_id == _store_id).all()
 
 
-def retrieve_one_store_section(_store_section_id: int, _db: Session) -> ReadStoreSection:
+async def retrieve_one_store_section(_store_section_id: int, _db: Session) -> ReadStoreSection:
     """The service function to retrieve one store section
 
     Args:
@@ -49,7 +49,7 @@ def retrieve_one_store_section(_store_section_id: int, _db: Session) -> ReadStor
     return _db.query(StoreSections).filter(StoreSections.store_section_id == _store_section_id).first()
 
 
-def update_store_section_service(
+async def update_store_section_service(
         _store_section_id: int, _update_store_section_data: UpdateStoreSection, _db: Session) -> ReadStoreSection:
     """The service function to update a store section
 
@@ -75,7 +75,7 @@ def update_store_section_service(
     return store_section_to_update
 
 
-def delete_store_section_service(_store_section_id: int, _db: Session) -> None:
+async def delete_store_section_service(_store_section_id: int, _db: Session) -> None:
     """The service function to delete a store section
 
     Args:

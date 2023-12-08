@@ -6,7 +6,7 @@ from models.models import Stores
 from sqlalchemy.orm import Session
 
 
-def create_store_service(_store: CreateStore, _db: Session) -> ReadStore:
+async def create_store_service(_store: CreateStore, _db: Session) -> ReadStore:
     """The service to create a store
 
     Args:
@@ -23,7 +23,7 @@ def create_store_service(_store: CreateStore, _db: Session) -> ReadStore:
     return db_store
 
 
-def retrieve_all_stores_in_a_region_service(_region_id: int, _db: Session) -> List[ReadStore]:
+async def retrieve_all_stores_in_a_region_service(_region_id: int, _db: Session) -> List[ReadStore]:
     """The service to retrieve all stores from the database
 
     Args:
@@ -35,7 +35,7 @@ def retrieve_all_stores_in_a_region_service(_region_id: int, _db: Session) -> Li
     return _db.query(Stores).where(Stores.region_id == _region_id).all()
 
 
-def retrieve_one_store_service(
+async def retrieve_one_store_service(
     _store_id: int, _db: Session
 ) -> ReadStore:
     """The service function to retrieve a single store from the database
@@ -50,7 +50,7 @@ def retrieve_one_store_service(
     return _db.query(Stores).filter(Stores.store_id == _store_id).first()
 
 
-def update_store_service(
+async def update_store_service(
     _store_id: int, _update_store_data: UpdateStore, _db: Session
 ) -> ReadStore:
     """The service function to update a store in the database
@@ -77,7 +77,7 @@ def update_store_service(
     return store
 
 
-def delete_store_service(_store_id: int, _db: Session) -> None:
+async def delete_store_service(_store_id: int, _db: Session) -> None:
     """The service function to delete a store from the database
 
     Args:

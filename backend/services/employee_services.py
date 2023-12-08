@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from models.models import Employees
 
 
-def create_employee_service(_employee_data: CreateEmployee, _db: Session) -> ReadEmployee:
+async def create_employee_service(_employee_data: CreateEmployee, _db: Session) -> ReadEmployee:
     """The service function to create an employee in the database
 
     Args:
@@ -22,7 +22,7 @@ def create_employee_service(_employee_data: CreateEmployee, _db: Session) -> Rea
     return new_employee
 
 
-def retrieve_all_employees_service(_db: Session) -> List[ReadEmployee]:
+async def retrieve_all_employees_service(_db: Session) -> List[ReadEmployee]:
     """The service function to retrieve all employees from the database
 
     Args:
@@ -35,7 +35,7 @@ def retrieve_all_employees_service(_db: Session) -> List[ReadEmployee]:
     return _db.query(Employees).all()
 
 
-def retrieve_one_employee_service(
+async def retrieve_one_employee_service(
     _employee_id: int, _db: Session
 ) -> ReadEmployee:
     """The service function to retrieve one employee
@@ -50,7 +50,7 @@ def retrieve_one_employee_service(
     return _db.query(Employees).filter(Employees.employee_id == _employee_id).first()
 
 
-def update_employee_service(
+async def update_employee_service(
     _employee_id: int, _update_employee_data: UpdateEmployee, _db: Session
 ) -> ReadEmployee:
     """The service function to update an employee in the database
@@ -86,7 +86,7 @@ def update_employee_service(
     return employee_to_update
 
 
-def delete_employee_service(_employee_id: int, _db: Session) -> None:
+async def delete_employee_service(_employee_id: int, _db: Session) -> None:
     """The service function to delete an employee from the database
 
     Args:

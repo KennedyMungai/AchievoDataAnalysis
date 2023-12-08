@@ -7,7 +7,7 @@ from schemas.incident_schema import (CreateIncident, ReadIncident,
 from sqlalchemy.orm import Session
 
 
-def create_incident_service(_incident_data: CreateIncident, _db: Session, ) -> ReadIncident:
+async def create_incident_service(_incident_data: CreateIncident, _db: Session, ) -> ReadIncident:
     """The service function to create new incidents
 
     Args:
@@ -25,7 +25,7 @@ def create_incident_service(_incident_data: CreateIncident, _db: Session, ) -> R
     return new_incident
 
 
-def retrieve_all_incidents_service(_db: Session) -> List[ReadIncident]:
+async def retrieve_all_incidents_service(_db: Session) -> List[ReadIncident]:
     """The service function to retrieve all incidents from the database
 
     Args:
@@ -37,7 +37,7 @@ def retrieve_all_incidents_service(_db: Session) -> List[ReadIncident]:
     return _db.query(Incidents).all()
 
 
-def retrieve_one_incident_service(
+async def retrieve_one_incident_service(
         _incident_id: int, _db: Session) -> ReadIncident:
     """The service function to retrieve one incident
 
@@ -51,7 +51,7 @@ def retrieve_one_incident_service(
     return _db.query(Incidents).filter(Incidents.incident_id == _incident_id).first()
 
 
-def update_incident_service(
+async def update_incident_service(
     _incident_id: int, _update_incident_data: UpdateIncident, _db: Session
 ) -> ReadIncident:
     incident_to_update = retrieve_one_incident_service(_incident_id, _db)
@@ -75,7 +75,7 @@ def update_incident_service(
     return incident_to_update
 
 
-def delete_incident_service(
+async def delete_incident_service(
     _incident_id: int, _db: Session
 ) -> None:
     """The service function to delete an incident from the database

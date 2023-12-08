@@ -107,7 +107,7 @@ class Incidents(Base):
     product_code = Column(String(50), nullable=False, unique=True)
     product_quantity = Column(Integer, nullable=False, unique=True)
     product_price = Column(Float, nullable=False, unique=True)
-    is_resolved = Column(Boolean, nullable=False, unique=True)
+    is_resolved = Column(Boolean, nullable=False, unique=True, default=False)
     created_at = Column(String(50), nullable=False, default=datetime.utcnow)
     updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
 

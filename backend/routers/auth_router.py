@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from models.models import Employees
 from utils.password_hashing import verify_password
 from utils.oauth2 import create_access_token
+from typing import Dict
 
 
 auth_router = APIRouter(
@@ -14,6 +15,7 @@ auth_router = APIRouter(
 )
 
 
+@auth_router.post("/login", response_model=Dict[str, str])
 async def login(
     _employee_credentials: OAuth2PasswordRequestForm = Depends(),
     _db: Session = Depends(get_db)

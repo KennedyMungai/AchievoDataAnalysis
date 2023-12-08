@@ -23,7 +23,7 @@ def create_store_service(_store: CreateStore, _db: Session) -> ReadStore:
     return db_store
 
 
-def retrieve_all_stores_service(_db: Session) -> List[ReadStore]:
+def retrieve_all_stores_in_a_region_service(_region_id: int, _db: Session) -> List[ReadStore]:
     """The service to retrieve all stores from the database
 
     Args:
@@ -32,7 +32,7 @@ def retrieve_all_stores_service(_db: Session) -> List[ReadStore]:
     Returns:
         List[ReadStore]: A list of stores from the database
     """
-    return _db.query(Stores).all()
+    return _db.query(Stores).where(Stores.region_id == _region_id).all()
 
 
 def retrieve_one_store_service(

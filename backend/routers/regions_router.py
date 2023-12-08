@@ -81,7 +81,7 @@ async def create_region_endpoint(
                             detail=str(exc)) from exc
 
 
-@regions_router.put("/{region_id}", status_code=status.HTTP_202_ACCEPTED)
+@regions_router.put("/{_region_id}", status_code=status.HTTP_202_ACCEPTED)
 async def update_region_endpoint(
     _region_id: int,
     _region_data: UpdateRegion,
@@ -107,7 +107,7 @@ async def update_region_endpoint(
                             detail=str(exc)) from exc
 
 
-@regions_router.delete("/{region_id}", status_code=status.HTTP_204_NO_CONTENT)
+@regions_router.delete("/{_region_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_region_endpoint(_region_id: int, _db: Session = Depends(get_db)) -> None:
     """The endpoint to delete a region
 

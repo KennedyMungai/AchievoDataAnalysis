@@ -66,6 +66,7 @@ async def update_store_service(
         ReadStore: The updated store object
     """
     store = await retrieve_one_store_service(_store_id, _db)
+    
     if not store:
         return None
 
@@ -77,7 +78,7 @@ async def update_store_service(
     await _db.commit()
     await _db.refresh(store)
     
-    return await store
+    return store
 
 
 async def delete_store_service(_store_id: int, _db: Session) -> None:

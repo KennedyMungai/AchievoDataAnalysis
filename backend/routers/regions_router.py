@@ -36,7 +36,7 @@ async def retrieve_all_regions_endpoint(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
 
-@regions_router.get("/{region_id}")
+@regions_router.get("/{_region_id}")
 async def retrieve_one_region_endpoint(
     _region_id: int,
     _db: Session = Depends(get_db)

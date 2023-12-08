@@ -16,7 +16,7 @@ class Regions(Base):
 
     region_id = Column(Integer, primary_key=True,
                        index=True, autoincrement=True, unique=True)
-    region_name = Column(String(50), nullable=False, unique=True)
+    region_name = Column(String(50), nullable=False)
     created_at = Column(String(50), nullable=False, default=datetime.utcnow)
     updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
 
@@ -35,8 +35,8 @@ class Stores(Base):
 
     store_id = Column(Integer, primary_key=True, index=True,
                       autoincrement=True, unique=True)
-    store_name = Column(String(50), nullable=False, unique=True)
-    store_location = Column(String(50), nullable=False, unique=True)
+    store_name = Column(String(50), nullable=False)
+    store_location = Column(String(50), nullable=False)
     created_at = Column(String(50), nullable=False, default=datetime.utcnow)
     updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
 
@@ -59,8 +59,8 @@ class Employees(Base):
     employee_id = Column(Integer, primary_key=True,
                          index=True, autoincrement=True, unique=True)
     employee_name = Column(String(50), nullable=False)
-    employee_email = Column(String(50), nullable=False, unique=True)
-    employee_phone_number = Column(String(50), nullable=False, unique=True)
+    employee_email = Column(String(50), nullable=False)
+    employee_phone_number = Column(String(50), nullable=False)
     employee_job_title = Column(String(50), nullable=False)
     employee_password = Column(String(50), nullable=False)
     created_at = Column(String(50), nullable=False, default=datetime.utcnow)

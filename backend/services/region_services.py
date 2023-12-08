@@ -64,12 +64,12 @@ async def update_region_service(
         ReadRegion: The updated region object
     """
     region = await retrieve_one_region_service(_region_id, _db)
-    
+
     if not region:
         return None
-    
+
     region.region_name = _update_region_data.region_name
-    
+
     _db.commit()
     _db.refresh(region)
     return region

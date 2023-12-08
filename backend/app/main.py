@@ -2,6 +2,7 @@
 from fastapi import FastAPI
 from routers.employees_router import employees_router
 from routers.regions_router import regions_router
+from routers.store_sections_router import store_sections_router
 from routers.stores_router import stores_router
 
 app = FastAPI(title="Achievo Data Analysis Backend",
@@ -22,3 +23,4 @@ async def root():
 app.include_router(regions_router)
 app.include_router(stores_router)
 app.include_router(employees_router)
+app.include_router(store_sections_router)

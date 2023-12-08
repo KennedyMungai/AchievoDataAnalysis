@@ -1,11 +1,11 @@
 """The main file for the application"""
 from fastapi import FastAPI
+from routers.auth_router import auth_route
 from routers.employees_router import employees_router
 from routers.incidents_router import incidents_router
 from routers.regions_router import regions_router
 from routers.store_sections_router import store_sections_router
 from routers.stores_router import stores_router
-
 
 app = FastAPI(title="Achievo Data Analysis Backend",
               description="The backend of a loss control data analysis application",
@@ -27,3 +27,4 @@ app.include_router(stores_router)
 app.include_router(employees_router)
 app.include_router(store_sections_router)
 app.include_router(incidents_router)
+app.include_router(auth_route)

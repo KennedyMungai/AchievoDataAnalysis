@@ -7,19 +7,21 @@ from sqlalchemy.orm import Session
 
 
 async def create_store_service(_store: CreateStore, _db: Session) -> ReadStore:
-    """The service to create a store
+    """The service function to create stores
 
     Args:
         _store (CreateStore): The data used to create a store
-        _db (Session): A database session
+        _db (Session): The database session
 
     Returns:
         ReadStore: The newly created store
     """
     db_store = Stores(**_store.model_dump())
+    
     _db.add(db_store)
     _db.commit()
     _db.refresh(db_store)
+    
     return db_store
 
 
@@ -47,7 +49,7 @@ async def retrieve_one_store_service(
     Returns:
         ReadStore: The data retrieved from the database
     """
-    return _db.query(Stores).filter(Stores.store_id == _store_id).first()
+    return await _db.query(Stores).filter(Stores.store_id == _store_id).first()
 
 
 async def update_store_service(
@@ -63,7 +65,7 @@ async def update_store_service(
     Returns:
         ReadStore: The updated store object
     """
-    store = retrieve_one_store_service(_store_id, _db)
+    store = await retrieve_one_store_service(_store_id, _db)
     if not store:
         return None
 
@@ -72,9 +74,10 @@ async def update_store_service(
     if _update_store_data.store_address:
         store.store_address = _update_store_data.store_address
 
-    _db.commit()
-    _db.refresh(store)
-    return store
+    await _db.commit()
+    await _db.refresh(store)
+    
+    return await store
 
 
 async def delete_store_service(_store_id: int, _db: Session) -> None:
@@ -84,8 +87,10 @@ async def delete_store_service(_store_id: int, _db: Session) -> None:
         _store_id (int): The id of the store
         _db (Session): The database session
     """
-    store = retrieve_one_store_service(_store_id, _db)
+    store = await retrieve_one_store_service(_store_id, _db)
+    
     if not store:
         return None
-    _db.delete(store)
-    _db.commit()
+    
+    await _db.delete(store)
+    await _db.commit()

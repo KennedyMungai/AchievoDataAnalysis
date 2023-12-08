@@ -19,7 +19,7 @@ employees_router = APIRouter(prefix="/employees", tags=["Employees"])
 async def create_employee_endpoint(
     _employee_data: CreateEmployee,
     _db: Session = Depends(get_db)
-) -> ReadEmployee:
+):
     """The endpoint to create an employee
 
     Args:
@@ -39,10 +39,10 @@ async def create_employee_endpoint(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
 
-@employees_router.get("/", response_model=List[ReadEmployee])
+@employees_router.get("/")
 async def retrieve_all_employees_endpoint(
     _db: Session = Depends(get_db)
-) -> List[ReadEmployee]:
+):
     """An endpoint to retrieve all the employees from the database
 
     Args:
@@ -61,11 +61,11 @@ async def retrieve_all_employees_endpoint(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
 
-@employees_router.get("/{_employee_id}", response_model=ReadEmployee)
+@employees_router.get("/{_employee_id}")
 async def retrieve_one_employee_endpoint(
     _employee_id: int,
     _db: Session = Depends(get_db)
-) -> ReadEmployee:
+):
     """The endpoint to retrieve one employee from the database
 
     Args:
@@ -87,14 +87,13 @@ async def retrieve_one_employee_endpoint(
 
 @employees_router.put(
     "/{_employee_id}",
-    response_model=ReadEmployee,
     status_code=status.HTTP_202_ACCEPTED
 )
 async def update_employee_endpoint(
     _employee_id: int,
     _employee_data: UpdateEmployee,
     _db: Session = Depends(get_db)
-) -> ReadEmployee:
+):
     """The endpoint to update employee data from the database
 
     Args:
@@ -119,7 +118,7 @@ async def update_employee_endpoint(
 async def delete_employee_endpoint(
     _employee_id: int,
     _db: Session = Depends(get_db)
-) -> None:
+):
     """The endpoint to delete an employee from the database
 
     Args:

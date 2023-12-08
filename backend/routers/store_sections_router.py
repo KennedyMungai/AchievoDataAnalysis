@@ -19,7 +19,7 @@ store_sections_router = APIRouter(
 async def create_store_section_endpoint(
     _store_section_data: CreateStoreSection,
     _db: Session = Depends(get_db)
-) -> ReadStoreSection:
+):
     """The endpoint to create a store section
 
     Args:
@@ -39,11 +39,11 @@ async def create_store_section_endpoint(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
 
-@store_sections_router.get("/", response_model=List[ReadStoreSection])
+@store_sections_router.get("/")
 async def retrieve_all_store_sections_endpoint(
     _store_id: int,
     _db: Session = Depends(get_db)
-) -> List[ReadStoreSection]:
+):
     """The endpoint to retrieve all store sections in a store
 
     Args:
@@ -63,11 +63,11 @@ async def retrieve_all_store_sections_endpoint(
             status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
 
 
-@store_sections_router.get("/{_store_section_id}", response_model=ReadStoreSection)
+@store_sections_router.get("/{_store_section_id}")
 async def retrieve_one_store_section_endpoint(
     _store_section_id: int,
     _db: Session = Depends(get_db)
-) -> ReadStoreSection:
+):
     """The endpoint to create a store section
 
     Args:
@@ -89,14 +89,13 @@ async def retrieve_one_store_section_endpoint(
 
 @store_sections_router.put(
     "/{_store_section_id}",
-    response_model=ReadStoreSection,
     status_code=status.HTTP_202_ACCEPTED
 )
 async def update_store_section_endpoint(
     _store_section_id: int,
     _store_section_data: UpdateStoreSection,
     _db: Session = Depends(get_db)
-) -> ReadStoreSection:
+):
     """The endpoint to update a store section
 
     Args:
@@ -121,7 +120,7 @@ async def update_store_section_endpoint(
 async def delete_store_section_endpoint(
     _store_section_id: int,
     _db: Session = Depends(get_db)
-) -> None:
+):
     """The endpoint to delete a store section
 
     Args:

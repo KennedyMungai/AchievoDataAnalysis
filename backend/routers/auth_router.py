@@ -1,6 +1,4 @@
 """The auth router"""
-from typing import Dict
-
 from database.db import get_db
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
@@ -15,7 +13,7 @@ auth_router = APIRouter(
 )
 
 
-@auth_router.post("/login", response_model=Dict[str, str])
+@auth_router.post("/login")
 async def login(
     _employee_credentials: OAuth2PasswordRequestForm = Depends(),
     _db: Session = Depends(get_db)

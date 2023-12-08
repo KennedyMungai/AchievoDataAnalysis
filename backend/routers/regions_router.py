@@ -17,7 +17,7 @@ regions_router = APIRouter(prefix="/regions", tags=["Regions"])
 @regions_router.get("/")
 async def retrieve_all_regions_endpoint(
     _db: Session = Depends(get_db)
-) -> List[ReadRegion]:
+):
     """The endpoint to retrieve all regions
 
     Args:
@@ -40,7 +40,7 @@ async def retrieve_all_regions_endpoint(
 async def retrieve_one_region_endpoint(
     _region_id: int,
     _db: Session = Depends(get_db)
-) -> ReadRegion:
+):
     """The endpoint to retrieve one region
 
     Args:
@@ -64,7 +64,7 @@ async def retrieve_one_region_endpoint(
 async def create_region_endpoint(
     _region_data: CreateRegion,
     _db: Session = Depends(get_db)
-) -> ReadRegion:
+):
     """The endpoint to create a region
 
     Args:
@@ -86,7 +86,7 @@ async def update_region_endpoint(
     _region_id: int,
     _region_data: UpdateRegion,
     _db: Session = Depends(get_db)
-) -> ReadRegion:
+):
     """The endpoint to update a region
 
     Args:
@@ -108,7 +108,7 @@ async def update_region_endpoint(
 
 
 @regions_router.delete("/{_region_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_region_endpoint(_region_id: int, _db: Session = Depends(get_db)) -> None:
+async def delete_region_endpoint(_region_id: int, _db: Session = Depends(get_db)):
     """The endpoint to delete a region
 
     Args:

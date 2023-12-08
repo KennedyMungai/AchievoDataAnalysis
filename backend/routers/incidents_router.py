@@ -19,7 +19,7 @@ incidents_router = APIRouter(prefix="/incidents", tags=["Incidents"])
 async def create_incident_endpoint(
     _incident_data: CreateIncident,
     _db: Session = Depends(get_db)
-) -> ReadIncident:
+):
     """The endpoint to create an incident
 
     Args:
@@ -39,10 +39,10 @@ async def create_incident_endpoint(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
 
-@incidents_router.get("/", response_model=List[ReadIncident])
+@incidents_router.get("/")
 async def retrieve_all_incidents_endpoint(
     _db: Session = Depends(get_db)
-) -> List[ReadIncident]:
+):
     """The endpoint to retrieve all incidents
 
     Args:
@@ -61,11 +61,11 @@ async def retrieve_all_incidents_endpoint(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
 
-@incidents_router.get("/{_incident_id}", response_model=ReadIncident)
+@incidents_router.get("/{_incident_id}")
 async def retrieve_one_incident_endpoint(
     _incident_id: int,
     _db: Session = Depends(get_db)
-) -> ReadIncident:
+):
     """The endpoint to retrieve one incident
 
     Args:
@@ -90,7 +90,7 @@ async def update_incident_endpoint(
     _incident_id: int,
     _incident_data: UpdateIncident,
     _db: Session = Depends(get_db)
-) -> ReadIncident:
+):
     """The endpoint to update an incident data
 
     Args:
@@ -115,7 +115,7 @@ async def update_incident_endpoint(
 async def delete_incident_endpoint(
     _incident_id: int,
     _db: Session = Depends(get_db)
-) -> None:
+):
     """The endpoint to delete incidents
 
     Args:

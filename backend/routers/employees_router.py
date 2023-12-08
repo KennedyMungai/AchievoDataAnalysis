@@ -33,7 +33,7 @@ async def create_employee_endpoint(
         ReadEmployee: The data of the newly created employee
     """
     try:
-        return create_employee_service(_employee_data, _db)
+        return await create_employee_service(_employee_data, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
@@ -55,7 +55,7 @@ async def retrieve_all_employees_endpoint(
         List[ReadEmployee]: A list of all the employees in the database.
     """
     try:
-        return retrieve_all_employees_service(_db)
+        return await retrieve_all_employees_service(_db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
@@ -79,7 +79,7 @@ async def retrieve_one_employee_endpoint(
         ReadEmployee: The data of the employee
     """
     try:
-        return retrieve_one_employee_service(_employee_id, _db)
+        return await retrieve_one_employee_service(_employee_id, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
@@ -109,7 +109,7 @@ async def update_employee_endpoint(
         ReadEmployee: The data of the updated employee
     """
     try:
-        return update_employee_service(_employee_id, _employee_data, _db)
+        return await update_employee_service(_employee_id, _employee_data, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
@@ -133,7 +133,7 @@ async def delete_employee_endpoint(
         _type_: _description_
     """
     try:
-        return delete_employee_service(_employee_id, _db)
+        return await delete_employee_service(_employee_id, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc

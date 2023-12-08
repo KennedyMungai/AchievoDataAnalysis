@@ -32,7 +32,7 @@ async def create_store_endpoint(
         ReadStore: _description_
     """
     try:
-        return create_store_service(_store_data, _db)
+        return await create_store_service(_store_data, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
@@ -56,7 +56,7 @@ async def retrieve_all_stores_endpoint(
         List[ReadStore]: _description_
     """
     try:
-        return retrieve_all_stores_in_a_region_service(_region_id, _db)
+        return await retrieve_all_stores_in_a_region_service(_region_id, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
@@ -77,7 +77,7 @@ async def retrieve_one_store_endpoint(_store_id: int, _db: Session = Depends(get
         ReadStore: The store
     """
     try:
-        return retrieve_one_store_service(_store_id, _db)
+        return await retrieve_one_store_service(_store_id, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
@@ -103,7 +103,7 @@ async def update_store_endpoint(
         ReadStore: The data of the newly updated store
     """
     try:
-        return update_store_service(_store_id, _store_data, _db)
+        return await update_store_service(_store_id, _store_data, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
@@ -127,7 +127,7 @@ async def delete_store_endpoint(
         None: Nothing
     """
     try:
-        return delete_store_service(_store_id, _db)
+        return await delete_store_service(_store_id, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc

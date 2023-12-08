@@ -1,6 +1,6 @@
 """The router file for the regions"""
 from typing import List
-from sqlalchemy.orm import Session
+
 from database.db import get_db
 from fastapi import APIRouter, Depends, HTTPException, status
 from schemas.region_schema import CreateRegion, ReadRegion, UpdateRegion
@@ -9,7 +9,7 @@ from services.region_services import (create_region_service,
                                       retrieve_all_regions_service,
                                       retrieve_one_region_service,
                                       update_region_service)
-
+from sqlalchemy.orm import Session
 
 regions_router = APIRouter(prefix="/regions", tags=["Regions"])
 
@@ -30,7 +30,7 @@ async def retrieve_all_regions_endpoint(
         List[ReadRegion]: A list of all regions
     """
     try:
-        return retrieve_all_regions_service(_db)
+        return await retrieve_all_regions_service(_db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
@@ -54,7 +54,7 @@ async def retrieve_one_region_endpoint(
         ReadRegion: The region
     """
     try:
-        return retrieve_one_region_service(_region_id, _db)
+        return await retrieve_one_region_service(_region_id, _db)
     except Exception as exc:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=str(exc)) from exc
@@ -75,7 +75,7 @@ async def create_region_endpoint(
         ReadRegion: The created region
     """
     try:
-        return create_region_service(_region_data, _db)
+        return await create_region_service(_region_data, _db)
     except Exception as exc:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
                             detail=str(exc)) from exc
@@ -101,7 +101,7 @@ async def update_region_endpoint(
         ReadRegion: The updated region
     """
     try:
-        return update_region_service(_region_id, _region_data, _db)
+        return await update_region_service(_region_id, _region_data, _db)
     except Exception as exc:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
                             detail=str(exc)) from exc
@@ -119,7 +119,7 @@ async def delete_region_endpoint(_region_id: int, _db: Session = Depends(get_db)
         HTTPException: A 404 is raised when the region is not found    
     """
     try:
-        return delete_region_service(_region_id, _db)
+        return await delete_region_service(_region_id, _db)
     except Exception as exc:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
                             detail=str(exc)) from exc

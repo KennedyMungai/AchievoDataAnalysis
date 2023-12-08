@@ -33,7 +33,7 @@ async def create_incident_endpoint(
         ReadIncident: The created incident
     """
     try:
-        return create_incident_service(_incident_data, _db)
+        return await create_incident_service(_incident_data, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
@@ -55,7 +55,7 @@ async def retrieve_all_incidents_endpoint(
         List[ReadIncident]: A list of incidents
     """
     try:
-        return retrieve_all_incidents_service(_db)
+        return await retrieve_all_incidents_service(_db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
@@ -79,7 +79,7 @@ async def retrieve_one_incident_endpoint(
         ReadIncident: The incident
     """
     try:
-        return retrieve_one_incident_service(_incident_id, _db)
+        return await retrieve_one_incident_service(_incident_id, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
@@ -105,7 +105,7 @@ async def update_incident_endpoint(
         ReadIncident: The updated incident
     """
     try:
-        return update_incident_service(_incident_id, _incident_data, _db)
+        return await update_incident_service(_incident_id, _incident_data, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
@@ -129,7 +129,7 @@ async def delete_incident_endpoint(
         None: Nothing
     """
     try:
-        return delete_incident_service(_incident_id, _db)
+        return await delete_incident_service(_incident_id, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc

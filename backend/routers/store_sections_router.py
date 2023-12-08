@@ -1,5 +1,8 @@
 """The router file foe the store sections"""
+from typing import List
+
 from database.db import get_db
+from fastapi import APIRouter, Depends, HTTPException, status
 from schemas.store_section_schema import (CreateStoreSection, ReadStoreSection,
                                           UpdateStoreSection)
 from services.store_section_services import (
@@ -7,9 +10,6 @@ from services.store_section_services import (
     retrieve_all_store_sections_in_store, retrieve_one_store_section,
     update_store_section_service)
 from sqlalchemy.orm import Session
-from fastapi import APIRouter, Depends, HTTPException, status
-from typing import List
-
 
 store_sections_router = APIRouter(
     prefix="/store-sections", tags=["Store Sections"])
@@ -33,7 +33,7 @@ async def create_store_section_endpoint(
         ReadStoreSection: The newly created store section
     """
     try:
-        return create_store_section_service(_store_section_data, _db)
+        return await create_store_section_service(_store_section_data, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
@@ -57,7 +57,7 @@ async def retrieve_all_store_sections_endpoint(
         List[ReadStoreSection]: The store sections
     """
     try:
-        return retrieve_all_store_sections_in_store(_store_id, _db)
+        return await retrieve_all_store_sections_in_store(_store_id, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
@@ -81,7 +81,7 @@ async def retrieve_one_store_section_endpoint(
         ReadStoreSection: The retrieved store section
     """
     try:
-        return retrieve_one_store_section(_store_section_id, _db)
+        return await retrieve_one_store_section(_store_section_id, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
@@ -111,7 +111,7 @@ async def update_store_section_endpoint(
         ReadStoreSection: The updated store section
     """
     try:
-        return update_store_section_service(_store_section_id, _store_section_data, _db)
+        return await update_store_section_service(_store_section_id, _store_section_data, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
@@ -132,7 +132,7 @@ async def delete_store_section_endpoint(
         HTTPException: A 404 is raised if a store section is not found
     """
     try:
-        return delete_store_section_service(_store_section_id, _db)
+        return await delete_store_section_service(_store_section_id, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc

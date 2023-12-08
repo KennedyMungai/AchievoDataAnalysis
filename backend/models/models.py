@@ -58,11 +58,11 @@ class Employees(Base):
 
     employee_id = Column(Integer, primary_key=True,
                          index=True, autoincrement=True, unique=True)
-    employee_name = Column(String(50), nullable=False, unique=True)
+    employee_name = Column(String(50), nullable=False)
     employee_email = Column(String(50), nullable=False, unique=True)
     employee_phone_number = Column(String(50), nullable=False, unique=True)
-    employee_job_title = Column(String(50), nullable=False, unique=True)
-    employee_password = Column(String(50), nullable=False, unique=True)
+    employee_job_title = Column(String(50), nullable=False)
+    employee_password = Column(String(50), nullable=False)
     created_at = Column(String(50), nullable=False, default=datetime.utcnow)
     updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
 
@@ -83,7 +83,7 @@ class StoreSections(Base):
 
     store_section_id = Column(
         Integer, primary_key=True, index=True, autoincrement=True, unique=True)
-    store_section_name = Column(String(50), nullable=False, unique=True)
+    store_section_name = Column(String(50), nullable=False)
     created_at = Column(String(50), nullable=False, default=datetime.utcnow)
     updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
 
@@ -102,12 +102,12 @@ class Incidents(Base):
 
     incident_id = Column(Integer, primary_key=True,
                          index=True, autoincrement=True, unique=True)
-    incident_description = Column(String(255), nullable=False, unique=True)
-    product_name = Column(String(50), nullable=False, unique=True)
-    product_code = Column(String(50), nullable=False, unique=True)
-    product_quantity = Column(Integer, nullable=False, unique=True)
-    product_price = Column(Float, nullable=False, unique=True)
-    is_resolved = Column(Boolean, nullable=False, unique=True, default=False)
+    incident_description = Column(String(255), nullable=False)
+    product_name = Column(String(50), nullable=False)
+    product_code = Column(String(50), nullable=False)
+    product_quantity = Column(Integer, nullable=False)
+    product_price = Column(Float, nullable=False)
+    is_resolved = Column(Boolean, nullable=False, default=False)
     created_at = Column(String(50), nullable=False, default=datetime.utcnow)
     updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
 

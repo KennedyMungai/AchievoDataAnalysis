@@ -12,6 +12,7 @@
 			"dotenv",
 			"fastapi",
 			"onupdate",
+			"passlib",
 			"pydantic",
 			"pymysql",
 			"sessionmaker",

@@ -1,6 +1,6 @@
 """The main file for the application"""
 from fastapi import FastAPI
-from routers.auth_router import auth_route
+from routers.auth_router import auth_router
 from routers.employees_router import employees_router
 from routers.incidents_router import incidents_router
 from routers.regions_router import regions_router
@@ -27,4 +27,4 @@ app.include_router(stores_router)
 app.include_router(employees_router)
 app.include_router(store_sections_router)
 app.include_router(incidents_router)
-app.include_router(auth_route)
+app.include_router(auth_router)

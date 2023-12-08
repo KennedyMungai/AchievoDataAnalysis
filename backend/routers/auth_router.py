@@ -8,7 +8,7 @@ from utils.password_hashing import verify_password
 from utils.oauth2 import create_access_token
 
 
-auth_route = APIRouter(
+auth_router = APIRouter(
     prefix="/auth",
     tags=["Auth"]
 )

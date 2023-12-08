@@ -1,7 +1,7 @@
 """The main file for the application"""
 from fastapi import FastAPI
 from routers.regions_router import regions_router
-
+from routers.stores_router import stores_router
 
 app = FastAPI(title="Achievo Data Analysis Backend",
               description="The backend of a loss control data analysis application",
@@ -19,3 +19,4 @@ async def root():
 
 
 app.include_router(regions_router)
+app.include_router(stores_router)

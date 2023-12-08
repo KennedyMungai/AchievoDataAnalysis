@@ -1,13 +1,13 @@
 """The auth router"""
-from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordRequestForm
-from database.db import get_db
-from sqlalchemy.orm import Session
-from models.models import Employees
-from utils.password_hashing import verify_password
-from utils.oauth2 import create_access_token
 from typing import Dict
 
+from database.db import get_db
+from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordRequestForm
+from models.models import Employees
+from sqlalchemy.orm import Session
+from utils.oauth2 import create_access_token
+from utils.password_hashing import verify_password
 
 auth_router = APIRouter(
     prefix="/auth",

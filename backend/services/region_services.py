@@ -63,10 +63,13 @@ async def update_region_service(
     Returns:
         ReadRegion: The updated region object
     """
-    region = retrieve_one_region_service(_region_id, _db)
+    region = await retrieve_one_region_service(_region_id, _db)
+    
     if not region:
         return None
+    
     region.region_name = _update_region_data.region_name
+    
     _db.commit()
     _db.refresh(region)
     return region
@@ -82,7 +85,7 @@ async def delete_region_service(_region_id: int, _db: Session) -> None:
     Returns:
         ReadRegion: The deleted region object
     """
-    region = retrieve_one_region_service(_region_id, _db)
+    region = await retrieve_one_region_service(_region_id, _db)
     if not region:
         return None
     _db.delete(region)

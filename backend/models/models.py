@@ -62,7 +62,7 @@ class Employees(Base):
     employee_email = Column(String(50), nullable=False)
     employee_phone_number = Column(String(50), nullable=False)
     employee_job_title = Column(String(50), nullable=False)
-    employee_password = Column(String(50), nullable=False)
+    employee_password = Column(String(255), nullable=False)
     created_at = Column(String(50), nullable=False, default=datetime.utcnow)
     updated_at = Column(String(50), nullable=True, onupdate=datetime.utcnow)
 

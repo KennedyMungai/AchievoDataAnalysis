@@ -49,7 +49,7 @@ async def retrieve_one_store_service(
     Returns:
         ReadStore: The data retrieved from the database
     """
-    return await _db.query(Stores).filter(Stores.store_id == _store_id).first()
+    return _db.query(Stores).filter(Stores.store_id == _store_id).first()
 
 
 async def update_store_service(
@@ -75,8 +75,8 @@ async def update_store_service(
     if _update_store_data.store_address:
         store.store_address = _update_store_data.store_address
 
-    await _db.commit()
-    await _db.refresh(store)
+    _db.commit()
+    _db.refresh(store)
 
     return store
 
@@ -93,5 +93,5 @@ async def delete_store_service(_store_id: int, _db: Session) -> None:
     if not store:
         return None
 
-    await _db.delete(store)
-    await _db.commit()
+    _db.delete(store)
+    _db.commit()

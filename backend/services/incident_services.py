@@ -19,9 +19,11 @@ async def create_incident_service(_incident_data: CreateIncident, _db: Session, 
         ReadIncident: The newly created incident
     """
     new_incident = Incidents(**_incident_data.model_dump())
+    
     _db.add(new_incident)
     _db.commit()
     _db.refresh(new_incident)
+    
     return new_incident
 
 

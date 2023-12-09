@@ -18,9 +18,11 @@ async def create_employee_service(_employee_data: CreateEmployee, _db: Session) 
         ReadEmployee: The newly created employee
     """
     new_employee = Employees(**_employee_data.model_dump())
+    
     _db.add(new_employee)
     _db.commit()
     _db.refresh(new_employee)
+    
     return new_employee
 
 
@@ -99,8 +101,11 @@ async def delete_employee_service(_employee_id: int, _db: Session) -> None:
         ReadEmployee: The deleted employee
     """
     employee = await retrieve_one_employee_service(_employee_id, _db)
+
     if not employee:
         return None
+    
     _db.delete(employee)
     _db.commit()
+    
     return None

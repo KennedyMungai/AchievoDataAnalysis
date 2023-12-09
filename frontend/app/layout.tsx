@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Open_Sans } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
 import './globals.css'
+import ThemeProvider from '@/providers/ThemeProvider'
 
 const open_sans = Open_Sans({ subsets: ['latin'] })
 
@@ -19,18 +20,20 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={open_sans.className}>
-				<Toaster
-					position='top-center'
-					toastOptions={{
-						duration: 5000,
-						style: {
-							backgroundColor: '#708090',
-							color: 'white'
-						}
-					}}
-				/>
-				<SideBar />
-				{children}
+				<ThemeProvider>
+					<Toaster
+						position='top-center'
+						toastOptions={{
+							duration: 5000,
+							style: {
+								backgroundColor: '#708090',
+								color: 'white'
+							}
+						}}
+					/>
+					<SideBar />
+					{children}
+				</ThemeProvider>
 			</body>
 		</html>
 	)

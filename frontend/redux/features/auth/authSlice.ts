@@ -14,14 +14,22 @@ export const getAuthToken = createAsyncThunk("auth/login", async (values: ICrede
 const initialState: IToken = {
     token_type: "",
     access_token: "",
-    is_loaded: false
+    is_loaded: false,
+    is_logged_in: false
 }
 
 
 const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {},
+    reducers: {
+        logIn: (state) => {
+            state.is_logged_in = true
+        },
+        logOut: (state) => {
+            state.is_logged_in = false
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getAuthToken.fulfilled, (state, action) => {

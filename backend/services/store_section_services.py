@@ -72,7 +72,7 @@ async def update_store_section_service(
 
     if _update_store_section_data.store_section_name:
         store_section_to_update.store_section_name = _update_store_section_data.store_section_name
-    if _update_store_section_data.store_section_address:
+    if _update_store_section_data.store_id:
         store_section_to_update.store_id = _update_store_section_data.store_id
 
     _db.commit()

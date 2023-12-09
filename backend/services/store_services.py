@@ -72,8 +72,8 @@ async def update_store_service(
 
     if _update_store_data.store_name:
         store.store_name = _update_store_data.store_name
-    if _update_store_data.store_address:
-        store.store_address = _update_store_data.store_address
+    if _update_store_data.store_location:
+        store.store_location = _update_store_data.store_location
 
     _db.commit()
     _db.refresh(store)

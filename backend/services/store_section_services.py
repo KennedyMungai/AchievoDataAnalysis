@@ -49,7 +49,9 @@ async def retrieve_one_store_section(_store_section_id: int, _db: Session) -> Re
     Returns:
         ReadStoreSection: The retrieved store section
     """
-    return _db.query(StoreSections).filter(StoreSections.store_section_id == _store_section_id).first()
+    return _db.query(StoreSections).filter(
+        StoreSections.store_section_id == _store_section_id
+    ).first()
 
 
 async def update_store_section_service(

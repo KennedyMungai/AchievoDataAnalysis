@@ -18,14 +18,15 @@ async def create_employee_service(_employee_data: CreateEmployee, _db: Session) 
     Returns:
         ReadEmployee: The newly created employee
     """
-    _employee_data.employee_password = hash_password(_employee_data.employee_password)
-    
+    _employee_data.employee_password = hash_password(
+        _employee_data.employee_password)
+
     new_employee = Employees(**_employee_data.model_dump())
-    
+
     _db.add(new_employee)
     _db.commit()
     _db.refresh(new_employee)
-    
+
     return new_employee
 
 
@@ -81,7 +82,8 @@ async def update_employee_service(
     if _update_employee_data.employee_job_title:
         employee_to_update.employee_job_title = _update_employee_data.employee_job_title
     if _update_employee_data.employee_password:
-        employee_to_update.employee_password = hash_password(_update_employee_data.employee_password)
+        employee_to_update.employee_password = hash_password(
+            _update_employee_data.employee_password)
     if _update_employee_data.store_id:
         employee_to_update.store_id = _update_employee_data.store_id
     if _update_employee_data.region_id:
@@ -107,8 +109,8 @@ async def delete_employee_service(_employee_id: int, _db: Session) -> None:
 
     if not employee:
         return None
-    
+
     _db.delete(employee)
     _db.commit()
-    
+
     return None

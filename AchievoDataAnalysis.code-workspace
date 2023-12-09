@@ -11,6 +11,7 @@
 			"backref",
 			"dotenv",
 			"fastapi",
+			"lucide",
 			"onupdate",
 			"passlib",
 			"pydantic",

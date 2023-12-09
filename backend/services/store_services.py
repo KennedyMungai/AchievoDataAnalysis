@@ -17,11 +17,11 @@ async def create_store_service(_store: CreateStore, _db: Session) -> ReadStore:
         ReadStore: The newly created store
     """
     db_store = Stores(**_store.model_dump())
-    
+
     _db.add(db_store)
     _db.commit()
     _db.refresh(db_store)
-    
+
     return db_store
 
 
@@ -66,7 +66,7 @@ async def update_store_service(
         ReadStore: The updated store object
     """
     store = await retrieve_one_store_service(_store_id, _db)
-    
+
     if not store:
         return None
 
@@ -77,7 +77,7 @@ async def update_store_service(
 
     await _db.commit()
     await _db.refresh(store)
-    
+
     return store
 
 
@@ -89,9 +89,9 @@ async def delete_store_service(_store_id: int, _db: Session) -> None:
         _db (Session): The database session
     """
     store = await retrieve_one_store_service(_store_id, _db)
-    
+
     if not store:
         return None
-    
+
     await _db.delete(store)
     await _db.commit()

@@ -23,7 +23,10 @@ async def create_store_section_service(
     _db.refresh(new_store_section)
 
 
-async def retrieve_all_store_sections_in_store(_store_id: int, _db: Session) -> List[ReadStoreSection]:
+async def retrieve_all_store_sections_in_store(
+    _store_id: int,
+    _db: Session
+) -> List[ReadStoreSection]:
     """The service function to retrieve all store sections in a store
 
     Args:
@@ -50,7 +53,10 @@ async def retrieve_one_store_section(_store_section_id: int, _db: Session) -> Re
 
 
 async def update_store_section_service(
-        _store_section_id: int, _update_store_section_data: UpdateStoreSection, _db: Session) -> ReadStoreSection:
+        _store_section_id: int,
+        _update_store_section_data: UpdateStoreSection,
+        _db: Session
+) -> ReadStoreSection:
     """The service function to update a store section
 
     Args:

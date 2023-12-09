@@ -1,9 +1,8 @@
 """The routers file for the stores data"""
-from typing import List
 
 from database.db import get_db
 from fastapi import APIRouter, Depends, HTTPException, status
-from schemas.store_schema import CreateStore, ReadStore, UpdateStore
+from schemas.store_schema import CreateStore, UpdateStore
 from services.store_services import (create_store_service,
                                      delete_store_service,
                                      retrieve_all_stores_in_a_region_service,

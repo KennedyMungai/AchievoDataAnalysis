@@ -79,10 +79,10 @@ async def update_employee_service(
         employee_to_update.employee_job_title = _update_employee_data.employee_job_title
     if _update_employee_data.employee_password:
         employee_to_update.employee_password = _update_employee_data.employee_password
-    if _update_employee_data.employee_store_id:
-        employee_to_update.employee_store_id = _update_employee_data.employee_store_id
-    if _update_employee_data.employee_region_id:
-        employee_to_update.employee_region_id = _update_employee_data.employee_region_id
+    if _update_employee_data.store_id:
+        employee_to_update.store_id = _update_employee_data.store_id
+    if _update_employee_data.region_id:
+        employee_to_update.region_id = _update_employee_data.region_id
 
     _db.commit()
     _db.refresh(employee_to_update)

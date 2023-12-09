@@ -1,10 +1,7 @@
 """The router file foe the store sections"""
-from typing import List
-
 from database.db import get_db
 from fastapi import APIRouter, Depends, HTTPException, status
-from schemas.store_section_schema import (CreateStoreSection, ReadStoreSection,
-                                          UpdateStoreSection)
+from schemas.store_section_schema import CreateStoreSection, UpdateStoreSection
 from services.store_section_services import (
     create_store_section_service, delete_store_section_service,
     retrieve_all_store_sections_in_store, retrieve_one_store_section,

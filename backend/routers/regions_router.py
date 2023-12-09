@@ -1,9 +1,7 @@
 """The router file for the regions"""
-from typing import List
-
 from database.db import get_db
 from fastapi import APIRouter, Depends, HTTPException, status
-from schemas.region_schema import CreateRegion, ReadRegion, UpdateRegion
+from schemas.region_schema import CreateRegion, UpdateRegion
 from services.region_services import (create_region_service,
                                       delete_region_service,
                                       retrieve_all_regions_service,

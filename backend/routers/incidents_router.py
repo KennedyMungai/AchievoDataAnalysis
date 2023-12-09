@@ -1,10 +1,7 @@
 """The incidents router file"""
-from typing import List
-
 from database.db import get_db
 from fastapi import APIRouter, Depends, HTTPException, status
-from schemas.incident_schema import (CreateIncident, ReadIncident,
-                                     UpdateIncident)
+from schemas.incident_schema import CreateIncident, UpdateIncident
 from services.incident_services import (create_incident_service,
                                         delete_incident_service,
                                         retrieve_all_incidents_service,

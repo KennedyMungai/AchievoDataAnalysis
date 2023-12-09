@@ -38,12 +38,12 @@ async def login(
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid Credentials")
 
-    if not verify_password(_employee_credentials.password, employee.employee_password):
+    if not await verify_password(_employee_credentials.password, employee.employee_password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid Credentials")
 
     data = {"employee_id": employee.employee_id}
 
-    access_token = create_access_token(data=data)
+    access_token = await create_access_token(data=data)
 
     return {"access_token": access_token, "token_type": "bearer"}

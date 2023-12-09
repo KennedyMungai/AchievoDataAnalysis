@@ -16,7 +16,7 @@ async def hash_password(_password: str) -> str:
     return pwd_context.hash(_password)
 
 
-async def verify_password(_password: str, _hashed_password: str) -> bool:
+async def verify_password(_plain_password: str, _hashed_password: str) -> bool:
     """The function for verifying passwords.
 
     Args:
@@ -26,4 +26,4 @@ async def verify_password(_password: str, _hashed_password: str) -> bool:
     Returns:
         bool: True if the password matches the hashed password, False otherwise.
     """
-    return pwd_context.verify(_password, _hashed_password)
+    return pwd_context.verify(_plain_password, _hashed_password)

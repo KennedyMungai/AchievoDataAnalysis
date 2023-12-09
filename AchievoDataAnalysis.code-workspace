@@ -11,6 +11,8 @@
 			"backref",
 			"dotenv",
 			"fastapi",
+			"hookform",
+			"localforage",
 			"lucide",
 			"onupdate",
 			"passlib",

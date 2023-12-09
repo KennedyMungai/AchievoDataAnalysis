@@ -2,7 +2,7 @@ interface IToken
 {
     token_type: string
     access_token: string
-    is_loaded: bool
+    is_loaded: boolean
 }
 
 interface ICredentials

@@ -18,6 +18,7 @@
 			"passlib",
 			"pydantic",
 			"pymysql",
+			"reduxjs",
 			"sessionmaker",
 			"sqlalchemy"
 		]

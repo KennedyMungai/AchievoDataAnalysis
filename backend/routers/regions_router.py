@@ -10,6 +10,7 @@ from services.region_services import (create_region_service,
                                       update_region_service)
 from sqlalchemy.orm import Session
 from utils.oauth2 import get_current_user
+from schemas.employee_schema import EmployeeJobTitle
 
 regions_router = APIRouter(prefix="/regions", tags=["Regions"])
 
@@ -30,15 +31,22 @@ async def retrieve_all_regions_endpoint(
     Returns:
         List[ReadRegion]: A list of all regions
     """
-    try:
-        if (_current_user.employee_job_title == "administrator"):
+    # try:
+    #     if (_current_user.employee_job_title == "administrator"):
+    #         return await retrieve_all_regions_service(_db)
+    #     else:
+    #         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
+    #                             detail="You do not have permission to perform this action")
+    # except Exception as exc:
+    #     raise HTTPException(
+    #         status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
+    if _current_user.employee_job_title == EmployeeJobTitle.ADMINISTRATOR:
+        try:
             return await retrieve_all_regions_service(_db)
-        else:
-            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
-                                detail="You do not have permission to perform this action")
-    except Exception as exc:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
+        except Exception as exc:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
+    else:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="You do not have permission to perform this action")
 
 
 @regions_router.get("/{_region_id}")

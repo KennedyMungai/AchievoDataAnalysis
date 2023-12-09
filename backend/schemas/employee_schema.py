@@ -16,7 +16,6 @@ class EmployeeBase(BaseModel):
     employee_email: EmailStr
     employee_phone_number: str
     employee_job_title: str
-    employee_password: str
     store_id: int
     region_id: int
 
@@ -27,7 +26,7 @@ class CreateEmployee(EmployeeBase):
     Args:
         EmployeeBase (Pydantic): The base schema for the employee data
     """
-    pass
+    employee_password: str
 
 
 class ReadEmployee(EmployeeBase):

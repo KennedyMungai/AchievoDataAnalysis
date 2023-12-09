@@ -38,7 +38,7 @@ async def login(
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid Credentials")
 
-    if not await verify_password(_employee_credentials.password, employee.employee_password):
+    if await verify_password(_employee_credentials.password, employee.employee_password) == False:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid Credentials")
 

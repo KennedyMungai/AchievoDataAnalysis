@@ -10,7 +10,7 @@ from jose import JWTError, jwt
 from services.employee_services import retrieve_one_employee_service
 from sqlalchemy.orm import Session
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
 load_dotenv(find_dotenv())
 

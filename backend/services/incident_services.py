@@ -54,7 +54,7 @@ async def retrieve_one_incident_service(
 async def update_incident_service(
     _incident_id: int, _update_incident_data: UpdateIncident, _db: Session
 ) -> ReadIncident:
-    incident_to_update = retrieve_one_incident_service(_incident_id, _db)
+    incident_to_update = await retrieve_one_incident_service(_incident_id, _db)
 
     if _update_incident_data.incident_description:
         incident_to_update.incident_description = _update_incident_data.incident_description
@@ -84,7 +84,7 @@ async def delete_incident_service(
         _incident_id (int): The id of the incident
         _db (Session): The database session
     """
-    incident_to_delete = retrieve_one_incident_service(_incident_id, _db)
+    incident_to_delete = await retrieve_one_incident_service(_incident_id, _db)
     if not incident_to_delete:
         return None
     _db.delete(incident_to_delete)

@@ -63,7 +63,7 @@ async def update_employee_service(
     Returns:
         ReadEmployee: The updated employee
     """
-    employee_to_update = retrieve_one_employee_service(_employee_id, _db)
+    employee_to_update = await retrieve_one_employee_service(_employee_id, _db)
 
     if _update_employee_data.employee_name:
         employee_to_update.employee_name = _update_employee_data.employee_name
@@ -96,7 +96,7 @@ async def delete_employee_service(_employee_id: int, _db: Session) -> None:
     Returns:
         ReadEmployee: The deleted employee
     """
-    employee = retrieve_one_employee_service(_employee_id, _db)
+    employee = await retrieve_one_employee_service(_employee_id, _db)
     if not employee:
         return None
     _db.delete(employee)

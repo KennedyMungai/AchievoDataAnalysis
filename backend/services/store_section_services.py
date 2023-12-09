@@ -61,7 +61,7 @@ async def update_store_section_service(
     Returns:
         ReadStoreSection: The updated store section
     """
-    store_section_to_update = retrieve_one_store_section(
+    store_section_to_update = await retrieve_one_store_section(
         _store_section_id, _db)
 
     if _update_store_section_data.store_section_name:
@@ -82,7 +82,7 @@ async def delete_store_section_service(_store_section_id: int, _db: Session) -> 
         _store_section_id (int): The id of the store section
         _db (Session): The database session
     """
-    store_section_to_delete = retrieve_one_store_section(
+    store_section_to_delete = await retrieve_one_store_section(
         _store_section_id, _db)
     if not store_section_to_delete:
         return None

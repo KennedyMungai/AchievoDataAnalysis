@@ -1,5 +1,4 @@
 'use client'
-import { logIn, logOut, selectAuthState } from '@/redux/features/auth/authSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
@@ -35,6 +34,7 @@ import {
 	FormMessage
 } from '../ui/form'
 import { Input } from '../ui/input'
+import { logIn, logOut, selectAuthStateData } from '@/redux/features/auth/authSlice'
 
 type Props = {}
 
@@ -45,7 +45,7 @@ const formSchema = z.object({
 
 const LoginButton = (props: Props) => {
 	const dispatch = useAppDispatch()
-	const isLoggedIn = useAppSelector(selectAuthState)
+	const isLoggedIn = useAppSelector(selectAuthStateData).is_logged_in
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),

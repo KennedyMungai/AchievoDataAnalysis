@@ -1,8 +1,8 @@
+import SideBar from '@/components/SideBar/SideBar'
 import type { Metadata } from 'next'
 import { Open_Sans } from 'next/font/google'
-import './globals.css'
-import SideBar from '@/components/SideBar/SideBar'
 import { Toaster } from 'react-hot-toast'
+import './globals.css'
 
 const open_sans = Open_Sans({ subsets: ['latin'] })
 

@@ -21,7 +21,8 @@ async def login(
     """The login endpoint
 
     Args:
-        _employee_credentials (OAuth2PasswordRequestForm, optional): The employee credentials. Defaults to Depends().
+        _employee_credentials (OAuth2PasswordRequestForm, optional): 
+        The employee credentials. Defaults to Depends().
         _db (Session, optional): The database session. Defaults to Depends(get_db).
 
     Raises:

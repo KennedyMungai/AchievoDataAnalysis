@@ -44,6 +44,8 @@ const formSchema = z.object({
 })
 
 const LoginButton = (props: Props) => {
+    // TODO: Recheck the logic used to authenticate users
+
 	const dispatch = useAppDispatch()
 	const isLoggedIn = useAppSelector(selectAuthStateData).is_logged_in
 

@@ -51,7 +51,7 @@ async def verify_access_token(_token: str, credentials_exception):
     """
     try:
         payload = jwt.decode(_token, SECRET_KEY, algorithms=[ALGORITHM])
-        _id = payload.get("user_id")
+        _id = payload.get("employee_id")
 
         if _id is None:
             raise credentials_exception

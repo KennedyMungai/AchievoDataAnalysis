@@ -72,7 +72,7 @@ class UpdateEmployee(BaseModel):
     employee_name: Optional[str]
     employee_email: Optional[EmailStr]
     employee_phone_number: Optional[str]
-    employee_job_title: Optional[str]
+    employee_job_title: Optional[EmployeeJobTitle]
     employee_password: Optional[str]
     store_id: Optional[int]
     region_id: Optional[int]

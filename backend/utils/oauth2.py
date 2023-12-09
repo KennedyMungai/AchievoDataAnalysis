@@ -55,11 +55,10 @@ async def verify_access_token(_token: str, credentials_exception):
 
         if _id is None:
             raise credentials_exception
-
-        return _id
     except JWTError as exc:
         raise credentials_exception from exc
 
+    return _id
 
 async def get_current_user(_token: str = Depends(oauth2_scheme), _db: Session = Depends(get_db)):
     """The function used to get the current user

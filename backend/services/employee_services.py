@@ -1,8 +1,10 @@
 """The employee service file for employee CRUD operations"""
 from typing import List
-from schemas.employee_schema import CreateEmployee, ReadEmployee, UpdateEmployee
-from sqlalchemy.orm import Session
+
 from models.models import Employees
+from schemas.employee_schema import (CreateEmployee, ReadEmployee,
+                                     UpdateEmployee)
+from sqlalchemy.orm import Session
 
 
 async def create_employee_service(_employee_data: CreateEmployee, _db: Session) -> ReadEmployee:

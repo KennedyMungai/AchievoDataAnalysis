@@ -1,6 +1,7 @@
 """The router file for the regions"""
 from database.db import get_db
 from fastapi import APIRouter, Depends, HTTPException, status
+from schemas.employee_schema import ReadEmployee
 from schemas.region_schema import CreateRegion, UpdateRegion
 from services.region_services import (create_region_service,
                                       delete_region_service,
@@ -8,13 +9,15 @@ from services.region_services import (create_region_service,
                                       retrieve_one_region_service,
                                       update_region_service)
 from sqlalchemy.orm import Session
+from utils.oauth2 import get_current_user
 
 regions_router = APIRouter(prefix="/regions", tags=["Regions"])
 
 
 @regions_router.get("/")
 async def retrieve_all_regions_endpoint(
-    _db: Session = Depends(get_db)
+    _db: Session = Depends(get_db),
+    _current_user: ReadEmployee = Depends(get_current_user)
 ):
     """The endpoint to retrieve all regions
 
@@ -28,7 +31,11 @@ async def retrieve_all_regions_endpoint(
         List[ReadRegion]: A list of all regions
     """
     try:
-        return await retrieve_all_regions_service(_db)
+        if (_current_user.employee_job_title == "administrator"):
+            return await retrieve_all_regions_service(_db)
+        else:
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
+                                detail="You do not have permission to perform this action")
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc

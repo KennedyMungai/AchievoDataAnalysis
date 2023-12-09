@@ -54,6 +54,16 @@ async def retrieve_one_incident_service(
 async def update_incident_service(
     _incident_id: int, _update_incident_data: UpdateIncident, _db: Session
 ) -> ReadIncident:
+    """The service function to update a store incident
+
+    Args:
+        _incident_id (int): The id of an incident
+        _update_incident_data (UpdateIncident): The data used to update the incident
+        _db (Session): The database session
+
+    Returns:
+        ReadIncident: The updated incident
+    """
     incident_to_update = await retrieve_one_incident_service(_incident_id, _db)
 
     if _update_incident_data.incident_description:

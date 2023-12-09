@@ -30,7 +30,6 @@ class CreateIncident(IncidentBase):
     Args:
         IncidentBase (Pydantic): The base incident schema
     """
-    pass
 
 
 class ReadIncident(IncidentBase):

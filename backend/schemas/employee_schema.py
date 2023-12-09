@@ -1,9 +1,25 @@
 """The schema file for the employees"""
 from datetime import datetime
+from enum import Enum
 from typing import List, Optional
 
 from pydantic import BaseModel, EmailStr
 from schemas.incident_schema import ReadIncident
+
+
+class EmployeeJobTitle(Enum):
+    """The enum containing the job titles
+
+    Args:
+        Enum (Class): The enum base class
+    """
+    ADMINISTRATOR = "administrator"
+    AREA_MANAGER = "area_manager"
+    LCM = "lcm"
+    FEC = "fec"
+    CRO = "cro"
+    DC = "dc"
+    RECEIVING_CLERK = "receiving_clerk"
 
 
 class EmployeeBase(BaseModel):
@@ -15,7 +31,7 @@ class EmployeeBase(BaseModel):
     employee_name: str
     employee_email: EmailStr
     employee_phone_number: str
-    employee_job_title: str
+    employee_job_title: EmployeeJobTitle
     store_id: int
     region_id: int
 

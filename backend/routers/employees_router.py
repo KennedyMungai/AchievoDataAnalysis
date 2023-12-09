@@ -1,10 +1,7 @@
 """The router file for the employee data"""
-from typing import List
-
 from database.db import get_db
 from fastapi import APIRouter, Depends, HTTPException, status
-from schemas.employee_schema import (CreateEmployee, ReadEmployee,
-                                     UpdateEmployee)
+from schemas.employee_schema import CreateEmployee, UpdateEmployee
 from services.employee_services import (create_employee_service,
                                         delete_employee_service,
                                         retrieve_all_employees_service,

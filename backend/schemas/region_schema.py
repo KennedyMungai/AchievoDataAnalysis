@@ -23,7 +23,6 @@ class CreateRegion(RegionBase):
     Args:
         RegionBase (Pydantic): The basis for the schema
     """
-    pass
 
 
 class ReadRegion(RegionBase):

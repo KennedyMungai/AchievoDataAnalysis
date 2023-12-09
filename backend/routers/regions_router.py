@@ -13,6 +13,7 @@ from utils.oauth2 import get_current_user
 
 regions_router = APIRouter(prefix="/regions", tags=["Regions"])
 
+# TODO: Use oauth2 security scopes to handle role based authentication
 
 @regions_router.get("/")
 async def retrieve_all_regions_endpoint(

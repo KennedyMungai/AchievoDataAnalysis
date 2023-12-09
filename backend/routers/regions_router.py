@@ -1,7 +1,7 @@
 """The router file for the regions"""
 from database.db import get_db
 from fastapi import APIRouter, Depends, HTTPException, status
-from schemas.employee_schema import ReadEmployee
+from schemas.employee_schema import EmployeeJobTitle, ReadEmployee
 from schemas.region_schema import CreateRegion, UpdateRegion
 from services.region_services import (create_region_service,
                                       delete_region_service,
@@ -10,7 +10,6 @@ from services.region_services import (create_region_service,
                                       update_region_service)
 from sqlalchemy.orm import Session
 from utils.oauth2 import get_current_user
-from schemas.employee_schema import EmployeeJobTitle
 
 regions_router = APIRouter(prefix="/regions", tags=["Regions"])
 

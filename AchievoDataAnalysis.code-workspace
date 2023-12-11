@@ -42,7 +42,8 @@
 			"sessionmaker",
 			"similique",
 			"soluta",
-			"sqlalchemy"
+			"sqlalchemy",
+			"tanstack"
 		]
 	}
 }

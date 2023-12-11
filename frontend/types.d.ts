@@ -11,3 +11,11 @@ interface ICredentials
     employee_email: string,
     employee_password: string
 }
+
+interface IRegion
+{
+    region_id: number,
+    region_name: string,
+    created_at: string,
+    updated_at?: string
+}

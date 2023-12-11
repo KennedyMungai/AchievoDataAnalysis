@@ -1,5 +1,4 @@
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
-import TopBar from '@/components/TopBar/TopBar'
 
 export default function Home() {
 	return (

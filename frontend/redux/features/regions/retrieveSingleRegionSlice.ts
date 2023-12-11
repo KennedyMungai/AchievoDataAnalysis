@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { RootState } from "../store";
 
 
 export const retrieveSingleRegion = createAsyncThunk('regions/singleRegion', async (regionId: number) => {
@@ -40,5 +41,6 @@ const retrieveSingleRegionSlice = createSlice({
     }
 })
 
+export const selectSingleRegion = (state: RootState) => state.singleRegion
 
 export default retrieveSingleRegionSlice.reducer

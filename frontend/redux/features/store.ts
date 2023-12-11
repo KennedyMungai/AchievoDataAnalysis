@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './auth/authSlice'
+import retrieveAllEmployeesReducer from './employees/retrieveAllEmployeesSlice'
 import retrieveAllRegionsReducer from './regions/retrieveAllRegionsSlice'
 import retrieveSingleRegionReducer from './regions/retrieveSingleRegionSlice'
 import retrieveAllRegionStoresReducer from './stores/retrieveAllRegionStoresSlice'
@@ -9,7 +10,8 @@ const store = configureStore({
         authState: authReducer,
         allRegions: retrieveAllRegionsReducer,
         singleRegion: retrieveSingleRegionReducer,
-        allRegionStores: retrieveAllRegionStoresReducer
+        allRegionStores: retrieveAllRegionStoresReducer,
+        allEmployees: retrieveAllEmployeesReducer
     }
 })
 

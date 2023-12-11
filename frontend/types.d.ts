@@ -25,3 +25,24 @@ interface IRegionsData {
     regions: IRegion[],
     is_loaded: boolean
 }
+
+interface IStore
+{
+    store_name: string,
+    store_location: string,
+    created_at: Date,
+    updated_at?: Date
+    region_id: number
+    store_id: number
+}
+
+interface IStoreData extends IStore 
+{
+    is_loaded: boolean
+}
+
+interface IStoresData
+{
+    stores: IStore[],
+    is_loaded: boolean
+}

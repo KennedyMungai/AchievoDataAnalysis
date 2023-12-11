@@ -1,18 +1,7 @@
 'use client'
-import { selectAuthState } from '@/redux/features/auth/authSlice'
-import {
-	allRegionStores,
-	selectedRegionStores
-} from '@/redux/features/regions/allStoresFromRegion'
-import {
-	getSingleRegion,
-	selectSingleRegion
-} from '@/redux/features/regions/singleRegionSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useEffect } from 'react'
-import AddStoreCardTemplate from '../Templates/AddStoreCardTemplate'
 import CardTemplate from '../Templates/CardTemplate'
-import StoreCardTemplate from '../Templates/StoreCardTemplate'
 import TopBar from '../TopBar/TopBar'
 
 type Props = {
@@ -20,14 +9,7 @@ type Props = {
 }
 
 const RegionStoresCards = ({ regionId }: Props) => {
-	const regionStores = useAppSelector(selectedRegionStores)
-	const region = useAppSelector(selectSingleRegion)
-	const isLoggedIn = useAppSelector(selectAuthState)
-	const dispatch = useAppDispatch()
-
 	useEffect(() => {
-		dispatch(allRegionStores(regionId))
-		dispatch(getSingleRegion(regionId))
 	}, [])
 
 	const content = isLoggedIn ? (

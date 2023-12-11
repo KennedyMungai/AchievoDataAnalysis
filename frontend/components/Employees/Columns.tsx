@@ -4,11 +4,11 @@ import { ArrowUpDown, MoreHorizontal } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Checkbox } from '../ui/checkbox'
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger
 } from '../ui/dropdown-menu'
 
 type Props = {}
@@ -20,7 +20,8 @@ export const Columns: ColumnDef<IEmployee>[] = [
 			<Checkbox
 				checked={table.getIsAllPageRowsSelected()}
 				onCheckedChange={(value) => {
-					table.toggleAllPageRowsSelected(value!!)
+                    // TODO: This logic probably doesn't work
+					table.toggleAllPageRowsSelected(value ? true : false)
 				}}
 			/>
 		),
@@ -38,8 +39,8 @@ export const Columns: ColumnDef<IEmployee>[] = [
 	{
 		accessorKey: 'employee_id',
 		header: 'ID',
-        enableHiding: false,
-        enableSorting: false
+		enableHiding: false,
+		enableSorting: false
 	},
 	{
 		accessorKey: 'employee_email',
@@ -135,6 +136,6 @@ export const Columns: ColumnDef<IEmployee>[] = [
 				</DropdownMenu>
 			)
 		},
-        enableHiding: false
+		enableHiding: false
 	}
 ]

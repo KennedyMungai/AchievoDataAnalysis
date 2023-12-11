@@ -1,5 +1,9 @@
 'use client'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
+import {
+	retrieveSingleRegion,
+	selectSingleRegion
+} from '@/redux/features/regions/retrieveSingleRegionSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import React, { useEffect } from 'react'
 
@@ -10,10 +14,17 @@ type Props = {
 }
 
 const SingleRegionPage = ({ params: { regionId } }: Props) => {
+	const dispatch = useAppDispatch()
+	const region = useAppSelector(selectSingleRegion)
+
+	useEffect(() => {
+		dispatch(retrieveSingleRegion(Number(regionId)))
+	}, [])
+
 	return (
 		<div className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800'>
 			<DashboardTemplate
-				title={'Some Region Name'}
+				title={region.region_name}
 				buttonLink={`stores/${regionId}`}
 				buttonName={'Stores'}
 				dashboardCard1Value={538}

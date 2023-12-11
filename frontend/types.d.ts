@@ -26,8 +26,7 @@ interface IRegionsData {
     is_loaded: boolean
 }
 
-interface IStore
-{
+interface IStore {
     store_name: string,
     store_location: string,
     created_at: Date,
@@ -36,13 +35,33 @@ interface IStore
     store_id: number
 }
 
-interface IStoreData extends IStore 
-{
+interface IStoreData extends IStore {
     is_loaded: boolean
 }
 
-interface IStoresData
-{
+interface IStoresData {
     stores: IStore[],
+    is_loaded: boolean
+}
+
+interface IEmployee {
+    employee_id: number,
+    employee_phone_number: string,
+    employee_password: string,
+    updated_at?: Date,
+    region_id: 1,
+    employee_name: string,
+    employee_email: string,
+    employee_job_title: string,
+    created_at: Date,
+    store_id: 1
+}
+
+interface IEmployeeData extends IEmployee {
+    is_loaded: boolean
+}
+
+interface IEmployeesData {
+    employees: IEmployee[],
     is_loaded: boolean
 }

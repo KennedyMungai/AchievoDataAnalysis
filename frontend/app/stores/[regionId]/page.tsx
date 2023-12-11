@@ -1,11 +1,11 @@
-import RegionStoresCards from '@/components/Regions/RegionStoresCards'
+import RegionStoresCards from "@/components/Stores/StoreCards"
+
 
 type Props = {
 	params: {
 		regionStoreId: string
 	}
 }
-
 
 const RegionStoresPage = ({params: {regionStoreId}}: Props) => {
 	return (

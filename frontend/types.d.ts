@@ -18,4 +18,6 @@ interface IRegion
     region_name: string,
     created_at: Date,
     updated_at?: Date
+
+    is_loaded: boolean
 }

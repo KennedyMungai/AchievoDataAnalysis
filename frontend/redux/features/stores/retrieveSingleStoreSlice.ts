@@ -3,7 +3,7 @@ import axios from "axios"
 import store, { RootState } from "../store"
 
 
-export const retrieveSingleStore = createAsyncThunk("stores/singleStore", async (storeId) => {
+export const retrieveSingleStore = createAsyncThunk("stores/singleStore", async (storeId: number) => {
     const response = await axios.get(`http://localhost:8000/stores/${storeId}`)
     const data = response.data
     return data

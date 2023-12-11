@@ -4,7 +4,7 @@ import { RootState } from "../store";
 
 
 export const retrieveSingleRegion = createAsyncThunk('regions/singleRegion', async (regionId: number) => {
-    const response = await axios.get(`http://localhost:8000/{region_id}`)
+    const response = await axios.get(`http://localhost:8000/${regionId}`)
 
     const regionData = response.data
 

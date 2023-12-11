@@ -7,6 +7,7 @@ export default function Home() {
 			<DashboardTemplate
 				title={'Achievo Limited'}
 				buttonName={'Regions'}
+        buttonLink={'/regions'}
 				dashboardCard1Value={8500}
 				dashboardCard1Title={'Some Value'}
 				dashboardCard2Value={4568}

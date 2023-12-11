@@ -2,11 +2,11 @@ import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 
 export default function Home() {
 	return (
-		<main className='w-[94rem] min-h-screen bg-slate-200 dark:bg-slate-800 ml-[6vw]'>
+		<main className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800'>
 			<DashboardTemplate
 				title={'Achievo Limited'}
 				buttonName={'Regions'}
-        buttonLink={'/regions'}
+				buttonLink={'/regions'}
 				dashboardCard1Value={8500}
 				dashboardCard1Title={'Some Value'}
 				dashboardCard2Value={4568}

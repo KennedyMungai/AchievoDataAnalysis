@@ -6,7 +6,7 @@ type Props = {}
 
 const EmployeesPage = (props: Props) => {
 	return (
-		<main className='w-[94rem] min-h-screen bg-slate-200 dark:bg-slate-800 ml-[6vw]'>
+		<main className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800'>
 			<TopBar pageTitle={'Employees'} />
 			<EmployeesTable />
 		</main>

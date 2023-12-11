@@ -21,18 +21,19 @@ const SingleStorePage = ({params: {storeId}}: Props) => {
 	return (
 		<div className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800'>
 			<DashboardTemplate
-				title={''}
-				buttonName={''}
+				title={store.store_name}
+				buttonName={'Store Sections'}
+        buttonLink={`/storeSections/${storeId}`}
 				dashboardCard1Value={0}
-				dashboardCard1Title={''}
+				dashboardCard1Title={'Some Value'}
 				dashboardCard2Value={0}
-				dashboardCard2Title={''}
+				dashboardCard2Title={'Some Value'}
 				dashboardCard3Value={0}
-				dashboardCard3Title={''}
+				dashboardCard3Title={'Some Value'}
 				dashboardCard4Value={0}
-				dashboardCard4Title={''}
-				chartCardTitle={''}
-				chartCardDescription={''}
+				dashboardCard4Title={'Some Value'}
+				chartCardTitle={'Some Title'}
+				chartCardDescription={'Some Description'}
 				chartCardContent={undefined}
 				scrollAreaComponent={undefined}
 			/>

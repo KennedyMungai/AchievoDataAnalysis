@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import axios from "axios"
+import { RootState } from "../store"
 
 
 export const retrieveRegionStores = createAsyncThunk('stores/regionStores', async (regionId: number) => {
@@ -38,6 +39,6 @@ const retrieveAllRegionStoresSlice = createSlice({
 })
 
 
-// export const selectAllRegionStores = (state: RootState) => state.allRegionStores
+export const selectAllRegionStores = (state: RootState) => state.allRegionStores.stores
 
 export default retrieveAllRegionStoresSlice.reducer

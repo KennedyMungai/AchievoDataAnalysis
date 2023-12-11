@@ -1,9 +1,23 @@
+'use client'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
-import React from 'react'
+import { retrieveSingleStore, selectSingleStore } from '@/redux/features/stores/retrieveSingleStoreSlice'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import React, { useEffect } from 'react'
 
-type Props = {}
+type Props = {
+  params: {
+    storeId: string
+  }
+}
 
-const SingleStorePage = (props: Props) => {
+const SingleStorePage = ({params: {storeId}}: Props) => {
+  const store = useAppSelector(selectSingleStore)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(retrieveSingleStore(Number(storeId)))
+  }, [])
+
 	return (
 		<div className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800'>
 			<DashboardTemplate

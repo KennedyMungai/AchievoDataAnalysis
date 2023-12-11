@@ -3,26 +3,21 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 import RegionCardTemplate from '../Templates/RegionCardTemplate'
 import AddRegionCardTemplate from '../Templates/AddRegionCardTemplate'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { retrieveAllRegions, selectAllRegions } from '@/redux/features/regions/retrieveAllRegionsSlice'
 
 type Props = {}
 
 const RegionCards = (props: Props) => {
-	const regions: IRegion[] = []
+	const regions = useAppSelector(selectAllRegions)
+	const dispatch = useAppDispatch()
 
 	useEffect(() => {
-		const getRegionsData = async () => {
-			try {
-				return (await axios.get('http://localhost:8000/regions')).data
-			} catch (error) {
-				console.log(error)
-			}
-		}
-
-		const regions = getRegionsData()
-	}, [])
+        dispatch(retrieveAllRegions())
+    }, [])
 
 	return (
-		<>
+		<div className='p-5 w-90 flex flex-wrap items-center justify-center gap-2'>
 			{regions.map((region) => {
 				return (
 					<RegionCardTemplate
@@ -38,7 +33,7 @@ const RegionCards = (props: Props) => {
 				)
 			})}
 			<AddRegionCardTemplate />
-		</>
+		</div>
 	)
 }
 

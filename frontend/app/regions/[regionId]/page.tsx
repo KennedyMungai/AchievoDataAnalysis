@@ -25,7 +25,7 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 		<div className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800'>
 			<DashboardTemplate
 				title={region.region_name}
-				buttonLink={`stores/${regionId}`}
+				buttonLink={`/stores/${regionId}`}
 				buttonName={'Stores'}
 				dashboardCard1Value={538}
 				dashboardCard1Title={'No. Of Incidents'}

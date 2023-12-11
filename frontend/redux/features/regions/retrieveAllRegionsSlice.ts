@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { RootState } from "../store";
 
 export const retrieveAllRegions = createAsyncThunk("regions/allRegions", async () => {
     const response = await axios.get("http://localhost:8000/regions")
@@ -34,5 +35,7 @@ const retrieveRegionsSlice = createSlice({
             })
     }
 })
+
+export const selectAllRegions = (state: RootState) => state.allRegions
 
 export default retrieveRegionsSlice.reducer

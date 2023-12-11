@@ -1,5 +1,6 @@
 """The main file for the application"""
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from routers.auth_router import auth_router
 from routers.employees_router import employees_router
 from routers.incidents_router import incidents_router
@@ -11,7 +12,16 @@ app = FastAPI(title="Achievo Data Analysis Backend",
               description="The backend of a loss control data analysis application",
               version="0.2.0")
 
-# TODO: Implement CORS
+
+origins = ["http://localhost:3000"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 
 @app.get("/")

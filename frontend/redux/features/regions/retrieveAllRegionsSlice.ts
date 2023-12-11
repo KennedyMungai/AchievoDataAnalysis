@@ -36,6 +36,6 @@ const retrieveRegionsSlice = createSlice({
     }
 })
 
-export const selectAllRegions = (state: RootState) => state.allRegions
+export const selectAllRegions = (state: RootState) => state.allRegions.regions
 
 export default retrieveRegionsSlice.reducer

@@ -4,6 +4,7 @@ import retrieveAllEmployeesReducer from './employees/retrieveAllEmployeesSlice'
 import retrieveAllRegionsReducer from './regions/retrieveAllRegionsSlice'
 import retrieveSingleRegionReducer from './regions/retrieveSingleRegionSlice'
 import retrieveAllRegionStoresReducer from './stores/retrieveAllRegionStoresSlice'
+import retrieveSingleStoreReducer from './stores/retrieveSingleStoreSlice'
 
 const store = configureStore({
     reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
         allRegions: retrieveAllRegionsReducer,
         singleRegion: retrieveSingleRegionReducer,
         allRegionStores: retrieveAllRegionStoresReducer,
-        allEmployees: retrieveAllEmployeesReducer
+        allEmployees: retrieveAllEmployeesReducer,
+        singleStore: retrieveSingleStoreReducer
     }
 })
 

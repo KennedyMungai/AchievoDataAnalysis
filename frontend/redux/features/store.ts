@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './auth/authSlice'
-
+import retrieveAllRegionsReducer from './regions/retrieveAllRegionsSlice'
 
 const store = configureStore({
     reducer: {
-        authState: authReducer
+        authState: authReducer,
+        allRegions: retrieveAllRegionsReducer
     }
 })
 

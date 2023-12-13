@@ -37,7 +37,7 @@ const RegionStoresCards = ({ regionId }: Props) => {
 								<StoreCardTemplate
 									key={storeData.store_id}
 									title={storeData.store_name}
-									link={`/stores/${storeData.store_id}`}
+									link={`/stores/singleStore/${storeData.store_id}`}
 									content={
 										'Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam recusandae exercitationem repellat eum saepe iure ab similique provident laboriosam a maxime soluta asperiores, adipisci architecto tempore nisi molestias sit. Reprehenderit fugiat magni odio dicta earum.'
 									}

@@ -60,7 +60,7 @@ async def retrieve_all_store_sections_endpoint(
             status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
 
 
-@store_sections_router.get("/{_store_section_id}")
+@store_sections_router.get("/single_store_section/{_store_section_id}")
 async def retrieve_one_store_section_endpoint(
     _store_section_id: int,
     _db: Session = Depends(get_db)

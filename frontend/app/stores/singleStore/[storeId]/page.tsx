@@ -16,7 +16,6 @@ type Props = {
 
 const SingleStorePage = ({ params: { storeId } }: Props) => {
 	const storeData = useAppSelector(selectSingleStore)
-	const storeSectionData = useAppSelector(selectSingleStoreSection)
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
@@ -26,7 +25,7 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 	return (
 		<div className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800'>
 			<DashboardTemplate
-				title={storeSectionData.store_section_name}
+				title={storeData.store_name}
 				buttonName={'Store Sections'}
 				buttonLink={`/storeSections/${storeId}`}
 				dashboardCard1Value={0}

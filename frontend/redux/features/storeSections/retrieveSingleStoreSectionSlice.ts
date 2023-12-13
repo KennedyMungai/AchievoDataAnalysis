@@ -28,7 +28,7 @@ const retrieveSingleStoreSectionSlice = createSlice({
             })
             .addCase(retrieveSingleStoreSection.fulfilled, (state, action: PayloadAction<IStoreSection>) => {
                 state.is_loaded = true
-                state.store_section_id = action.payload.store_section_id
+                state.store_section_id = action.payload.store_section_id,
                 state.created_at = action.payload.created_at
             })
             .addCase(retrieveSingleStoreSection.rejected, (state) => {

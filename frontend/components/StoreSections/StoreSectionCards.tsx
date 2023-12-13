@@ -21,7 +21,7 @@ const StoreSectionCards = ({ storeId }: Props) => {
 	}, [])
 
 	return (
-		<div>
+		<div className='w-full flex flex-wrap justify-center gap-2 p-4'>
 			{storeSections.map((storeSection) => (
 				<StoreSectionCard
                     key={storeSection.store_section_id}

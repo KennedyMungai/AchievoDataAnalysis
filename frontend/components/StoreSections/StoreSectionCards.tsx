@@ -26,7 +26,7 @@ const StoreSectionCards = ({ storeId }: Props) => {
 				<StoreSectionCard
                     key={storeSection.store_section_id}
 					title={storeSection.store_section_name}
-					link={''}
+					link={`/storeSections/singleStoreSection/${storeSection.store_section_id}`}
 					content={'Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam recusandae exercitationem repellat eum saepe iure ab similique provident laboriosam a maxime soluta asperiores, adipisci architecto tempore nisi molestias sit. Reprehenderit fugiat magni odio dicta earum.'}
 					createdAt={storeSection.created_at}
 					storeSectionId={0}

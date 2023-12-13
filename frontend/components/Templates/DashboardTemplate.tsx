@@ -166,117 +166,123 @@ const DashboardTemplate = ({
 											)}
 											className='w-full'
 										>
-											<FormField
-												control={form.control}
-												name='incident_description'
-												render={({ field }) => (
-													<FormItem>
-														<FormLabel>
-															Incident Description
-														</FormLabel>
-														<FormDescription>
-															A description of the
-															incident
-														</FormDescription>
-														<FormControl>
-															<Input
-																placeholder='Incident Description'
-																{...field}
-															/>
-														</FormControl>
-														<FormMessage />
-													</FormItem>
-												)}
-											/>
-											<FormField
-												control={form.control}
-												name='product_name'
-												render={({ field }) => (
-													<FormItem>
-														<FormLabel>
-															Product Name
-														</FormLabel>
-														<FormDescription>
-															The product Name
-														</FormDescription>
-														<FormControl>
-															<Input
-																placeholder='Product Name'
-																{...field}
-															/>
-														</FormControl>
-														<FormMessage />
-													</FormItem>
-												)}
-											/>
-											<FormField
-												control={form.control}
-												name='product_code'
-												render={({ field }) => (
-													<FormItem>
-														<FormLabel>
-															Product Code
-														</FormLabel>
-														<FormDescription>
-															The Product Code
-														</FormDescription>
-														<FormControl>
-															<Input
-																placeholder='Product Code'
-																{...field}
-																disabled
-															/>
-														</FormControl>
-														<FormMessage />
-													</FormItem>
-												)}
-											/>
-											<FormField
-												control={form.control}
-												name='product_quantity'
-												render={({ field }) => (
-													<FormItem>
-														<FormLabel>
-															Product Quantity
-														</FormLabel>
-														<FormDescription>
-															The Product Quantity
-														</FormDescription>
-														<FormControl>
-															<Input
-																placeholder='Product Quantity'
-																type='number'
-																{...field}
-																disabled
-															/>
-														</FormControl>
-														<FormMessage />
-													</FormItem>
-												)}
-											/>
-											<FormField
-												control={form.control}
-												name='product_price'
-												render={({ field }) => (
-													<FormItem>
-														<FormLabel>
-															Product Price
-														</FormLabel>
-														<FormDescription>
-															The Product Price
-														</FormDescription>
-														<FormControl>
-															<Input
-																placeholder='Product Price'
-																type='number'
-																{...field}
-																disabled
-															/>
-														</FormControl>
-														<FormMessage />
-													</FormItem>
-												)}
-											/>
+											<ScrollArea className='h-[50vh] p-5'>
+												<FormField
+													control={form.control}
+													name='incident_description'
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>
+																Incident
+																Description
+															</FormLabel>
+															<FormDescription>
+																A description of
+																the incident
+															</FormDescription>
+															<FormControl>
+																<Input
+																	placeholder='Incident Description'
+																	{...field}
+																/>
+															</FormControl>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+												<FormField
+													control={form.control}
+													name='product_name'
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>
+																Product Name
+															</FormLabel>
+															<FormDescription>
+																The product Name
+															</FormDescription>
+															<FormControl>
+																<Input
+																	placeholder='Product Name'
+																	{...field}
+																/>
+															</FormControl>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+												<FormField
+													control={form.control}
+													name='product_code'
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>
+																Product Code
+															</FormLabel>
+															<FormDescription>
+																The Product Code
+															</FormDescription>
+															<FormControl>
+																<Input
+																	placeholder='Product Code'
+																	{...field}
+																	disabled
+																/>
+															</FormControl>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+												<FormField
+													control={form.control}
+													name='product_quantity'
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>
+																Product Quantity
+															</FormLabel>
+															<FormDescription>
+																The Product
+																Quantity
+															</FormDescription>
+															<FormControl>
+																<Input
+																	placeholder='Product Quantity'
+																	type='number'
+																	{...field}
+																	disabled
+																/>
+															</FormControl>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+												<FormField
+													control={form.control}
+													name='product_price'
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>
+																Product Price
+															</FormLabel>
+															<FormDescription>
+																The Product
+																Price
+															</FormDescription>
+															<FormControl>
+																<Input
+																	placeholder='Product Price'
+																	type='number'
+																	{...field}
+																	disabled
+																/>
+															</FormControl>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+											</ScrollArea>
+
 											<DialogFooter>
 												<Button type='submit'>
 													Save Changes

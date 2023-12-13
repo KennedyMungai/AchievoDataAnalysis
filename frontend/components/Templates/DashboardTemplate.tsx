@@ -226,7 +226,6 @@ const DashboardTemplate = ({
 																<Input
 																	placeholder='Product Code'
 																	{...field}
-																	disabled
 																/>
 															</FormControl>
 															<FormMessage />
@@ -250,7 +249,6 @@ const DashboardTemplate = ({
 																	placeholder='Product Quantity'
 																	type='number'
 																	{...field}
-																	disabled
 																/>
 															</FormControl>
 															<FormMessage />
@@ -274,7 +272,6 @@ const DashboardTemplate = ({
 																	placeholder='Product Price'
 																	type='number'
 																	{...field}
-																	disabled
 																/>
 															</FormControl>
 															<FormMessage />

@@ -32,25 +32,14 @@ import { ScrollArea } from '../ui/scroll-area'
 type Props = {}
 
 const formSchema = z.object({
-	region_name: z.string().min(1, 'Region name is required'),
-	area_manager_name: z.string().min(1, 'Area manager is required'),
-	area_manager_email: z
-		.string()
-		.email()
-		.min(1, 'Area manager email is required'),
-	area_manager_phone_number: z
-		.string()
-		.min(1, 'Area manager phone is required')
+	region_name: z.string().min(1, 'Region name is required')
 })
 
 const AddRegionCardTemplate = (props: Props) => {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			region_name: '',
-			area_manager_name: '',
-			area_manager_email: '',
-			area_manager_phone_number: ''
+			region_name: ''
 		}
 	})
 
@@ -68,9 +57,6 @@ const AddRegionCardTemplate = (props: Props) => {
 		}
 		
 		form.reset()
-		form.setValue('area_manager_email', '')
-		form.setValue('area_manager_name', '')
-		form.setValue('area_manager_phone_number', '')
 		form.setValue('region_name', '')
 		form.clearErrors()
 	}
@@ -112,70 +98,6 @@ const AddRegionCardTemplate = (props: Props) => {
 											<FormControl>
 												<Input
 													placeholder='Region Name'
-													{...field}
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-								<FormField
-									control={form.control}
-									name='area_manager_name'
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>
-												Area Manager Name
-											</FormLabel>
-											<FormDescription>
-												The name of the area manager
-											</FormDescription>
-											<FormControl>
-												<Input
-													placeholder='Area Manager Name'
-													{...field}
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-								<FormField
-									control={form.control}
-									name='area_manager_email'
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>
-												Area Manager Email
-											</FormLabel>
-											<FormDescription>
-												The email of the area manager
-											</FormDescription>
-											<FormControl>
-												<Input
-													placeholder='Area Manager Email'
-													{...field}
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-								<FormField
-									control={form.control}
-									name='area_manager_phone_number'
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>
-												Area Manager Phone Number
-											</FormLabel>
-											<FormDescription>
-												The phone number of the area
-												manager
-											</FormDescription>
-											<FormControl>
-												<Input
-													placeholder='Area Manager Phone Number'
 													{...field}
 												/>
 											</FormControl>

@@ -38,6 +38,6 @@ const retrieveSingleStoreSectionSlice = createSlice({
 })
 
 
-// export const selectSingleStoreSection = (state: RootState) => state.singleStoreSection
+export const selectSingleStoreSection = (state: RootState) => state.singleStoreSection
 
 export default retrieveSingleStoreSectionSlice.reducer

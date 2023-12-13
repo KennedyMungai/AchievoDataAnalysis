@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit"
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
-import store, { RootState } from "../store"
+import { RootState } from "../store"
 
 
 export const retrieveSingleStore = createAsyncThunk("stores/singleStore", async (storeId: number) => {

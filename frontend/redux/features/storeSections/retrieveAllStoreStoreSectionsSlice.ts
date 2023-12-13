@@ -4,7 +4,7 @@ import { RootState } from "../store"
 
 
 export const retrieveAllOfAStoresStoreSections = createAsyncThunk("storeSections/retrieveAllStoreSections", async (storeId: number) => {
-    const response = await axios.get(`http://localhost:8000/store-sections/${storeId}`)
+    const response = await axios.get(`http://localhost:8000/store_sections/${storeId}`)
     const data = response.data
     return data
 })

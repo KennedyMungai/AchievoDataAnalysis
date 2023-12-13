@@ -1,16 +1,16 @@
 'use client'
+import { selectAuthStateData } from '@/redux/features/auth/authSlice'
+import { selectSingleRegion } from '@/redux/features/regions/retrieveSingleRegionSlice'
+import {
+	retrieveRegionStores,
+	selectAllRegionStores
+} from '@/redux/features/stores/retrieveAllRegionStoresSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useEffect } from 'react'
 import CardTemplate from '../Templates/CardTemplate'
 import TopBar from '../TopBar/TopBar'
-import StoreCardTemplate from './StoreCardTemplate'
 import AddStoreCardTemplate from './AddStoreCardTemplate'
-import { selectAuthStateData } from '@/redux/features/auth/authSlice'
-import { selectSingleRegion } from '@/redux/features/regions/retrieveSingleRegionSlice'
-import retrieveAllRegionStoresSlice, {
-	retrieveRegionStores,
-	selectAllRegionStores
-} from '@/redux/features/stores/retrieveAllRegionStoresSlice'
+import StoreCardTemplate from './StoreCardTemplate'
 
 type Props = {
 	regionId: number

@@ -29,7 +29,7 @@ const retrieveSingleStoreSlice = createSlice({
             .addCase(retrieveSingleStore.pending, (state) => {
                 state.is_loaded = false
             })
-            .addCase(retrieveSingleStore.fulfilled, (state, action: PayloadAction<IStoreData>) => {
+            .addCase(retrieveSingleStore.fulfilled, (state, action: PayloadAction<IStore>) => {
                 state.is_loaded = true
                 state.store_name = action.payload.store_name
                 state.store_location = action.payload.store_location

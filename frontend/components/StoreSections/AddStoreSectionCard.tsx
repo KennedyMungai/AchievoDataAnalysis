@@ -34,7 +34,7 @@ type Props = {
 }
 
 const formSchema = z.object({
-	section_name: z.string().min(1, 'The section name is needed'),
+	store_section_name: z.string().min(1, 'The section name is needed'),
 	store_id: z.number().int()
 })
 
@@ -42,7 +42,7 @@ const AddStoreSectionCard = ({ store_id }: Props) => {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			section_name: '',
+			store_section_name: '',
 			store_id
 		}
 	})
@@ -63,8 +63,8 @@ const AddStoreSectionCard = ({ store_id }: Props) => {
 
         form.reset()
 
-        form.setValue('section_name', '')
-        form.setValue('store_id', 0)
+        form.setValue('store_section_name', '')
+
         form.clearErrors()
 	}
 
@@ -95,7 +95,7 @@ const AddStoreSectionCard = ({ store_id }: Props) => {
 							>
 								<FormField
 									control={form.control}
-									name='section_name'
+									name='store_section_name'
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel>Section Name</FormLabel>

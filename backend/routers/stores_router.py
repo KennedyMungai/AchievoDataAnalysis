@@ -60,7 +60,7 @@ async def retrieve_all_stores_endpoint(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
 
-@stores_router.get("/{_store_id}")
+@stores_router.get("/single_store/{_store_id}")
 async def retrieve_one_store_endpoint(
     _store_id: int,
     _db: Session = Depends(get_db)

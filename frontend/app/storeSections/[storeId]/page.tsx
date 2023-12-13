@@ -24,7 +24,7 @@ const StoreSectionsPage = ({params: {storeId}}: Props) => {
 	return (
 		<div className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800'>
 			<DashboardTemplate
-				title={'Store Section Name'}
+				title={`${storeData.store_name} ${storeSectionData.store_section_name}`}
 				buttonName={'Add Incident'}
 				dashboardCard1Value={8500}
 				dashboardCard1Title={'Some Value'}

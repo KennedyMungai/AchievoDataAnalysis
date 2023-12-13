@@ -31,6 +31,9 @@ import DashboardCards from './DashboardCards'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import localforage from 'localforage'
+import { useAppSelector } from '@/redux/hooks'
+import { selectSingleStore } from '@/redux/features/stores/retrieveSingleStoreSlice'
+import { selectSingleRegion } from '@/redux/features/regions/retrieveSingleRegionSlice'
 
 type Props = {
 	title: string
@@ -52,11 +55,16 @@ type Props = {
 }
 
 const formSchema = z.object({
-	store_section: z.number().int(),
 	incident_description: z
 		.string()
 		.min(1, 'Incident Description should be added'),
-	value: z.string().transform((v) => Number(v)||0)
+	product_name: z.string().min(1, 'Product Name should be added'),
+	product_code: z.string().min(1, 'Product Code should be added'),
+	product_quantity: z.number().int(),
+	product_price: z.number().int(),
+	store_section_id: z.number().int(),
+	store_id: z.number().int(),
+	region_id: z.number().int()
 })
 
 const DashboardTemplate = ({
@@ -77,12 +85,21 @@ const DashboardTemplate = ({
 	dashboardCard4Value,
 	store_section
 }: Props) => {
+	const storeSectionData = useAppSelector(selectSingleStoreSection)
+	const storeData = useAppSelector(selectSingleStore)
+	const regionData = useAppSelector(selectSingleRegion)
+
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			store_section,
 			incident_description: '',
-			value: 0
+			product_name: '',
+			product_code: '',
+			product_quantity: 0,
+			product_price: 0,
+			store_section_id: storeSectionData?.store_section_id,
+			store_id: storeData.store_id,
+			region_id: regionData.region_id
 		}
 	})
 
@@ -105,8 +122,10 @@ const DashboardTemplate = ({
 
 			form.reset()
 			form.setValue('incident_description', '')
-			form.setValue('value', 0)
-			form.setValue('store_section', 0)
+			form.setValue('product_name', '')
+			form.setValue('product_code', '')
+			form.setValue('product_quantity', 0)
+			form.setValue('product_price', 0)
 			form.clearErrors()
 		} catch (error) {
 			toast.error('Something went wrong')
@@ -170,20 +189,18 @@ const DashboardTemplate = ({
 											/>
 											<FormField
 												control={form.control}
-												name='value'
+												name='product_name'
 												render={({ field }) => (
 													<FormItem>
 														<FormLabel>
-															Value
+															Product Name
 														</FormLabel>
 														<FormDescription>
-															The value of the
-															incident
+															The product Name
 														</FormDescription>
 														<FormControl>
 															<Input
-																placeholder='Incident Value'
-																type='number'
+																placeholder='Product Name'
 																{...field}
 															/>
 														</FormControl>
@@ -193,18 +210,63 @@ const DashboardTemplate = ({
 											/>
 											<FormField
 												control={form.control}
-												name='store_section'
+												name='product_code'
 												render={({ field }) => (
 													<FormItem>
 														<FormLabel>
-															Store Section
+															Product Code
 														</FormLabel>
 														<FormDescription>
-															The store section id
+															The Product Code
 														</FormDescription>
 														<FormControl>
 															<Input
-																placeholder='Store Id'
+																placeholder='Product Code'
+																{...field}
+																disabled
+															/>
+														</FormControl>
+														<FormMessage />
+													</FormItem>
+												)}
+											/>
+											<FormField
+												control={form.control}
+												name='product_quantity'
+												render={({ field }) => (
+													<FormItem>
+														<FormLabel>
+															Product Quantity
+														</FormLabel>
+														<FormDescription>
+															The Product Quantity
+														</FormDescription>
+														<FormControl>
+															<Input
+																placeholder='Product Quantity'
+																type='number'
+																{...field}
+																disabled
+															/>
+														</FormControl>
+														<FormMessage />
+													</FormItem>
+												)}
+											/>
+											<FormField
+												control={form.control}
+												name='product_price'
+												render={({ field }) => (
+													<FormItem>
+														<FormLabel>
+															Product Price
+														</FormLabel>
+														<FormDescription>
+															The Product Price
+														</FormDescription>
+														<FormControl>
+															<Input
+																placeholder='Product Price'
 																type='number'
 																{...field}
 																disabled

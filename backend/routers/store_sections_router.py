@@ -9,7 +9,7 @@ from services.store_section_services import (
 from sqlalchemy.orm import Session
 
 store_sections_router = APIRouter(
-    prefix="/store-sections", tags=["Store Sections"])
+    prefix="/store_sections", tags=["Store Sections"])
 
 
 @store_sections_router.post("/", status_code=status.HTTP_201_CREATED)

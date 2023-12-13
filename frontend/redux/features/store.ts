@@ -3,6 +3,7 @@ import authReducer from './auth/authSlice'
 import retrieveAllEmployeesReducer from './employees/retrieveAllEmployeesSlice'
 import retrieveAllRegionsReducer from './regions/retrieveAllRegionsSlice'
 import retrieveSingleRegionReducer from './regions/retrieveSingleRegionSlice'
+import retrieveSingleStoreSectionReducer from './storeSections/retrieveSingleStoreSectionSlice'
 import retrieveAllRegionStoresReducer from './stores/retrieveAllRegionStoresSlice'
 import retrieveSingleStoreReducer from './stores/retrieveSingleStoreSlice'
 
@@ -13,7 +14,8 @@ const store = configureStore({
         singleRegion: retrieveSingleRegionReducer,
         allRegionStores: retrieveAllRegionStoresReducer,
         allEmployees: retrieveAllEmployeesReducer,
-        singleStore: retrieveSingleStoreReducer
+        singleStore: retrieveSingleStoreReducer,
+        singleStoreSection: retrieveSingleStoreSectionReducer
     }
 })
 

@@ -1,14 +1,40 @@
 'use client'
-import React from 'react'
+import {
+    retrieveAllOfAStoresStoreSections,
+    selectAllStoreSections
+} from '@/redux/features/storeSections/retrieveAllStoreStoreSectionsSlice'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { useEffect } from 'react'
+import AddStoreSectionCard from './AddStoreSectionCard'
+import StoreSectionCard from './StoreSectionCard'
 
-type Props = {}
+type Props = {
+	storeId: number
+}
 
-const StoreSectionCards = (props: Props) => {
-  return (
-    <div className='p-5 w-90 flex flex-wrap items-center justify-center gap-2'>
-        
-    </div>
-  )
+const StoreSectionCards = ({ storeId }: Props) => {
+	const storeSections = useAppSelector(selectAllStoreSections)
+	const dispatch = useAppDispatch()
+
+	useEffect(() => {
+		dispatch(retrieveAllOfAStoresStoreSections(storeId))
+	}, [])
+
+	return (
+		<div>
+			{storeSections.map((storeSection) => (
+				<StoreSectionCard
+                    key={storeSection.store_section_id}
+					title={storeSection.store_section_name}
+					link={''}
+					content={'Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam recusandae exercitationem repellat eum saepe iure ab similique provident laboriosam a maxime soluta asperiores, adipisci architecto tempore nisi molestias sit. Reprehenderit fugiat magni odio dicta earum.'}
+					createdAt={storeSection.created_at}
+					storeSectionId={0}
+				/>
+			))}
+            <AddStoreSectionCard store_id={storeId} />
+		</div>
+	)
 }
 
 export default StoreSectionCards

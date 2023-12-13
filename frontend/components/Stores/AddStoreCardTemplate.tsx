@@ -37,14 +37,7 @@ type Props = {
 const formSchema = z.object({
 	region_id: z.number().int(),
 	store_name: z.string().min(1, 'The name of the store must be entered'),
-	store_address: z.string().min(1, 'The store address must be entered'),
-	loss_control_manager_email: z
-		.string()
-		.email()
-		.min(1, 'The email of the loss control manager is needed'),
-	loss_control_manager_phone_number: z
-		.string()
-		.min(12, 'The LCM phone number is needed')
+	store_location: z.string().min(1, 'The store address must be entered')
 })
 
 const AddStoreCardTemplate = ({ regionId }: Props) => {
@@ -53,9 +46,7 @@ const AddStoreCardTemplate = ({ regionId }: Props) => {
 		defaultValues: {
 			region_id: regionId,
 			store_name: '',
-			store_address: '',
-			loss_control_manager_email: '',
-			loss_control_manager_phone_number: ''
+			store_location: ''
 		}
 	})
 
@@ -75,9 +66,7 @@ const AddStoreCardTemplate = ({ regionId }: Props) => {
 		}
 
 		form.reset()
-		form.setValue('loss_control_manager_email', '')
-		form.setValue('loss_control_manager_phone_number', '')
-		form.setValue('store_address', '')
+		form.setValue('store_location', '')
 		form.setValue('store_name', '')
 		form.clearErrors()
 	}
@@ -128,7 +117,7 @@ const AddStoreCardTemplate = ({ regionId }: Props) => {
 								/>
 								<FormField
 									control={form.control}
-									name='store_address'
+									name='store_location'
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel>Store Address</FormLabel>
@@ -145,49 +134,6 @@ const AddStoreCardTemplate = ({ regionId }: Props) => {
 										</FormItem>
 									)}
 								/>
-								<FormField
-									control={form.control}
-									name='loss_control_manager_email'
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>
-												LCM Email Address
-											</FormLabel>
-											<FormDescription>
-												The LCM Email Address
-											</FormDescription>
-											<FormControl>
-												<Input
-													placeholder='LCM Email Address'
-													{...field}
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-								<FormField
-									control={form.control}
-									name='loss_control_manager_phone_number'
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>
-												LCM Phone Number
-											</FormLabel>
-											<FormDescription>
-												Enter the LCM Phone Number
-											</FormDescription>
-											<FormControl>
-												<Input
-													placeholder='LCM Phone Number'
-													{...field}
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-
 								{/* TODO: Find a way to solve this */}
 								<FormField
 									control={form.control}

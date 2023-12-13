@@ -5,7 +5,7 @@ import {
 	selectSingleStore
 } from '@/redux/features/stores/retrieveSingleStoreSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 
 type Props = {
 	params: {

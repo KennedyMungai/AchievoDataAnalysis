@@ -13,7 +13,9 @@ export const retrieveSingleStoreSection = createAsyncThunk("storeSections/retrie
 const initialState: IStoreSectionData = {
     is_loaded: false,
     store_section_id: 0,
-    created_at: new Date
+    created_at: new Date,
+    store_section_name: "",
+    store_id: 0
 }
 
 
@@ -29,6 +31,8 @@ const retrieveSingleStoreSectionSlice = createSlice({
             .addCase(retrieveSingleStoreSection.fulfilled, (state, action: PayloadAction<IStoreSection>) => {
                 state.is_loaded = true
                 state.store_section_id = action.payload.store_section_id,
+                state.store_section_name = action.payload.store_section_name,
+                state.store_id = action.payload.store_id,
                 state.created_at = action.payload.created_at
             })
             .addCase(retrieveSingleStoreSection.rejected, (state) => {

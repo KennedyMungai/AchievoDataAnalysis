@@ -1,5 +1,6 @@
 'use client'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
+import { selectSingleStoreSection } from '@/redux/features/storeSections/retrieveSingleStoreSectionSlice'
 import {
 	retrieveSingleStore,
 	selectSingleStore
@@ -14,7 +15,8 @@ type Props = {
 }
 
 const SingleStorePage = ({ params: { storeId } }: Props) => {
-	const store = useAppSelector(selectSingleStore)
+	const storeData = useAppSelector(selectSingleStore)
+	const storeSectionData = useAppSelector(selectSingleStoreSection)
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
@@ -24,7 +26,7 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 	return (
 		<div className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800'>
 			<DashboardTemplate
-				title={store.store_name}
+				title={storeSectionData.store_section_name}
 				buttonName={'Store Sections'}
 				buttonLink={`/storeSections/${storeId}`}
 				dashboardCard1Value={0}

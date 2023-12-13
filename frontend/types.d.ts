@@ -65,3 +65,21 @@ interface IEmployeesData {
     employees: IEmployee[],
     is_loaded: boolean
 }
+
+interface IStoreSection
+{
+    store_section_id: number,
+    created_at: Date,
+    updated_at?: Date
+}
+
+interface IStoreSectionData extends IStoreSection
+{
+    is_loaded: boolean
+}
+
+interface IStoreSectionsData
+{
+    store_sections: IStoreSection[],
+    is_loaded: boolean
+}

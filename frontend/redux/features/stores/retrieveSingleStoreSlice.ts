@@ -30,7 +30,7 @@ const retrieveSingleStoreSlice = createSlice({
                 state.is_loaded = false
             })
             .addCase(retrieveSingleStore.fulfilled, (state, action: PayloadAction<IStoreData>) => {
-                state.is_loaded
+                state.is_loaded = true
                 state.store_name = action.payload.store_name
                 state.store_location = action.payload.store_location
                 state.created_at = action.payload.created_at

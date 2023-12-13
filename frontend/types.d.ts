@@ -69,6 +69,8 @@ interface IEmployeesData {
 interface IStoreSection
 {
     store_section_id: number,
+    store_section_name: string,
+    store_id: number,
     created_at: Date,
     updated_at?: Date
 }

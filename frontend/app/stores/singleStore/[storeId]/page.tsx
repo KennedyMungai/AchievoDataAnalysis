@@ -1,29 +1,32 @@
 'use client'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
-import { retrieveSingleStore, selectSingleStore } from '@/redux/features/stores/retrieveSingleStoreSlice'
+import {
+	retrieveSingleStore,
+	selectSingleStore
+} from '@/redux/features/stores/retrieveSingleStoreSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import React, { useEffect } from 'react'
 
 type Props = {
-  params: {
-    storeId: string
-  }
+	params: {
+		storeId: string
+	}
 }
 
-const SingleStorePage = ({params: {storeId}}: Props) => {
-  const store = useAppSelector(selectSingleStore)
-  const dispatch = useAppDispatch()
+const SingleStorePage = ({ params: { storeId } }: Props) => {
+	const store = useAppSelector(selectSingleStore)
+	const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    dispatch(retrieveSingleStore(Number(storeId)))
-  }, [])
+	useEffect(() => {
+		dispatch(retrieveSingleStore(Number(storeId)))
+	}, [])
 
 	return (
 		<div className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800'>
 			<DashboardTemplate
 				title={store.store_name}
 				buttonName={'Store Sections'}
-        buttonLink={`/storeSections/${storeId}`}
+				buttonLink={`/storeSections/${storeId}`}
 				dashboardCard1Value={0}
 				dashboardCard1Title={'Some Value'}
 				dashboardCard2Value={0}

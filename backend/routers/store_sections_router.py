@@ -36,7 +36,7 @@ async def create_store_section_endpoint(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
 
-@store_sections_router.get("/")
+@store_sections_router.get("/{_store_id}")
 async def retrieve_all_store_sections_endpoint(
     _store_id: int,
     _db: Session = Depends(get_db)

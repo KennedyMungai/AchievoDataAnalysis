@@ -34,6 +34,7 @@ import localforage from 'localforage'
 import { useAppSelector } from '@/redux/hooks'
 import { selectSingleStore } from '@/redux/features/stores/retrieveSingleStoreSlice'
 import { selectSingleRegion } from '@/redux/features/regions/retrieveSingleRegionSlice'
+import { selectSingleStoreSection } from '@/redux/features/storeSections/retrieveSingleStoreSectionSlice'
 
 type Props = {
 	title: string
@@ -97,7 +98,7 @@ const DashboardTemplate = ({
 			product_code: '',
 			product_quantity: 0,
 			product_price: 0,
-			store_section_id: storeSectionData?.store_section_id,
+			store_section_id: storeSectionData.store_section_id,
 			store_id: storeData.store_id,
 			region_id: regionData.region_id
 		}

@@ -18,7 +18,7 @@ regions_router = APIRouter(prefix="/regions", tags=["Regions"])
 @regions_router.get("/")
 async def retrieve_all_regions_endpoint(
     _db: Session = Depends(get_db),
-    _current_user: ReadEmployee = Depends(get_current_user)
+    # _current_user: ReadEmployee = Depends(get_current_user)
 ):
     """The endpoint to retrieve all regions
 

@@ -136,8 +136,8 @@ const DashboardTemplate = ({
 			form.setValue('incident_description', '')
 			form.setValue('product_name', '')
 			form.setValue('product_code', '')
-			form.setValue('product_quantity', 0)
-			form.setValue('product_price', 0)
+			form.setValue('product_quantity', '')
+			form.setValue('product_price', '')
 			form.clearErrors()
 		} catch (error) {
 			toast.error('Something went wrong')

@@ -8,6 +8,7 @@ from services.incident_services import (create_incident_service,
                                         retrieve_one_incident_service,
                                         update_incident_service)
 from sqlalchemy.orm import Session
+from utils.oauth2 import get_current_user
 
 incidents_router = APIRouter(prefix="/incidents", tags=["Incidents"])
 
@@ -15,7 +16,8 @@ incidents_router = APIRouter(prefix="/incidents", tags=["Incidents"])
 @incidents_router.post("/", status_code=status.HTTP_201_CREATED)
 async def create_incident_endpoint(
     _incident_data: CreateIncident,
-    _db: Session = Depends(get_db)
+    _db: Session = Depends(get_db),
+    _current_user = Depends(get_current_user)
 ):
     """The endpoint to create an incident
 

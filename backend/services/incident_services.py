@@ -2,12 +2,17 @@
 from typing import List
 
 from models.models import Incidents
+from schemas.employee_schema import ReadEmployee
 from schemas.incident_schema import (CreateIncident, ReadIncident,
                                      UpdateIncident)
 from sqlalchemy.orm import Session
 
 
-async def create_incident_service(_incident_data: CreateIncident, _db: Session, ) -> ReadIncident:
+async def create_incident_service(
+    _incident_data: CreateIncident, 
+    _db: Session, 
+    _current_user: ReadEmployee
+) -> ReadIncident:
     """The service function to create new incidents
 
     Args:
@@ -18,7 +23,18 @@ async def create_incident_service(_incident_data: CreateIncident, _db: Session, 
     Returns:
         ReadIncident: The newly created incident
     """
-    new_incident = Incidents(**_incident_data.model_dump())
+    new_incident = Incidents(
+        incident_description = _incident_data.incident_description,
+        product_name = _incident_data.product_name,
+        product_code = _incident_data.product_code,
+        product_quantity = _incident_data.product_quantity,
+        product_price = _incident_data.product_price,
+        is_resolved = _incident_data.is_resolved,
+        store_section_id = _incident_data.store_section_id,
+        employee_id = _current_user.employee_id,
+        store_id = _current_user.store_id,
+        region_id = _current_user.region_id
+    )
 
     _db.add(new_incident)
     _db.commit()

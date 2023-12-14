@@ -156,7 +156,7 @@ const DashboardTemplate = ({
 				{
 					headers: {
 						'Content-Type': 'text/json',
-						'Authorization': `${bearerType} ${bearerToken}`
+						Authorization: `${bearerType} ${bearerToken}`
 					}
 				}
 			)

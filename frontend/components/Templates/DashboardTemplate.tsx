@@ -53,7 +53,6 @@ type Props = {
 	chartCardDescription: string
 	chartCardContent: ReactNode
 	scrollAreaComponent: ReactNode
-	store_section?: number
 }
 
 const formSchema = z.object({
@@ -85,7 +84,6 @@ const DashboardTemplate = ({
 	dashboardCard3Value,
 	dashboardCard4Title,
 	dashboardCard4Value,
-	store_section
 }: Props) => {
 	const storeSectionData = useAppSelector(selectSingleStoreSection)
 	const storeData = useAppSelector(selectSingleStore)

@@ -115,9 +115,31 @@ const DashboardTemplate = ({
 		}
 	})
 
-	const onSubmit = async (values: z.infer<typeof formSchema>) => {
+	const onSubmit = async ({
+		incident_description,
+		product_code,
+		product_name,
+		product_price,
+		product_quantity,
+		region_id,
+		store_id,
+		store_section_id
+	}: z.infer<typeof formSchema>) => {
 		const bearerType = await localforage.getItem('tokenType')
 		const bearerToken = await localforage.getItem('accessToken')
+
+		const values = {
+			incident_description,
+			product_name,
+			product_code,
+			product_quantity: Number(product_quantity),
+			product_price: Number(product_price),
+			store_section_id: Number(store_section_id),
+			store_id: Number(store_id),
+			region_id: Number(region_id)
+		}
+
+		console.log(values)
 
 		try {
 			const response = await axios.post(

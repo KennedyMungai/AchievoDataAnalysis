@@ -61,11 +61,11 @@ const formSchema = z.object({
 		.min(1, 'Incident Description should be added'),
 	product_name: z.string().min(1, 'Product Name should be added'),
 	product_code: z.string().min(1, 'Product Code should be added'),
-	product_quantity: z.number().int(),
-	product_price: z.number().int(),
-	store_section_id: z.number().int(),
-	store_id: z.number().int(),
-	region_id: z.number().int()
+	product_quantity: z.string().min(1, "Product Quantity should be added").refine((value) => !Number.isNaN(parseInt(value, 10)), {message: "Expected a number, received a string"}),
+	product_price: z.string().min(1, "Product Price should be added").refine((value) => !Number.isNaN(parseInt(value, 10)), {message: "Expected a number, received a string"}),
+	store_section_id: z.string().min(1, "Store Section Id should be added"),
+	store_id: z.string().min(1, "The Store Id should be added"),
+	region_id: z.string().min(1, "The Region Id should be added")
 })
 
 const DashboardTemplate = ({
@@ -97,11 +97,11 @@ const DashboardTemplate = ({
 			incident_description: '',
 			product_name: '',
 			product_code: '',
-			product_quantity: 0,
-			product_price: 0,
-			store_section_id: storeSectionData.store_section_id,
-			store_id: storeData.store_id,
-			region_id: regionData.region_id
+			product_quantity: '',
+			product_price: '',
+			store_section_id: String(storeSectionData.store_section_id),
+			store_id: String(storeData.store_id),
+			region_id: String(regionData.region_id)
 		}
 	})
 

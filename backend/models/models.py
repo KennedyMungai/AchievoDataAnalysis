@@ -103,9 +103,9 @@ class Incidents(Base):
     incident_id = Column(Integer, primary_key=True,
                          index=True, autoincrement=True, unique=True)
     incident_description = Column(String(255), nullable=False)
-    product_name = Column(String(50), nullable=False)
-    product_code = Column(String(50), nullable=False)
-    product_quantity = Column(Integer, nullable=False)
+    product_name = Column(String(50), nullable=True)
+    product_code = Column(String(50), nullable=True)
+    product_quantity = Column(Integer, nullable=True)
     product_price = Column(Float, nullable=False)
     is_resolved = Column(Boolean, nullable=False, default=False)
     created_at = Column(String(50), nullable=False, default=datetime.utcnow)

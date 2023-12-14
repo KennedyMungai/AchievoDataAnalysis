@@ -15,8 +15,8 @@ export default function Home() {
 				dashboardCard3Title={'The average value of all incidents'}
 				dashboardCard4Value={5200}
 				dashboardCard4Title={'Most Notorious Region'}
-				chartCardTitle={'All Branches Trends'}
-				chartCardDescription={'The trends in all the branches'}
+				chartCardTitle={'All Regions Trends'}
+				chartCardDescription={'The trends in all the regions on a daily basis'}
 				chartCardContent={undefined}
 				scrollAreaComponent={undefined}
 			/>

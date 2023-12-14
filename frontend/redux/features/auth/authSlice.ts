@@ -15,7 +15,8 @@ const initialState: IToken = {
     token_type: "",
     access_token: "",
     is_loaded: false,
-    is_logged_in: false
+    is_logged_in: false,
+    employee_id: 0
 }
 
 
@@ -36,13 +37,14 @@ const authSlice = createSlice({
                 state.is_loaded = true
                 state.token_type = action.payload.token_type
                 state.access_token = action.payload.access_token
+                state.employee_id = action.payload.employee_id
             })
-            .addCase(getAuthToken.rejected, (state, action) => {
+            .addCase(getAuthToken.rejected, (state) => {
                 state.is_loaded = false
                 state.token_type = ""
                 state.access_token = ""
             })
-            .addCase(getAuthToken.pending, (state, action) => {
+            .addCase(getAuthToken.pending, (state) => {
                 state.is_loaded = false
                 state.token_type = ""
                 state.access_token = ""

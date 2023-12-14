@@ -6,7 +6,6 @@ import { selectSingleStore } from '@/redux/features/stores/retrieveSingleStoreSl
 import { useAppSelector } from '@/redux/hooks'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
-import localforage from 'localforage'
 import Link from 'next/link'
 import { ReactNode } from 'react'
 import { useForm } from 'react-hook-form'
@@ -99,7 +98,9 @@ const DashboardTemplate = ({
 	const storeSectionData = useAppSelector(selectSingleStoreSection)
 	const storeData = useAppSelector(selectSingleStore)
 	const regionData = useAppSelector(selectSingleRegion)
-	const isLoggedIn = useAppSelector(selectAuthStateData).is_logged_in
+	const loginData = useAppSelector(selectAuthStateData)
+
+	const isLoggedIn = loginData.is_logged_in
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -109,7 +110,7 @@ const DashboardTemplate = ({
 			product_code: '',
 			product_quantity: '',
 			product_price: '',
-			employee_id: String(localforage.getItem("employeeId")),
+			employee_id: String(loginData.employee_id),
 			store_section_id: String(storeSectionData.store_section_id),
 			store_id: String(storeData.store_id),
 			region_id: String(regionData.region_id)
@@ -126,8 +127,8 @@ const DashboardTemplate = ({
 		store_id,
 		store_section_id
 	}: z.infer<typeof formSchema>) => {
-		const bearerType = await localforage.getItem('tokenType')
-		const bearerToken = await localforage.getItem('accessToken')
+		const bearerType = loginData.token_type
+		const bearerToken = loginData.access_token
 
 		const values = {
 			incident_description,
@@ -138,7 +139,7 @@ const DashboardTemplate = ({
 			store_section_id: Number(store_section_id),
 			store_id: Number(store_id),
 			region_id: Number(region_id),
-			employeeId: Number(employeeId)
+			employeeId: loginData.employee_id
 		}
 
 		console.log(values)

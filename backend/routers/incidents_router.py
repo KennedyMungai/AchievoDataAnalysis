@@ -32,7 +32,7 @@ async def create_incident_endpoint(
         ReadIncident: The created incident
     """
     try:
-        return await create_incident_service(_incident_data, _db, _current_user)
+        return await create_incident_service(_incident_data, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc

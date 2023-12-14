@@ -35,6 +35,7 @@ import { Input } from '../ui/input'
 import { ScrollArea } from '../ui/scroll-area'
 import ChartCardTemplate from './ChartCardTemplate'
 import DashboardCards from './DashboardCards'
+import { Checkbox } from '../ui/checkbox'
 
 type Props = {
 	title: string
@@ -75,7 +76,8 @@ const formSchema = z.object({
 	employee_id: z.string().min(1, 'The Employee Id should be added'),
 	store_section_id: z.string().min(1, 'Store Section Id should be added'),
 	store_id: z.string().min(1, 'The Store Id should be added'),
-	region_id: z.string().min(1, 'The Region Id should be added')
+	region_id: z.string().min(1, 'The Region Id should be added'),
+	is_resolved: z.boolean().default(false)
 })
 
 const DashboardTemplate = ({
@@ -113,7 +115,8 @@ const DashboardTemplate = ({
 			employee_id: String(loginData.employee_id),
 			store_section_id: String(storeSectionData.store_section_id),
 			store_id: String(storeData.store_id),
-			region_id: String(regionData.region_id)
+			region_id: String(regionData.region_id),
+			is_resolved: false
 		}
 	})
 
@@ -125,7 +128,8 @@ const DashboardTemplate = ({
 		product_quantity,
 		region_id,
 		store_id,
-		store_section_id
+		store_section_id,
+		is_resolved
 	}: z.infer<typeof formSchema>) => {
 		const bearerType = loginData.token_type
 		const bearerToken = loginData.access_token
@@ -139,7 +143,8 @@ const DashboardTemplate = ({
 			store_section_id: Number(store_section_id),
 			store_id: Number(store_id),
 			region_id: Number(region_id),
-			employeeId: loginData.employee_id
+			employeeId: loginData.employee_id,
+			is_resolved
 		}
 
 		console.log(values)
@@ -322,7 +327,8 @@ const DashboardTemplate = ({
 															</FormLabel>
 															<FormDescription>
 																The Id of the
-																Logged In Employee
+																Logged In
+																Employee
 															</FormDescription>
 															<FormControl>
 																<Input
@@ -397,6 +403,34 @@ const DashboardTemplate = ({
 																<Input
 																	placeholder='Region Id'
 																	{...field}
+																	disabled
+																/>
+															</FormControl>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+												<FormField
+													control={form.control}
+													name='is_resolved'
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>
+																Is Resolved
+															</FormLabel>
+															<FormDescription>
+																A check to show
+																if the issue has
+																been resolved
+															</FormDescription>
+															<FormControl>
+																<Checkbox
+																	checked={
+																		field.value
+																	}
+																	onCheckedChange={
+																		field.onChange
+																	}
 																	disabled
 																/>
 															</FormControl>

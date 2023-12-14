@@ -248,7 +248,6 @@ const DashboardTemplate = ({
 															<FormControl>
 																<Input
 																	placeholder='Product Quantity'
-																	type='number'
 																	{...field}
 																/>
 															</FormControl>
@@ -271,7 +270,6 @@ const DashboardTemplate = ({
 															<FormControl>
 																<Input
 																	placeholder='Product Price'
-																	type='number'
 																	{...field}
 																/>
 															</FormControl>
@@ -280,7 +278,6 @@ const DashboardTemplate = ({
 													)}
 												/>
 											</ScrollArea>
-
 											<DialogFooter>
 												<Button type='submit' disabled={!isLoggedIn}>
 													Save Changes

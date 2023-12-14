@@ -29,13 +29,13 @@ const SingleStoreSectionPage = ({ params: { storeSectionId } }: Props) => {
 				title={`${storeData.store_name} ${storeSectionData.store_section_name}`}
 				buttonName={'Add Incident'}
 				dashboardCard1Value={8500}
-				dashboardCard1Title={'Some Value'}
+				dashboardCard1Title={'Number of all Incidents'}
 				dashboardCard2Value={7859}
-				dashboardCard2Title={'Some Other Value'}
+				dashboardCard2Title={'The value of all incidents'}
 				dashboardCard3Value={78542}
-				dashboardCard3Title={'Another Value'}
+				dashboardCard3Title={'The average value of incidents'}
 				dashboardCard4Value={7878}
-				dashboardCard4Title={'Different Value'}
+				dashboardCard4Title={'The most notorious incident'}
 				chartCardTitle={'Store Section Data'}
 				chartCardDescription={'Store Section Data Described'}
 				chartCardContent={undefined}

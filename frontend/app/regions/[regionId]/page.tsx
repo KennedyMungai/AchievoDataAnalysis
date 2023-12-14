@@ -28,13 +28,13 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 				buttonLink={`/stores/${regionId}`}
 				buttonName={'Stores'}
 				dashboardCard1Value={538}
-				dashboardCard1Title={'No. Of Incidents'}
+				dashboardCard1Title={'Number of all Incidents'}
 				dashboardCard2Value={536997}
-				dashboardCard2Title={'Value Of Incidents'}
+				dashboardCard2Title={'Value Of all Incidents'}
 				dashboardCard3Value={5632}
-				dashboardCard3Title={'Value of Incidents from top store'}
+				dashboardCard3Title={'The average value of all incidents'}
 				dashboardCard4Value={51151}
-				dashboardCard4Title={'Value of Most Recurring Incident'}
+				dashboardCard4Title={'Most Notorious Store'}
 				chartCardTitle={'Some Card Title'}
 				chartCardDescription={'Some Card Description'}
 				chartCardContent={undefined}

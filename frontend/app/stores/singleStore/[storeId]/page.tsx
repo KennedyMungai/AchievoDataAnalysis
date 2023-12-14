@@ -29,13 +29,13 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 				buttonName={'Store Sections'}
 				buttonLink={`/storeSections/${storeId}`}
 				dashboardCard1Value={0}
-				dashboardCard1Title={'Some Value'}
+				dashboardCard1Title={'Number of all incidents'}
 				dashboardCard2Value={0}
-				dashboardCard2Title={'Some Value'}
+				dashboardCard2Title={'Value of all incidents'}
 				dashboardCard3Value={0}
-				dashboardCard3Title={'Some Value'}
+				dashboardCard3Title={'The average value of all incidents'}
 				dashboardCard4Value={0}
-				dashboardCard4Title={'Some Value'}
+				dashboardCard4Title={'Most Notorious Store Section'}
 				chartCardTitle={'Some Title'}
 				chartCardDescription={'Some Description'}
 				chartCardContent={undefined}

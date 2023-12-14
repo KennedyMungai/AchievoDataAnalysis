@@ -10,8 +10,7 @@ from sqlalchemy.orm import Session
 
 async def create_incident_service(
     _incident_data: CreateIncident,
-    _db: Session,
-    _current_user: ReadEmployee
+    _db: Session
 ) -> ReadIncident:
     """The service function to create new incidents
 
@@ -171,3 +170,51 @@ async def retrieve_all_incidents_by_an_employee_service(
         List[ReadIncident]: The list of incidents
     """
     return _db.query(Incidents).filter(Incidents.employee_id == _employee_id).all()
+
+
+async def retrieve_the_top_twenty_most_valuable_incidents_in_a_store_section(
+    _store_section_id: int,
+    _db: Session
+) -> List[ReadIncident]:
+    """The service function to retrieve the top twenty most variable incidents in a store section
+
+    Args:
+        _store_section_id (int): The id of the store section
+        _db (Session): The database session
+
+    Returns:
+        List[ReadIncident]: The list of incidents
+    """
+    return _db.query(Incidents).filter(Incidents.store_section_id == _store_section_id).order_by(Incidents.product_price.desc()).limit(20).all()
+
+
+async def retrieve_the_top_twenty_most_valuable_incidents_in_a_store(
+    _store_id: int,
+    _db: Session
+) -> List[ReadIncident]:
+    """The service function to retrieve the top twenty most valuable incidents in a store
+
+    Args:
+        _store_id (int): The id of the store
+        _db (Session): The database session
+
+    Returns:
+        List[ReadIncident]: The list of incidents
+    """
+    return _db.query(Incidents).filter(Incidents.store_id == _store_id).order_by(Incidents.product_price.desc()).limit(20).all()
+
+
+async def retrieve_the_top_twenty_most_valuable_incidents_in_a_region(
+    _region_id: int,
+    _db: Session
+) -> List[ReadIncident]:
+    """The service function to retrieve the top twenty most valuable incidents in a region
+
+    Args:
+        _region_id (int): The id of the region
+        _db (Session): The database session
+
+    Returns:
+        List[ReadIncident]: The list of incidents
+    """
+    return _db.query(Incidents).filter(Incidents.region_id == _region_id).order_by(Incidents.product_price.desc()).limit(20).all()

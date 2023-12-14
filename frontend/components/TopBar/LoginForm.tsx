@@ -1,9 +1,7 @@
 'use client'
+import { getAuthToken, logIn, logOut, selectAuthStateData } from '@/redux/features/auth/authSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { zodResolver } from '@hookform/resolvers/zod'
-import axios from 'axios'
-import localforage from 'localforage'
-import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { z } from 'zod'
@@ -34,7 +32,6 @@ import {
 	FormMessage
 } from '../ui/form'
 import { Input } from '../ui/input'
-import { logIn, logOut, selectAuthStateData } from '@/redux/features/auth/authSlice'
 
 type Props = {}
 
@@ -57,29 +54,15 @@ const LoginButton = (props: Props) => {
 		}
 	})
 
-	const onSubmit = async (data: z.infer<typeof formSchema>) => {
-		const credentialsForm = new FormData()
-		credentialsForm.append('username', data.userEmail)
-		credentialsForm.append('password', data.password)
-
-		try
-		{
-			const response = await axios.post('http://localhost:8000/auth/login', credentialsForm)
-			const statusCode = response.status
-			const responseData:IToken = response.data
-
-			localforage.setItem('accessToken', responseData.access_token)
-			localforage.setItem('tokenType', responseData.token_type)
-			localforage.setItem('employeeId', responseData.employee_id)
-
-			toast.success('Successfully logged In')
-
+	const onSubmit = async ({userEmail, password}: z.infer<typeof formSchema>) => {
+		try {
+			dispatch(getAuthToken({employee_email: userEmail, employee_password: password}))
 			dispatch(logIn())
+			toast.success('Successfully Logged in')
+		} catch (error) {
+			toast.error('Something went wrong')
 		}
-		catch(e)
-		{
-			toast.error('Login Attempt Failed. Please check your credentials')
-		}
+		
 
 		form.reset()
 		form.setValue('userEmail', '')
@@ -88,7 +71,6 @@ const LoginButton = (props: Props) => {
 	}
 
 	const logOutHandler = () => {
-		localforage.clear()
 		dispatch(logOut())
 
 		toast.success('Successfully Logged out')

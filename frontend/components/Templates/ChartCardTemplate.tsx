@@ -16,7 +16,7 @@ type Props = {
 
 const ChartCardTemplate = ({ title, description, children }: Props) => {
 	return (
-		<Card>
+		<Card className='h-full'>
 			<CardHeader>
 				<CardTitle>{title}</CardTitle>
 				<CardDescription>{description}</CardDescription>

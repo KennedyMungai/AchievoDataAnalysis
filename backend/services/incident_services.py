@@ -218,3 +218,54 @@ async def retrieve_the_top_twenty_most_valuable_incidents_in_a_region(
         List[ReadIncident]: The list of incidents
     """
     return _db.query(Incidents).filter(Incidents.region_id == _region_id).order_by(Incidents.product_price.desc()).limit(20).all()
+
+
+async def retrieve_the_total_value_of_incidents_per_store_section(
+    _store_section_id: int,
+    _db: Session
+) -> float:
+    """The service function to retrieve the total value of incidents per store section
+
+    Args:
+        _store_section_id (int): The id of the store section
+        _db (Session): The database session
+
+    Returns:
+        float: The total value of incidents
+    """
+    return _db.query(Incidents).filter(Incidents.store_section_id == _store_section_id).sum(Incidents.product_price)
+
+
+async def retrieve_the_total_value_of_incidents_per_store(
+    _store_id: int,
+    _db: Session
+) -> float:
+    """The service function to retrieve the total value of incidents per store
+
+    Args:
+        _store_id (int): The id of the store
+        _db (Session): The database session
+
+    Returns:
+        float: The total value of incidents
+    """
+    return _db.query(Incidents).filter(Incidents.store_id == _store_id).sum(Incidents.product_price)
+
+
+async def retrieve_the_total_value_of_incidents_per_region(
+    _region_id: int,
+    _db: Session
+) -> float:
+    """The service function to retrieve the total value of incidents per region
+    Note:
+        The total value of incidents per region is the sum of the total value of incidents per store
+        in the region.
+
+    Args:
+        _region_id (int): The id of the region
+        _db (Session): The database session
+
+    Returns:
+        float: The total value of incidents
+    """
+    return _db.query(Incidents).filter(Incidents.region_id == _region_id).sum(Incidents.product_price)

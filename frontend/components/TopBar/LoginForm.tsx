@@ -58,7 +58,6 @@ const LoginButton = (props: Props) => {
 	})
 
 	const onSubmit = async (data: z.infer<typeof formSchema>) => {
-
 		const credentialsForm = new FormData()
 		credentialsForm.append('username', data.userEmail)
 		credentialsForm.append('password', data.password)
@@ -71,6 +70,7 @@ const LoginButton = (props: Props) => {
 
 			localforage.setItem('accessToken', responseData.access_token)
 			localforage.setItem('tokenType', responseData.token_type)
+			localforage.setItem('employeeId', responseData.employee_id)
 
 			toast.success('Successfully logged In')
 

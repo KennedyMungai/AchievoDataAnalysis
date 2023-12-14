@@ -32,8 +32,8 @@ async def create_incident_service(
         is_resolved = _incident_data.is_resolved,
         store_section_id = _incident_data.store_section_id,
         employee_id = _current_user.employee_id,
-        store_id = _current_user.store_id,
-        region_id = _current_user.region_id
+        store_id = _incident_data.store_id,
+        region_id = _incident_data.region_id
     )
 
     _db.add(new_incident)

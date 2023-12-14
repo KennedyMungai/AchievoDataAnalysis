@@ -477,7 +477,7 @@ const DashboardTemplate = ({
 				</div>
 				<div className='p-4 flex gap-2'>
 					{/* TODO: Add the Charts */}
-					<div className='w-[40rem] h-[20rem] bg-orange-500 rounded-lg'>
+					<div className='w-[40rem] h-[20rem] rounded-lg border-2 border-slate-500 dark:border-slate-300'>
 						<ChartCardTemplate
 							title={chartCardTitle}
 							description={chartCardDescription}
@@ -486,7 +486,7 @@ const DashboardTemplate = ({
 						</ChartCardTemplate>
 					</div>
 					{/* TODO: Add a list of the most valuable incidents */}
-					<ScrollArea className='bg-orange-500 w-[40rem] rounded-lg'>
+					<ScrollArea className='rounded-lg border-2 border-slate-500 dark:border-slate-300'>
 						{scrollAreaComponent}
 					</ScrollArea>
 				</div>

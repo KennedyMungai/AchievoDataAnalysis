@@ -151,14 +151,17 @@ const DashboardTemplate = ({
 
 		try {
 			const response = await axios.post(
-				'http://localhost:8000/incidents',
+				'http://localhost:8000/incidents/',
 				values,
 				{
 					headers: {
-						Authorization: `${bearerType} ${bearerToken}`
+						'Content-Type': 'text/json',
+						'Authorization': `${bearerType} ${bearerToken}`
 					}
 				}
 			)
+
+			console.log(response.status)
 
 			toast.success('Incident Successfully Created')
 

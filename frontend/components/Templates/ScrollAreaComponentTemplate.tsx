@@ -1,16 +1,21 @@
 'use client'
 import React from 'react'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
 
 type Props = {
 	title: string
+    description: string
 }
 
-const ScrollAreaComponentTemplate = ({ title }: Props) => {
+const ScrollAreaComponentTemplate = ({ title, description }: Props) => {
 	return (
-		<div className='w-[40rem]'>
-			<div className='text-center uppercase font-semibold'>{title}</div>
-			{}
-		</div>
+		<Card className='w-[40rem] h-full'>
+            <CardHeader>
+                <CardTitle>{title}</CardTitle>
+                <CardDescription>{description}</CardDescription>
+            </CardHeader>
+            <CardContent></CardContent>
+		</Card>
 	)
 }
 

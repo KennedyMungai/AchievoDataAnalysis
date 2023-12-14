@@ -107,3 +107,67 @@ async def delete_incident_service(
     _db.delete(incident_to_delete)
     _db.commit()
     return None
+
+
+async def retrieve_all_incident_in_a_store_section_service(
+    _store_section_id: int,
+    _db: Session
+) -> List[ReadIncident]:
+    """The service function to retrieve all incidents in a store section
+
+    Args:
+        _store_section (int): The id of the store section
+        _db (Session): The database session
+
+    Returns:
+        List[ReadIncident]: The list of incidents
+    """
+    return _db.query(Incidents).filter(Incidents.store_section_id == _store_section_id).all()
+
+
+async def retrieve_all_incident_in_a_store_service(
+    _store_id: int,
+    _db: Session
+) -> List[ReadIncident]:
+    """The service function to retrieve all incidents in a store
+
+    Args:
+        _store_id (int): The id of the store
+        _db (Session): The database session
+
+    Returns:
+        List[ReadIncident]: The list of incidents
+    """
+    return _db.query(Incidents).filter(Incidents.store_id == _store_id).all()
+
+
+async def retrieve_all_incidents_in_a_region_service(
+    _region_id: int,
+    _db: Session
+) -> List[ReadIncident]:
+    """The service function to retrieve all incidents in a region
+
+    Args:
+        _region_id (int): The id of the region
+        _db (Session): The database session
+
+    Returns:
+        List[ReadIncident]: The list of incidents
+    """
+    return _db.query(Incidents).filter(Incidents.region_id == _region_id).all()
+
+
+async def retrieve_all_incidents_by_an_employee_service(
+    _employee_id: int,
+    _db: Session
+) -> List[ReadIncident]:
+    """The service function to retrieve all incidents by an employee
+
+    Args:
+        _employee_id (int): The id of the employee
+        _db (Session): The database session
+
+    Returns:
+        List[ReadIncident]: The list of incidents
+    """
+    return _db.query(Incidents).filter(Incidents.employee_id == _employee_id).all()

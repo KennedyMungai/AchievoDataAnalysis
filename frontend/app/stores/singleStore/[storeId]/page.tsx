@@ -36,8 +36,8 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 				dashboardCard3Title={'The average value of all incidents'}
 				dashboardCard4Value={0}
 				dashboardCard4Title={'Most Notorious Store Section'}
-				chartCardTitle={'Some Title'}
-				chartCardDescription={'Some Description'}
+				chartCardTitle={'All store section trends'}
+				chartCardDescription={'The trends in individual store sections'}
 				chartCardContent={undefined}
 				scrollAreaComponent={undefined}
 			/>

@@ -35,8 +35,8 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 				dashboardCard3Title={'The average value of all incidents'}
 				dashboardCard4Value={51151}
 				dashboardCard4Title={'Most Notorious Store'}
-				chartCardTitle={'Some Card Title'}
-				chartCardDescription={'Some Card Description'}
+				chartCardTitle={'All branch trends'}
+				chartCardDescription={'The trends in the branches on a day to day basis'}
 				chartCardContent={undefined}
 				scrollAreaComponent={undefined}
 			/>

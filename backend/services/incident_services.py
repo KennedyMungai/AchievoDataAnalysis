@@ -269,3 +269,51 @@ async def retrieve_the_total_value_of_incidents_per_region(
         float: The total value of incidents
     """
     return _db.query(Incidents).filter(Incidents.region_id == _region_id).sum(Incidents.product_price)
+
+
+async def retrieve_the_average_value_of_incidents_per_store_section(
+    _store_section_id: int,
+    _db: Session
+) -> float:
+    """The service function to retrieve the average value of incidents per store section
+
+    Args:
+        _store_section_id (int): The id of the store section
+        _db (Session): The database session
+
+    Returns:
+        float: The average value of incidents
+    """
+    return _db.query(Incidents).filter(Incidents.store_section_id == _store_section_id).avg(Incidents.product_price)
+
+
+async def retrieve_the_average_value_of_incidents_per_store(
+    _store_id: int,
+    _db: Session
+) -> float:
+    """The service function to retrieve the average value of incidents per store
+
+    Args:
+        _store_id (int): The id of the store
+        _db (Session): The database session
+
+    Returns:
+        float: The average value of incidents
+    """
+    return _db.query(Incidents).filter(Incidents.store_id == _store_id).avg(Incidents.product_price)
+
+
+async def retrieve_the_average_value_of_incidents_per_region(
+    _region_id: int,
+    _db: Session
+) -> float:
+    """The service function to retrieve the average value of incidents per region
+
+    Args:
+        _region_id (int): The id of the region
+        _db (Session): The database session
+
+    Returns:
+        float: The average value of incidents
+    """
+    return _db.query(Incidents).filter(Incidents.region_id == _region_id).avg(Incidents.product_price)

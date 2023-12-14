@@ -35,6 +35,7 @@ import { useAppSelector } from '@/redux/hooks'
 import { selectSingleStore } from '@/redux/features/stores/retrieveSingleStoreSlice'
 import { selectSingleRegion } from '@/redux/features/regions/retrieveSingleRegionSlice'
 import { selectSingleStoreSection } from '@/redux/features/storeSections/retrieveSingleStoreSectionSlice'
+import { selectAuthStateData } from '@/redux/features/auth/authSlice'
 
 type Props = {
 	title: string
@@ -89,6 +90,8 @@ const DashboardTemplate = ({
 	const storeSectionData = useAppSelector(selectSingleStoreSection)
 	const storeData = useAppSelector(selectSingleStore)
 	const regionData = useAppSelector(selectSingleRegion)
+
+	const isLoggedIn = useAppSelector(selectAuthStateData).is_logged_in
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -281,7 +284,7 @@ const DashboardTemplate = ({
 											</ScrollArea>
 
 											<DialogFooter>
-												<Button type='submit'>
+												<Button type='submit' disabled={!isLoggedIn}>
 													Save Changes
 												</Button>
 											</DialogFooter>

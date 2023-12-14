@@ -8,13 +8,13 @@ export default function Home() {
 				buttonName={'Regions'}
 				buttonLink={'/regions'}
 				dashboardCard1Value={8500}
-				dashboardCard1Title={'Some Value'}
+				dashboardCard1Title={'Number of all incidents'}
 				dashboardCard2Value={4568}
-				dashboardCard2Title={'Another Value'}
+				dashboardCard2Title={'Value of all Incidents'}
 				dashboardCard3Value={55668}
-				dashboardCard3Title={'Yet Another Value'}
+				dashboardCard3Title={'The average value of all incidents'}
 				dashboardCard4Value={5200}
-				dashboardCard4Title={'Some Other Value'}
+				dashboardCard4Title={'Most Notorious Region'}
 				chartCardTitle={'All Branches Trends'}
 				chartCardDescription={'The trends in all the branches'}
 				chartCardContent={undefined}

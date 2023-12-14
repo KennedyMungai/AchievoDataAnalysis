@@ -172,7 +172,7 @@ async def retrieve_all_incidents_by_an_employee_service(
     return _db.query(Incidents).filter(Incidents.employee_id == _employee_id).all()
 
 
-async def retrieve_the_top_twenty_most_valuable_incidents_in_a_store_section(
+async def retrieve_the_top_twenty_most_valuable_incidents_in_a_store_section_service(
     _store_section_id: int,
     _db: Session
 ) -> List[ReadIncident]:
@@ -188,7 +188,7 @@ async def retrieve_the_top_twenty_most_valuable_incidents_in_a_store_section(
     return _db.query(Incidents).filter(Incidents.store_section_id == _store_section_id).order_by(Incidents.product_price.desc()).limit(20).all()
 
 
-async def retrieve_the_top_twenty_most_valuable_incidents_in_a_store(
+async def retrieve_the_top_twenty_most_valuable_incidents_in_a_store_service(
     _store_id: int,
     _db: Session
 ) -> List[ReadIncident]:
@@ -204,7 +204,7 @@ async def retrieve_the_top_twenty_most_valuable_incidents_in_a_store(
     return _db.query(Incidents).filter(Incidents.store_id == _store_id).order_by(Incidents.product_price.desc()).limit(20).all()
 
 
-async def retrieve_the_top_twenty_most_valuable_incidents_in_a_region(
+async def retrieve_the_top_twenty_most_valuable_incidents_in_a_region_service(
     _region_id: int,
     _db: Session
 ) -> List[ReadIncident]:
@@ -220,7 +220,7 @@ async def retrieve_the_top_twenty_most_valuable_incidents_in_a_region(
     return _db.query(Incidents).filter(Incidents.region_id == _region_id).order_by(Incidents.product_price.desc()).limit(20).all()
 
 
-async def retrieve_the_total_value_of_incidents_per_store_section(
+async def retrieve_the_total_value_of_incidents_per_store_section_service(
     _store_section_id: int,
     _db: Session
 ) -> float:
@@ -236,7 +236,7 @@ async def retrieve_the_total_value_of_incidents_per_store_section(
     return _db.query(Incidents).filter(Incidents.store_section_id == _store_section_id).sum(Incidents.product_price)
 
 
-async def retrieve_the_total_value_of_incidents_per_store(
+async def retrieve_the_total_value_of_incidents_per_store_service(
     _store_id: int,
     _db: Session
 ) -> float:
@@ -252,7 +252,7 @@ async def retrieve_the_total_value_of_incidents_per_store(
     return _db.query(Incidents).filter(Incidents.store_id == _store_id).sum(Incidents.product_price)
 
 
-async def retrieve_the_total_value_of_incidents_per_region(
+async def retrieve_the_total_value_of_incidents_per_region_service(
     _region_id: int,
     _db: Session
 ) -> float:
@@ -271,7 +271,7 @@ async def retrieve_the_total_value_of_incidents_per_region(
     return _db.query(Incidents).filter(Incidents.region_id == _region_id).sum(Incidents.product_price)
 
 
-async def retrieve_the_average_value_of_incidents_per_store_section(
+async def retrieve_the_average_value_of_incidents_per_store_section_service(
     _store_section_id: int,
     _db: Session
 ) -> float:
@@ -287,7 +287,7 @@ async def retrieve_the_average_value_of_incidents_per_store_section(
     return _db.query(Incidents).filter(Incidents.store_section_id == _store_section_id).avg(Incidents.product_price)
 
 
-async def retrieve_the_average_value_of_incidents_per_store(
+async def retrieve_the_average_value_of_incidents_per_store_service(
     _store_id: int,
     _db: Session
 ) -> float:
@@ -303,7 +303,7 @@ async def retrieve_the_average_value_of_incidents_per_store(
     return _db.query(Incidents).filter(Incidents.store_id == _store_id).avg(Incidents.product_price)
 
 
-async def retrieve_the_average_value_of_incidents_per_region(
+async def retrieve_the_average_value_of_incidents_per_region_service(
     _region_id: int,
     _db: Session
 ) -> float:

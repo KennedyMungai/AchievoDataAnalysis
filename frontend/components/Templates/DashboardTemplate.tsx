@@ -61,11 +61,21 @@ const formSchema = z.object({
 		.min(1, 'Incident Description should be added'),
 	product_name: z.string().min(1, 'Product Name should be added'),
 	product_code: z.string().min(1, 'Product Code should be added'),
-	product_quantity: z.string().min(1, "Product Quantity should be added").refine((value) => !Number.isNaN(parseInt(value, 10)), {message: "Expected a number, received a string"}),
-	product_price: z.string().min(1, "Product Price should be added").refine((value) => !Number.isNaN(parseInt(value, 10)), {message: "Expected a number, received a string"}),
-	store_section_id: z.string().min(1, "Store Section Id should be added"),
-	store_id: z.string().min(1, "The Store Id should be added"),
-	region_id: z.string().min(1, "The Region Id should be added")
+	product_quantity: z
+		.string()
+		.min(1, 'Product Quantity should be added')
+		.refine((value) => !Number.isNaN(parseInt(value, 10)), {
+			message: 'Expected a number, received a string'
+		}),
+	product_price: z
+		.string()
+		.min(1, 'Product Price should be added')
+		.refine((value) => !Number.isNaN(parseInt(value, 10)), {
+			message: 'Expected a number, received a string'
+		}),
+	store_section_id: z.string().min(1, 'Store Section Id should be added'),
+	store_id: z.string().min(1, 'The Store Id should be added'),
+	region_id: z.string().min(1, 'The Region Id should be added')
 })
 
 const DashboardTemplate = ({
@@ -83,7 +93,7 @@ const DashboardTemplate = ({
 	dashboardCard3Title,
 	dashboardCard3Value,
 	dashboardCard4Title,
-	dashboardCard4Value,
+	dashboardCard4Value
 }: Props) => {
 	const storeSectionData = useAppSelector(selectSingleStoreSection)
 	const storeData = useAppSelector(selectSingleStore)
@@ -277,9 +287,81 @@ const DashboardTemplate = ({
 														</FormItem>
 													)}
 												/>
+												<FormField
+													control={form.control}
+													name='store_section_id'
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>
+																Store Section Id
+															</FormLabel>
+															<FormDescription>
+																The Id of the
+																store section
+															</FormDescription>
+															<FormControl>
+																<Input
+																	placeholder='Store Section Id'
+																	{...field}
+																	disabled
+																/>
+															</FormControl>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+												<FormField
+													control={form.control}
+													name='store_id'
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>
+																Store Id
+															</FormLabel>
+															<FormDescription>
+																The Id of the
+																store
+															</FormDescription>
+															<FormControl>
+																<Input
+																	placeholder='Store Id'
+																	{...field}
+																	disabled
+																/>
+															</FormControl>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+												<FormField
+													control={form.control}
+													name='region_id'
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>
+																Region Id
+															</FormLabel>
+															<FormDescription>
+																The Id of the
+																Region
+															</FormDescription>
+															<FormControl>
+																<Input
+																	placeholder='Region Id'
+																	{...field}
+																	disabled
+																/>
+															</FormControl>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
 											</ScrollArea>
 											<DialogFooter>
-												<Button type='submit' disabled={!isLoggedIn}>
+												<Button
+													type='submit'
+													disabled={!isLoggedIn}
+												>
 													Save Changes
 												</Button>
 											</DialogFooter>

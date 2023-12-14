@@ -1,6 +1,7 @@
 interface IToken {
     token_type: string
     access_token: string
+    employee_id: number
     is_loaded: boolean
     is_logged_in: boolean
 }

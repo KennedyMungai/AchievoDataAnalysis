@@ -161,8 +161,6 @@ const DashboardTemplate = ({
 				}
 			)
 
-			console.log(response.status)
-
 			toast.success('Incident Successfully Created')
 
 			form.reset()

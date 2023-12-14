@@ -4,7 +4,11 @@ import { RootState } from "../store"
 
 
 export const getAuthToken = createAsyncThunk("auth/login", async (values: ICredentials) => {
-    const response = await axios.post("http://localhost:8000/auth/login", values)
+    const credentialsForm = new FormData()
+    credentialsForm.append("username", values.employee_email)
+    credentialsForm.append("password", values.employee_password)
+
+    const response = await axios.post("http://localhost:8000/auth/login", credentialsForm)
     const data = response.data
 
     return data
@@ -29,6 +33,8 @@ const authSlice = createSlice({
         },
         logOut: (state) => {
             state.is_logged_in = false
+            state.access_token = ""
+            state.employee_id = 0
         }
     },
     extraReducers: (builder) => {

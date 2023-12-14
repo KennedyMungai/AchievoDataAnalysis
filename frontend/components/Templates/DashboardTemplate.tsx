@@ -73,6 +73,7 @@ const formSchema = z.object({
 		.refine((value) => !Number.isNaN(parseInt(value, 10)), {
 			message: 'Expected a number, received a string'
 		}),
+	employee_id: z.string().min(1, 'The Employee Id should be added'),
 	store_section_id: z.string().min(1, 'Store Section Id should be added'),
 	store_id: z.string().min(1, 'The Store Id should be added'),
 	region_id: z.string().min(1, 'The Region Id should be added')
@@ -98,7 +99,6 @@ const DashboardTemplate = ({
 	const storeSectionData = useAppSelector(selectSingleStoreSection)
 	const storeData = useAppSelector(selectSingleStore)
 	const regionData = useAppSelector(selectSingleRegion)
-
 	const isLoggedIn = useAppSelector(selectAuthStateData).is_logged_in
 
 	const form = useForm<z.infer<typeof formSchema>>({
@@ -109,6 +109,7 @@ const DashboardTemplate = ({
 			product_code: '',
 			product_quantity: '',
 			product_price: '',
+			employee_id: String(localforage.getItem("employeeId")),
 			store_section_id: String(storeSectionData.store_section_id),
 			store_id: String(storeData.store_id),
 			region_id: String(regionData.region_id)
@@ -136,7 +137,8 @@ const DashboardTemplate = ({
 			product_price: Number(product_price),
 			store_section_id: Number(store_section_id),
 			store_id: Number(store_id),
-			region_id: Number(region_id)
+			region_id: Number(region_id),
+			employeeId: Number(employeeId)
 		}
 
 		console.log(values)
@@ -303,6 +305,29 @@ const DashboardTemplate = ({
 																<Input
 																	placeholder='Product Price'
 																	{...field}
+																/>
+															</FormControl>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+												<FormField
+													control={form.control}
+													name='employee_id'
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>
+																Employee Id
+															</FormLabel>
+															<FormDescription>
+																The Id of the
+																Logged In Employee
+															</FormDescription>
+															<FormControl>
+																<Input
+																	placeholder='Employee Id'
+																	{...field}
+																	disabled
 																/>
 															</FormControl>
 															<FormMessage />

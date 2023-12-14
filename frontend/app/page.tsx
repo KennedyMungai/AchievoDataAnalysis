@@ -1,4 +1,5 @@
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
+import ScrollAreaComponentTemplate from '@/components/Templates/ScrollAreaComponentTemplate'
 
 export default function Home() {
 	return (
@@ -18,7 +19,7 @@ export default function Home() {
 				chartCardTitle={'All Regions Trends'}
 				chartCardDescription={'The trends in all the regions on a daily basis'}
 				chartCardContent={undefined}
-				scrollAreaComponent={undefined}
+				scrollAreaComponent={<ScrollAreaComponentTemplate title={'Top Offenders'} />}
 			/>
 		</main>
 	)

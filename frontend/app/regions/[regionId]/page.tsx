@@ -47,6 +47,7 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 						description={
 							'A simple list of the top offending stores'
 						}
+						content={undefined}
 					/>
 				}
 			/>

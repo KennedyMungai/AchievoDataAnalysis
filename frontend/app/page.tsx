@@ -26,6 +26,7 @@ export default function Home() {
 					<ScrollAreaComponentTemplate
 						title={'Top Offenders'}
 						description={'The top offending regions'}
+						content={undefined}
 					/>
 				}
 			/>

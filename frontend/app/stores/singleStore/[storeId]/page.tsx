@@ -46,6 +46,7 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 						description={
 							'A list of the top offending store sections'
 						}
+						content={undefined}
 					/>
 				}
 			/>

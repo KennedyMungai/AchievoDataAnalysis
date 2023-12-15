@@ -46,6 +46,7 @@ const SingleStoreSectionPage = ({ params: { storeSectionId } }: Props) => {
 					<ScrollAreaComponentTemplate
 						title={'Top Incidents'}
 						description={'A simple list of the top incidents'}
+						content={undefined}
 					/>
 				}
 			/>

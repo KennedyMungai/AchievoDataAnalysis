@@ -155,8 +155,6 @@ const DashboardTemplate = ({
 			is_resolved
 		}
 
-		console.log(values)
-
 		try {
 			const response = await axios.post(
 				'http://localhost:8000/incidents/',
@@ -195,7 +193,10 @@ const DashboardTemplate = ({
 					) : (
 						<Dialog>
 							<DialogTrigger asChild>
-								<Button variant={'default'} disabled={!isLoggedIn}>
+								<Button
+									variant={'default'}
+									disabled={!isLoggedIn}
+								>
 									{buttonName}
 								</Button>
 							</DialogTrigger>

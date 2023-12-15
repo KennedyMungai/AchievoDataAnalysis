@@ -195,7 +195,7 @@ const DashboardTemplate = ({
 					) : (
 						<Dialog>
 							<DialogTrigger asChild>
-								<Button variant={'default'}>
+								<Button variant={'default'} disabled={!isLoggedIn}>
 									{buttonName}
 								</Button>
 							</DialogTrigger>

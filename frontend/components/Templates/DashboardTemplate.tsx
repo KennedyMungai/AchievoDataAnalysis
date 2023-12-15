@@ -456,7 +456,7 @@ const DashboardTemplate = ({
 												<Button
 													type='submit'
 												>
-													Save Changes
+													Submit
 												</Button>
 											</DialogFooter>
 										</form>

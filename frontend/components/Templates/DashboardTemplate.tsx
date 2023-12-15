@@ -141,6 +141,8 @@ const DashboardTemplate = ({
 		const bearerType = loginData.token_type
 		const bearerToken = loginData.access_token
 
+		console.log('Submit Button Clicked')
+
 		const values = {
 			incident_description,
 			product_name,
@@ -159,12 +161,12 @@ const DashboardTemplate = ({
 			const response = await axios.post(
 				'http://localhost:8000/incidents/',
 				values,
-				{
-					headers: {
-						'Content-Type': 'text/json',
-						Authorization: `${bearerType} ${bearerToken}`
-					}
-				}
+				// {
+				// 	headers: {
+				// 		'Content-Type': 'text/json',
+				// 		Authorization: `${bearerType} ${bearerToken}`
+				// 	}
+				// }
 			)
 
 			toast.success('Incident Successfully Created')
@@ -175,6 +177,7 @@ const DashboardTemplate = ({
 			form.setValue('product_code', '')
 			form.setValue('product_quantity', '')
 			form.setValue('product_price', '')
+	
 			form.clearErrors()
 		} catch (error) {
 			toast.error('Something went wrong')

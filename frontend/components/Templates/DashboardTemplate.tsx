@@ -63,13 +63,11 @@ const formSchema = z.object({
 	product_code: z.string().min(1, 'Product Code should be added'),
 	product_quantity: z
 		.string()
-		.min(1, 'Product Quantity should be added')
 		.refine((value) => !Number.isNaN(parseInt(value, 10)), {
 			message: 'Expected a number, received a string'
 		}),
 	product_price: z
 		.string()
-		.min(1, 'Product Price should be added')
 		.refine((value) => !Number.isNaN(parseInt(value, 10)), {
 			message: 'Expected a number, received a string'
 		}),

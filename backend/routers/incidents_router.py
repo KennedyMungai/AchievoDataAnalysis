@@ -480,7 +480,7 @@ async def retrieve_the_average_value_of_all_incidents_in_a_region_router(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
 
-@incidents_router.get("store_section/count/{_store_section_id}")
+@incidents_router.get("/store_section/count/{_store_section_id}")
 async def retrieve_the_number_of_incidents_in_a_store_section_router(
     _store_section_id: int,
     _db: Session = Depends(get_db)
@@ -552,7 +552,7 @@ async def retrieve_the_number_of_incidents_in_a_region_router(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
 
-@incidents_router.get("employee/count/{_employee_id}")
+@incidents_router.get("/employee/count/{_employee_id}")
 async def retrieve_the_number_of_incidents_per_employee_router(
     _employee_id: int,
     _db: Session = Depends(get_db)
@@ -576,7 +576,7 @@ async def retrieve_the_number_of_incidents_per_employee_router(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
 
-@incidents_router.get("all/count")
+@incidents_router.get("/all/count")
 async def retrieve_the_total_number_of_incidents_router(
     _db: Session = Depends(get_db)
 ) -> int:
@@ -598,7 +598,7 @@ async def retrieve_the_total_number_of_incidents_router(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
 
-@incidents_router.get("all/average")
+@incidents_router.get("/all/average")
 async def retrieve_the_average_value_of_all_incidents_router(
     _db: Session = Depends(get_db)
 ) -> float:
@@ -620,7 +620,7 @@ async def retrieve_the_average_value_of_all_incidents_router(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
 
-@incidents_router.get("all/total")
+@incidents_router.get("/all/total")
 async def retrieve_the_total_value_of_all_incidents_router(
     _db: Session = Depends(get_db)
 ) -> float:

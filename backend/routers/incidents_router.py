@@ -1,12 +1,31 @@
 """The incidents router file"""
+from typing import List
 from database.db import get_db
 from fastapi import APIRouter, Depends, HTTPException, status
-from schemas.incident_schema import CreateIncident, UpdateIncident
+from schemas.incident_schema import CreateIncident, UpdateIncident, ReadIncident
 from services.incident_services import (create_incident_service,
                                         delete_incident_service,
                                         retrieve_all_incidents_service,
                                         retrieve_one_incident_service,
-                                        update_incident_service)
+                                        update_incident_service,
+                                        retrieve_all_incident_in_a_store_section_service,
+                                        retrieve_all_incident_in_a_store_service,
+                                        retrieve_all_incidents_by_an_employee_service,
+                                        retrieve_the_number_of_incidents_in_a_given_region_service,
+                                        retrieve_the_average_value_of_incidents_per_store_section_service,
+                                        retrieve_the_average_value_of_incidents_per_region_service,
+                                        retrieve_the_average_value_of_incidents_per_store_service,
+                                        retrieve_all_incidents_in_a_region_service,
+                                        retrieve_the_number_of_incidents_in_a_given_store_section_service,
+                                        retrieve_the_number_of_incidents_in_a_given_store_service,
+                                        retrieve_the_number_of_incidents_per_employee_service,
+                                        retrieve_the_top_twenty_most_valuable_incidents_in_a_region_service,
+                                        retrieve_the_top_twenty_most_valuable_incidents_in_a_store_section_service,
+                                        retrieve_the_top_twenty_most_valuable_incidents_in_a_store_service,
+                                        retrieve_the_total_value_of_incidents_per_region_service,
+                                        retrieve_the_total_value_of_incidents_per_store_section_service,
+                                        retrieve_the_total_value_of_incidents_per_store_service
+                                        )
 from sqlalchemy.orm import Session
 from utils.oauth2 import get_current_user
 
@@ -17,7 +36,7 @@ incidents_router = APIRouter(prefix="/incidents", tags=["Incidents"])
 async def create_incident_endpoint(
     _incident_data: CreateIncident,
     _db: Session = Depends(get_db),
-    _current_user = Depends(get_current_user)
+    _current_user=Depends(get_current_user)
 ):
     """The endpoint to create an incident
 
@@ -132,3 +151,91 @@ async def delete_incident_endpoint(
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
+
+
+@incidents_router.get("/store_section/{_store_section_id}")
+async def retrieve_all_store_sections_incidents_router(
+    _store_section_id: int,
+    _db: Session = Depends(get_db)
+) -> List[ReadIncident]:
+    """The endpoint to retrieve all incidents in a store section
+
+
+    Args:
+        _store_section_id (int): The store section id
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 400 is raised incase of any issues
+
+    Returns:
+        List[ReadIncident]: A list of the incidents
+    """
+    try:
+        return await retrieve_all_incident_in_a_store_section_service(_store_section_id, _db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc)) from exc
+
+
+@incidents_router.get("/store/{_store_id}")
+async def retrieve_all_store_incidents_router(
+    _store_id: int,
+    _db: Session = Depends(get_db)
+) -> List[ReadIncident]:
+    """The endpoint to retrieve all incidents in a store
+
+
+    Args:
+        _store_id (int): The store id
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 400 is raised incase of any issues
+
+    Returns:
+        List[ReadIncident]: A list of the incidents
+    """
+    try:
+        return await retrieve_all_incident_in_a_store_service(_store_id, _db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc)) from exc
+
+
+@incidents_router.get("/employee/{_employee_id}")
+async def retrieve_all_employee_incidents_router(
+    _employee_id: int,
+    _db: Session = Depends(get_db)
+) -> List[ReadIncident]:
+    """The endpoint to retrieve all incidents in an employee
+
+
+    Args:
+        _employee_id (int): The employee id
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 400 is raised incase of any issues
+
+    Returns:
+        List[ReadIncident]: A list of the incidents
+    """
+    try:
+        return await retrieve_all_incidents_by_an_employee_service(_employee_id, _db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
+
+
+@incidents_router.get("/region/{_region_id}")
+async def retrieve_all_region_incidents_router(
+    _region_id: int,
+    _db: Session = Depends(get_db)
+) -> List[ReadIncident]:
+    try:
+        return await retrieve_all_incidents_in_a_region_service(_region_id, _db)
+    except Exception as exc:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc

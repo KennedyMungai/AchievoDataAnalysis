@@ -317,3 +317,67 @@ async def retrieve_the_average_value_of_incidents_per_region_service(
         float: The average value of incidents
     """
     return _db.query(Incidents).filter(Incidents.region_id == _region_id).avg(Incidents.product_price)
+
+
+async def retrieve_the_number_of_incidents_in_a_given_store_section_service(
+    _store_section_id: int,
+    _db: Session
+) -> int:
+    """The service function to retrieve the number of incidents in a given store section
+
+    Args:
+        _store_section_id (int): The id of the store section
+        _db (Session): The database session
+
+    Returns:
+        int: The number of incidents
+    """
+    return _db.query(Incidents).filter(Incidents.store_section_id == _store_section_id).count()
+
+
+async def retrieve_the_number_of_incidents_in_a_given_store_service(
+    _store_id: int,
+    _db: Session
+) -> int:
+    """The service function to retrieve the number of incidents in a given store
+
+    Args:
+        _store_id (int): The id of the store
+        _db (Session): The database session
+
+    Returns:
+        int: The number of incidents
+    """
+    return _db.query(Incidents).filter(Incidents.store_id == _store_id).count()
+
+
+async def retrieve_the_number_of_incidents_in_a_given_region_service(
+    _region_id: int,
+    _db: Session
+) -> int:
+    """The service function to retrieve the number of incidents in a given region
+
+    Args:
+        _region_id (int): The id of the region
+        _db (Session): The database session
+
+    Returns:
+        int: The number of incidents
+    """
+    return _db.query(Incidents).filter(Incidents.region_id == _region_id).count()
+
+
+async def retrieve_the_number_of_incidents_per_employee_service(
+    _employee_id: int,
+    _db: Session
+) -> int:
+    """The service function to retrieve the number of incidents per employee
+
+    Args:
+        _employee_id (int): The id of the employee
+        _db (Session): The database session
+
+    Returns:
+        int: The number of incidents
+    """
+    return _db.query(Incidents).filter(Incidents.employee_id == _employee_id).count()

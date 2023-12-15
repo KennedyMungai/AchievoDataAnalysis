@@ -23,7 +23,7 @@ const ScrollAreaComponentTemplate = ({ title, description, content }: Props) => 
 				<CardDescription>{description}</CardDescription>
 			</CardHeader>
 			<CardContent>
-				<ScrollArea className='h-[30vh] bg-slate-400 dark:bg-slate-600 rounded-lg p-2 m-2'>
+				<ScrollArea className='h-[30vh] p-2 m-2'>
 					{content}
 				</ScrollArea>
 			</CardContent>

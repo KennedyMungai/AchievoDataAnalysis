@@ -235,6 +235,18 @@ async def retrieve_all_region_incidents_router(
     _region_id: int,
     _db: Session = Depends(get_db)
 ) -> List[ReadIncident]:
+    """The endpoint to retrieve all of a region's incidents
+
+    Args:
+        _region_id (int): The region id
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 404 is raised if anything goes wrong
+
+    Returns:
+        List[ReadIncident]: A list of the incidents retrieved
+    """
     try:
         return await retrieve_all_incidents_in_a_region_service(_region_id, _db)
     except Exception as exc:

@@ -250,4 +250,83 @@ async def retrieve_all_region_incidents_router(
     try:
         return await retrieve_all_incidents_in_a_region_service(_region_id, _db)
     except Exception as exc:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
+
+
+@incidents_router.get("/store_section/top_twenty/{_store_section_id}")
+async def retrieve_the_top_twenty_most_valuable_incidents_in_a_store_section_router(
+    _store_section_id: int,
+    _db: Session = Depends(get_db)
+) -> List[ReadIncident]:
+    """The endpoint to retrieve the top twenty most valuable incidents in a store section
+
+    Args:
+        _store_section_id (int): The store section id
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 404 is raised if anything goes wrong
+
+    Returns:
+        List[ReadIncident]: A list of the top twenty most valuable incidents
+    """
+    try:
+        return await retrieve_the_top_twenty_most_valuable_incidents_in_a_store_section_service(_store_section_id, _db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc)
+        ) from exc
+
+
+@incidents_router.get("/store/top_twenty/{_store_id}")
+async def retrieve_the_top_twenty_most_valuable_incidents_in_a_store_router(
+    _store_id: int,
+    _db: Session = Depends(get_db)
+) -> List[ReadIncident]:
+    """The endpoint to retrieve the top twenty most valuable incidents in a store
+
+    Args:
+        _store_id (int): The store id
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 404 is raised if anything goes wrong
+
+    Returns:
+        List[ReadIncident]: A list of the top twenty most valuable incidents
+    """
+    try:
+        return await retrieve_the_top_twenty_most_valuable_incidents_in_a_store_service(_store_id, _db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc)
+        ) from exc
+
+
+@incidents_router.get("/employee/top_twenty/{_region_id}")
+async def retrieve_the_top_twenty_most_valuable_incidents_in_a_region_router(
+    _region_id: int,
+    _db: Session = Depends(get_db)
+) -> List[ReadIncident]:
+    """The endpoint to retrieve the top twenty most valuable incidents in a region
+
+    Args:
+        _region_id (int): The region id
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 404 is raised if anything goes wrong
+
+    Returns:
+        List[ReadIncident]: A list of the top twenty most valuable incidents
+    """
+    try:
+        return await retrieve_the_top_twenty_most_valuable_incidents_in_a_region_service(_region_id, _db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc)
+        ) from exc

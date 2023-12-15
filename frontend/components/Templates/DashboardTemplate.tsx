@@ -13,6 +13,7 @@ import toast from 'react-hot-toast'
 import * as z from 'zod'
 import TopBar from '../TopBar/TopBar'
 import { Button } from '../ui/button'
+import { Checkbox } from '../ui/checkbox'
 import {
 	Dialog,
 	DialogContent,
@@ -35,7 +36,6 @@ import { Input } from '../ui/input'
 import { ScrollArea } from '../ui/scroll-area'
 import ChartCardTemplate from './ChartCardTemplate'
 import DashboardCards from './DashboardCards'
-import { Checkbox } from '../ui/checkbox'
 
 type Props = {
 	title: string

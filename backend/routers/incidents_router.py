@@ -25,7 +25,11 @@ from services.incident_services import (
     retrieve_the_total_value_of_incidents_per_region_service,
     retrieve_the_total_value_of_incidents_per_store_section_service,
     retrieve_the_total_value_of_incidents_per_store_service,
-    update_incident_service)
+    update_incident_service,
+    retrieve_the_average_value_of_all_incidents_service,
+    retrieve_the_total_number_of_incidents_service,
+    retrieve_the_total_value_of_all_incidents_service
+)
 from sqlalchemy.orm import Session
 from utils.oauth2 import get_current_user
 
@@ -567,6 +571,72 @@ async def retrieve_the_number_of_incidents_per_employee_router(
     """
     try:
         return await retrieve_the_number_of_incidents_per_employee_service(_employee_id, _db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
+
+
+@incidents_router.get("all/count")
+async def retrieve_the_total_number_of_incidents_router(
+    _db: Session = Depends(get_db)
+) -> int:
+    """The endpoint to retrieve the total number of incidents in the database. This is used to calculate the percentage of incidents that are resolved. It is also used to calculate the average value of all incidents. This is also used to calculate the average number of incidents per employee. This is also used to calculate the average number of incidents in a store. This is also used to calculate the average number of incidents in a region. This is also used to calculate the average number of incidents in a store section. This is also used to calculate the number of incidents in a store section. This is also used to calculate the number of incidents in a store. This is also used to calculate the number of incidents in a region. This is also used to calculate the number of incidents per employee. This is also used to calculate the total value of all incidents in a store. This is also used to calculate the total value of all incidents in a region. This is also used to calculate the total value of all incidents in a store section. This is also used to calculate the total value of all incidents in a region. This is also used to calculate the total value of all incidents in a store section. This is also used to calculate the total value of all incidents in a region. This is also
+
+    Args:
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 400 is raised incase of any exception
+
+    Returns:
+        int: The number of incidents
+    """
+    try:
+        return await retrieve_the_total_number_of_incidents_service(_db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
+
+
+@incidents_router.get("all/average")
+async def retrieve_the_average_value_of_all_incidents_router(
+    _db: Session = Depends(get_db)
+) -> float:
+    """The endpoint to retrieve the average value of all incidents in the database
+
+    Args:
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 400 is raised if anything goes wrong
+
+    Returns:
+        float: The average value of all incidents
+    """
+    try:
+        return await retrieve_the_average_value_of_all_incidents_service(_db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
+
+
+@incidents_router.get("all/total")
+async def retrieve_the_total_value_of_all_incidents_router(
+    _db: Session = Depends(get_db)
+) -> float:
+    """The endpoint to retrieve the total value of all incidents in the database
+
+    Args:
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 400 is raised if anything goes wrong
+
+    Returns:
+        float: The total value of all incidents
+    """
+    try:
+        return await retrieve_the_total_value_of_all_incidents_service(_db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc

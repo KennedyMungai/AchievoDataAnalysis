@@ -185,7 +185,7 @@ async def retrieve_the_top_twenty_most_valuable_incidents_in_a_store_section_ser
     Returns:
         List[ReadIncident]: The list of incidents
     """
-    return _db.query(Incidents).filter(Incidents.store_section_id == _store_section_id).order_by(Incidents.product_price.desc()).limit(20).all()
+    return _db.query(Incidents).filter(Incidents.store_section_id == _store_section_id).order_by(Incidents.total_value.desc()).limit(20).all()
 
 
 async def retrieve_the_top_twenty_most_valuable_incidents_in_a_store_service(
@@ -201,7 +201,7 @@ async def retrieve_the_top_twenty_most_valuable_incidents_in_a_store_service(
     Returns:
         List[ReadIncident]: The list of incidents
     """
-    return _db.query(Incidents).filter(Incidents.store_id == _store_id).order_by(Incidents.product_price.desc()).limit(20).all()
+    return _db.query(Incidents).filter(Incidents.store_id == _store_id).order_by(Incidents.total_value.desc()).limit(20).all()
 
 
 async def retrieve_the_top_twenty_most_valuable_incidents_in_a_region_service(
@@ -217,7 +217,7 @@ async def retrieve_the_top_twenty_most_valuable_incidents_in_a_region_service(
     Returns:
         List[ReadIncident]: The list of incidents
     """
-    return _db.query(Incidents).filter(Incidents.region_id == _region_id).order_by(Incidents.product_price.desc()).limit(20).all()
+    return _db.query(Incidents).filter(Incidents.region_id == _region_id).order_by(Incidents.total_value.desc()).limit(20).all()
 
 
 async def retrieve_the_total_value_of_incidents_per_store_section_service(
@@ -233,7 +233,7 @@ async def retrieve_the_total_value_of_incidents_per_store_section_service(
     Returns:
         float: The total value of incidents
     """
-    return _db.query(Incidents).filter(Incidents.store_section_id == _store_section_id).sum(Incidents.product_price)
+    return _db.query(Incidents).filter(Incidents.store_section_id == _store_section_id).sum(Incidents.total_value)
 
 
 async def retrieve_the_total_value_of_incidents_per_store_service(
@@ -249,7 +249,7 @@ async def retrieve_the_total_value_of_incidents_per_store_service(
     Returns:
         float: The total value of incidents
     """
-    return _db.query(Incidents).filter(Incidents.store_id == _store_id).sum(Incidents.product_price)
+    return _db.query(Incidents).filter(Incidents.store_id == _store_id).sum(Incidents.total_value)
 
 
 async def retrieve_the_total_value_of_incidents_per_region_service(
@@ -268,7 +268,7 @@ async def retrieve_the_total_value_of_incidents_per_region_service(
     Returns:
         float: The total value of incidents
     """
-    return _db.query(Incidents).filter(Incidents.region_id == _region_id).sum(Incidents.product_price)
+    return _db.query(Incidents).filter(Incidents.region_id == _region_id).sum(Incidents.total_value)
 
 
 async def retrieve_the_average_value_of_incidents_per_store_section_service(
@@ -284,7 +284,7 @@ async def retrieve_the_average_value_of_incidents_per_store_section_service(
     Returns:
         float: The average value of incidents
     """
-    return _db.query(Incidents).filter(Incidents.store_section_id == _store_section_id).avg(Incidents.product_price)
+    return _db.query(Incidents).filter(Incidents.store_section_id == _store_section_id).avg(Incidents.total_value)
 
 
 async def retrieve_the_average_value_of_incidents_per_store_service(
@@ -300,7 +300,7 @@ async def retrieve_the_average_value_of_incidents_per_store_service(
     Returns:
         float: The average value of incidents
     """
-    return _db.query(Incidents).filter(Incidents.store_id == _store_id).avg(Incidents.product_price)
+    return _db.query(Incidents).filter(Incidents.store_id == _store_id).avg(Incidents.total_value)
 
 
 async def retrieve_the_average_value_of_incidents_per_region_service(
@@ -316,7 +316,7 @@ async def retrieve_the_average_value_of_incidents_per_region_service(
     Returns:
         float: The average value of incidents
     """
-    return _db.query(Incidents).filter(Incidents.region_id == _region_id).avg(Incidents.product_price)
+    return _db.query(Incidents).filter(Incidents.region_id == _region_id).avg(Incidents.total_value)
 
 
 async def retrieve_the_number_of_incidents_in_a_given_store_section_service(

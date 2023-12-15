@@ -402,3 +402,75 @@ async def retrieve_the_total_value_of_all_incidents_in_a_region_router(
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
+
+
+@incidents_router.get("/store_section/average/{_store_section_id}")
+async def retrieve_the_average_value_of_all_incidents_in_a_store_section_router(
+    _store_section_id: int,
+    _db: Session = Depends(get_db)
+) -> float:
+    """The endpoint to retrieve the average value of all incidents in a store section
+
+    Args:
+        _store_section_id (int): The store section id
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 400 is raised if anything goes wrong
+
+    Returns:
+        float: The average value of all incidents in a store section
+    """
+    try:
+        return await retrieve_the_average_value_of_incidents_per_store_section_service(_store_section_id, _db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
+
+
+@incidents_router.get("/store/average/{_store_id}")
+async def retrieve_the_average_value_of_all_incidents_in_a_store_router(
+    _store_id: int,
+    _db: Session = Depends(get_db)
+) -> float:
+    """The endpoint to retrieve the average value of all incidents in a store
+
+    Args:
+        _store_id (int): The store id
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 400 is raised if anything goes wrong
+
+    Returns:
+        float: The average value of all incidents in a store
+    """
+    try:
+        return await retrieve_the_average_value_of_incidents_per_store_service(_store_id, _db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
+
+
+@incidents_router.get("/region/average/{_region_id}")
+async def retrieve_the_average_value_of_all_incidents_in_a_region_router(
+    _region_id: int,
+    _db: Session = Depends(get_db)
+) -> float:
+    """The endpoint to retrieve the average value of all incidents in a region
+
+    Args:
+        _region_id (int): The region id
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 400 is raised if anything goes wrong
+
+    Returns:
+        float: The average value of all incidents in a region
+    """
+    try:
+        return await retrieve_the_average_value_of_incidents_per_region_service(_region_id, _db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc

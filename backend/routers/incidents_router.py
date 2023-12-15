@@ -498,8 +498,8 @@ async def retrieve_the_number_of_incidents_in_a_store_section_router(
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
-        
-        
+
+
 @incidents_router.get("/store/count/{_store_id}")
 async def retrieve_the_number_of_incidents_in_a_store_router(
     _store_id: int,
@@ -522,8 +522,8 @@ async def retrieve_the_number_of_incidents_in_a_store_router(
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
-        
-        
+
+
 @incidents_router.get("/region/count/{_region_id}")
 async def retrieve_the_number_of_incidents_in_a_region_router(
     _region_id: int,
@@ -546,8 +546,8 @@ async def retrieve_the_number_of_incidents_in_a_region_router(
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
-        
-        
+
+
 @incidents_router.get("employee/count/{_employee_id}")
 async def retrieve_the_number_of_incidents_per_employee_router(
     _employee_id: int,

@@ -160,7 +160,7 @@ const DashboardTemplate = ({
 		try {
 			const response = await axios.post(
 				'http://localhost:8000/incidents/',
-				values,
+				values
 				// {
 				// 	headers: {
 				// 		'Content-Type': 'text/json',
@@ -177,7 +177,7 @@ const DashboardTemplate = ({
 			form.setValue('product_code', '')
 			form.setValue('product_quantity', '')
 			form.setValue('product_price', '')
-	
+
 			form.clearErrors()
 		} catch (error) {
 			toast.error('Something went wrong')
@@ -455,7 +455,6 @@ const DashboardTemplate = ({
 											<DialogFooter>
 												<Button
 													type='submit'
-													disabled={!isLoggedIn}
 												>
 													Save Changes
 												</Button>

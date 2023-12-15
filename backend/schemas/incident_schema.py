@@ -16,6 +16,7 @@ class IncidentBase(BaseModel):
     product_code: str
     product_quantity: int
     product_price: float
+    total_value: float
     is_resolved: bool
 
     store_section_id: int

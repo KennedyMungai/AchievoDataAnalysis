@@ -73,6 +73,12 @@ const formSchema = z.object({
 		.refine((value) => !Number.isNaN(parseInt(value, 10)), {
 			message: 'Expected a number, received a string'
 		}),
+	total_value: z
+		.string()
+		.min(1, 'Total Value should be added')
+		.refine((value) => !Number.isNaN(parseInt(value, 10)), {
+			message: 'Expected a number, received a string'
+		}),
 	employee_id: z.string().min(1, 'The Employee Id should be added'),
 	store_section_id: z.string().min(1, 'Store Section Id should be added'),
 	store_id: z.string().min(1, 'The Store Id should be added'),
@@ -114,6 +120,7 @@ const DashboardTemplate = ({
 			product_code: '',
 			product_quantity: '',
 			product_price: '',
+			total_value: '',
 			employee_id: String(loginData.employee_id),
 			store_section_id: String(storeSectionData.store_section_id),
 			store_id: String(storeData.store_id),
@@ -142,6 +149,7 @@ const DashboardTemplate = ({
 			product_code,
 			product_quantity: Number(product_quantity),
 			product_price: Number(product_price),
+			total_value: Number(product_quantity) * Number(product_price),
 			store_section_id: Number(store_section_id),
 			store_id: Number(store_id),
 			region_id: Number(region_id),

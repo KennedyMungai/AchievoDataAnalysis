@@ -2,7 +2,6 @@
 from typing import List
 
 from models.models import Incidents
-from schemas.employee_schema import ReadEmployee
 from schemas.incident_schema import (CreateIncident, ReadIncident,
                                      UpdateIncident)
 from sqlalchemy.orm import Session

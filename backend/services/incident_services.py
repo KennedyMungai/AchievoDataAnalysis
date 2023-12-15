@@ -396,3 +396,45 @@ async def retrieve_the_number_of_incidents_per_employee_service(
         int: The number of incidents
     """
     return _db.query(Incidents).filter(Incidents.employee_id == _employee_id).count()
+
+
+async def retrieve_the_total_number_of_incidents_service(
+    _db: Session
+) -> int:
+    """The service function to retrieve the total number of incidents
+
+    Args:
+        _db (Session): The database session
+
+    Returns:
+        int: The total number of incidents
+    """
+    return _db.query(Incidents).count()
+
+
+async def retrieve_the_average_value_of_all_incidents_service(
+    _db: Session
+) -> float:
+    """The service function to retrieve the average value of all incidents
+
+    Args:
+        _db (Session): The database session
+
+    Returns:
+        float: The average value of all incidents
+    """
+    return _db.query(Incidents).avg(Incidents.total_value)
+
+
+async def retrieve_the_total_value_of_all_incidents_service(
+    _db: Session
+) -> float:
+    """The service function to retrieve the total value of all incidents
+
+    Args:
+        _db (Session): The database session
+
+    Returns:
+        float: The total value of all incidents
+    """
+    return _db.query(Incidents).sum(Incidents.total_value)

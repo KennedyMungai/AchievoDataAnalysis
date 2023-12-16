@@ -2,7 +2,6 @@
 import StoreCountChart from '@/components/Charts/StoreCountChart'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 import ScrollAreaComponentTemplate from '@/components/Templates/ScrollAreaComponentTemplate'
-import { selectSingleStoreSection } from '@/redux/features/storeSections/retrieveSingleStoreSectionSlice'
 import {
 	retrieveSingleStore,
 	selectSingleStore
@@ -40,14 +39,14 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 				dashboardCard4Title={'Most Notorious Store Section'}
 				chartCardTitle={'All store section trends'}
 				chartCardDescription={'The trends in individual store sections'}
-				chartCardContent={undefined}
+				chartCardContent={<StoreCountChart storeId={Number(storeId)} />}
 				scrollAreaComponent={
 					<ScrollAreaComponentTemplate
 						title={'Top offending store sections'}
 						description={
 							'A list of the top offending store sections'
 						}
-						content={<StoreCountChart storeId={Number(storeId)} />}
+						content={undefined}
 					/>
 				}
 			/>

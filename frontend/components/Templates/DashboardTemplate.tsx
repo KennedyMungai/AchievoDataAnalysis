@@ -505,7 +505,6 @@ const DashboardTemplate = ({
 					/>
 				</div>
 				<div className='p-4 flex gap-2'>
-					{/* TODO: Add the Charts */}
 					<div className='w-[40rem] h-full rounded-lg'>
 						<ChartCardTemplate
 							title={chartCardTitle}
@@ -514,7 +513,6 @@ const DashboardTemplate = ({
 							{chartCardContent}
 						</ChartCardTemplate>
 					</div>
-					{/* TODO: Add a list of the most valuable incidents */}
 					<ScrollArea className='rounded-lg'>
 						{scrollAreaComponent}
 					</ScrollArea>

@@ -1,22 +1,27 @@
 'use client'
-import {
-    BarElement,
-    CategoryScale,
-    Chart as ChartJS,
-    Legend,
-    LinearScale,
-    Title,
-    Tooltip
-} from 'chart.js'
+import Chart from 'chart.js/auto'
+import { CategoryScale } from 'chart.js'
 import {Line} from 'react-chartjs-2'
 
 type Props = {
     storeId: number
 }
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
+Chart.register(CategoryScale)
 
 const StoreCountChart = ({storeId}: Props) => {
+    const data = {
+        labels: ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'],
+			datasets: [
+				{
+					label: 'Sales $',
+					data: [18127, 22201, 19490, 17938, 24182, 17842, 22475],
+					borderColor: 'rgb(53, 162, 235)',
+					backgroundColor: 'rgb(53, 162, 235, 0.4'
+				}
+			]
+    }
+
     const options = {
         responsive: true,
         plugins: {

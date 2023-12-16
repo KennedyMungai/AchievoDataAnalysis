@@ -11,7 +11,7 @@ from services.incident_services import (
     retrieve_all_incident_in_a_store_service,
     retrieve_all_incidents_by_an_employee_service,
     retrieve_all_incidents_in_a_region_service, retrieve_all_incidents_service,
-    retrieve_one_incident_service,
+    retrieve_one_incident_service, retrieve_the_number_of_incidents_by_store_section_service,
     retrieve_the_top_twenty_most_valuable_incidents_in_a_region_service,
     retrieve_the_top_twenty_most_valuable_incidents_in_a_store_section_service,
     retrieve_the_top_twenty_most_valuable_incidents_in_a_store_service,
@@ -320,3 +320,25 @@ async def retrieve_the_top_twenty_most_valuable_incidents_in_a_region_router(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=str(exc)
         ) from exc
+
+
+@incidents_router.get("/store/count/{_store_id}")
+async def retrieve_the_number_of_incidents_by_the_store_section_router(
+    _store_id: int
+):
+    """The route to retrieve a dictionary of the number of incidents by the store service
+
+    Args:
+        _store_id (int): The store id
+
+    Raises:
+        HTTPException: A 400 is raised if any issue is raised
+
+    Returns:
+        dict: A dictionary of store_sections_with_their_counts
+    """
+    try:
+        return await retrieve_the_number_of_incidents_by_store_section_service(_store_id)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc

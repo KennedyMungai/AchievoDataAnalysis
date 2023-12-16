@@ -1,4 +1,5 @@
 'use client'
+import StoreCountChart from '@/components/Charts/StoreCountChart'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 import ScrollAreaComponentTemplate from '@/components/Templates/ScrollAreaComponentTemplate'
 import { selectSingleStoreSection } from '@/redux/features/storeSections/retrieveSingleStoreSectionSlice'
@@ -46,7 +47,7 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 						description={
 							'A list of the top offending store sections'
 						}
-						content={undefined}
+						content={<StoreCountChart storeId={Number(storeId)} />}
 					/>
 				}
 			/>

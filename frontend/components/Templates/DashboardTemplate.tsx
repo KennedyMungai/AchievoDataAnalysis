@@ -114,7 +114,7 @@ const DashboardTemplate = ({
 
 	const isLoggedIn = loginData.is_logged_in
 
-	const [date, setDate] = useState<Date>()
+	const [date, setDate] = useState<Date>(new Date())
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),

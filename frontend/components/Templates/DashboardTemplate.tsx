@@ -7,7 +7,7 @@ import { useAppSelector } from '@/redux/hooks'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
 import Link from 'next/link'
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import * as z from 'zod'
@@ -36,6 +36,10 @@ import { Input } from '../ui/input'
 import { ScrollArea } from '../ui/scroll-area'
 import ChartCardTemplate from './ChartCardTemplate'
 import DashboardCards from './DashboardCards'
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
+import { Calendar as CalendarIcon } from 'lucide-react'
+import { format } from 'date-fns'
+import { Calendar } from '../ui/calendar'
 
 type Props = {
 	title: string
@@ -109,6 +113,8 @@ const DashboardTemplate = ({
 	const loginData = useAppSelector(selectAuthStateData)
 
 	const isLoggedIn = loginData.is_logged_in
+
+	const [date, setDate] = useState<Date>()
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -188,10 +194,10 @@ const DashboardTemplate = ({
 		<div>
 			<TopBar pageTitle={title} />
 			<div className='p-4 '>
-				<div className='flex items-center justify-center'>
+				<div className='flex items-center justify-around'>
 					{buttonLink ? (
 						<Link href={buttonLink}>
-							<Button variant={'default'}>{buttonName}</Button>
+							<Button variant={'outline'}>{buttonName}</Button>
 						</Link>
 					) : (
 						<Dialog>
@@ -453,9 +459,7 @@ const DashboardTemplate = ({
 												/>
 											</ScrollArea>
 											<DialogFooter>
-												<Button
-													type='submit'
-												>
+												<Button type='submit'>
 													Submit
 												</Button>
 											</DialogFooter>
@@ -465,6 +469,22 @@ const DashboardTemplate = ({
 							</DialogContent>
 						</Dialog>
 					)}
+					<Popover>
+						<PopoverTrigger asChild>
+							<Button variant={'outline'}>
+								<CalendarIcon className='mr-2 h-4 w-4' />
+								{date ? format(date, 'dd/MM/yyyy') : <span>Pick A Date</span>}
+							</Button>
+						</PopoverTrigger>
+						<PopoverContent className='w-auto p-0'>
+							<Calendar
+								mode='single'
+								selected={date}
+								onSelect={setDate}
+								initialFocus
+							/>
+						</PopoverContent>
+					</Popover>
 				</div>
 				<div className='p-4 flex flex-col items-center w-full gap-2 md:flex-row md:items-center md:gap-1'>
 					<DashboardCards

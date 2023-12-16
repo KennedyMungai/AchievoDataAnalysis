@@ -506,7 +506,7 @@ const DashboardTemplate = ({
 				</div>
 				<div className='p-4 flex gap-2'>
 					{/* TODO: Add the Charts */}
-					<div className='w-[40rem] h-[50.75vh] rounded-lg'>
+					<div className='w-[40rem] h-full rounded-lg'>
 						<ChartCardTemplate
 							title={chartCardTitle}
 							description={chartCardDescription}

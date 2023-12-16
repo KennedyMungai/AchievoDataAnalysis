@@ -229,3 +229,5 @@ async def retrieve_the_top_twenty_most_valuable_incidents_in_a_region_service(
     ).order_by(
         Incidents.total_value.desc()
     ).limit(20).all()
+
+

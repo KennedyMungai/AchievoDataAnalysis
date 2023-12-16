@@ -6,6 +6,8 @@ import { selectSingleStore } from '@/redux/features/stores/retrieveSingleStoreSl
 import { useAppSelector } from '@/redux/hooks'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
+import { format } from 'date-fns'
+import { Calendar as CalendarIcon } from 'lucide-react'
 import Link from 'next/link'
 import { ReactNode, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -13,6 +15,7 @@ import toast from 'react-hot-toast'
 import * as z from 'zod'
 import TopBar from '../TopBar/TopBar'
 import { Button } from '../ui/button'
+import { Calendar } from '../ui/calendar'
 import { Checkbox } from '../ui/checkbox'
 import {
 	Dialog,
@@ -33,13 +36,10 @@ import {
 	FormMessage
 } from '../ui/form'
 import { Input } from '../ui/input'
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { ScrollArea } from '../ui/scroll-area'
 import ChartCardTemplate from './ChartCardTemplate'
 import DashboardCards from './DashboardCards'
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
-import { Calendar as CalendarIcon } from 'lucide-react'
-import { format } from 'date-fns'
-import { Calendar } from '../ui/calendar'
 
 type Props = {
 	title: string

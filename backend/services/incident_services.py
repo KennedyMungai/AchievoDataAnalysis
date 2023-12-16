@@ -1,10 +1,12 @@
 """The service file fir Incident CRUD operations"""
 from typing import List
 
+import pandas as pd
 from models.models import Incidents
 from schemas.incident_schema import (CreateIncident, ReadIncident,
                                      UpdateIncident)
 from sqlalchemy.orm import Session
+from database.db import engine as conn
 
 
 async def create_incident_service(
@@ -231,3 +233,23 @@ async def retrieve_the_top_twenty_most_valuable_incidents_in_a_region_service(
     ).limit(20).all()
 
 
+async def retrieve_the_number_of_incidents_by_store_section_service(
+    _store_id: int
+):
+    """The service function to group the number of incidents in store sections by the number of incidents
+
+    Args:
+        _store_id (int): The store Id
+
+    Returns:
+        Dict: A dictionary of the count of incidents
+    """
+    query = f'SELECT * FROM incidents where store_id = {_store_id}'
+
+    df = pd.read_sql(query, conn)
+
+    filtered_df = df.groupby('store_section_id')['store_section_id'].count()
+
+    print(filtered_df.to_dict())
+
+    return filtered_df.to_dict()

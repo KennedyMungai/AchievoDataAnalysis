@@ -1,5 +1,5 @@
 'use client'
-import StoreCountChart from '@/components/Charts/StoreCountChart'
+import StoreSectionCountChart from '@/components/Charts/StoreCountChart'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 import ScrollAreaComponentTemplate from '@/components/Templates/ScrollAreaComponentTemplate'
 import {
@@ -39,7 +39,7 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 				dashboardCard4Title={'Most Notorious Store Section'}
 				chartCardTitle={'All store section trends'}
 				chartCardDescription={'The trends in individual store sections'}
-				chartCardContent={<StoreCountChart storeId={Number(storeId)} />}
+				chartCardContent={<StoreSectionCountChart storeId={Number(storeId)} />}
 				scrollAreaComponent={
 					<ScrollAreaComponentTemplate
 						title={'Top offending store sections'}

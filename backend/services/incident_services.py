@@ -247,9 +247,29 @@ async def retrieve_the_number_of_incidents_in_a_store_service(
     Returns:
         int: The number of incidents
     """
-    count = _db.query(Incidents).filter(Incidents.store_id == _store_id).count()
-    
+    count = _db.query(Incidents).filter(
+        Incidents.store_id == _store_id).count()
+
     return {"count": count}
+
+
+async def retrieve_the_value_of_incidents_in_a_store_service(
+    _store_id: int,
+):
+    """The service function to retrieve the value of incidents in a store
+
+    Args:
+        _store_id (int): The id of the store
+
+    Returns:
+        Dict: A dictionary of the total value of incidents
+    """
+    query = f'SELECT * FROM incidents where store_id = {_store_id}'
+    df = pd.read_sql(query, conn)
+    filtered_df = df.groupby('store_id')['total_value'].sum()
+    some_df = filtered_df.to_dict()
+    some_variable = list(some_df.values())[0]
+    return {"total_values": some_variable}
 
 
 async def retrieve_the_number_of_incidents_by_store_section_service(
@@ -269,11 +289,11 @@ async def retrieve_the_number_of_incidents_by_store_section_service(
     df = pd.read_sql(query, conn)
 
     filtered_df = df.groupby('store_section_id')['store_section_id'].count()
-    
+
     some_dict = filtered_df.to_dict()
-    
+
     some_other_dict = {}
-    
+
     for key in some_dict.items():
         store_section = await retrieve_one_store_section(key, _db)
         print(some_dict[key])

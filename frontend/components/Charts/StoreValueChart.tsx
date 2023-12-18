@@ -14,7 +14,7 @@ const StoreValueChart = ({ storeId }: Props) => {
 		labels: ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'],
 		datasets: [
 			{
-				label: 'Sales $',
+				label: 'Store Sections $',
 				data: [18127, 22201, 19490, 17938, 24182, 17842, 22475],
 				borderColor: 'rgb(53, 162, 235)',
 				backgroundColor: 'rgb(53, 162, 235, 0.4'

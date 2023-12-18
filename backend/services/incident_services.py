@@ -2,6 +2,7 @@
 from typing import List
 
 import pandas as pd
+from services.store_section_services import retrieve_one_store_section
 from models.models import Incidents
 from schemas.incident_schema import (CreateIncident, ReadIncident,
                                      UpdateIncident)
@@ -234,7 +235,8 @@ async def retrieve_the_top_twenty_most_valuable_incidents_in_a_region_service(
 
 
 async def retrieve_the_number_of_incidents_by_store_section_service(
-    _store_id: int
+    _store_id: int,
+    _db: Session
 ):
     """The service function to group the number of incidents in store sections by the number of incidents
 
@@ -249,7 +251,14 @@ async def retrieve_the_number_of_incidents_by_store_section_service(
     df = pd.read_sql(query, conn)
 
     filtered_df = df.groupby('store_section_id')['store_section_id'].count()
+    
+    some_dict = filtered_df.to_dict()
+    
+    some_other_dict = {}
+    
+    for key in some_dict.items():
+        store_section = await retrieve_one_store_section(key, _db)
+        print(some_dict[key])
+        some_other_dict[store_section.store_section_name] = some_dict[key]
 
-    print(filtered_df.to_dict())
-
-    return filtered_df.to_dict()
+    return some_other_dict

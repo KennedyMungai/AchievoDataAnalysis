@@ -17,6 +17,7 @@ from services.incident_services import (
     retrieve_the_top_twenty_most_valuable_incidents_in_a_store_service,
     retrieve_the_number_of_incidents_in_a_store_service,
     retrieve_the_value_of_incidents_in_a_store_service,
+    retrieve_the_average_value_of_incidents_in_a_store_service,
     update_incident_service)
 from sqlalchemy.orm import Session
 from utils.oauth2 import get_current_user
@@ -391,3 +392,24 @@ async def retrieve_the_number_of_incidents_in_a_store_by_the_store_section_route
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
+
+
+@incidents_router.get("/store/average/{_store_id}")
+async def retrieve_the_average_value_of_incidents_in_a_store_router(
+    _store_id: int,
+):
+    """The endpoint to retrieve the average value of incidents
+
+    Args:
+        _store_id (int): The id of the store
+
+    Raises:
+        HTTPException: A 400 is raised when there is an issue with the endpoint
+
+    Returns:
+        dict: A dict
+    """
+    try:
+        return await retrieve_the_average_value_of_incidents_in_a_store_service(_store_id)
+    except Exception as exc:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc

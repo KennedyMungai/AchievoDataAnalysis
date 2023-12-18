@@ -348,7 +348,7 @@ async def retrieve_the_number_of_incidents_by_store_router(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
 
-@incidents_router.get("/incidents/store/value/{_store_id}")
+@incidents_router.get("/store/value/{_store_id}")
 async def retrieve_the_total_value_of_incidents_in_a_store_router(
     _store_id: int,
 ):

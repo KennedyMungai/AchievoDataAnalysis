@@ -96,3 +96,13 @@ interface ICountData extends ICount
 {
     is_loaded: boolean
 }
+
+interface ITotal
+{
+    total_values: number
+}
+
+interface ITotalData extends ITotal
+{
+    is_loaded: boolean
+}

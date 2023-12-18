@@ -8,6 +8,8 @@ import retrieveSingleStoreSectionReducer from './storeSections/retrieveSingleSto
 import retrieveAllRegionStoresReducer from './stores/retrieveAllRegionStoresSlice'
 import retrieveSingleStoreReducer from './stores/retrieveSingleStoreSlice'
 import retrieveSingleStoreIncidentsCountReducer from './stores/retrieveSingleStoreIncidentsCountSlice'
+import retrieveSingleStoreIncidentsValueReducer from './stores/retrieveSingleStoreIncidentsValueSlice'
+
 
 const store = configureStore({
     reducer: {
@@ -19,7 +21,8 @@ const store = configureStore({
         singleStore: retrieveSingleStoreReducer,
         singleStoreSection: retrieveSingleStoreSectionReducer,
         allStoreStoreSections: retrieveAllStoreStoreSectionsReducer,
-        singleStoreIncidentsCount: retrieveSingleStoreIncidentsCountReducer
+        singleStoreIncidentsCount: retrieveSingleStoreIncidentsCountReducer,
+        singleStoreIncidentsValue: retrieveSingleStoreIncidentsValueReducer
     }
 })
 

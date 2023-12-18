@@ -1,6 +1,5 @@
 'use client'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
-import ScrollAreaComponentTemplate from '@/components/Templates/ScrollAreaComponentTemplate'
 import {
 	retrieveSingleStoreSection,
 	selectSingleStoreSection
@@ -42,13 +41,7 @@ const SingleStoreSectionPage = ({ params: { storeSectionId } }: Props) => {
 					'The trends for all the incidents inside a store section'
 				}
 				chartCardContent={undefined}
-				scrollAreaComponent={
-					<ScrollAreaComponentTemplate
-						title={'Top Incidents'}
-						description={'A simple list of the top incidents'}
-						content={undefined}
-					/>
-				}
+				scrollAreaComponent={undefined}
 			/>
 		</div>
 	)

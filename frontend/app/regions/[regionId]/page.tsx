@@ -1,6 +1,5 @@
 'use client'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
-import ScrollAreaComponentTemplate from '@/components/Templates/ScrollAreaComponentTemplate'
 import {
 	retrieveSingleRegion,
 	selectSingleRegion
@@ -41,15 +40,7 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 					'The trends in the branches on a day to day basis'
 				}
 				chartCardContent={undefined}
-				scrollAreaComponent={
-					<ScrollAreaComponentTemplate
-						title={'Top Offending Stores'}
-						description={
-							'A simple list of the top offending stores'
-						}
-						content={undefined}
-					/>
-				}
+				scrollAreaComponent={undefined}
 			/>
 		</div>
 	)

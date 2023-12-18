@@ -1,6 +1,5 @@
 import ChartCardTemplate from '@/components/Templates/ChartCardTemplate'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
-import ScrollAreaComponentTemplate from '@/components/Templates/ScrollAreaComponentTemplate'
 
 export default function Home() {
 	return (
@@ -22,13 +21,7 @@ export default function Home() {
 					'The trends in all the regions on a daily basis'
 				}
 				chartCardContent={undefined}
-				scrollAreaComponent={
-					<ScrollAreaComponentTemplate
-						title={'Top Offenders'}
-						description={'The top offending regions'}
-						content={undefined}
-					/>
-				}
+				scrollAreaComponent={undefined}
 			/>
 		</main>
 	)

@@ -7,6 +7,7 @@ import retrieveAllStoreStoreSectionsReducer from './storeSections/retrieveAllSto
 import retrieveSingleStoreSectionReducer from './storeSections/retrieveSingleStoreSectionSlice'
 import retrieveAllRegionStoresReducer from './stores/retrieveAllRegionStoresSlice'
 import retrieveSingleStoreReducer from './stores/retrieveSingleStoreSlice'
+import retrieveSingleStoreIncidentsCountReducer from './stores/retrieveSingleStoreIncidentsCountSlice'
 
 const store = configureStore({
     reducer: {
@@ -17,7 +18,8 @@ const store = configureStore({
         allEmployees: retrieveAllEmployeesReducer,
         singleStore: retrieveSingleStoreReducer,
         singleStoreSection: retrieveSingleStoreSectionReducer,
-        allStoreStoreSections: retrieveAllStoreStoreSectionsReducer
+        allStoreStoreSections: retrieveAllStoreStoreSectionsReducer,
+        singleStoreIncidentsCount: retrieveSingleStoreIncidentsCountReducer
     }
 })
 

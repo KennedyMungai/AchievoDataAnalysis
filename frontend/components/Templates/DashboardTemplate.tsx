@@ -56,7 +56,9 @@ type Props = {
 	chartCardTitle: string
 	chartCardDescription: string
 	chartCardContent: ReactNode
-	scrollAreaComponent: ReactNode
+	scrollCardTitle: string
+	scrollCardDescription: string
+	scrollCardContent: ReactNode
 }
 
 const formSchema = z.object({
@@ -99,13 +101,15 @@ const DashboardTemplate = ({
 	chartCardTitle,
 	dashboardCard1Title,
 	dashboardCard1Value,
-	scrollAreaComponent,
 	dashboardCard2Title,
 	dashboardCard2Value,
 	dashboardCard3Title,
 	dashboardCard3Value,
 	dashboardCard4Title,
-	dashboardCard4Value
+	dashboardCard4Value,
+	scrollCardContent,
+	scrollCardDescription,
+	scrollCardTitle
 }: Props) => {
 	const storeSectionData = useAppSelector(selectSingleStoreSection)
 	const storeData = useAppSelector(selectSingleStore)
@@ -473,7 +477,11 @@ const DashboardTemplate = ({
 						<PopoverTrigger asChild>
 							<Button variant={'outline'}>
 								<CalendarIcon className='mr-2 h-4 w-4' />
-								{date ? format(date, 'dd/MM/yyyy') : <span>Pick A Date</span>}
+								{date ? (
+									format(date, 'dd/MM/yyyy')
+								) : (
+									<span>Pick A Date</span>
+								)}
 							</Button>
 						</PopoverTrigger>
 						<PopoverContent className='w-auto p-0'>
@@ -513,9 +521,14 @@ const DashboardTemplate = ({
 							{chartCardContent}
 						</ChartCardTemplate>
 					</div>
-					<ScrollArea className='rounded-lg'>
-						{scrollAreaComponent}
-					</ScrollArea>
+					<div className='w-[40rem] h-full rounded-lg'>
+						<ChartCardTemplate
+							title={scrollCardTitle}
+							description={scrollCardDescription}
+						>
+							{scrollCardContent}
+						</ChartCardTemplate>
+					</div>
 				</div>
 			</div>
 		</div>

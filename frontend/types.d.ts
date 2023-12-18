@@ -86,3 +86,13 @@ interface IStoreSectionsData
     store_sections: IStoreSection[],
     is_loaded: boolean
 }
+
+interface ICount
+{
+    count: number
+}
+
+interface ICountData extends ICount
+{
+    is_loaded: boolean
+}

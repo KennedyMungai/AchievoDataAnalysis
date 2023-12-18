@@ -3,6 +3,7 @@ import StoreSectionCountChart from '@/components/Charts/StoreCountChart'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 import ScrollAreaComponentTemplate from '@/components/Templates/ScrollAreaComponentTemplate'
 import { retrieveSingleStoreIncidentsCount, selectSingleStoreIncidentsCount } from '@/redux/features/stores/retrieveSingleStoreIncidentsCountSlice'
+import { retrieveSingleStoresIncidentsValue, selectSingleStoreIncidentsValue } from '@/redux/features/stores/retrieveSingleStoreIncidentsValueSlice'
 import {
 	retrieveSingleStore,
 	selectSingleStore
@@ -19,11 +20,13 @@ type Props = {
 const SingleStorePage = ({ params: { storeId } }: Props) => {
 	const storeData = useAppSelector(selectSingleStore)
 	const singleStoreCount = useAppSelector(selectSingleStoreIncidentsCount)
+	const singleStoreValue = useAppSelector(selectSingleStoreIncidentsValue)
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
 		dispatch(retrieveSingleStore(Number(storeId)))
 		dispatch(retrieveSingleStoreIncidentsCount(Number(storeId)))
+		dispatch(retrieveSingleStoresIncidentsValue(Number(storeId)))
 	}, [])
 
 	console.log(singleStoreCount)
@@ -36,7 +39,7 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 				buttonLink={`/storeSections/${storeId}`}
 				dashboardCard1Value={singleStoreCount}
 				dashboardCard1Title={'Number of all incidents'}
-				dashboardCard2Value={0}
+				dashboardCard2Value={singleStoreValue.total_values}
 				dashboardCard2Title={'Value of all incidents'}
 				dashboardCard3Value={0}
 				dashboardCard3Title={'The average value of all incidents'}

@@ -1,9 +1,8 @@
 'use client'
-import StoreSectionValueChart from '@/components/Charts/StoreCountChart'
+import StoreValueChart from '@/components/Charts/StoreValueChart'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 import {
 	retrieveSingleStoreAverageIncidentValue,
-	retrieveSingleStoreAverageIncidentValueSlice,
 	selectSingleStoreAverageIncidentValue
 } from '@/redux/features/stores/retrieveSingleStoreIncidentsAverageSlice'
 import {
@@ -61,9 +60,7 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 				dashboardCard4Title={'Most Notorious Store Section'}
 				chartCardTitle={'All store section trends'}
 				chartCardDescription={'The trends in individual store sections'}
-				chartCardContent={
-					<StoreSectionValueChart storeId={Number(storeId)} />
-				}
+				chartCardContent={<StoreValueChart storeId={Number(storeId)} />}
 				scrollCardTitle={'Top 20 most valuable incidents'}
 				scrollCardDescription={
 					'The 20 incidents with the highest value'

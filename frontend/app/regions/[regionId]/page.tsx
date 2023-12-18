@@ -1,4 +1,5 @@
 'use client'
+import RegionValueChart from '@/components/Charts/RegionValueChart'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 import {
 	retrieveSingleRegion,
@@ -39,7 +40,7 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 				chartCardDescription={
 					'The trends in the branches on a day to day basis'
 				}
-				chartCardContent={undefined}
+				chartCardContent={<RegionValueChart regionId={Number(regionId)} />}
 				scrollCardTitle={'Top 20 most valuable incidents'}
 				scrollCardDescription={'The 20 incidents with the highest value'}
 				scrollCardContent={undefined}

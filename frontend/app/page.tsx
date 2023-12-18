@@ -1,3 +1,4 @@
+import OverallValueChart from '@/components/Charts/OverallValueChart'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 
 export default function Home() {
@@ -19,7 +20,7 @@ export default function Home() {
 				chartCardDescription={
 					'The trends in all the regions on a daily basis'
 				}
-				chartCardContent={undefined}
+				chartCardContent={<OverallValueChart />}
 				scrollCardTitle={'Top twenty most valuable incidents'}
 				scrollCardDescription={'The twenty incidents with the highest value'}
 				scrollCardContent={undefined}

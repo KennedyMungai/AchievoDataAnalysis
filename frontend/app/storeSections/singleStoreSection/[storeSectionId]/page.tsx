@@ -1,4 +1,5 @@
 'use client'
+import StoreSectionValueChart from '@/components/Charts/StoreSectionValueChart'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 import {
 	retrieveSingleStoreSection,
@@ -40,7 +41,7 @@ const SingleStoreSectionPage = ({ params: { storeSectionId } }: Props) => {
 				chartCardDescription={
 					'The trends for all the incidents inside a store section'
 				}
-				chartCardContent={undefined}
+				chartCardContent={<StoreSectionValueChart storeSectionId={Number(storeSectionId)} />}
 				scrollCardTitle={'Top 20 most valuable incidents'}
 				scrollCardDescription={'The 20 incidents with the highest value'}
 				scrollCardContent={undefined}

@@ -1,5 +1,5 @@
 'use client'
-import StoreSectionCountChart from '@/components/Charts/StoreCountChart'
+import StoreSectionValueChart from '@/components/Charts/StoreCountChart'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 import {
 	retrieveSingleStoreAverageIncidentValue,
@@ -62,7 +62,7 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 				chartCardTitle={'All store section trends'}
 				chartCardDescription={'The trends in individual store sections'}
 				chartCardContent={
-					<StoreSectionCountChart storeId={Number(storeId)} />
+					<StoreSectionValueChart storeId={Number(storeId)} />
 				}
 				scrollCardTitle={'Top 20 most valuable incidents'}
 				scrollCardDescription={

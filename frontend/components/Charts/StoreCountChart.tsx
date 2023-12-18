@@ -9,7 +9,7 @@ type Props = {
 
 Chart.register(CategoryScale)
 
-const StoreSectionCountChart = ({storeId}: Props) => {
+const StoreSectionValueChart = ({storeId}: Props) => {
     const data = {
         labels: ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'],
 			datasets: [
@@ -40,4 +40,4 @@ const StoreSectionCountChart = ({storeId}: Props) => {
     </div>
 }
 
-export default StoreSectionCountChart
+export default StoreSectionValueChart

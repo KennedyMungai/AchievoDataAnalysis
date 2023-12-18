@@ -1,7 +1,6 @@
 'use client'
 import StoreSectionCountChart from '@/components/Charts/StoreCountChart'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
-import ScrollAreaComponentTemplate from '@/components/Templates/ScrollAreaComponentTemplate'
 import { retrieveSingleStoreAverageIncidentValue, retrieveSingleStoreAverageIncidentValueSlice, selectSingleStoreAverageIncidentValue } from '@/redux/features/stores/retrieveSingleStoreIncidentsAverageSlice'
 import { retrieveSingleStoreIncidentsCount, selectSingleStoreIncidentsCount } from '@/redux/features/stores/retrieveSingleStoreIncidentsCountSlice'
 import { retrieveSingleStoresIncidentsValue, selectSingleStoreIncidentsValue } from '@/redux/features/stores/retrieveSingleStoreIncidentsValueSlice'
@@ -51,15 +50,7 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 				chartCardTitle={'All store section trends'}
 				chartCardDescription={'The trends in individual store sections'}
 				chartCardContent={<StoreSectionCountChart storeId={Number(storeId)} />}
-				scrollAreaComponent={
-					<ScrollAreaComponentTemplate
-						title={'Top offending store sections'}
-						description={
-							'A list of the top offending store sections'
-						}
-						content={undefined}
-					/>
-				}
+				scrollAreaComponent={undefined}
 			/>
 		</div>
 	)

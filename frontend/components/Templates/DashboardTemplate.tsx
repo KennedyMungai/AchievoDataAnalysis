@@ -7,7 +7,7 @@ import { useAppSelector } from '@/redux/hooks'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
 import { format } from 'date-fns'
-import { Calendar as CalendarIcon } from 'lucide-react'
+import { Calendar as CalendarIcon, Scroll } from 'lucide-react'
 import Link from 'next/link'
 import { ReactNode, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -526,7 +526,8 @@ const DashboardTemplate = ({
 							title={scrollCardTitle}
 							description={scrollCardDescription}
 						>
-							{scrollCardContent}
+							<ScrollArea className='w-full h-[60vh] rounded-lg p-5'>{scrollCardContent}</ScrollArea>
+							
 						</ChartCardTemplate>
 					</div>
 				</div>

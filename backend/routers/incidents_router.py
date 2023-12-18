@@ -15,6 +15,7 @@ from services.incident_services import (
     retrieve_the_top_twenty_most_valuable_incidents_in_a_region_service,
     retrieve_the_top_twenty_most_valuable_incidents_in_a_store_section_service,
     retrieve_the_top_twenty_most_valuable_incidents_in_a_store_service,
+    retrieve_the_number_of_incidents_in_a_store_service,
     update_incident_service)
 from sqlalchemy.orm import Session
 from utils.oauth2 import get_current_user
@@ -323,7 +324,30 @@ async def retrieve_the_top_twenty_most_valuable_incidents_in_a_region_router(
 
 
 @incidents_router.get("/store/count/{_store_id}")
-async def retrieve_the_number_of_incidents_by_the_store_section_router(
+async def retrieve_the_number_of_incidents_by_store_router(
+    _store_id: int,
+    _db: Session = Depends(get_db)
+):
+    """The endpoint to retrieve the count of incidents in a single store
+
+    Args:
+        _store_id (int): The store id
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 400 is raised if the fetch operation is unsuccessful
+
+    Returns:
+        int: The count
+    """
+    try:
+        return await retrieve_the_number_of_incidents_in_a_store_service(_store_id, _db)
+    except Exception as exc:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
+
+
+@incidents_router.get("/store/count/store_sections/{_store_id}")
+async def retrieve_the_number_of_incidents_in_a_store_by_the_store_section_router(
     _store_id: int,
     _db: Session = Depends(get_db)
 ):

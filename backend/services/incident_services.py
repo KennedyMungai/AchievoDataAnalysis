@@ -234,6 +234,24 @@ async def retrieve_the_top_twenty_most_valuable_incidents_in_a_region_service(
     ).limit(20).all()
 
 
+async def retrieve_the_number_of_incidents_in_a_store_service(
+    _store_id: int,
+    _db: Session
+):
+    """The service function to retrieve the number of incidents in a store
+
+    Args:
+        _store_id (int): The id of the store
+        _db (Session): The database session
+
+    Returns:
+        int: The number of incidents
+    """
+    count = _db.query(Incidents).filter(Incidents.store_id == _store_id).count()
+    
+    return {"count": count}
+
+
 async def retrieve_the_number_of_incidents_by_store_section_service(
     _store_id: int,
     _db: Session

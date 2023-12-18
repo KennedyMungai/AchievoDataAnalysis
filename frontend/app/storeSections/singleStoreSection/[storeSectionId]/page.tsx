@@ -41,7 +41,9 @@ const SingleStoreSectionPage = ({ params: { storeSectionId } }: Props) => {
 					'The trends for all the incidents inside a store section'
 				}
 				chartCardContent={undefined}
-				scrollAreaComponent={undefined}
+				scrollCardTitle={'Top 20 most valuable incidents'}
+				scrollCardDescription={'The 20 incidents with the highest value'}
+				scrollCardContent={undefined}
 			/>
 		</div>
 	)

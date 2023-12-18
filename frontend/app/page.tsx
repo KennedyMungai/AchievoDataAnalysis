@@ -20,8 +20,8 @@ export default function Home() {
 					'The trends in all the regions on a daily basis'
 				}
 				chartCardContent={undefined}
-				scrollCardTitle={'20 of the most valuable incidents'}
-				scrollCardDescription={'The twenty incidents that have a really high value'}
+				scrollCardTitle={'Top twenty most valuable incidents'}
+				scrollCardDescription={'The twenty incidents with the highest value'}
 				scrollCardContent={undefined}
 			/>
 		</main>

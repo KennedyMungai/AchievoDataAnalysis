@@ -1,9 +1,19 @@
 'use client'
 import StoreSectionCountChart from '@/components/Charts/StoreCountChart'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
-import { retrieveSingleStoreAverageIncidentValue, retrieveSingleStoreAverageIncidentValueSlice, selectSingleStoreAverageIncidentValue } from '@/redux/features/stores/retrieveSingleStoreIncidentsAverageSlice'
-import { retrieveSingleStoreIncidentsCount, selectSingleStoreIncidentsCount } from '@/redux/features/stores/retrieveSingleStoreIncidentsCountSlice'
-import { retrieveSingleStoresIncidentsValue, selectSingleStoreIncidentsValue } from '@/redux/features/stores/retrieveSingleStoreIncidentsValueSlice'
+import {
+	retrieveSingleStoreAverageIncidentValue,
+	retrieveSingleStoreAverageIncidentValueSlice,
+	selectSingleStoreAverageIncidentValue
+} from '@/redux/features/stores/retrieveSingleStoreIncidentsAverageSlice'
+import {
+	retrieveSingleStoreIncidentsCount,
+	selectSingleStoreIncidentsCount
+} from '@/redux/features/stores/retrieveSingleStoreIncidentsCountSlice'
+import {
+	retrieveSingleStoresIncidentsValue,
+	selectSingleStoreIncidentsValue
+} from '@/redux/features/stores/retrieveSingleStoreIncidentsValueSlice'
 import {
 	retrieveSingleStore,
 	selectSingleStore
@@ -21,7 +31,9 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 	const storeData = useAppSelector(selectSingleStore)
 	const singleStoreCount = useAppSelector(selectSingleStoreIncidentsCount)
 	const singleStoreValue = useAppSelector(selectSingleStoreIncidentsValue)
-	const singleStoreAverage = useAppSelector(selectSingleStoreAverageIncidentValue)
+	const singleStoreAverage = useAppSelector(
+		selectSingleStoreAverageIncidentValue
+	)
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
@@ -49,8 +61,14 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 				dashboardCard4Title={'Most Notorious Store Section'}
 				chartCardTitle={'All store section trends'}
 				chartCardDescription={'The trends in individual store sections'}
-				chartCardContent={<StoreSectionCountChart storeId={Number(storeId)} />}
-				scrollAreaComponent={undefined}
+				chartCardContent={
+					<StoreSectionCountChart storeId={Number(storeId)} />
+				}
+				scrollCardTitle={'Top 20 most valuable incidents'}
+				scrollCardDescription={
+					'The 20 incidents with the highest value'
+				}
+				scrollCardContent={undefined}
 			/>
 		</div>
 	)

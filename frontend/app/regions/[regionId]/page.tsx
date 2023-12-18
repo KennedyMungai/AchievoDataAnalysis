@@ -40,7 +40,9 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 					'The trends in the branches on a day to day basis'
 				}
 				chartCardContent={undefined}
-				scrollAreaComponent={undefined}
+				scrollCardTitle={'Top 20 most valuable incidents'}
+				scrollCardDescription={'The 20 incidents with the highest value'}
+				scrollCardContent={undefined}
 			/>
 		</div>
 	)

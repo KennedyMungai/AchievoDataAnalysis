@@ -4,7 +4,7 @@ import ScrollAreaComponentTemplate from '@/components/Templates/ScrollAreaCompon
 
 export default function Home() {
 	return (
-		<main className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800'>
+		<main className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800 overflow-x-hidden'>
 			<DashboardTemplate
 				title={'Achievo Limited'}
 				buttonName={'Regions'}

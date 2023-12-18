@@ -67,8 +67,7 @@ interface IEmployeesData {
     is_loaded: boolean
 }
 
-interface IStoreSection
-{
+interface IStoreSection {
     store_section_id: number,
     store_section_name: string,
     store_id: number,
@@ -76,33 +75,35 @@ interface IStoreSection
     updated_at?: Date
 }
 
-interface IStoreSectionData extends IStoreSection
-{
+interface IStoreSectionData extends IStoreSection {
     is_loaded: boolean
 }
 
-interface IStoreSectionsData
-{
+interface IStoreSectionsData {
     store_sections: IStoreSection[],
     is_loaded: boolean
 }
 
-interface ICount
-{
+interface ICount {
     count: number
 }
 
-interface ICountData extends ICount
-{
+interface ICountData extends ICount {
     is_loaded: boolean
 }
 
-interface ITotal
-{
+interface ITotal {
     total_values: number
 }
 
-interface ITotalData extends ITotal
-{
+interface ITotalData extends ITotal {
+    is_loaded: boolean
+}
+
+interface IAverage {
+    average_value: number
+}
+
+interface IAverageData extends IAverage {
     is_loaded: boolean
 }

@@ -1,4 +1,3 @@
-import ChartCardTemplate from '@/components/Templates/ChartCardTemplate'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 
 export default function Home() {
@@ -21,7 +20,9 @@ export default function Home() {
 					'The trends in all the regions on a daily basis'
 				}
 				chartCardContent={undefined}
-				scrollAreaComponent={undefined}
+				scrollCardTitle={'20 of the most valuable incidents'}
+				scrollCardDescription={'The twenty incidents that have a really high value'}
+				scrollCardContent={undefined}
 			/>
 		</main>
 	)

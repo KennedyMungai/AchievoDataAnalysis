@@ -40,6 +40,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { ScrollArea } from '../ui/scroll-area'
 import ChartCardTemplate from './ChartCardTemplate'
 import DashboardCards from './DashboardCards'
+import { setGlobalDate } from '@/redux/features/date/dateSlice'
 
 type Props = {
 	title: string
@@ -119,6 +120,10 @@ const DashboardTemplate = ({
 	const isLoggedIn = loginData.is_logged_in
 
 	const [date, setDate] = useState<Date>(new Date())
+
+	const updateGlobalDate = () => {
+		setGlobalDate(date)
+	}
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -491,6 +496,7 @@ const DashboardTemplate = ({
 								onSelect={setDate}
 								initialFocus
 							/>
+							<Button className='w-full' variant={'outline'} onClick={updateGlobalDate}>Set Date</Button>
 						</PopoverContent>
 					</Popover>
 				</div>

@@ -284,19 +284,13 @@ async def retrieve_the_number_of_incidents_by_store_section_service(
     Returns:
         Dict: A dictionary of the count of incidents
     """
-    query = f'SELECT * FROM incidents where store_id = {_store_id}'
-
+    query = f'SELECT * FROM incidents WHERE store_id = {_store_id}'
     df = pd.read_sql(query, conn)
-
     filtered_df = df.groupby('store_section_id')['store_section_id'].count()
-
     some_dict = filtered_df.to_dict()
-
     some_other_dict = {}
-
     for key in some_dict.items():
         store_section = await retrieve_one_store_section(key, _db)
-        print(some_dict[key])
         some_other_dict[store_section.store_section_name] = some_dict[key]
 
     return some_other_dict
@@ -319,3 +313,31 @@ async def retrieve_the_average_value_of_incidents_in_a_store_service(
     some_df = filtered_df.to_dict()
     some_variable = list(some_df.values())[0]
     return {"average_value": some_variable}
+
+
+async def retrieve_the_most_notorious_store_section_service(
+    _store_id: int,
+    _db: Session
+):
+    """The service function to retrieve the most notorious store section
+
+    Args:
+        _store_id (int): The d of the store
+        _db (Session): The database session
+
+    Returns:
+        Dict: A dictionary of the most notorious store section
+    """
+    query = f"SELECT * FROM incidents WHERE store_id = {_store_id}"
+    df = pd.read_sql(query, conn)
+    filtered_df = df.groupby('store_section_id')['total_value'].sum()
+    some_dict = filtered_df.to_dict()
+    max_value = max(some_dict.values())
+
+    store_section = await retrieve_one_store_section(max(some_dict.keys()), _db)
+
+    store_section_data = {}
+
+    store_section_data[store_section.store_section_name] = max_value
+
+    return store_section_data

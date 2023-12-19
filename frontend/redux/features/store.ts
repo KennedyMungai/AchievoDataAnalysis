@@ -1,19 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './auth/authSlice'
+import dateReducer from './date/dateSlice'
 import retrieveAllEmployeesReducer from './employees/retrieveAllEmployeesSlice'
 import retrieveAllRegionsReducer from './regions/retrieveAllRegionsSlice'
 import retrieveSingleRegionReducer from './regions/retrieveSingleRegionSlice'
+import retrieveTheNumberOfIncidentsInAGivenRegionReducer from './regions/retrieveTheNumberOfIncidentsInAGivenRegionSlice'
+import retrieveTheTopTwentyIncidentsInARegionReducer from './regions/retrieveTheTopTwentyIncidentsInARegionSlice'
 import retrieveAllStoreStoreSectionsReducer from './storeSections/retrieveAllStoreStoreSectionsSlice'
 import retrieveSingleStoreSectionReducer from './storeSections/retrieveSingleStoreSectionSlice'
 import retrieveAllRegionStoresReducer from './stores/retrieveAllRegionStoresSlice'
-import retrieveSingleStoreReducer from './stores/retrieveSingleStoreSlice'
+import retrieveSingleStoreAverageIncidentValueReducer from './stores/retrieveSingleStoreIncidentsAverageSlice'
 import retrieveSingleStoreIncidentsCountReducer from './stores/retrieveSingleStoreIncidentsCountSlice'
 import retrieveSingleStoreIncidentsValueReducer from './stores/retrieveSingleStoreIncidentsValueSlice'
-import retrieveSingleStoreAverageIncidentValueReducer from './stores/retrieveSingleStoreIncidentsAverageSlice'
-import retrieveTopTwentyMostValuableIncidentsInAStoreReducer from './stores/retrieveTopTwentyMostValuableIncidentsInAStoreSlice'
+import retrieveSingleStoreReducer from './stores/retrieveSingleStoreSlice'
 import retrieveTheMostNotoriousStoreSectionReducer from './stores/retrieveTheMostNotoriousStoreSectionSlice'
-import dateReducer from './date/dateSlice'
-import retrieveTheTopTwentyIncidentsInARegionReducer from './regions/retrieveTheTopTwentyIncidentsInARegionSlice'
+import retrieveTopTwentyMostValuableIncidentsInAStoreReducer from './stores/retrieveTopTwentyMostValuableIncidentsInAStoreSlice'
 
 
 const store = configureStore({
@@ -32,7 +33,8 @@ const store = configureStore({
         topTwentyMostValuableIncidentsInAStore: retrieveTopTwentyMostValuableIncidentsInAStoreReducer,
         theMostNotoriousStoreSection: retrieveTheMostNotoriousStoreSectionReducer,
         dateState: dateReducer,
-        theTopTwentyIncidentsInARegion: retrieveTheTopTwentyIncidentsInARegionReducer
+        theTopTwentyIncidentsInARegion: retrieveTheTopTwentyIncidentsInARegionReducer,
+        singleRegionIncidentsCount: retrieveTheNumberOfIncidentsInAGivenRegionReducer
     }
 })
 

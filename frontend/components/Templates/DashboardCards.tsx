@@ -13,7 +13,7 @@ const DashboardCards = ({ title, value }: Props) => {
 			<CardHeader>
 				<CardTitle className='text-md text-center'>{title}</CardTitle>
 			</CardHeader>
-			<CardContent className='text-center'>{value}</CardContent>
+			<CardContent className='text-center font-bold text-sm'>{value}</CardContent>
 		</Card>
 	)
 }

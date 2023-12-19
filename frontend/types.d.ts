@@ -109,3 +109,29 @@ interface IAverage {
 interface IAverageData extends IAverage {
     is_loaded: boolean
 }
+
+interface IIncident {
+    incident_description: string
+    product_name: string
+    product_code: string
+    product_quantity: string
+    product_price: string
+    total_value: string
+    is_resolved: boolean
+    store_section_id: number
+    employee_id: number
+    store_id: number
+    region_id: number
+    incident_id: number
+    created_at: Date
+    updated_at?: Date
+}
+
+interface IIncidentData extends IIncident {
+    is_loaded: boolean
+}
+
+interface IIncidentsData {
+    incidents: IIncident[],
+    is_loaded: boolean
+}

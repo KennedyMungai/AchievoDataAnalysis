@@ -51,7 +51,7 @@ type Props = {
 	dashboardCard2Title: string
 	dashboardCard3Value: number
 	dashboardCard3Title: string
-	dashboardCard4Value: number
+	dashboardCard4Value: number | string
 	dashboardCard4Title: string
 	chartCardTitle: string
 	chartCardDescription: string

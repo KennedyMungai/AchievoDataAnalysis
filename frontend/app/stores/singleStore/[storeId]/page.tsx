@@ -18,6 +18,7 @@ import {
 	retrieveSingleStore,
 	selectSingleStore
 } from '@/redux/features/stores/retrieveSingleStoreSlice'
+import { retrieveTheMostNotoriousStoreSection, selectMostNotoriousSectionData } from '@/redux/features/stores/retrieveTheMostNotoriousStoreSectionSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useEffect } from 'react'
 
@@ -34,6 +35,7 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 	const singleStoreAverage = useAppSelector(
 		selectSingleStoreAverageIncidentValue
 	)
+	const {max_value, store_section_name} = useAppSelector(selectMostNotoriousSectionData)
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
@@ -41,6 +43,7 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 		dispatch(retrieveSingleStoreIncidentsCount(Number(storeId)))
 		dispatch(retrieveSingleStoresIncidentsValue(Number(storeId)))
 		dispatch(retrieveSingleStoreAverageIncidentValue(Number(storeId)))
+		dispatch(retrieveTheMostNotoriousStoreSection(Number(storeId)))
 	}, [])
 
 	console.log(singleStoreCount)
@@ -57,7 +60,7 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 				dashboardCard2Title={'Value of all incidents'}
 				dashboardCard3Value={singleStoreAverage.average_value}
 				dashboardCard3Title={'The average value of all incidents'}
-				dashboardCard4Value={0}
+				dashboardCard4Value={`${store_section_name} with KSH ${max_value}`}
 				dashboardCard4Title={'Most Notorious Store Section'}
 				chartCardTitle={'All store section trends'}
 				chartCardDescription={'The trends in individual store sections'}

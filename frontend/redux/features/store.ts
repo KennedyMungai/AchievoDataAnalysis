@@ -11,6 +11,7 @@ import retrieveSingleStoreIncidentsCountReducer from './stores/retrieveSingleSto
 import retrieveSingleStoreIncidentsValueReducer from './stores/retrieveSingleStoreIncidentsValueSlice'
 import retrieveSingleStoreAverageIncidentValueReducer from './stores/retrieveSingleStoreIncidentsAverageSlice'
 import retrieveTopTwentyMostValuableIncidentsInAStoreReducer from './stores/retrieveTopTwentyMostValuableIncidentsInAStoreSlice'
+import retrieveTheMostNotoriousStoreSectionReducer from './stores/retrieveTheMostNotoriousStoreSectionSlice'
 
 
 const store = configureStore({
@@ -26,7 +27,8 @@ const store = configureStore({
         singleStoreIncidentsCount: retrieveSingleStoreIncidentsCountReducer,
         singleStoreIncidentsValue: retrieveSingleStoreIncidentsValueReducer,
         singleStoreIncidentsAverage: retrieveSingleStoreAverageIncidentValueReducer,
-        topTwentyMostValuableIncidentsInAStore: retrieveTopTwentyMostValuableIncidentsInAStoreReducer
+        topTwentyMostValuableIncidentsInAStore: retrieveTopTwentyMostValuableIncidentsInAStoreReducer,
+        theMostNotoriousStoreSection: retrieveTheMostNotoriousStoreSectionReducer
     }
 })
 

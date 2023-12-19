@@ -47,4 +47,10 @@ async def login(
 
     access_token = await create_access_token(data=data)
 
-    return {"access_token": access_token, "token_type": "bearer", "employee_id": employee.employee_id}
+    return {
+        "access_token": access_token,
+        "token_type": "Bearer",
+        "employee_id": employee.employee_id,
+        "employee_name": employee.employee_name,
+        "employee_job_title": employee.employee_job_title
+    }

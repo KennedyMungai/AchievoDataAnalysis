@@ -338,6 +338,7 @@ async def retrieve_the_most_notorious_store_section_service(
 
     store_section_data = {}
 
-    store_section_data[store_section.store_section_name] = max_value
+    store_section_data["store_section_name"] = store_section.store_section_name
+    store_section_data["max_value"] = max_value
 
     return store_section_data

@@ -16,13 +16,13 @@ export const retrieveTheMostNotoriousStoreSectionSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(retrieveTheMostNotoriousStoreSection.fulfilled, (state, action) => {
-            return action.payload
+            state = action.payload
         })
         builder.addCase(retrieveTheMostNotoriousStoreSection.rejected, (state, action) => {
-            return {}
+            state = {}
         })
         builder.addCase(retrieveTheMostNotoriousStoreSection.pending, (state, action) => {
-            return {}
+            state = {}
         })
     }
 })

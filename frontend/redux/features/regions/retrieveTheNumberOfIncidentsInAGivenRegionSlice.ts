@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit"
 import axios from "axios"
+import { RootState } from "../store"
 
 
 export const retrieveTheNumberOfIncidentsInAGivenRegion = createAsyncThunk("regions/count", async (regionId: number) => {
@@ -34,5 +35,6 @@ export const retrieveTheNumberOfIncidentsInAGivenRegionSlice = createSlice({
     }
 })
 
+export const selectTheIncidentCountPerRegion = (state: RootState) => state.singleRegionIncidentsCount.count
 
 export default retrieveTheNumberOfIncidentsInAGivenRegionSlice.reducer

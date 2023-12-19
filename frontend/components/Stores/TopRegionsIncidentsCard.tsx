@@ -1,15 +1,24 @@
 'use client'
-import { selectTopTwentyIncidentsInARegion } from '@/redux/features/regions/retrieveTheTopTwentyIncidentsInARegionSlice'
+import { 
+    retrieveTheTopTwentyIncidentsInARegion, 
+    selectTopTwentyIncidentsInARegion 
+} from '@/redux/features/regions/retrieveTheTopTwentyIncidentsInARegionSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import React from 'react'
-import TopIncidentCard from './TopIncidentCard'
+import { useEffect } from 'react'
 import TopRegionsIncidentCard from './TopRegionsIncidentCard'
 
-type Props = {}
+type Props = {
+    regionId: number
+}
 
-const TopRegionsIncidentsCard = (props: Props) => {
+const TopRegionsIncidentsCard = ({regionId}: Props) => {
 	const dispatch = useAppDispatch()
 	const topIncidents = useAppSelector(selectTopTwentyIncidentsInARegion)
+
+    useEffect(() => {
+        dispatch(retrieveTheTopTwentyIncidentsInARegion(regionId))
+    }, [])
+    
 
 	return (
 		<div>

@@ -41,10 +41,16 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 				chartCardDescription={
 					'The trends in the branches on a day to day basis'
 				}
-				chartCardContent={<RegionValueChart regionId={Number(regionId)} />}
+				chartCardContent={
+					<RegionValueChart regionId={Number(regionId)} />
+				}
 				scrollCardTitle={'Top 20 most valuable incidents'}
-				scrollCardDescription={'The 20 incidents with the highest value'}
-				scrollCardContent={<TopRegionsIncidentsCard regionId={Number(regionId)} />}
+				scrollCardDescription={
+					'The 20 incidents with the highest value'
+				}
+				scrollCardContent={
+					<TopRegionsIncidentsCard regionId={Number(regionId)} />
+				}
 			/>
 		</div>
 	)

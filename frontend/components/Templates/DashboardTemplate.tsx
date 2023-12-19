@@ -512,7 +512,7 @@ const DashboardTemplate = ({
 						title={dashboardCard4Title}
 					/>
 				</div>
-				<div className='p-4 flex gap-2'>
+				<div className='p-4 flex gap-2 flex-col md:flex-row'>
 					<div className='w-[40rem] h-full rounded-lg'>
 						<ChartCardTemplate
 							title={chartCardTitle}

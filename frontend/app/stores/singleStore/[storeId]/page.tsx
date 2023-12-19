@@ -1,5 +1,6 @@
 'use client'
 import StoreValueChart from '@/components/Charts/StoreValueChart'
+import TopIncidentsCard from '@/components/Stores/TopIncidentsCard'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 import {
 	retrieveSingleStoreAverageIncidentValue,
@@ -65,7 +66,7 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 				scrollCardDescription={
 					'The 20 incidents with the highest value'
 				}
-				scrollCardContent={undefined}
+				scrollCardContent={<TopIncidentsCard storeId={Number(storeId)} />}
 			/>
 		</div>
 	)

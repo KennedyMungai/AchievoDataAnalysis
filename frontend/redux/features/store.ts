@@ -13,6 +13,7 @@ import retrieveSingleStoreAverageIncidentValueReducer from './stores/retrieveSin
 import retrieveTopTwentyMostValuableIncidentsInAStoreReducer from './stores/retrieveTopTwentyMostValuableIncidentsInAStoreSlice'
 import retrieveTheMostNotoriousStoreSectionReducer from './stores/retrieveTheMostNotoriousStoreSectionSlice'
 import dateReducer from './date/dateSlice'
+import retrieveTheTopTwentyIncidentsInARegionReducer from './regions/retrieveTheTopTwentyIncidentsInARegionSlice'
 
 
 const store = configureStore({
@@ -31,6 +32,7 @@ const store = configureStore({
         topTwentyMostValuableIncidentsInAStore: retrieveTopTwentyMostValuableIncidentsInAStoreReducer,
         theMostNotoriousStoreSection: retrieveTheMostNotoriousStoreSectionReducer,
         dateState: dateReducer,
+        theTopTwentyIncidentsInARegion: retrieveTheTopTwentyIncidentsInARegionReducer
     }
 })
 

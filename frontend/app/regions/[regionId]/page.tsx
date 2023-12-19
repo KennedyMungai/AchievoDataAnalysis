@@ -6,8 +6,9 @@ import {
 	retrieveSingleRegion,
 	selectSingleRegion
 } from '@/redux/features/regions/retrieveSingleRegionSlice'
+import { retrieveTheNumberOfIncidentsInAGivenRegion, selectTheIncidentCountPerRegion } from '@/redux/features/regions/retrieveTheNumberOfIncidentsInAGivenRegionSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 
 type Props = {
 	params: {
@@ -18,9 +19,11 @@ type Props = {
 const SingleRegionPage = ({ params: { regionId } }: Props) => {
 	const dispatch = useAppDispatch()
 	const region = useAppSelector(selectSingleRegion)
+	const incidentsCount = useAppSelector(selectTheIncidentCountPerRegion)
 
 	useEffect(() => {
 		dispatch(retrieveSingleRegion(Number(regionId)))
+		dispatch(retrieveTheNumberOfIncidentsInAGivenRegion(Number(regionId)))
 	}, [])
 
 	return (
@@ -29,7 +32,7 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 				title={region.region_name}
 				buttonLink={`/stores/${regionId}`}
 				buttonName={'Stores'}
-				dashboardCard1Value={538}
+				dashboardCard1Value={incidentsCount}
 				dashboardCard1Title={'Number of all Incidents'}
 				dashboardCard2Value={536997}
 				dashboardCard2Title={'Value Of all Incidents'}

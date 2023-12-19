@@ -45,9 +45,7 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 		dispatch(retrieveSingleStoreAverageIncidentValue(Number(storeId)))
 		dispatch(retrieveTheMostNotoriousStoreSection(Number(storeId)))
 	}, [])
-
-	console.log(singleStoreCount)
-
+	
 	return (
 		<div className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800 overflow-x-hidden'>
 			<DashboardTemplate

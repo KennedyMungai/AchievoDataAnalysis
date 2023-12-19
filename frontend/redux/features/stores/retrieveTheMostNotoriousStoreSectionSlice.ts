@@ -10,20 +10,30 @@ export const retrieveTheMostNotoriousStoreSection = createAsyncThunk("stores/mos
 })
 
 
+const initialState: IMaxValueData = {
+    is_loaded: false,
+    store_section_name: "",
+    max_value: 0
+}
+
+
 export const retrieveTheMostNotoriousStoreSectionSlice = createSlice({
     name: "stores/mostNotoriousSection",
-    initialState: {},
+    initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(retrieveTheMostNotoriousStoreSection.fulfilled, (state, action) => {
-            state = action.payload
-        })
-        builder.addCase(retrieveTheMostNotoriousStoreSection.rejected, (state, action) => {
-            state = {}
-        })
-        builder.addCase(retrieveTheMostNotoriousStoreSection.pending, (state, action) => {
-            state = {}
-        })
+        builder
+            .addCase(retrieveTheMostNotoriousStoreSection.pending, (state) => {
+                state.is_loaded = false
+            })
+            .addCase(retrieveTheMostNotoriousStoreSection.fulfilled, (state, action: PayloadAction<IMaxValue>) => {
+                state.is_loaded = true
+                state.store_section_name = action.payload.store_section_name
+                state.max_value = action.payload.max_value
+            })
+            .addCase(retrieveTheMostNotoriousStoreSection.rejected, (state) => {
+                state.is_loaded = false
+            })
     }
 })
 

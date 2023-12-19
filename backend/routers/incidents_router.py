@@ -19,6 +19,7 @@ from services.incident_services import (
     retrieve_the_value_of_incidents_in_a_store_service,
     retrieve_the_average_value_of_incidents_in_a_store_service,
     retrieve_the_most_notorious_store_section_service,
+    retrieve_the_number_of_incidents_in_a_region_service,
     update_incident_service)
 from sqlalchemy.orm import Session
 from utils.oauth2 import get_current_user
@@ -417,7 +418,10 @@ async def retrieve_the_average_value_of_incidents_in_a_store_router(
 
 
 @incidents_router.get("/store/max/store_sections/{_store_id}")
-async def retrieve_the_most_notorious_store_section_router(_store_id: int, _db: Session = Depends(get_db)):
+async def retrieve_the_most_notorious_store_section_router(
+    _store_id: int, 
+    _db: Session = Depends(get_db)
+):
     """The endpoint to retrieve the most notorious store section
 
     Args:
@@ -435,3 +439,26 @@ async def retrieve_the_most_notorious_store_section_router(_store_id: int, _db: 
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
+
+
+@incidents_router.get("/region/count/{_region_id}")
+async def retrieve_the_number_of_incidents_in_a_region_router(
+    _region_id: int,
+    _db: Session = Depends(get_db)
+):
+    """The endpoint to retrieve the number of incidents in a given region
+
+    Args:
+        _region_id (int): The id of a region
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 400 is raised incase anything goes wrong
+
+    Returns:
+        dict: Some dict
+    """
+    try:
+        return await retrieve_the_number_of_incidents_in_a_region_service(_region_id, _db)
+    except Exception as exc:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=str(exc)) from exc

@@ -274,7 +274,6 @@ async def retrieve_the_value_of_incidents_in_a_store_service(
 
 async def retrieve_the_value_of_incidents_by_store_section_service(
     _store_id: int,
-    _db: Session
 ):
     """The service function to group the number of incidents in store sections by the number of incidents
 

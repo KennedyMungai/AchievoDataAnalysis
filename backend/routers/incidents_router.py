@@ -375,7 +375,6 @@ async def retrieve_the_total_value_of_incidents_in_a_store_router(
 @incidents_router.get("/store/value/store_sections/{_store_id}")
 async def retrieve_the_value_of_incidents_in_a_store_by_the_store_section_router(
     _store_id: int,
-    _db: Session = Depends(get_db)
 ):
     """The route to retrieve a dictionary of the number of incidents by the store service
 
@@ -389,7 +388,7 @@ async def retrieve_the_value_of_incidents_in_a_store_by_the_store_section_router
         dict: A dictionary of store_sections_with_their_counts
     """
     try:
-        return await retrieve_the_value_of_incidents_by_store_section_service(_store_id, _db)
+        return await retrieve_the_value_of_incidents_by_store_section_service(_store_id)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc

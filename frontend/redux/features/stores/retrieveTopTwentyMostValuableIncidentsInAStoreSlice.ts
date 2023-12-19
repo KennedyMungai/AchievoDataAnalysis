@@ -4,7 +4,7 @@ import { RootState } from "../store"
 
 
 
-export const retrieveTopTwentyMostValuableIncidentsInAStore = createAsyncThunk("stores/topTwentyIncidents", async (storeId) => {
+export const retrieveTopTwentyMostValuableIncidentsInAStore = createAsyncThunk("stores/topTwentyIncidents", async (storeId: number) => {
     const response = await axios.get(`http://localhost:8000/incidents/store/top_twenty/${storeId}`)
     const data = response.data
     return data

@@ -5,6 +5,7 @@ import retrieveTopTwentyMostValuableIncidentsInAStoreSlice, {
 } from '@/redux/features/stores/retrieveTopTwentyMostValuableIncidentsInAStoreSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import React, { useEffect } from 'react'
+import TopIncidentCard from './TopIncidentCard'
 
 type Props = {
 	storeId: number
@@ -23,12 +24,7 @@ const TopIncidentsCard = ({ storeId }: Props) => {
 	return (
 		<div>
 			{incidents.map((incident) => (
-				<div
-					key={incident.incident_id}
-					className='p-2 bg-slate-50 dark:bg-slate-900 rounded-md'
-				>
-					{incident.incident_description}
-				</div>
+				<TopIncidentCard key={incident.incident_description} incident={incident} />
 			))}
 		</div>
 	)

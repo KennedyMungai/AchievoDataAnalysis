@@ -272,7 +272,7 @@ async def retrieve_the_value_of_incidents_in_a_store_service(
     return {"total_values": some_variable}
 
 
-async def retrieve_the_number_of_incidents_by_store_section_service(
+async def retrieve_the_value_of_incidents_by_store_section_service(
     _store_id: int,
     _db: Session
 ):
@@ -284,16 +284,7 @@ async def retrieve_the_number_of_incidents_by_store_section_service(
     Returns:
         Dict: A dictionary of the count of incidents
     """
-    query = f'SELECT * FROM incidents WHERE store_id = {_store_id}'
-    df = pd.read_sql(query, conn)
-    filtered_df = df.groupby('store_section_id')['store_section_id'].count()
-    some_dict = filtered_df.to_dict()
-    some_other_dict = {}
-    for key in some_dict.items():
-        store_section = await retrieve_one_store_section(key, _db)
-        some_other_dict[store_section.store_section_name] = some_dict[key]
-
-    return some_other_dict
+    return {'some jokes': 'lol'}
 
 
 async def retrieve_the_average_value_of_incidents_in_a_store_service(

@@ -44,7 +44,7 @@ const LoginButton = (props: Props) => {
     // TODO: Recheck the logic used to authenticate users
 
 	const dispatch = useAppDispatch()
-	const isLoggedIn = useAppSelector(selectAuthStateData).is_logged_in
+	const {employee_name, is_logged_in: isLoggedIn} = useAppSelector(selectAuthStateData)
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -78,7 +78,7 @@ const LoginButton = (props: Props) => {
 
 	if (!isLoggedIn) {
 		return (
-			<Dialog>
+			<Dialog open={!isLoggedIn}>
 				<DialogTrigger asChild>
 					<Button variant={'outline'}>Login</Button>
 				</DialogTrigger>
@@ -150,7 +150,7 @@ const LoginButton = (props: Props) => {
 		return (
 			<DropdownMenu>
 				<DropdownMenuTrigger>
-					<Button variant={'outline'}>Welcome Back</Button>
+					<Button variant={'outline'}>Welcome Back {employee_name}</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>
 					<DropdownMenuItem className='flex justify-center'>

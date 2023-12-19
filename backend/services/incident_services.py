@@ -283,6 +283,8 @@ async def retrieve_the_value_of_incidents_by_store_section_service(
     Returns:
         Dict: A dictionary of the count of incidents
     """
+    # TODO: Implement the sorting logic
+
     return {'some jokes': 'lol'}
 
 

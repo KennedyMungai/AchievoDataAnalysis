@@ -1,10 +1,10 @@
 'use client'
-import retrieveTopTwentyMostValuableIncidentsInAStoreSlice, {
-	retrieveTopTwentyMostValuableIncidentsInAStore,
-	selectTopTwentyMostValuableIncidentsInAStore
+import {
+    retrieveTopTwentyMostValuableIncidentsInAStore,
+    selectTopTwentyMostValuableIncidentsInAStore
 } from '@/redux/features/stores/retrieveTopTwentyMostValuableIncidentsInAStoreSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import TopIncidentCard from './TopIncidentCard'
 
 type Props = {

@@ -135,3 +135,14 @@ interface IIncidentsData {
     incidents: IIncident[],
     is_loaded: boolean
 }
+
+interface IMaxValue 
+{
+    store_section_name: string,
+    max_value: number
+}
+
+interface IMaxValueData extends IMaxValue 
+{
+    is_loaded: boolean
+}

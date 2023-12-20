@@ -29,6 +29,7 @@ from services.incident_services import (
     retrieve_the_most_notorious_region_service,
     retrieve_the_number_of_incidents_in_a_store_section_service,
     retrieve_the_value_of_overall_incidents_service,
+    retrieve_the_value_of_incidents_in_a_store_section_service,
     update_incident_service)
 from sqlalchemy.orm import Session
 from utils.oauth2 import get_current_user
@@ -677,6 +678,30 @@ async def retrieve_the_number_of_incidents_in_a_store_section_router(
     """
     try:
         return await retrieve_the_number_of_incidents_in_a_store_section_service(_store_section_id, _db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc)
+        ) from exc
+
+
+@incidents_router.get("/store_section/value/{_store_section_id}")
+async def retrieve_the_value_of_incidents_in_a_store_section_router(
+    _store_section_id: int
+):
+    """The endpoint to get the value of all incidents inside a store section
+
+    Args:
+        _store_section_id (int): The id of a store section
+
+    Raises:
+        HTTPException: A 400 is raised if anything goes wrong
+
+    Returns:
+        dict: A dict containing the value of all the incidents
+    """
+    try:
+        return await retrieve_the_value_of_incidents_in_a_store_section_service(_store_section_id)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

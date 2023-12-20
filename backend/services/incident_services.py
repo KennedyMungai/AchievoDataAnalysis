@@ -515,3 +515,22 @@ async def retrieve_the_number_of_incidents_in_a_store_section_service(
     ).count()
 
     return {"count": count}
+
+
+async def retrieve_the_value_of_incidents_in_a_store_section_service(
+    _store_section_id: int,
+):
+    """The service function to get the values of all incidents inside a store section
+
+    Args:
+        _store_section_id (int): The id of a store section
+
+    Returns:
+        dict: A dict containing the total values
+    """
+    query = f'SELECT * FROM incidents where store_section_id = {_store_section_id}'
+    df = pd.read_sql(query, conn)
+    filtered_df = df.groupby('store_section_id')['total_value'].sum()
+    some_df = filtered_df.to_dict()
+    some_variable = list(some_df.values())[0]
+    return {"total_values": some_variable}

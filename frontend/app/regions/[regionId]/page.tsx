@@ -6,6 +6,7 @@ import {
 	retrieveSingleRegion,
 	selectSingleRegion
 } from '@/redux/features/regions/retrieveSingleRegionSlice'
+import { retrieveTheAverageValueOfAllIncidentsInARegion, selectAverageValueOfAllIncidentsInARegion } from '@/redux/features/regions/retrieveTheAverageValueOfAllIncidentsInARegionSlice'
 import { retrieveTheNumberOfIncidentsInAGivenRegion, selectTheIncidentCountPerRegion } from '@/redux/features/regions/retrieveTheNumberOfIncidentsInAGivenRegionSlice'
 import { retrieveTheTotalValueOfAllIncidentsInARegion, selectTheTotalValueOfIncidentsInARegion } from '@/redux/features/regions/retrieveTheValueOfAllIncidentsInARegionSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
@@ -22,11 +23,13 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 	const region = useAppSelector(selectSingleRegion)
 	const incidentsCount = useAppSelector(selectTheIncidentCountPerRegion)
 	const incidentsValue = useAppSelector(selectTheTotalValueOfIncidentsInARegion)
+	const incidentsAvg = useAppSelector(selectAverageValueOfAllIncidentsInARegion)
 
 	useEffect(() => {
 		dispatch(retrieveSingleRegion(Number(regionId)))
 		dispatch(retrieveTheNumberOfIncidentsInAGivenRegion(Number(regionId)))
 		dispatch(retrieveTheTotalValueOfAllIncidentsInARegion(Number(regionId)))
+		dispatch(retrieveTheAverageValueOfAllIncidentsInARegion(Number(regionId)))
 	}, [])
 
 	return (
@@ -39,7 +42,7 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 				dashboardCard1Title={'Number of all Incidents'}
 				dashboardCard2Value={incidentsValue.total_values}
 				dashboardCard2Title={'Value Of all Incidents'}
-				dashboardCard3Value={5632}
+				dashboardCard3Value={incidentsAvg}
 				dashboardCard3Title={'The average value of all incidents'}
 				dashboardCard4Value={51151}
 				dashboardCard4Title={'Most Notorious Store'}

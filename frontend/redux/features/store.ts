@@ -5,6 +5,7 @@ import retrieveAllEmployeesReducer from './employees/retrieveAllEmployeesSlice'
 import retrieveAllRegionsReducer from './regions/retrieveAllRegionsSlice'
 import retrieveSingleRegionReducer from './regions/retrieveSingleRegionSlice'
 import retrieveTheAverageValueOfAllIncidentsInARegionReducer from './regions/retrieveTheAverageValueOfAllIncidentsInARegionSlice'
+import retrieveTheMostNotoriousStoreInARegionReducer from './regions/retrieveTheMostNotoriousStoreInARegionSlice'
 import retrieveTheNumberOfIncidentsInAGivenRegionReducer from './regions/retrieveTheNumberOfIncidentsInAGivenRegionSlice'
 import retrieveTheTopTwentyIncidentsInARegionReducer from './regions/retrieveTheTopTwentyIncidentsInARegionSlice'
 import retrieveTheTotalValueOfAllIncidentsInARegionReducer from './regions/retrieveTheValueOfAllIncidentsInARegionSlice'
@@ -17,6 +18,7 @@ import retrieveSingleStoreIncidentsValueReducer from './stores/retrieveSingleSto
 import retrieveSingleStoreReducer from './stores/retrieveSingleStoreSlice'
 import retrieveTheMostNotoriousStoreSectionReducer from './stores/retrieveTheMostNotoriousStoreSectionSlice'
 import retrieveTopTwentyMostValuableIncidentsInAStoreReducer from './stores/retrieveTopTwentyMostValuableIncidentsInAStoreSlice'
+
 
 
 const store = configureStore({
@@ -38,7 +40,8 @@ const store = configureStore({
         theTopTwentyIncidentsInARegion: retrieveTheTopTwentyIncidentsInARegionReducer,
         singleRegionIncidentsCount: retrieveTheNumberOfIncidentsInAGivenRegionReducer,
         singleRegionIncidentsValue: retrieveTheTotalValueOfAllIncidentsInARegionReducer,
-        singleRegionIncidentsAverage: retrieveTheAverageValueOfAllIncidentsInARegionReducer
+        singleRegionIncidentsAverage: retrieveTheAverageValueOfAllIncidentsInARegionReducer,
+        theMostNotoriousStoreInARegion: retrieveTheMostNotoriousStoreInARegionReducer
     }
 })
 

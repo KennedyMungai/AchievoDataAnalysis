@@ -432,3 +432,18 @@ async def retrieve_the_overall_top_twenty_most_valuable_incidents_service(
     return _db.query(Incidents).order_by(
         Incidents.total_value.desc()
     ).limit(20).all()
+
+
+async def retrieve_the_number_of_overall_incidents_service(
+    _db: Session
+):
+    """The service function to get the number of overall incidents 
+
+    Args:
+        _db (Session): The database session
+
+    Returns:
+        dict: A dictionary with the count
+    """
+    count = _db.query(Incidents).count()
+    return {"count": count}

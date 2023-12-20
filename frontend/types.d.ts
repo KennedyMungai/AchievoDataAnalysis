@@ -153,3 +153,12 @@ interface INotoriousStore {
 interface INotoriousStoreData extends INotoriousStore {
     is_loaded: boolean
 }
+
+interface INotoriousRegion {
+    region_name: string,
+    max_value: number
+}
+
+interface INotoriousRegionData extends INotoriousRegion {
+    is_loaded: boolean
+}

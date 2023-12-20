@@ -16,6 +16,9 @@ import retrieveTheTopTwentyIncidentsInARegionReducer from './regions/retrieveThe
 import retrieveTheTotalValueOfAllIncidentsInARegionReducer from './regions/retrieveTheValueOfAllIncidentsInARegionSlice'
 import retrieveAllStoreStoreSectionsReducer from './storeSections/retrieveAllStoreStoreSectionsSlice'
 import retrieveSingleStoreSectionReducer from './storeSections/retrieveSingleStoreSectionSlice'
+import retrieveTheNumberOfAllTheIncidentsInAStoreSectionReducer from './storeSections/retrieveTheNumberOfAllTheIncidentsInAStoreSectionSlice'
+import retrieveTheTopTwentyIncidentsInAStoreSectionReducer from './storeSections/retrieveTheTopTwentyIncidentsInAStoreSectionSlice'
+import retrieveTheValueOfAllIncidentsInAStoreSectionReducer from './storeSections/retrieveTheValueOfAllTheIncidentsInAStoreSectionSlice'
 import retrieveAllRegionStoresReducer from './stores/retrieveAllRegionStoresSlice'
 import retrieveSingleStoreAverageIncidentValueReducer from './stores/retrieveSingleStoreIncidentsAverageSlice'
 import retrieveSingleStoreIncidentsCountReducer from './stores/retrieveSingleStoreIncidentsCountSlice'
@@ -23,8 +26,6 @@ import retrieveSingleStoreIncidentsValueReducer from './stores/retrieveSingleSto
 import retrieveSingleStoreReducer from './stores/retrieveSingleStoreSlice'
 import retrieveTheMostNotoriousStoreSectionReducer from './stores/retrieveTheMostNotoriousStoreSectionSlice'
 import retrieveTopTwentyMostValuableIncidentsInAStoreReducer from './stores/retrieveTopTwentyMostValuableIncidentsInAStoreSlice'
-import retrieveTheTopTwentyIncidentsInAStoreSectionReducer from './storeSections/retrieveTheTopTwentyIncidentsInAStoreSectionSlice'
-import retrieveTheValueOfAllIncidentsInAStoreSectionReducer from './storeSections/retrieveTheValueOfAllTheIncidentsInAStoreSectionSlice'
 
 
 const store = configureStore({
@@ -54,7 +55,8 @@ const store = configureStore({
         overallIncidentsAverage: retrieveTheAverageValueOfOverallIncidentsReducer,
         theMostNotoriousRegionOverall: retrieveTheMostNotoriousRegionReducer,
         theTopTwentyIncidentsInAStoreSection: retrieveTheTopTwentyIncidentsInAStoreSectionReducer,
-        theValueOfAllIncidentsInAStoreSection: retrieveTheValueOfAllIncidentsInAStoreSectionReducer
+        theValueOfAllIncidentsInAStoreSection: retrieveTheValueOfAllIncidentsInAStoreSectionReducer,
+        theNumberOfAllTheIncidentsInAStoreSection: retrieveTheNumberOfAllTheIncidentsInAStoreSectionReducer,
     }
 })
 

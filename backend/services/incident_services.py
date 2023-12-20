@@ -352,3 +352,21 @@ async def retrieve_the_number_of_incidents_in_a_region_service(
     count = _db.query(Incidents).filter(
         Incidents.region_id == _region_id).count()
     return {"count": count}
+
+
+async def retrieve_the_value_of_all_incidents_in_a_region_service(
+    _region_id: int,
+):
+    """The service function to get the total value of incidents per region
+
+    Args:
+        _region_id (int): The id of the region
+        _db (Session): The database session
+
+    Returns:
+        dict: A dictionary with the total values
+    """
+    query = f'SELECT * FROM incidents where region_id = {_region_id}'
+    regions_df = pd.read_sql(query, conn)
+    regions_total = regions_df['total_value'].sum()
+    return {"total_values": regions_total}

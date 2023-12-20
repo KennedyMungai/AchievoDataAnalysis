@@ -4,8 +4,10 @@ import dateReducer from './date/dateSlice'
 import retrieveAllEmployeesReducer from './employees/retrieveAllEmployeesSlice'
 import retrieveAllRegionsReducer from './regions/retrieveAllRegionsSlice'
 import retrieveSingleRegionReducer from './regions/retrieveSingleRegionSlice'
+import retrieveTheAverageValueOfAllIncidentsInARegionReducer from './regions/retrieveTheAverageValueOfAllIncidentsInARegionSlice'
 import retrieveTheNumberOfIncidentsInAGivenRegionReducer from './regions/retrieveTheNumberOfIncidentsInAGivenRegionSlice'
 import retrieveTheTopTwentyIncidentsInARegionReducer from './regions/retrieveTheTopTwentyIncidentsInARegionSlice'
+import retrieveTheTotalValueOfAllIncidentsInARegionReducer from './regions/retrieveTheValueOfAllIncidentsInARegionSlice'
 import retrieveAllStoreStoreSectionsReducer from './storeSections/retrieveAllStoreStoreSectionsSlice'
 import retrieveSingleStoreSectionReducer from './storeSections/retrieveSingleStoreSectionSlice'
 import retrieveAllRegionStoresReducer from './stores/retrieveAllRegionStoresSlice'
@@ -15,7 +17,6 @@ import retrieveSingleStoreIncidentsValueReducer from './stores/retrieveSingleSto
 import retrieveSingleStoreReducer from './stores/retrieveSingleStoreSlice'
 import retrieveTheMostNotoriousStoreSectionReducer from './stores/retrieveTheMostNotoriousStoreSectionSlice'
 import retrieveTopTwentyMostValuableIncidentsInAStoreReducer from './stores/retrieveTopTwentyMostValuableIncidentsInAStoreSlice'
-import retrieveTheTotalValueOfAllIncidentsInARegionReducer from './regions/retrieveTheValueOfAllIncidentsInARegionSlice'
 
 
 const store = configureStore({
@@ -36,7 +37,8 @@ const store = configureStore({
         dateState: dateReducer,
         theTopTwentyIncidentsInARegion: retrieveTheTopTwentyIncidentsInARegionReducer,
         singleRegionIncidentsCount: retrieveTheNumberOfIncidentsInAGivenRegionReducer,
-        singleRegionIncidentsValue: retrieveTheTotalValueOfAllIncidentsInARegionReducer
+        singleRegionIncidentsValue: retrieveTheTotalValueOfAllIncidentsInARegionReducer,
+        singleRegionIncidentsAverage: retrieveTheAverageValueOfAllIncidentsInARegionReducer
     }
 })
 

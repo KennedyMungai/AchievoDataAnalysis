@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit"
 import axios from "axios"
+import { RootState } from "../store"
 
 
 export const retrieveTheMOstNotoriousRegionSlice = createAsyncThunk("overall/mostNotoriousRegion", async () => {
@@ -34,5 +35,7 @@ export const retrieveTheMostNotoriousRegionSlice = createSlice({
             })
     }
 })
+
+export const selectTheMostNotoriousRegionOverall = (state: RootState) => state.theMostNotoriousRegionOverall
 
 export default retrieveTheMostNotoriousRegionSlice.reducer

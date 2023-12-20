@@ -2,7 +2,9 @@ import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './auth/authSlice'
 import dateReducer from './date/dateSlice'
 import retrieveAllEmployeesReducer from './employees/retrieveAllEmployeesSlice'
+import retrieveTheNumberOfOverallIncidentsReducer from './overall/retrieveTheNumberOfOverallIncidentsSlice'
 import retrieveTheTopTwentyMostNotoriousOverallIncidentsReducer from './overall/retrieveTheTopTwentyMostNotoriousOverallIncidentsSlice'
+import retrieveTheValueOfOverallIncidentsReducer from './overall/retrieveTheValueOfOverallIncidentsSlice'
 import retrieveAllRegionsReducer from './regions/retrieveAllRegionsSlice'
 import retrieveSingleRegionReducer from './regions/retrieveSingleRegionSlice'
 import retrieveTheAverageValueOfAllIncidentsInARegionReducer from './regions/retrieveTheAverageValueOfAllIncidentsInARegionSlice'
@@ -19,7 +21,6 @@ import retrieveSingleStoreIncidentsValueReducer from './stores/retrieveSingleSto
 import retrieveSingleStoreReducer from './stores/retrieveSingleStoreSlice'
 import retrieveTheMostNotoriousStoreSectionReducer from './stores/retrieveTheMostNotoriousStoreSectionSlice'
 import retrieveTopTwentyMostValuableIncidentsInAStoreReducer from './stores/retrieveTopTwentyMostValuableIncidentsInAStoreSlice'
-import retrieveTheNumberOfOverallIncidentsReducer from './overall/retrieveTheNumberOfOverallIncidentsSlice'
 
 
 const store = configureStore({
@@ -44,7 +45,8 @@ const store = configureStore({
         singleRegionIncidentsAverage: retrieveTheAverageValueOfAllIncidentsInARegionReducer,
         theMostNotoriousStoreInARegion: retrieveTheMostNotoriousStoreInARegionReducer,
         topTwentyMostValuableIncidentsOverall: retrieveTheTopTwentyMostNotoriousOverallIncidentsReducer,
-        overallIncidentsCount: retrieveTheNumberOfOverallIncidentsReducer
+        overallIncidentsCount: retrieveTheNumberOfOverallIncidentsReducer,
+        overallIncidentsValue: retrieveTheValueOfOverallIncidentsReducer
     }
 })
 

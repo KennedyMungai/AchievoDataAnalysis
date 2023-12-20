@@ -6,8 +6,17 @@ import {
 	retrieveSingleStoreSection,
 	selectSingleStoreSection
 } from '@/redux/features/storeSections/retrieveSingleStoreSectionSlice'
-import { retrieveTheTopTwentyIncidentsInAStoreSection, selectTheTopTwentyIncidentsInAStoreSection } from '@/redux/features/storeSections/retrieveTheTopTwentyIncidentsInAStoreSectionSlice'
-import { retrieveTheValueOfAllIncidentsInAStoreSection, selectTheTotalValueOfIncidentsInAStoreSection } from '@/redux/features/storeSections/retrieveTheValueOfAllTheIncidentsInAStoreSectionSlice'
+import { selectTheAverageValueOfAllIncidentsInAStoreSection } from '@/redux/features/storeSections/retrieveTheAverageValueOfAllTheIncidentsInAStoreSectionSlice'
+import { retrieveTheMostNotoriousIncidentInAStoreSection, selectTheMostNotoriousIncidentInAStoreSection } from '@/redux/features/storeSections/retrieveTheMostNotoriousIncidentInAStoreSectionSlice'
+import { retrieveTheNumberOfAllTheIncidentsInAStoreSection, selectTheNumberOfIncidentsInAStoreSection } from '@/redux/features/storeSections/retrieveTheNumberOfAllTheIncidentsInAStoreSectionSlice'
+import {
+	retrieveTheTopTwentyIncidentsInAStoreSection,
+	selectTheTopTwentyIncidentsInAStoreSection
+} from '@/redux/features/storeSections/retrieveTheTopTwentyIncidentsInAStoreSectionSlice'
+import {
+	retrieveTheValueOfAllIncidentsInAStoreSection,
+	selectTheTotalValueOfIncidentsInAStoreSection
+} from '@/redux/features/storeSections/retrieveTheValueOfAllTheIncidentsInAStoreSectionSlice'
 import { selectSingleStore } from '@/redux/features/stores/retrieveSingleStoreSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useEffect } from 'react'
@@ -24,11 +33,16 @@ const SingleStoreSectionPage = ({ params: { storeSectionId } }: Props) => {
 	const storeData = useAppSelector(selectSingleStore)
 	const topTwentyIncidents = useAppSelector(selectTheTopTwentyIncidentsInAStoreSection)
 	const storeSectionIncidentsValue = useAppSelector(selectTheTotalValueOfIncidentsInAStoreSection)
+	const storeSectionIncidentCount = useAppSelector(selectTheNumberOfIncidentsInAStoreSection)
+	const storeSectionIncidentsAverage = useAppSelector(selectTheAverageValueOfAllIncidentsInAStoreSection)
+	const {total_value} = useAppSelector(selectTheMostNotoriousIncidentInAStoreSection)
 
 	useEffect(() => {
 		dispatch(retrieveSingleStoreSection(Number(storeSectionId)))
 		dispatch(retrieveTheTopTwentyIncidentsInAStoreSection(Number(storeSectionId)))
 		dispatch(retrieveTheValueOfAllIncidentsInAStoreSection(Number(storeSectionId)))
+		dispatch(retrieveTheNumberOfAllTheIncidentsInAStoreSection(Number(storeSectionId)))
+		dispatch(retrieveTheMostNotoriousIncidentInAStoreSection(Number(storeSectionId)))
 	}, [])
 
 	return (
@@ -36,13 +50,13 @@ const SingleStoreSectionPage = ({ params: { storeSectionId } }: Props) => {
 			<DashboardTemplate
 				title={`${storeData.store_name} ${storeSectionData.store_section_name}`}
 				buttonName={'Add Incident'}
-				dashboardCard1Value={8500}
+				dashboardCard1Value={storeSectionIncidentCount}
 				dashboardCard1Title={'Number of all Incidents'}
 				dashboardCard2Value={storeSectionIncidentsValue}
 				dashboardCard2Title={'The value of all incidents'}
-				dashboardCard3Value={78542}
+				dashboardCard3Value={storeSectionIncidentsAverage}
 				dashboardCard3Title={'The average value of incidents'}
-				dashboardCard4Value={7878}
+				dashboardCard4Value={total_value}
 				dashboardCard4Title={'The most notorious incident'}
 				chartCardTitle={'All incidents trends'}
 				chartCardDescription={

@@ -2,10 +2,18 @@
 import OverallValueChart from '@/components/Charts/OverallValueChart'
 import TopOverallIncidentsCard from '@/components/OverAll/TopOverallIncidentsCard'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
-import { useAppDispatch } from '@/redux/hooks'
+import { retrieveTheNumberOfOverallIncidents, selectTheNumberOfOverallIncidents } from '@/redux/features/overall/retrieveTheNumberOfOverallIncidentsSlice'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { useEffect } from 'react'
 
 export default function Home() {
 	const dispatch = useAppDispatch()
+	const overallCount = useAppSelector(selectTheNumberOfOverallIncidents)
+
+	useEffect(() => {
+		dispatch(retrieveTheNumberOfOverallIncidents())
+	}, [])
+	
 
 	return (
 		<main className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800 overflow-x-hidden'>
@@ -13,7 +21,7 @@ export default function Home() {
 				title={'Achievo Limited'}
 				buttonName={'Regions'}
 				buttonLink={'/regions'}
-				dashboardCard1Value={8500}
+				dashboardCard1Value={overallCount}
 				dashboardCard1Title={'Number of all incidents'}
 				dashboardCard2Value={4568}
 				dashboardCard2Title={'Value of all Incidents'}

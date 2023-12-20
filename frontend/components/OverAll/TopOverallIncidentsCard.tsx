@@ -7,9 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useEffect } from 'react'
 import TopOverallIncidentCard from './TopOverallIncidentCard'
 
-type Props = {}
-
-const TopOverallIncidentsCard = (props: Props) => {
+const TopOverallIncidentsCard = () => {
 	const dispatch = useAppDispatch()
 	const incidents = useAppSelector(selectTheMostNotoriousIncidentsOverall)
 
@@ -20,7 +18,10 @@ const TopOverallIncidentsCard = (props: Props) => {
 	return (
 		<div>
 			{incidents.map((incident) => (
-				<TopOverallIncidentCard key={incident.incident_id} />
+				<TopOverallIncidentCard
+					key={incident.incident_id}
+					incident={incident}
+				/>
 			))}
 		</div>
 	)

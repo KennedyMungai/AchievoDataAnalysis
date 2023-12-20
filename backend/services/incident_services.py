@@ -6,6 +6,7 @@ from database.db import engine as conn
 from models.models import Incidents
 from schemas.incident_schema import (CreateIncident, ReadIncident,
                                      UpdateIncident)
+from services.region_services import retrieve_one_region_service
 from services.store_section_services import retrieve_one_store_section
 from services.store_services import retrieve_one_store_service
 from sqlalchemy.orm import Session
@@ -447,3 +448,50 @@ async def retrieve_the_number_of_overall_incidents_service(
     """
     count = _db.query(Incidents).count()
     return {"count": count}
+
+
+async def retrieve_the_value_of_overall_incidents_service():
+    """The service function to get the value of all incidents
+
+    Returns:
+        dict: A value dict
+    """
+    query = 'SELECT * FROM incidents'
+    regions_df = pd.read_sql(query, conn)
+    regions_total = regions_df['total_value'].sum()
+    return {"total_values": regions_total}
+
+
+async def retrieve_the_average_value_of_all_incidents_service():
+    """The service function to get the average value of all incidents
+
+    Returns:
+        dict: A dictionary with the average value
+    """
+    query = 'SELECT * FROM incidents'
+    regions_df = pd.read_sql(query, conn)
+    regions_avg = regions_df['total_value'].mean()
+    return {"average_value": regions_avg}
+
+
+async def retrieve_the_most_notorious_region_service(
+    _db: Session
+):
+    """The service function to retrieve the most notorious region
+
+    Args:
+        _db (Session): The database session
+
+    Returns:
+        dict: A dict with the most notorious store section
+    """
+    query = "SELECT * FROM incidents"
+    df = pd.read_sql(query, conn)
+    filtered_df = df.groupby('region_id')['total_value'].sum()
+    some_dict = filtered_df.to_dict()
+    max_value = max(some_dict.values())
+    region = await retrieve_one_region_service(max(some_dict.keys()), _db)
+    region_data = {}
+    region_data["region_name"] = region.region_name
+    region_data["max_value"] = max_value
+    return region_data

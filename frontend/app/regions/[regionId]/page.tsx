@@ -7,6 +7,7 @@ import {
 	selectSingleRegion
 } from '@/redux/features/regions/retrieveSingleRegionSlice'
 import { retrieveTheNumberOfIncidentsInAGivenRegion, selectTheIncidentCountPerRegion } from '@/redux/features/regions/retrieveTheNumberOfIncidentsInAGivenRegionSlice'
+import { retrieveTheTotalValueOfAllIncidentsInARegion, selectTheTotalValueOfIncidentsInARegion } from '@/redux/features/regions/retrieveTheValueOfAllIncidentsInARegionSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useEffect } from 'react'
 
@@ -20,10 +21,12 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 	const dispatch = useAppDispatch()
 	const region = useAppSelector(selectSingleRegion)
 	const incidentsCount = useAppSelector(selectTheIncidentCountPerRegion)
+	const incidentsValue = useAppSelector(selectTheTotalValueOfIncidentsInARegion)
 
 	useEffect(() => {
 		dispatch(retrieveSingleRegion(Number(regionId)))
 		dispatch(retrieveTheNumberOfIncidentsInAGivenRegion(Number(regionId)))
+		dispatch(retrieveTheTotalValueOfAllIncidentsInARegion(Number(regionId)))
 	}, [])
 
 	return (
@@ -34,7 +37,7 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 				buttonName={'Stores'}
 				dashboardCard1Value={incidentsCount}
 				dashboardCard1Title={'Number of all Incidents'}
-				dashboardCard2Value={536997}
+				dashboardCard2Value={incidentsValue.total_values}
 				dashboardCard2Title={'Value Of all Incidents'}
 				dashboardCard3Value={5632}
 				dashboardCard3Title={'The average value of all incidents'}

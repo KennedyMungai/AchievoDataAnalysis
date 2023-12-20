@@ -67,7 +67,7 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 				dashboardCard2Title={'Value Of all Incidents'}
 				dashboardCard3Value={incidentsAvg}
 				dashboardCard3Title={'The average value of all incidents'}
-				dashboardCard4Value={`${store_name} with ${max_value}`}
+				dashboardCard4Value={`${store_name} with KSH ${max_value}`}
 				dashboardCard4Title={'Most Notorious Store'}
 				chartCardTitle={'All branch trends'}
 				chartCardDescription={

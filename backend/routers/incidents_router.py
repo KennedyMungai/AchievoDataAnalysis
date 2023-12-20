@@ -612,3 +612,22 @@ async def retrieve_the_overall_value_of_incidents_router():
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=str(exc)
         ) from exc
+
+
+@incidents_router.get("/overall/average")
+async def retrieve_the_overall_average_value_of_incidents_router():
+    """The router to get the average value of all the incidents
+
+    Raises:
+        HTTPException: A 400 is raised if anything goes wrong
+
+    Returns:
+        dict: A dict with the appropriate value
+    """
+    try:
+        return await retrieve_the_average_value_of_all_incidents_service()
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc)
+        ) from exc

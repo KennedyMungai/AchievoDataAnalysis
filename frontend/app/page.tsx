@@ -3,15 +3,18 @@ import OverallValueChart from '@/components/Charts/OverallValueChart'
 import TopOverallIncidentsCard from '@/components/OverAll/TopOverallIncidentsCard'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 import { retrieveTheNumberOfOverallIncidents, selectTheNumberOfOverallIncidents } from '@/redux/features/overall/retrieveTheNumberOfOverallIncidentsSlice'
+import { retrieveTheValueOfOverallIncidents, selectTheOverallTotalValueOfIncidents } from '@/redux/features/overall/retrieveTheValueOfOverallIncidentsSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useEffect } from 'react'
 
 export default function Home() {
 	const dispatch = useAppDispatch()
 	const overallCount = useAppSelector(selectTheNumberOfOverallIncidents)
+	const overallValue = useAppSelector(selectTheOverallTotalValueOfIncidents)
 
 	useEffect(() => {
 		dispatch(retrieveTheNumberOfOverallIncidents())
+		dispatch(retrieveTheValueOfOverallIncidents())
 	}, [])
 	
 
@@ -23,7 +26,7 @@ export default function Home() {
 				buttonLink={'/regions'}
 				dashboardCard1Value={overallCount}
 				dashboardCard1Title={'Number of all incidents'}
-				dashboardCard2Value={4568}
+				dashboardCard2Value={overallValue.total_values}
 				dashboardCard2Title={'Value of all Incidents'}
 				dashboardCard3Value={55668}
 				dashboardCard3Title={'The average value of all incidents'}

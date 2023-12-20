@@ -7,6 +7,7 @@ import {
 	selectSingleStoreSection
 } from '@/redux/features/storeSections/retrieveSingleStoreSectionSlice'
 import { retrieveTheTopTwentyIncidentsInAStoreSection, selectTheTopTwentyIncidentsInAStoreSection } from '@/redux/features/storeSections/retrieveTheTopTwentyIncidentsInAStoreSectionSlice'
+import { retrieveTheValueOfAllIncidentsInAStoreSection, selectTheTotalValueOfIncidentsInAStoreSection } from '@/redux/features/storeSections/retrieveTheValueOfAllTheIncidentsInAStoreSectionSlice'
 import { selectSingleStore } from '@/redux/features/stores/retrieveSingleStoreSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useEffect } from 'react'
@@ -22,10 +23,12 @@ const SingleStoreSectionPage = ({ params: { storeSectionId } }: Props) => {
 	const storeSectionData = useAppSelector(selectSingleStoreSection)
 	const storeData = useAppSelector(selectSingleStore)
 	const topTwentyIncidents = useAppSelector(selectTheTopTwentyIncidentsInAStoreSection)
+	const storeSectionIncidentsValue = useAppSelector(selectTheTotalValueOfIncidentsInAStoreSection)
 
 	useEffect(() => {
 		dispatch(retrieveSingleStoreSection(Number(storeSectionId)))
 		dispatch(retrieveTheTopTwentyIncidentsInAStoreSection(Number(storeSectionId)))
+		dispatch(retrieveTheValueOfAllIncidentsInAStoreSection(Number(storeSectionId)))
 	}, [])
 
 	return (
@@ -35,7 +38,7 @@ const SingleStoreSectionPage = ({ params: { storeSectionId } }: Props) => {
 				buttonName={'Add Incident'}
 				dashboardCard1Value={8500}
 				dashboardCard1Title={'Number of all Incidents'}
-				dashboardCard2Value={7859}
+				dashboardCard2Value={storeSectionIncidentsValue}
 				dashboardCard2Title={'The value of all incidents'}
 				dashboardCard3Value={78542}
 				dashboardCard3Title={'The average value of incidents'}

@@ -3,7 +3,7 @@ import axios from "axios"
 import { RootState } from "../store"
 
 
-export const retrieveTheMOstNotoriousRegionSlice = createAsyncThunk("overall/mostNotoriousRegion", async () => {
+export const retrieveTheMostNotoriousRegion = createAsyncThunk("overall/mostNotoriousRegion", async () => {
     const response = await axios.get('http://localhost:8000/incidents/overall/max/region')
     const data = response.data
     return data
@@ -22,15 +22,15 @@ export const retrieveTheMostNotoriousRegionSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(retrieveTheMOstNotoriousRegionSlice.pending, (state) => {
+            .addCase(retrieveTheMostNotoriousRegion.pending, (state) => {
                 state.is_loaded = false
             })
-            .addCase(retrieveTheMOstNotoriousRegionSlice.fulfilled, (state, action: PayloadAction<INotoriousRegion>) => {
+            .addCase(retrieveTheMostNotoriousRegion.fulfilled, (state, action: PayloadAction<INotoriousRegion>) => {
                 state.is_loaded = true
                 state.region_name = action.payload.region_name
                 state.max_value = action.payload.max_value
             })
-            .addCase(retrieveTheMOstNotoriousRegionSlice.rejected, (state) => {
+            .addCase(retrieveTheMostNotoriousRegion.rejected, (state) => {
                 state.is_loaded = false
             })
     }

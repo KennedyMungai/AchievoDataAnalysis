@@ -15,6 +15,7 @@ import retrieveSingleStoreIncidentsValueReducer from './stores/retrieveSingleSto
 import retrieveSingleStoreReducer from './stores/retrieveSingleStoreSlice'
 import retrieveTheMostNotoriousStoreSectionReducer from './stores/retrieveTheMostNotoriousStoreSectionSlice'
 import retrieveTopTwentyMostValuableIncidentsInAStoreReducer from './stores/retrieveTopTwentyMostValuableIncidentsInAStoreSlice'
+import retrieveTheTotalValueOfAllIncidentsInARegionReducer from './regions/retrieveTheValueOfAllIncidentsInARegionSlice'
 
 
 const store = configureStore({
@@ -34,7 +35,8 @@ const store = configureStore({
         theMostNotoriousStoreSection: retrieveTheMostNotoriousStoreSectionReducer,
         dateState: dateReducer,
         theTopTwentyIncidentsInARegion: retrieveTheTopTwentyIncidentsInARegionReducer,
-        singleRegionIncidentsCount: retrieveTheNumberOfIncidentsInAGivenRegionReducer
+        singleRegionIncidentsCount: retrieveTheNumberOfIncidentsInAGivenRegionReducer,
+        singleRegionIncidentsValue: retrieveTheTotalValueOfAllIncidentsInARegionReducer
     }
 })
 

@@ -5,6 +5,7 @@ import {
 	retrieveSingleStoreSection,
 	selectSingleStoreSection
 } from '@/redux/features/storeSections/retrieveSingleStoreSectionSlice'
+import { retrieveTheTopTwentyIncidentsInAStoreSection, selectTheTopTwentyIncidentsInAStoreSection } from '@/redux/features/storeSections/retrieveTheTopTwentyIncidentsInAStoreSectionSlice'
 import { selectSingleStore } from '@/redux/features/stores/retrieveSingleStoreSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useEffect } from 'react'
@@ -16,12 +17,14 @@ type Props = {
 }
 
 const SingleStoreSectionPage = ({ params: { storeSectionId } }: Props) => {
+	const dispatch = useAppDispatch()
 	const storeSectionData = useAppSelector(selectSingleStoreSection)
 	const storeData = useAppSelector(selectSingleStore)
-	const dispatch = useAppDispatch()
+	const topTwentyIncidents = useAppSelector(selectTheTopTwentyIncidentsInAStoreSection)
 
 	useEffect(() => {
 		dispatch(retrieveSingleStoreSection(Number(storeSectionId)))
+		dispatch(retrieveTheTopTwentyIncidentsInAStoreSection(Number(storeSectionId)))
 	}, [])
 
 	return (

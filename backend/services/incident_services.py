@@ -370,3 +370,20 @@ async def retrieve_the_value_of_all_incidents_in_a_region_service(
     regions_df = pd.read_sql(query, conn)
     regions_total = regions_df['total_value'].sum()
     return {"total_values": regions_total}
+
+
+async def retrieve_the_average_value_of_all_incidents_in_a_region_service(
+    _region_id: int
+):
+    """The service function to get the average value of all incidents in a region
+
+    Args:
+        _region_id (int): The id of the region
+
+    Returns:
+        dict: The dictionary with the average value
+    """
+    query = f'SELECT * FROM incidents where region_id = {_region_id}'
+    regions_df = pd.read_sql(query, conn)
+    regions_avg = regions_df['total_value'].mean()
+    return {"average_value": regions_avg}

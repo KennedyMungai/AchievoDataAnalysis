@@ -495,3 +495,23 @@ async def retrieve_the_most_notorious_region_service(
     region_data["region_name"] = region.region_name
     region_data["max_value"] = max_value
     return region_data
+
+
+async def retrieve_the_number_of_incidents_in_a_store_section_service(
+    _store_section_id: int,
+    _db: Session
+):
+    """The service function to get the number of incidents in a single store section
+
+    Args:
+        _store_section_id (int): The id of a store section
+        _db (Session): The database session
+
+    Returns:
+        dict: The number of all incidents inside a store section
+    """
+    count = _db.query(Incidents).filter(
+        Incidents.store_section_id == _store_section_id
+    ).count()
+
+    return {"count": count}

@@ -22,6 +22,7 @@ from services.incident_services import (
     retrieve_the_number_of_incidents_in_a_region_service,
     retrieve_the_value_of_all_incidents_in_a_region_service,
     retrieve_the_most_notorious_store_service,
+    retrieve_the_overall_top_twenty_most_valuable_incidents_service,
     retrieve_the_average_value_of_all_incidents_in_a_region_service,
     update_incident_service)
 from sqlalchemy.orm import Session
@@ -535,6 +536,30 @@ async def retrieve_the_most_notorious_store_router(
     """
     try:
         return await retrieve_the_most_notorious_store_service(_region_id, _db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc)
+        ) from exc
+
+
+@incidents_router.get("/overall/top_twenty")
+async def retrieve_the_overall_top_twenty_most_valuable_incidents_router(
+    _db: Session = Depends(get_db)
+):
+    """The endpoint to retrieve the overall top twenty most valuable incidents
+
+    Args:
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 400 is raised incase anything goes wrong
+
+    Returns:
+        List[dict]: A list of the most valuable incidents
+    """
+    try:
+        return await retrieve_the_overall_top_twenty_most_valuable_incidents_service(_db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

@@ -1,7 +1,11 @@
+'use client'
 import OverallValueChart from '@/components/Charts/OverallValueChart'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
+import { useAppDispatch } from '@/redux/hooks'
 
 export default function Home() {
+	const dispatch = useAppDispatch()
+
 	return (
 		<main className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800 overflow-x-hidden'>
 			<DashboardTemplate

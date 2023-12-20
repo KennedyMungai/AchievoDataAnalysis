@@ -2,6 +2,7 @@
 import OverallValueChart from '@/components/Charts/OverallValueChart'
 import TopOverallIncidentsCard from '@/components/OverAll/TopOverallIncidentsCard'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
+import { retrieveTheAverageValueOfOverallIncidents, selectTheAverageValueOfAllIncidents } from '@/redux/features/overall/retrieveTheAverageValueOfOverallIncidentsSlice'
 import { retrieveTheNumberOfOverallIncidents, selectTheNumberOfOverallIncidents } from '@/redux/features/overall/retrieveTheNumberOfOverallIncidentsSlice'
 import { retrieveTheValueOfOverallIncidents, selectTheOverallTotalValueOfIncidents } from '@/redux/features/overall/retrieveTheValueOfOverallIncidentsSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
@@ -11,10 +12,12 @@ export default function Home() {
 	const dispatch = useAppDispatch()
 	const overallCount = useAppSelector(selectTheNumberOfOverallIncidents)
 	const overallValue = useAppSelector(selectTheOverallTotalValueOfIncidents)
+	const overallAverage = useAppSelector(selectTheAverageValueOfAllIncidents)
 
 	useEffect(() => {
 		dispatch(retrieveTheNumberOfOverallIncidents())
 		dispatch(retrieveTheValueOfOverallIncidents())
+		dispatch(retrieveTheAverageValueOfOverallIncidents())
 	}, [])
 	
 

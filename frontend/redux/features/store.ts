@@ -2,6 +2,8 @@ import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './auth/authSlice'
 import dateReducer from './date/dateSlice'
 import retrieveAllEmployeesReducer from './employees/retrieveAllEmployeesSlice'
+import retrieveTheAverageValueOfOverallIncidentsReducer from './overall/retrieveTheAverageValueOfOverallIncidentsSlice'
+import retrieveTheMostNotoriousRegionReducer from './overall/retrieveTheMostNotoriousRegionSlice'
 import retrieveTheNumberOfOverallIncidentsReducer from './overall/retrieveTheNumberOfOverallIncidentsSlice'
 import retrieveTheTopTwentyMostNotoriousOverallIncidentsReducer from './overall/retrieveTheTopTwentyMostNotoriousOverallIncidentsSlice'
 import retrieveTheValueOfOverallIncidentsReducer from './overall/retrieveTheValueOfOverallIncidentsSlice'
@@ -21,7 +23,6 @@ import retrieveSingleStoreIncidentsValueReducer from './stores/retrieveSingleSto
 import retrieveSingleStoreReducer from './stores/retrieveSingleStoreSlice'
 import retrieveTheMostNotoriousStoreSectionReducer from './stores/retrieveTheMostNotoriousStoreSectionSlice'
 import retrieveTopTwentyMostValuableIncidentsInAStoreReducer from './stores/retrieveTopTwentyMostValuableIncidentsInAStoreSlice'
-import retrieveTheAverageValueOfOverallIncidentsReducer from './overall/retrieveTheAverageValueOfOverallIncidentsSlice'
 
 
 const store = configureStore({
@@ -48,7 +49,8 @@ const store = configureStore({
         topTwentyMostValuableIncidentsOverall: retrieveTheTopTwentyMostNotoriousOverallIncidentsReducer,
         overallIncidentsCount: retrieveTheNumberOfOverallIncidentsReducer,
         overallIncidentsValue: retrieveTheValueOfOverallIncidentsReducer,
-        overallIncidentsAverage: retrieveTheAverageValueOfOverallIncidentsReducer
+        overallIncidentsAverage: retrieveTheAverageValueOfOverallIncidentsReducer,
+        theMostNotoriousRegionOverall: retrieveTheMostNotoriousRegionReducer
     }
 })
 

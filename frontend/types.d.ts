@@ -136,13 +136,20 @@ interface IIncidentsData {
     is_loaded: boolean
 }
 
-interface IMaxValue 
-{
+interface IMaxValue {
     store_section_name: string,
     max_value: number
 }
 
-interface IMaxValueData extends IMaxValue 
-{
+interface IMaxValueData extends IMaxValue {
+    is_loaded: boolean
+}
+
+interface INotoriousStore {
+    store_name: string,
+    max_value: number
+}
+
+interface INotoriousStoreData extends INotoriousStore {
     is_loaded: boolean
 }

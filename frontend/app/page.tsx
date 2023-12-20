@@ -3,6 +3,7 @@ import OverallValueChart from '@/components/Charts/OverallValueChart'
 import TopOverallIncidentsCard from '@/components/OverAll/TopOverallIncidentsCard'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 import { retrieveTheAverageValueOfOverallIncidents, selectTheAverageValueOfAllIncidents } from '@/redux/features/overall/retrieveTheAverageValueOfOverallIncidentsSlice'
+import { retrieveTheMostNotoriousRegion, selectTheMostNotoriousRegionOverall } from '@/redux/features/overall/retrieveTheMostNotoriousRegionSlice'
 import { retrieveTheNumberOfOverallIncidents, selectTheNumberOfOverallIncidents } from '@/redux/features/overall/retrieveTheNumberOfOverallIncidentsSlice'
 import { retrieveTheValueOfOverallIncidents, selectTheOverallTotalValueOfIncidents } from '@/redux/features/overall/retrieveTheValueOfOverallIncidentsSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
@@ -13,11 +14,13 @@ export default function Home() {
 	const overallCount = useAppSelector(selectTheNumberOfOverallIncidents)
 	const overallValue = useAppSelector(selectTheOverallTotalValueOfIncidents)
 	const overallAverage = useAppSelector(selectTheAverageValueOfAllIncidents)
+	const {region_name, max_value} = useAppSelector(selectTheMostNotoriousRegionOverall)
 
 	useEffect(() => {
 		dispatch(retrieveTheNumberOfOverallIncidents())
 		dispatch(retrieveTheValueOfOverallIncidents())
 		dispatch(retrieveTheAverageValueOfOverallIncidents())
+		dispatch(retrieveTheMostNotoriousRegion())
 	}, [])
 	
 
@@ -31,9 +34,9 @@ export default function Home() {
 				dashboardCard1Title={'Number of all incidents'}
 				dashboardCard2Value={overallValue.total_values}
 				dashboardCard2Title={'Value of all Incidents'}
-				dashboardCard3Value={55668}
+				dashboardCard3Value={overallAverage}
 				dashboardCard3Title={'The average value of all incidents'}
-				dashboardCard4Value={5200}
+				dashboardCard4Value={`${region_name} with KSH ${max_value}`}
 				dashboardCard4Title={'Most Notorious Region'}
 				chartCardTitle={'All Regions Trends'}
 				chartCardDescription={

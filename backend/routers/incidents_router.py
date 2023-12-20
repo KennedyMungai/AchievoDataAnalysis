@@ -25,6 +25,9 @@ from services.incident_services import (
     retrieve_the_overall_top_twenty_most_valuable_incidents_service,
     retrieve_the_average_value_of_all_incidents_in_a_region_service,
     retrieve_the_number_of_overall_incidents_service,
+    retrieve_the_average_value_of_all_incidents_service,
+    retrieve_the_most_notorious_region_service,
+    retrieve_the_value_of_overall_incidents_service,
     update_incident_service)
 from sqlalchemy.orm import Session
 from utils.oauth2 import get_current_user
@@ -585,6 +588,25 @@ async def retrieve_the_overall_number_of_incidents_router(
     """
     try:
         return await retrieve_the_number_of_overall_incidents_service(_db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc)
+        ) from exc
+
+
+@incidents_router.get("/overall/value")
+async def retrieve_the_overall_value_of_incidents_router():
+    """The router to get the value of all the incidents
+
+    Raises:
+        HTTPException: A 400 is raised if anything goes wrong
+
+    Returns:
+        dict: A dict with the appropriate value
+    """
+    try:
+        return await retrieve_the_value_of_overall_incidents_service()
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

@@ -21,6 +21,7 @@ from services.incident_services import (
     retrieve_the_most_notorious_store_section_service,
     retrieve_the_number_of_incidents_in_a_region_service,
     retrieve_the_value_of_all_incidents_in_a_region_service,
+    retrieve_the_most_notorious_store_service,
     retrieve_the_average_value_of_all_incidents_in_a_region_service,
     update_incident_service)
 from sqlalchemy.orm import Session
@@ -508,6 +509,32 @@ async def retrieve_the_average_value_of_incidents_in_a_region_router(
     """
     try:
         return await retrieve_the_average_value_of_all_incidents_in_a_region_service(_region_id)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc)
+        ) from exc
+
+
+@incidents_router.get("/region/max/store/{_region_id}")
+async def retrieve_the_most_notorious_store_router(
+    _region_id: int,
+    _db: Session = Depends(get_db)
+):
+    """The router to get the most notorious store section
+
+    Args:
+        _region_id (int): The region id
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 400 is raised if anything goes wrong
+
+    Returns:
+        dict: max store region
+    """
+    try:
+        return await retrieve_the_most_notorious_store_service(_region_id, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

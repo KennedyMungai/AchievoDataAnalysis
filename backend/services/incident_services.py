@@ -2,12 +2,13 @@
 from typing import List
 
 import pandas as pd
-from services.store_section_services import retrieve_one_store_section
+from database.db import engine as conn
 from models.models import Incidents
 from schemas.incident_schema import (CreateIncident, ReadIncident,
                                      UpdateIncident)
+from services.store_section_services import retrieve_one_store_section
+from services.store_services import retrieve_one_store_service
 from sqlalchemy.orm import Session
-from database.db import engine as conn
 
 
 async def create_incident_service(
@@ -387,3 +388,31 @@ async def retrieve_the_average_value_of_all_incidents_in_a_region_service(
     regions_df = pd.read_sql(query, conn)
     regions_avg = regions_df['total_value'].mean()
     return {"average_value": regions_avg}
+
+
+async def retrieve_the_most_notorious_store_service(
+    _region_id: int,
+    _db: Session
+):
+    """The service function to retrieve the most notorious store in a region
+
+    Args:
+        _region_id (int): The id of the region
+        _db (Session): The database session
+
+    Returns:
+        dict: The dictionary with the most notorious store
+    """
+    query = f"SELECT * FROM incidents WHERE region_id = {_region_id}"
+    df = pd.read_sql(query, conn)
+    filtered_df = df.groupby('store_id')['total_value'].sum()
+    some_dict = filtered_df.to_dict()
+    max_value = max(some_dict.values())
+    store = await retrieve_one_store_service(max(some_dict.keys()), _db)
+
+    store_data = {}
+
+    store_data["store_name"] = store.store_name
+    store_data["max_value"] = max_value
+
+    return store_data

@@ -416,3 +416,19 @@ async def retrieve_the_most_notorious_store_service(
     store_data["max_value"] = max_value
 
     return store_data
+
+
+async def retrieve_the_overall_top_twenty_most_valuable_incidents_service(
+    _db: Session
+):
+    """The service function to get the overall top twenty most valuable incidents 
+
+    Args:
+        _db (Session): The database session
+
+    Returns:
+        List: A list of the most valuable incidents
+    """
+    return _db.query(Incidents).order_by(
+        Incidents.total_value.desc()
+    ).limit(20).all()

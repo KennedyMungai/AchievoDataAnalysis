@@ -6,9 +6,22 @@ import {
 	retrieveSingleRegion,
 	selectSingleRegion
 } from '@/redux/features/regions/retrieveSingleRegionSlice'
-import { retrieveTheAverageValueOfAllIncidentsInARegion, selectAverageValueOfAllIncidentsInARegion } from '@/redux/features/regions/retrieveTheAverageValueOfAllIncidentsInARegionSlice'
-import { retrieveTheNumberOfIncidentsInAGivenRegion, selectTheIncidentCountPerRegion } from '@/redux/features/regions/retrieveTheNumberOfIncidentsInAGivenRegionSlice'
-import { retrieveTheTotalValueOfAllIncidentsInARegion, selectTheTotalValueOfIncidentsInARegion } from '@/redux/features/regions/retrieveTheValueOfAllIncidentsInARegionSlice'
+import {
+	retrieveTheAverageValueOfAllIncidentsInARegion,
+	selectAverageValueOfAllIncidentsInARegion
+} from '@/redux/features/regions/retrieveTheAverageValueOfAllIncidentsInARegionSlice'
+import {
+	retrieveTheMostNotoriousStoreInARegion,
+	selectTheMostNotoriousStoreInARegion
+} from '@/redux/features/regions/retrieveTheMostNotoriousStoreInARegionSlice'
+import {
+	retrieveTheNumberOfIncidentsInAGivenRegion,
+	selectTheIncidentCountPerRegion
+} from '@/redux/features/regions/retrieveTheNumberOfIncidentsInAGivenRegionSlice'
+import {
+	retrieveTheTotalValueOfAllIncidentsInARegion,
+	selectTheTotalValueOfIncidentsInARegion
+} from '@/redux/features/regions/retrieveTheValueOfAllIncidentsInARegionSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useEffect } from 'react'
 
@@ -22,14 +35,24 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 	const dispatch = useAppDispatch()
 	const region = useAppSelector(selectSingleRegion)
 	const incidentsCount = useAppSelector(selectTheIncidentCountPerRegion)
-	const incidentsValue = useAppSelector(selectTheTotalValueOfIncidentsInARegion)
-	const incidentsAvg = useAppSelector(selectAverageValueOfAllIncidentsInARegion)
+	const incidentsValue = useAppSelector(
+		selectTheTotalValueOfIncidentsInARegion
+	)
+	const incidentsAvg = useAppSelector(
+		selectAverageValueOfAllIncidentsInARegion
+	)
+	const { store_name, max_value } = useAppSelector(
+		selectTheMostNotoriousStoreInARegion
+	)
 
 	useEffect(() => {
 		dispatch(retrieveSingleRegion(Number(regionId)))
 		dispatch(retrieveTheNumberOfIncidentsInAGivenRegion(Number(regionId)))
 		dispatch(retrieveTheTotalValueOfAllIncidentsInARegion(Number(regionId)))
-		dispatch(retrieveTheAverageValueOfAllIncidentsInARegion(Number(regionId)))
+		dispatch(
+			retrieveTheAverageValueOfAllIncidentsInARegion(Number(regionId))
+		)
+		dispatch(retrieveTheMostNotoriousStoreInARegion(Number(regionId)))
 	}, [])
 
 	return (
@@ -44,7 +67,7 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 				dashboardCard2Title={'Value Of all Incidents'}
 				dashboardCard3Value={incidentsAvg}
 				dashboardCard3Title={'The average value of all incidents'}
-				dashboardCard4Value={51151}
+				dashboardCard4Value={`${store_name} with ${max_value}`}
 				dashboardCard4Title={'Most Notorious Store'}
 				chartCardTitle={'All branch trends'}
 				chartCardDescription={

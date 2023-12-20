@@ -1,5 +1,6 @@
 'use client'
 import OverallValueChart from '@/components/Charts/OverallValueChart'
+import TopOverallIncidentsCard from '@/components/OverAll/TopOverallIncidentsCard'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 import { useAppDispatch } from '@/redux/hooks'
 
@@ -27,7 +28,7 @@ export default function Home() {
 				chartCardContent={<OverallValueChart />}
 				scrollCardTitle={'Top twenty most valuable incidents'}
 				scrollCardDescription={'The twenty incidents with the highest value'}
-				scrollCardContent={undefined}
+				scrollCardContent={<TopOverallIncidentsCard />}
 			/>
 		</main>
 	)

@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit"
 import axios from "axios"
+import { RootState } from "../store"
 
 
 export const retrieveTheAverageValueOfAllIncidentsInARegion = createAsyncThunk("region/averageValue", async (regionId: number) => {
@@ -34,5 +35,6 @@ export const retrieveTheAverageValueOfAllIncidentsInARegionSlice = createSlice({
     }
 })
 
+export const selectAverageValueOfAllIncidentsInARegion = (state: RootState) => state.singleRegionIncidentsAverage.average_value
 
 export default retrieveTheAverageValueOfAllIncidentsInARegionSlice.reducer

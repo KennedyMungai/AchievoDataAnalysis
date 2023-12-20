@@ -528,7 +528,8 @@ async def retrieve_the_value_of_incidents_in_a_store_section_service(
     Returns:
         dict: A dict containing the total values
     """
-    query = f'SELECT * FROM incidents where store_section_id = {_store_section_id}'
+    query = f'SELECT * FROM incidents where store_section_id = {
+        _store_section_id}'
     df = pd.read_sql(query, conn)
     filtered_df = df.groupby('store_section_id')['total_value'].sum()
     some_df = filtered_df.to_dict()
@@ -547,9 +548,30 @@ async def retrieve_the_average_value_of_incidents_in_a_store_section_service(
     Returns:
         dict: A dict with the average_value
     """
-    query = f'SELECT * FROM incidents where store_section_id = {_store_section_id}'
+    query = f'SELECT * FROM incidents where store_section_id = {
+        _store_section_id}'
     df = pd.read_sql(query, conn)
     filtered_df = df.groupby('store_section_id')['total_value'].mean()
     some_df = filtered_df.to_dict()
     some_variable = list(some_df.values())[0]
     return {"average_value": some_variable}
+
+
+async def retrieve_the_most_notorious_incident_in_a_store_section_service(
+    _store_section_id: int,
+    _db: Session
+) -> ReadIncident:
+    """Wrote the service function to get the most valuable incident in a store section
+
+    Args:
+        _store_section_id (int): The store section d
+        _db (Session): The database session
+
+    Returns:
+        dict: A dict with
+    """
+    max_incident =  _db.query(Incidents).filter(
+        Incidents.store_section_id == _store_section_id
+    ).order_by(Incidents.total_value.desc()).first()
+
+    return max_incident

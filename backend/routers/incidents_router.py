@@ -631,3 +631,27 @@ async def retrieve_the_overall_average_value_of_incidents_router():
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=str(exc)
         ) from exc
+
+
+@incidents_router.get("/overall/max/region")
+async def retrieve_the_overall_most_notorious_region_router(
+    _db: Session = Depends(get_db)
+):
+    """The endpoint to get the most notorious region
+
+    Args:
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 400 is raised incase of anything
+
+    Returns:
+        dict: A dict containing the most notorious region
+    """
+    try:
+        return await retrieve_the_most_notorious_region_service(_db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc)
+        ) from exc

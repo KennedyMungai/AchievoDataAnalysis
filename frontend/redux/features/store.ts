@@ -4,6 +4,7 @@ import dateReducer from './date/dateSlice'
 import retrieveAllEmployeesReducer from './employees/retrieveAllEmployeesSlice'
 import retrieveSingleEmployeeReducer from './employees/retrieveSingleEmployeesSlice'
 import retrieveTheAverageValueOfIncidentsReportedByAnEmployeeReducer from './employees/retrieveTheAverageValueOfIncidentsReportedByAnEmployeeSlice'
+import retrieveTheMostNotoriousIncidentReportedByAnEmployeeReducer from './employees/retrieveTheMostNotoriousIncidentReportedByAnEmployeeSlice'
 import retrieveTheNumberOfIncidentsReportedByAnEmployeeReducer from './employees/retrieveTheNumberOfIncidentsReportedByAnEmployeeSlice'
 import retrieveTheValueOfIncidentsReportedByAnEmployee from './employees/retrieveTheValueOfIncidentsReportedByAnEmployeeSlice'
 import retrieveTheAverageValueOfOverallIncidentsReducer from './overall/retrieveTheAverageValueOfOverallIncidentsSlice'
@@ -69,6 +70,7 @@ const store = configureStore({
         numberOfIncidentsReportedByAnEmployee: retrieveTheNumberOfIncidentsReportedByAnEmployeeReducer,
         valueOfIncidentsReportedByAnEmployee: retrieveTheValueOfIncidentsReportedByAnEmployee,
         avgValueOfIncidentsReportedByAnEmployee: retrieveTheAverageValueOfIncidentsReportedByAnEmployeeReducer,
+        theMostNotoriousIncidentReportedByAnEmployee: retrieveTheMostNotoriousIncidentReportedByAnEmployeeReducer,
     }
 })
 

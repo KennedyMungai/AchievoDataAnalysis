@@ -40,7 +40,7 @@ const EmployeeIncidentsPage = ({ params: { employeeId } }: Props) => {
 		<div className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800 overflow-x-hidden'>
 			<DashboardTemplate
 				title={employee_name}
-				buttonName={'Find a Use for this button'}
+				buttonName={'Edit Employee'}
 				dashboardCard1Value={0}
 				dashboardCard1Title={'Number Of All Incidents'}
 				dashboardCard2Value={0}

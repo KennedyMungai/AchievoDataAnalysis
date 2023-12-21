@@ -109,7 +109,7 @@ export const Columns: ColumnDef<IEmployee>[] = [
 								size={'sm'}
 								className='w-full'
 							>
-								Add
+								Incidents
 							</Button>
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />

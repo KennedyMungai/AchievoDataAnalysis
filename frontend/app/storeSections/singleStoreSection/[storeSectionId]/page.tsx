@@ -6,7 +6,7 @@ import {
 	retrieveSingleStoreSection,
 	selectSingleStoreSection
 } from '@/redux/features/storeSections/retrieveSingleStoreSectionSlice'
-import { selectTheAverageValueOfAllIncidentsInAStoreSection } from '@/redux/features/storeSections/retrieveTheAverageValueOfAllTheIncidentsInAStoreSectionSlice'
+import { retrieveTheAverageValueOfAllIncidentsInAStoreSection, selectTheAverageValueOfAllIncidentsInAStoreSection } from '@/redux/features/storeSections/retrieveTheAverageValueOfAllTheIncidentsInAStoreSectionSlice'
 import { retrieveTheMostNotoriousIncidentInAStoreSection, selectTheMostNotoriousIncidentInAStoreSection } from '@/redux/features/storeSections/retrieveTheMostNotoriousIncidentInAStoreSectionSlice'
 import { retrieveTheNumberOfAllTheIncidentsInAStoreSection, selectTheNumberOfIncidentsInAStoreSection } from '@/redux/features/storeSections/retrieveTheNumberOfAllTheIncidentsInAStoreSectionSlice'
 import {
@@ -43,6 +43,7 @@ const SingleStoreSectionPage = ({ params: { storeSectionId } }: Props) => {
 		dispatch(retrieveTheValueOfAllIncidentsInAStoreSection(Number(storeSectionId)))
 		dispatch(retrieveTheNumberOfAllTheIncidentsInAStoreSection(Number(storeSectionId)))
 		dispatch(retrieveTheMostNotoriousIncidentInAStoreSection(Number(storeSectionId)))
+		dispatch(retrieveTheAverageValueOfAllIncidentsInAStoreSection(Number(storeSectionId)))
 	}, [])
 
 	console.log(storeSectionIncidentsAverage)

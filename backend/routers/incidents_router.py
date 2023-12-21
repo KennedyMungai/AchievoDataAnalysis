@@ -840,7 +840,7 @@ async def retrieve_the_average_value_of_all_incidents_reported_by_an_employee_ro
         ) from exc
 
 
-@incidents_router.get("/employee/max/store/{_employee_id}")
+@incidents_router.get("/employee/max/{_employee_id}")
 async def retrieve_the_most_notorious_incident_reported_by_an_employee_router(
     _employee_id: int,
     _db: Session = Depends(get_db)
@@ -859,6 +859,32 @@ async def retrieve_the_most_notorious_incident_reported_by_an_employee_router(
     """
     try:
         return await retrieve_the_most_notorious_incident_reported_by_an_employee_service(_employee_id, _db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc)
+        ) from exc
+
+
+@incidents_router.get("/employee/top_ten/{_employee_id}")
+async def retrieve_the_ten_most_valuable_incidents_reported_by_an_employee_router(
+    _employee_id: int,
+    _db: Session = Depends(get_db)
+):
+    """The endpoint to retrieve the ten most valuable incidents reported by an employee
+
+    Args:
+        _employee_id (int): The id of an employee
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 400 is raised when the router goes wrong
+
+    Returns:
+        list: A list of the ten most valuable incidents
+    """
+    try:
+        return await retrieve_the_ten_most_valuable_incidents_reported_by_an_employee_service(_employee_id, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

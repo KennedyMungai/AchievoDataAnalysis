@@ -577,7 +577,7 @@ async def retrieve_the_most_notorious_incident_in_a_store_section_service(
     return max_incident
 
 
-async def retrieve_the_number_of_all_incidents_submitted_by_an_employee(
+async def retrieve_the_number_of_all_incidents_submitted_by_an_employee_service(
     _employee_id: int,
     _db: Session
 ):
@@ -597,7 +597,7 @@ async def retrieve_the_number_of_all_incidents_submitted_by_an_employee(
     return {"count": count}
 
 
-async def retrieve_the_value_of_all_incidents_reported_by_an_employee(
+async def retrieve_the_value_of_all_incidents_reported_by_an_employee_service(
     _employee_id
 ):
     """The service function to get the value of all incidents reported by an employee
@@ -616,7 +616,7 @@ async def retrieve_the_value_of_all_incidents_reported_by_an_employee(
     return {"total_values": max_value}
 
 
-async def retrieve_the_average_value_of_all_incidents_reported_by_an_employee(
+async def retrieve_the_average_value_of_all_incidents_reported_by_an_employee_service(
     _employee_id
 ):
     """The service function to get the average value of all incidents reported by an employee
@@ -635,7 +635,7 @@ async def retrieve_the_average_value_of_all_incidents_reported_by_an_employee(
     return {"average_value": max_value}
 
 
-async def retrieve_the_most_notorious_incident_reported_by_an_employee(
+async def retrieve_the_most_notorious_incident_reported_by_an_employee_service(
     _employee_id: int,
     _db: Session
 ) -> ReadIncident:
@@ -653,3 +653,23 @@ async def retrieve_the_most_notorious_incident_reported_by_an_employee(
     ).order_by(Incidents.total_value.desc()).first()
 
     return max_incident
+
+
+async def retrieve_the_ten_most_valuable_incidents_reported_by_an_employee_service(
+    _employee_id: int,
+    _db: Session
+):
+    """Retrieves the top 10 most valuable incidents reported by an employee
+
+    Args:
+        _employee_id (int): The id of an employee
+        _db (Session): The database session
+
+    Returns:
+        List[ReadIncident]: A list of the most valuable incidents
+    """
+    return _db.query(Incidents).filter(
+        Incidents.employee_id == _employee_id
+    ).order_by(
+        Incidents.total_value.desc()
+    ).limit(20).all()

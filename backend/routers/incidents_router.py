@@ -492,7 +492,7 @@ async def retrieve_the_value_of_incidents_in_a_region_router(
         _region_id (int): The region id
 
     Raises:
-        HTTPException: A 400 is raised if anything goes wrong. The exception is raised from the service.total valie
+        HTTPException: A 400 is raised if anything goes wrong. The exception is raised from the service.total value
 
     Returns:
         dict: Some Dict

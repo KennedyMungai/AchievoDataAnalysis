@@ -17,7 +17,6 @@ type Props = {
 }
 
 const RegionStoresCards = ({ regionId }: Props) => {
-	const isLoggedIn = useAppSelector(selectAuthStateData).is_logged_in
 	const regionStores = useAppSelector(selectAllRegionStores)
 	const region = useAppSelector(selectSingleRegion)
 	const dispatch = useAppDispatch()
@@ -26,7 +25,7 @@ const RegionStoresCards = ({ regionId }: Props) => {
 		dispatch(retrieveRegionStores(regionId))
 	}, [])
 
-	const content = isLoggedIn ? (
+	return (
 		<div className=''>
 			<TopBar pageTitle={region.region_name} />
 			<div className=''>
@@ -51,33 +50,7 @@ const RegionStoresCards = ({ regionId }: Props) => {
 				</div>
 			</div>
 		</div>
-	) : (
-		<div className=''>
-			<TopBar pageTitle={region.region_name} />
-			<div className=''>
-				<div className='w-full flex flex-wrap justify-center gap-2 p-4'>
-					<>
-						{regionStores.map((storeData) => {
-							return (
-								<CardTemplate
-									key={storeData.store_id}
-									title={storeData.store_name}
-									link={`/stores/singleStore/${storeData.store_id}`}
-									content={
-										'Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam recusandae exercitationem repellat eum saepe iure ab similique provident laboriosam a maxime soluta asperiores, adipisci architecto tempore nisi molestias sit. Reprehenderit fugiat magni odio dicta earum.'
-									}
-									createdAt={storeData.created_at!}
-								/>
-							)
-						})}
-						<AddStoreCardTemplate regionId={regionId} />
-					</>
-				</div>
-			</div>
-		</div>
 	)
-
-	return content
 }
 
 export default RegionStoresCards

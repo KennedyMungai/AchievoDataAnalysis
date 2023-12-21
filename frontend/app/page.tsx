@@ -2,19 +2,35 @@
 import OverallValueChart from '@/components/Charts/OverallValueChart'
 import TopOverallIncidentsCard from '@/components/OverAll/TopOverallIncidentsCard'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
-import { retrieveTheAverageValueOfOverallIncidents, selectTheAverageValueOfAllIncidents } from '@/redux/features/overall/retrieveTheAverageValueOfOverallIncidentsSlice'
-import { retrieveTheMostNotoriousRegion, selectTheMostNotoriousRegionOverall } from '@/redux/features/overall/retrieveTheMostNotoriousRegionSlice'
-import { retrieveTheNumberOfOverallIncidents, selectTheNumberOfOverallIncidents } from '@/redux/features/overall/retrieveTheNumberOfOverallIncidentsSlice'
-import { retrieveTheValueOfOverallIncidents, selectTheOverallTotalValueOfIncidents } from '@/redux/features/overall/retrieveTheValueOfOverallIncidentsSlice'
+import {
+	retrieveTheAverageValueOfOverallIncidents,
+	selectTheAverageValueOfAllIncidents
+} from '@/redux/features/overall/retrieveTheAverageValueOfOverallIncidentsSlice'
+import {
+	retrieveTheMostNotoriousRegion,
+	selectTheMostNotoriousRegionOverall
+} from '@/redux/features/overall/retrieveTheMostNotoriousRegionSlice'
+import {
+	retrieveTheNumberOfOverallIncidents,
+	selectTheNumberOfOverallIncidents
+} from '@/redux/features/overall/retrieveTheNumberOfOverallIncidentsSlice'
+import {
+	retrieveTheValueOfOverallIncidents,
+	selectTheOverallTotalValueOfIncidents
+} from '@/redux/features/overall/retrieveTheValueOfOverallIncidentsSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
 	const dispatch = useAppDispatch()
 	const overallCount = useAppSelector(selectTheNumberOfOverallIncidents)
 	const overallValue = useAppSelector(selectTheOverallTotalValueOfIncidents)
 	const overallAverage = useAppSelector(selectTheAverageValueOfAllIncidents)
-	const {region_name, max_value} = useAppSelector(selectTheMostNotoriousRegionOverall)
+	const { region_name, max_value } = useAppSelector(
+		selectTheMostNotoriousRegionOverall
+	)
+
+	const [isLoaded, setIsLoaded] = useState<boolean>(false)
 
 	useEffect(() => {
 		dispatch(retrieveTheNumberOfOverallIncidents())
@@ -22,7 +38,14 @@ export default function Home() {
 		dispatch(retrieveTheAverageValueOfOverallIncidents())
 		dispatch(retrieveTheMostNotoriousRegion())
 	}, [])
-	
+
+	useEffect(() => {
+		setIsLoaded(true)
+	}, [])
+
+	if (!isLoaded) {
+		return
+	}
 
 	return (
 		<main className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800 overflow-x-hidden'>
@@ -44,7 +67,9 @@ export default function Home() {
 				}
 				chartCardContent={<OverallValueChart />}
 				scrollCardTitle={'Top twenty most valuable incidents'}
-				scrollCardDescription={'The twenty incidents with the highest value'}
+				scrollCardDescription={
+					'The twenty incidents with the highest value'
+				}
 				scrollCardContent={<TopOverallIncidentsCard />}
 			/>
 		</main>

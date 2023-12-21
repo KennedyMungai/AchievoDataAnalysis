@@ -5,7 +5,8 @@ import { RootState } from "../store"
 
 export const retrieveTheAverageValueOfAllIncidentsInAStoreSection = createAsyncThunk("storeSection/average", async (storeSectionId: number) => {
     const response = await axios.get(`http://localhost:8000/incidents/store_section/average/${storeSectionId}`)
-    return response.data
+    const data = response.data
+    return data
 })
 
 

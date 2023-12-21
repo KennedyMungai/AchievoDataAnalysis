@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './auth/authSlice'
 import dateReducer from './date/dateSlice'
 import retrieveAllEmployeesReducer from './employees/retrieveAllEmployeesSlice'
+import retrieveSingleEmployeeReducer from './employees/retrieveSingleEmployeesSlice'
 import retrieveTheAverageValueOfOverallIncidentsReducer from './overall/retrieveTheAverageValueOfOverallIncidentsSlice'
 import retrieveTheMostNotoriousRegionReducer from './overall/retrieveTheMostNotoriousRegionSlice'
 import retrieveTheNumberOfOverallIncidentsReducer from './overall/retrieveTheNumberOfOverallIncidentsSlice'
@@ -16,6 +17,8 @@ import retrieveTheTopTwentyIncidentsInARegionReducer from './regions/retrieveThe
 import retrieveTheTotalValueOfAllIncidentsInARegionReducer from './regions/retrieveTheValueOfAllIncidentsInARegionSlice'
 import retrieveAllStoreStoreSectionsReducer from './storeSections/retrieveAllStoreStoreSectionsSlice'
 import retrieveSingleStoreSectionReducer from './storeSections/retrieveSingleStoreSectionSlice'
+import retrieveTheAverageValueOfAllTheIncidentsInAStoreSectionReducer from './storeSections/retrieveTheAverageValueOfAllTheIncidentsInAStoreSectionSlice'
+import retrieveTheMostNotoriousIncidentInAStoreSectionReducer from './storeSections/retrieveTheMostNotoriousIncidentInAStoreSectionSlice'
 import retrieveTheNumberOfAllTheIncidentsInAStoreSectionReducer from './storeSections/retrieveTheNumberOfAllTheIncidentsInAStoreSectionSlice'
 import retrieveTheTopTwentyIncidentsInAStoreSectionReducer from './storeSections/retrieveTheTopTwentyIncidentsInAStoreSectionSlice'
 import retrieveTheValueOfAllIncidentsInAStoreSectionReducer from './storeSections/retrieveTheValueOfAllTheIncidentsInAStoreSectionSlice'
@@ -26,8 +29,6 @@ import retrieveSingleStoreIncidentsValueReducer from './stores/retrieveSingleSto
 import retrieveSingleStoreReducer from './stores/retrieveSingleStoreSlice'
 import retrieveTheMostNotoriousStoreSectionReducer from './stores/retrieveTheMostNotoriousStoreSectionSlice'
 import retrieveTopTwentyMostValuableIncidentsInAStoreReducer from './stores/retrieveTopTwentyMostValuableIncidentsInAStoreSlice'
-import retrieveTheAverageValueOfAllTheIncidentsInAStoreSectionReducer from './storeSections/retrieveTheAverageValueOfAllTheIncidentsInAStoreSectionSlice'
-import retrieveTheMostNotoriousIncidentInAStoreSectionReducer from './storeSections/retrieveTheMostNotoriousIncidentInAStoreSectionSlice'
 
 
 const store = configureStore({
@@ -60,7 +61,8 @@ const store = configureStore({
         theValueOfAllIncidentsInAStoreSection: retrieveTheValueOfAllIncidentsInAStoreSectionReducer,
         theNumberOfAllTheIncidentsInAStoreSection: retrieveTheNumberOfAllTheIncidentsInAStoreSectionReducer,
         theAverageValueOfAllIncidentsInAStoreSection: retrieveTheAverageValueOfAllTheIncidentsInAStoreSectionReducer,
-        theMostNotoriousIncidentInAStoreSection: retrieveTheMostNotoriousIncidentInAStoreSectionReducer    
+        theMostNotoriousIncidentInAStoreSection: retrieveTheMostNotoriousIncidentInAStoreSectionReducer,
+        singleEmployee: retrieveSingleEmployeeReducer
     }
 })
 

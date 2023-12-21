@@ -64,7 +64,7 @@ const SingleStoreSectionPage = ({ params: { storeSectionId } }: Props) => {
 				dashboardCard4Title={'The most notorious incident'}
 				chartCardTitle={'All incidents trends'}
 				chartCardDescription={
-					'The trends for all the incidents inside a store section'
+					'The trend for all the incidents inside a store section'
 				}
 				chartCardContent={<StoreSectionValueChart storeSectionId={Number(storeSectionId)} />}
 				scrollCardTitle={'Top 20 most valuable incidents'}

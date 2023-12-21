@@ -614,3 +614,22 @@ async def retrieve_the_value_of_all_incidents_reported_by_an_employee(
     some_dict = filtered_df.to_dict()
     max_value = max(some_dict.values())
     return {"total_values": max_value}
+
+
+async def retrieve_the_average_value_of_all_incidents_reported_by_an_employee(
+    _employee_id
+):
+    """The service function to get the average value of all incidents reported by an employee
+
+    Args:
+        _employee_id (int): The id of an employee
+
+    Returns:
+        dict: A dict with the average value
+    """
+    query = f"SELECT * FROM incidents WHERE employee_id = {_employee_id}"
+    df = pd.read_sql(query, conn)
+    filtered_df = df.groupby('employee_id')['total_value'].mean()
+    some_dict = filtered_df.to_dict()
+    max_value = max(some_dict.values())
+    return {"average_value": max_value}

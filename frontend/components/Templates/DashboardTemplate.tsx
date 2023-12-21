@@ -1,5 +1,6 @@
 'use client'
 import { selectAuthStateData } from '@/redux/features/auth/authSlice'
+import { setGlobalDate } from '@/redux/features/date/dateSlice'
 import { selectSingleRegion } from '@/redux/features/regions/retrieveSingleRegionSlice'
 import { selectSingleStoreSection } from '@/redux/features/storeSections/retrieveSingleStoreSectionSlice'
 import { selectSingleStore } from '@/redux/features/stores/retrieveSingleStoreSlice'
@@ -40,7 +41,6 @@ import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { ScrollArea } from '../ui/scroll-area'
 import ChartCardTemplate from './ChartCardTemplate'
 import DashboardCards from './DashboardCards'
-import { setGlobalDate } from '@/redux/features/date/dateSlice'
 
 type Props = {
 	title: string

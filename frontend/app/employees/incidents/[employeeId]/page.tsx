@@ -1,4 +1,6 @@
 'use client'
+import EmployeeValueChart from '@/components/Employees/EmployeeValueChart'
+import TopStoreSectionsIncidentsCard from '@/components/StoreSections/TopStoreSectionsIncidentsCard'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 import {
 	retrieveSingleEmployee,
@@ -49,10 +51,10 @@ const EmployeeIncidentsPage = ({ params: { employeeId } }: Props) => {
 				dashboardCard4Title={'The Most Notorious Incident'}
 				chartCardTitle={'Employee Incidents Trend'}
 				chartCardDescription={'The trend of all incidents reported by an employee'}
-				chartCardContent={undefined}
+				chartCardContent={<EmployeeValueChart employeeId={Number(employeeId)} />}
 				scrollCardTitle={'The 20 most valuable incidents'}
 				scrollCardDescription={'The 20 incidents with the highest value'}
-				scrollCardContent={undefined}
+				scrollCardContent={<TopStoreSectionsIncidentsCard incidents={[]} />}
 			/>
 		</div>
 	)

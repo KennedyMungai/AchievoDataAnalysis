@@ -570,8 +570,28 @@ async def retrieve_the_most_notorious_incident_in_a_store_section_service(
     Returns:
         dict: A dict with
     """
-    max_incident =  _db.query(Incidents).filter(
+    max_incident = _db.query(Incidents).filter(
         Incidents.store_section_id == _store_section_id
     ).order_by(Incidents.total_value.desc()).first()
 
     return max_incident
+
+
+async def retrieve_the_number_of_all_incidents_submitted_by_an_employee(
+    _employee_id: int,
+    _db: Session
+):
+    """The service function to get the number of all incidents submitted by an employee
+
+    Args:
+        _employee_id (int): The id of an employee
+        _db (Session): The database session
+
+    Returns:
+        dict: A dict with the count
+    """
+    count = _db.query(Incidents).filter(
+        Incidents.employee_id == _employee_id
+    ).count()
+
+    return {"count": count}

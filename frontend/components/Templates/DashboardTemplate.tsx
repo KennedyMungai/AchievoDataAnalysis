@@ -91,7 +91,7 @@ const formSchema = z.object({
 	is_resolved: z.boolean().default(false)
 })
 
-// TODO: Look into the data being posted by the api
+// TODO: Look at the logic used to submit the information
 
 const DashboardTemplate = ({
 	title,

@@ -790,3 +790,27 @@ async def retrieve_the_number_of_all_incidents_submitted_by_an_employee_router(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=str(exc)
         ) from exc
+
+
+@incidents_router.get("/employee/value/{_employee_id}")
+async def retrieve_the_value_of_all_incidents_reported_by_an_employee_router(
+    _employee_id: int
+):
+    """The endpoint to get the value of all incidents reported by an employee
+
+    Args:
+        _employee_id (int): Employee Id
+
+    Raises:
+        HTTPException: A 400 is raised incase anything goes wrong
+
+    Returns:
+        value: The value of all incidents reported by an employee
+    """
+    try:
+        return await retrieve_the_value_of_all_incidents_reported_by_an_employee_service(_employee_id)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc)
+            ) from exc

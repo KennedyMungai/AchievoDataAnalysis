@@ -598,7 +598,7 @@ async def retrieve_the_number_of_all_incidents_submitted_by_an_employee_service(
 
 
 async def retrieve_the_value_of_all_incidents_reported_by_an_employee_service(
-    _employee_id
+    _employee_id: int
 ):
     """The service function to get the value of all incidents reported by an employee
 

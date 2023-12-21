@@ -21,7 +21,7 @@ export const Columns: ColumnDef<IEmployee>[] = [
 			<Checkbox
 				checked={table.getIsAllPageRowsSelected()}
 				onCheckedChange={(value) => {
-                    // TODO: This logic probably doesn't work
+					// TODO: This logic probably doesn't work
 					table.toggleAllPageRowsSelected(value ? true : false)
 				}}
 			/>
@@ -105,24 +105,19 @@ export const Columns: ColumnDef<IEmployee>[] = [
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align='end'>
 						<DropdownMenuItem>
-							<Link href={`/employees/incidents/${row.getValue('employee_id')}`}><Button
-								variant={'ghost'}
-								size={'sm'}
-								className='w-full'
+							<Link
+								href={`/employees/incidents/${row.getValue(
+									'employee_id'
+								)}`}
 							>
-								Incidents
-							</Button></Link>
-							
-						</DropdownMenuItem>
-						<DropdownMenuSeparator />
-						<DropdownMenuItem>
-							<Button
-								variant={'ghost'}
-								size={'sm'}
-								className='w-full'
-							>
-								Edit
-							</Button>
+								<Button
+									variant={'ghost'}
+									size={'sm'}
+									className='w-full'
+								>
+									Incidents
+								</Button>
+							</Link>
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
 						<DropdownMenuItem>

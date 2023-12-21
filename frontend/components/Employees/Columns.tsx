@@ -10,6 +10,7 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger
 } from '../ui/dropdown-menu'
+import Link from 'next/link'
 
 type Props = {}
 
@@ -104,13 +105,14 @@ export const Columns: ColumnDef<IEmployee>[] = [
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align='end'>
 						<DropdownMenuItem>
-							<Button
+							<Link href={`/employees/incidents/${row.getValue('employee_id')}`}><Button
 								variant={'ghost'}
 								size={'sm'}
 								className='w-full'
 							>
 								Incidents
-							</Button>
+							</Button></Link>
+							
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
 						<DropdownMenuItem>

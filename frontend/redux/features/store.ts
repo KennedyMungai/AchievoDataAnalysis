@@ -3,6 +3,8 @@ import authReducer from './auth/authSlice'
 import dateReducer from './date/dateSlice'
 import retrieveAllEmployeesReducer from './employees/retrieveAllEmployeesSlice'
 import retrieveSingleEmployeeReducer from './employees/retrieveSingleEmployeesSlice'
+import retrieveTheNumberOfIncidentsReportedByAnEmployeeReducer from './employees/retrieveTheNumberOfIncidentsReportedByAnEmployeeSlice'
+import retrieveTheValueOfIncidentsReportedByAnEmployee from './employees/retrieveTheValueOfIncidentsReportedByAnEmployeeSlice'
 import retrieveTheAverageValueOfOverallIncidentsReducer from './overall/retrieveTheAverageValueOfOverallIncidentsSlice'
 import retrieveTheMostNotoriousRegionReducer from './overall/retrieveTheMostNotoriousRegionSlice'
 import retrieveTheNumberOfOverallIncidentsReducer from './overall/retrieveTheNumberOfOverallIncidentsSlice'
@@ -29,7 +31,6 @@ import retrieveSingleStoreIncidentsValueReducer from './stores/retrieveSingleSto
 import retrieveSingleStoreReducer from './stores/retrieveSingleStoreSlice'
 import retrieveTheMostNotoriousStoreSectionReducer from './stores/retrieveTheMostNotoriousStoreSectionSlice'
 import retrieveTopTwentyMostValuableIncidentsInAStoreReducer from './stores/retrieveTopTwentyMostValuableIncidentsInAStoreSlice'
-import retrieveTheNumberOfIncidentsReportedByAnEmployeeReducer from './employees/retrieveTheNumberOfIncidentsReportedByAnEmployeeSlice'
 
 
 const store = configureStore({
@@ -65,6 +66,7 @@ const store = configureStore({
         theMostNotoriousIncidentInAStoreSection: retrieveTheMostNotoriousIncidentInAStoreSectionReducer,
         singleEmployee: retrieveSingleEmployeeReducer,
         numberOfIncidentsReportedByAnEmployee: retrieveTheNumberOfIncidentsReportedByAnEmployeeReducer,
+        valueOfIncidentsReportedByAnEmployee: retrieveTheValueOfIncidentsReportedByAnEmployee
     }
 })
 

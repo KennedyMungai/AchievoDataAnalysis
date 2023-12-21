@@ -89,22 +89,94 @@ const LoginButton = (props: Props) => {
 		toast.success('Successfully Logged out')
 	}
 
-	return (
-		<DropdownMenu>
-			<DropdownMenuTrigger>
-				<Button variant={'outline'}>
-					Welcome Back {employee_name}
-				</Button>
-			</DropdownMenuTrigger>
-			<DropdownMenuContent>
-				<DropdownMenuItem className='flex justify-center'>
-					<Button variant={'destructive'} onClick={logOutHandler}>
-						Logout
+	if (!isLoggedIn) {
+		return (
+			<Dialog open={!isLoggedIn}>
+				<DialogTrigger asChild>
+					<Button variant={'outline'}>Login</Button>
+				</DialogTrigger>
+				<DialogContent>
+					<DialogHeader>
+						<DialogTitle>Login</DialogTitle>
+						<DialogDescription>
+							Please enter your email address and Password
+						</DialogDescription>
+					</DialogHeader>
+					<Form {...form}>
+						<form
+							onSubmit={form.handleSubmit(onSubmit)}
+							className='space-y-8'
+						>
+							<FormField
+								control={form.control}
+								name='userEmail'
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Email</FormLabel>
+										<FormControl>
+											<Input
+												{...field}
+												placeholder='Email'
+											/>
+										</FormControl>
+										<FormDescription>
+											Please enter your email address
+										</FormDescription>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name='password'
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Password</FormLabel>
+										<FormControl>
+											<Input
+												{...field}
+												placeholder='Password'
+												type='password'
+											/>
+										</FormControl>
+										<FormDescription>
+											Please enter your password
+										</FormDescription>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<DialogFooter>
+								<DialogClose asChild>
+									<Button type='submit'>Cancel</Button>
+								</DialogClose>
+								<Button variant='outline'>Submit</Button>
+							</DialogFooter>
+						</form>
+					</Form>
+				</DialogContent>
+			</Dialog>
+		)
+	}
+
+	if (isLoggedIn) {
+		return (
+			<DropdownMenu>
+				<DropdownMenuTrigger>
+					<Button variant={'outline'}>
+						Welcome Back {employee_name}
 					</Button>
-				</DropdownMenuItem>
-			</DropdownMenuContent>
-		</DropdownMenu>
-	)
+				</DropdownMenuTrigger>
+				<DropdownMenuContent>
+					<DropdownMenuItem className='flex justify-center'>
+						<Button variant={'destructive'} onClick={logOutHandler}>
+							Logout
+						</Button>
+					</DropdownMenuItem>
+				</DropdownMenuContent>
+			</DropdownMenu>
+		)
+	}
 }
 
 export default LoginButton

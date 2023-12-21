@@ -633,3 +633,23 @@ async def retrieve_the_average_value_of_all_incidents_reported_by_an_employee(
     some_dict = filtered_df.to_dict()
     max_value = max(some_dict.values())
     return {"average_value": max_value}
+
+
+async def retrieve_the_most_notorious_incident_reported_by_an_employee(
+    _employee_id: int,
+    _db: Session
+) -> ReadIncident:
+    """The service function to get the most notorious incident reported by an employee
+
+    Args:
+        _employee_id (int): The id of an
+        _db (Session): The database session
+
+    Returns:
+        ReadIncident: The most notorious incident
+    """
+    max_incident = _db.query(Incidents).filter(
+        Incidents.employee_id == _employee_id
+    ).order_by(Incidents.total_value.desc()).first()
+
+    return max_incident

@@ -11,6 +11,8 @@ import {
 	DropdownMenuTrigger
 } from '../ui/dropdown-menu'
 import Link from 'next/link'
+import toast from 'react-hot-toast'
+import axios from 'axios'
 
 type Props = {}
 
@@ -125,6 +127,20 @@ export const Columns: ColumnDef<IEmployee>[] = [
 								variant={'destructive'}
 								size={'sm'}
 								className='w-full'
+								onClick={async () => {
+									try {
+										await axios.delete(
+											`http://localhost:8000/employees/${row.getValue(
+												'employee_id'
+											)}`
+										)
+										toast.success(
+											'Employee Deleted Successfully'
+										)
+									} catch (error) {
+										toast.error('Something Went Wrong')
+									}
+								}}
 							>
 								Delete
 							</Button>

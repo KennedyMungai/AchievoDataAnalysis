@@ -32,6 +32,11 @@ from services.incident_services import (
     retrieve_the_value_of_incidents_in_a_store_section_service,
     retrieve_the_average_value_of_incidents_in_a_store_section_service,
     retrieve_the_most_notorious_incident_in_a_store_section_service,
+    retrieve_the_average_value_of_all_incidents_reported_by_an_employee_service,
+    retrieve_the_most_notorious_incident_reported_by_an_employee_service,
+    retrieve_the_number_of_all_incidents_submitted_by_an_employee_service,
+    retrieve_the_ten_most_valuable_incidents_reported_by_an_employee_service,
+    retrieve_the_value_of_all_incidents_reported_by_an_employee_service,
     update_incident_service)
 from sqlalchemy.orm import Session
 from utils.oauth2 import get_current_user
@@ -754,6 +759,32 @@ async def retrieve_the_most_notorious_incident_in_a_store_section_router(
     """
     try:
         return await retrieve_the_most_notorious_incident_in_a_store_section_service(_store_section_id, _db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc)
+        ) from exc
+
+
+@incidents_router.get("/employee/count/{_employee_id}")
+async def retrieve_the_number_of_all_incidents_submitted_by_an_employee_router(
+    _employee_id: int,
+    _db: Session = Depends(get_db)
+):
+    """The service function to get the number of incidents submitted by an employee
+
+    Args:
+        _employee_id (int): The id of the employee
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 400 is raised when there is an issue fetching the data
+
+    Returns:
+        count: The employee incidents count
+    """
+    try:
+        return await retrieve_the_number_of_all_incidents_submitted_by_an_employee_service(_employee_id, _db)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

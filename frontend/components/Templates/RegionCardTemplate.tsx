@@ -45,7 +45,6 @@ const RegionCardTemplate = ({
 							</CardTitle>
 						</CardHeader>
 						<Separator />
-						{/* TODO: Add some proper formatting */}
 						<CardContent className='flex flex-1 py-3'>
 							{content}
 						</CardContent>
@@ -53,7 +52,7 @@ const RegionCardTemplate = ({
 						<CardFooter className='flex items-end justify-end w-full'>
 							<p className='text-sm '>
 								{moment(createdAt).format(
-									'DD-MMM-YYYY HH:mm:ss'
+									'DD-MMM-YYYY'
 								)}
 							</p>
 						</CardFooter>

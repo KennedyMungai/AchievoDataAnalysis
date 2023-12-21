@@ -45,6 +45,9 @@ const SingleStoreSectionPage = ({ params: { storeSectionId } }: Props) => {
 		dispatch(retrieveTheMostNotoriousIncidentInAStoreSection(Number(storeSectionId)))
 	}, [])
 
+	console.log(storeSectionIncidentsAverage)
+	console.log(storeSectionIncidentsValue)
+
 	return (
 		<div className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800 overflow-x-hidden'>
 			<DashboardTemplate

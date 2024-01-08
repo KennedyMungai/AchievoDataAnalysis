@@ -2,6 +2,13 @@
 import Chart from 'chart.js/auto'
 import { CategoryScale } from 'chart.js'
 import { Line } from 'react-chartjs-2'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import {
+	retrieveTheStoreSectionGraphingData,
+	selectAStoreSectionsData,
+	selectAStoreSectionsDataLabels
+} from '@/redux/features/storeSections/retrieveTheGraphingDataForTheStoreSectionsSlice'
+import { useEffect } from 'react'
 
 type Props = {
 	storeSectionId: number
@@ -9,13 +16,21 @@ type Props = {
 
 Chart.register(CategoryScale)
 
-const StoreSectionValueChart = ({ storeSectionId: storeId }: Props) => {
-	const data = {
-		labels: ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'],
+const StoreSectionValueChart = ({ storeSectionId }: Props) => {
+	const dispatch = useAppDispatch()
+	const data = useAppSelector(selectAStoreSectionsData)
+	const labels = useAppSelector(selectAStoreSectionsDataLabels)
+
+	useEffect(() => {
+		dispatch(retrieveTheStoreSectionGraphingData(storeSectionId))
+	}, [])
+
+	const graphingData = {
+		labels,
 		datasets: [
 			{
 				label: 'Incidents $',
-				data: [18127, 22201, 19490, 17938, 24182, 17842, 22475],
+				data,
 				borderColor: 'rgb(53, 162, 235)',
 				backgroundColor: 'rgb(53, 162, 235, 0.4'
 			}

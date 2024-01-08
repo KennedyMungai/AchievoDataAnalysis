@@ -6,9 +6,14 @@ import {
 	retrieveSingleStoreSection,
 	selectSingleStoreSection
 } from '@/redux/features/storeSections/retrieveSingleStoreSectionSlice'
-import { retrieveTheAverageValueOfAllIncidentsInAStoreSection, selectTheAverageValueOfAllIncidentsInAStoreSection } from '@/redux/features/storeSections/retrieveTheAverageValueOfAllTheIncidentsInAStoreSectionSlice'
-import { retrieveTheMostNotoriousIncidentInAStoreSection, selectTheMostNotoriousIncidentInAStoreSection } from '@/redux/features/storeSections/retrieveTheMostNotoriousIncidentInAStoreSectionSlice'
-import { retrieveTheNumberOfAllTheIncidentsInAStoreSection, selectTheNumberOfIncidentsInAStoreSection } from '@/redux/features/storeSections/retrieveTheNumberOfAllTheIncidentsInAStoreSectionSlice'
+import {
+	retrieveTheMostNotoriousIncidentInAStoreSection,
+	selectTheMostNotoriousIncidentInAStoreSection
+} from '@/redux/features/storeSections/retrieveTheMostNotoriousIncidentInAStoreSectionSlice'
+import {
+	retrieveTheNumberOfAllTheIncidentsInAStoreSection,
+	selectTheNumberOfIncidentsInAStoreSection
+} from '@/redux/features/storeSections/retrieveTheNumberOfAllTheIncidentsInAStoreSectionSlice'
 import {
 	retrieveTheTopTwentyIncidentsInAStoreSection,
 	selectTheTopTwentyIncidentsInAStoreSection
@@ -31,19 +36,41 @@ const SingleStoreSectionPage = ({ params: { storeSectionId } }: Props) => {
 	const dispatch = useAppDispatch()
 	const storeSectionData = useAppSelector(selectSingleStoreSection)
 	const storeData = useAppSelector(selectSingleStore)
-	const topTwentyIncidents = useAppSelector(selectTheTopTwentyIncidentsInAStoreSection)
-	const storeSectionIncidentsValue = useAppSelector(selectTheTotalValueOfIncidentsInAStoreSection)
-	const storeSectionIncidentCount = useAppSelector(selectTheNumberOfIncidentsInAStoreSection)
-	const storeSectionIncidentsAverage = useAppSelector(selectTheAverageValueOfAllIncidentsInAStoreSection)
-	const {total_value} = useAppSelector(selectTheMostNotoriousIncidentInAStoreSection)
+	const topTwentyIncidents = useAppSelector(
+		selectTheTopTwentyIncidentsInAStoreSection
+	)
+	const storeSectionIncidentsValue = useAppSelector(
+		selectTheTotalValueOfIncidentsInAStoreSection
+	)
+	const storeSectionIncidentCount = useAppSelector(
+		selectTheNumberOfIncidentsInAStoreSection
+	)
+	const storeSectionIncidentsAverage =
+		storeSectionIncidentsValue / storeSectionIncidentsValue
+	const { total_value } = useAppSelector(
+		selectTheMostNotoriousIncidentInAStoreSection
+	)
 
 	useEffect(() => {
 		dispatch(retrieveSingleStoreSection(Number(storeSectionId)))
-		dispatch(retrieveTheTopTwentyIncidentsInAStoreSection(Number(storeSectionId)))
-		dispatch(retrieveTheValueOfAllIncidentsInAStoreSection(Number(storeSectionId)))
-		dispatch(retrieveTheNumberOfAllTheIncidentsInAStoreSection(Number(storeSectionId)))
-		dispatch(retrieveTheMostNotoriousIncidentInAStoreSection(Number(storeSectionId)))
-		dispatch(retrieveTheAverageValueOfAllIncidentsInAStoreSection(Number(storeSectionId)))
+		dispatch(
+			retrieveTheTopTwentyIncidentsInAStoreSection(Number(storeSectionId))
+		)
+		dispatch(
+			retrieveTheValueOfAllIncidentsInAStoreSection(
+				Number(storeSectionId)
+			)
+		)
+		dispatch(
+			retrieveTheNumberOfAllTheIncidentsInAStoreSection(
+				Number(storeSectionId)
+			)
+		)
+		dispatch(
+			retrieveTheMostNotoriousIncidentInAStoreSection(
+				Number(storeSectionId)
+			)
+		)
 	}, [])
 
 	return (
@@ -63,10 +90,20 @@ const SingleStoreSectionPage = ({ params: { storeSectionId } }: Props) => {
 				chartCardDescription={
 					'The trend for all the incidents inside a store section'
 				}
-				chartCardContent={<StoreSectionValueChart storeSectionId={Number(storeSectionId)} />}
+				chartCardContent={
+					<StoreSectionValueChart
+						storeSectionId={Number(storeSectionId)}
+					/>
+				}
 				scrollCardTitle={'Top 20 most valuable incidents'}
-				scrollCardDescription={'The 20 incidents with the highest value'}
-				scrollCardContent={<TopStoreSectionsIncidentsCard incidents={topTwentyIncidents} />}
+				scrollCardDescription={
+					'The 20 incidents with the highest value'
+				}
+				scrollCardContent={
+					<TopStoreSectionsIncidentsCard
+						incidents={topTwentyIncidents}
+					/>
+				}
 			/>
 		</div>
 	)

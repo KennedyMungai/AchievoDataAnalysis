@@ -279,7 +279,10 @@ async def retrieve_the_top_twenty_most_valuable_incidents_in_a_store_section_rou
         List[ReadIncident]: A list of the top twenty most valuable incidents
     """
     try:
-        return await retrieve_the_top_twenty_most_valuable_incidents_in_a_store_section_service(_store_section_id, _db)
+        return await retrieve_the_top_twenty_most_valuable_incidents_in_a_store_section_service(
+            _store_section_id,
+            _db
+        )
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -305,7 +308,10 @@ async def retrieve_the_top_twenty_most_valuable_incidents_in_a_store_router(
         List[ReadIncident]: A list of the top twenty most valuable incidents
     """
     try:
-        return await retrieve_the_top_twenty_most_valuable_incidents_in_a_store_service(_store_id, _db)
+        return await retrieve_the_top_twenty_most_valuable_incidents_in_a_store_service(
+            _store_id,
+            _db
+        )
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -331,7 +337,10 @@ async def retrieve_the_top_twenty_most_valuable_incidents_in_a_region_router(
         List[ReadIncident]: A list of the top twenty most valuable incidents
     """
     try:
-        return await retrieve_the_top_twenty_most_valuable_incidents_in_a_region_service(_region_id, _db)
+        return await retrieve_the_top_twenty_most_valuable_incidents_in_a_region_service(
+            _region_id,
+            _db
+        )
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -471,7 +480,9 @@ async def retrieve_the_value_of_incidents_in_a_region_router(
         dict: Some Dict
     """
     try:
-        return await retrieve_the_value_of_all_incidents_in_a_region_service(_region_id)
+        return await retrieve_the_value_of_all_incidents_in_a_region_service(
+            _region_id
+        )
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -614,7 +625,10 @@ async def retrieve_the_number_of_incidents_in_a_store_section_router(
         dict: A dict containing the count
     """
     try:
-        return await retrieve_the_number_of_incidents_in_a_store_section_service(_store_section_id, _db)
+        return await retrieve_the_number_of_incidents_in_a_store_section_service(
+            _store_section_id,
+            _db
+        )
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -664,7 +678,10 @@ async def retrieve_the_most_notorious_incident_in_a_store_section_router(
         dict: A dict containing the most notorious incident
     """
     try:
-        return await retrieve_the_most_notorious_incident_in_a_store_section_service(_store_section_id, _db)
+        return await retrieve_the_most_notorious_incident_in_a_store_section_service(
+            _store_section_id,
+            _db
+        )
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -690,7 +707,10 @@ async def retrieve_the_number_of_all_incidents_submitted_by_an_employee_router(
         count: The employee incidents count
     """
     try:
-        return await retrieve_the_number_of_all_incidents_submitted_by_an_employee_service(_employee_id, _db)
+        return await retrieve_the_number_of_all_incidents_submitted_by_an_employee_service(
+            _employee_id,
+            _db
+        )
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -714,7 +734,9 @@ async def retrieve_the_value_of_all_incidents_reported_by_an_employee_router(
         value: The value of all incidents reported by an employee
     """
     try:
-        return await retrieve_the_value_of_all_incidents_reported_by_an_employee_service(_employee_id)
+        return await retrieve_the_value_of_all_incidents_reported_by_an_employee_service(
+            _employee_id
+        )
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -740,7 +762,10 @@ async def retrieve_the_most_notorious_incident_reported_by_an_employee_router(
         ReadIncident: The most notorious incident
     """
     try:
-        return await retrieve_the_most_notorious_incident_reported_by_an_employee_service(_employee_id, _db)
+        return await retrieve_the_most_notorious_incident_reported_by_an_employee_service(
+            _employee_id,
+            _db
+        )
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

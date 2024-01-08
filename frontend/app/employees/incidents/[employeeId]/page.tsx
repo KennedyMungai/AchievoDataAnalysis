@@ -3,28 +3,24 @@ import EmployeeValueChart from '@/components/Employees/EmployeeValueChart'
 import TopStoreSectionsIncidentsCard from '@/components/StoreSections/TopStoreSectionsIncidentsCard'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 import {
-    retrieveSingleEmployee,
-    selectSingleEmployee
+	retrieveSingleEmployee,
+	selectSingleEmployee
 } from '@/redux/features/employees/retrieveSingleEmployeesSlice'
 import {
-    retrieveTheAverageValueOfIncidentsReportedByAnEmployee,
-    selectTheAverageValueOfIncidentsReportedByAnEmployee
-} from '@/redux/features/employees/retrieveTheAverageValueOfIncidentsReportedByAnEmployeeSlice'
-import {
-    retrieveTheMostNotoriousIncidentReportedByAnEmployee,
-    selectTheMostNotoriousIncidentReportedByAnEmployee
+	retrieveTheMostNotoriousIncidentReportedByAnEmployee,
+	selectTheMostNotoriousIncidentReportedByAnEmployee
 } from '@/redux/features/employees/retrieveTheMostNotoriousIncidentReportedByAnEmployeeSlice'
 import {
-    retrieveTheNumberOfIncidentsReportedByAnEmployee,
-    selectTheNumberOfIncidentsReportedByAnEmployee
+	retrieveTheNumberOfIncidentsReportedByAnEmployee,
+	selectTheNumberOfIncidentsReportedByAnEmployee
 } from '@/redux/features/employees/retrieveTheNumberOfIncidentsReportedByAnEmployeeSlice'
 import {
-    retrieveTheTenMostNotoriousIncidentsReportedByAnEmployee,
-    selectTheTenMostNotoriousIncidentsReportedByAnEmployee
+	retrieveTheTenMostNotoriousIncidentsReportedByAnEmployee,
+	selectTheTenMostNotoriousIncidentsReportedByAnEmployee
 } from '@/redux/features/employees/retrieveTheTenMostNotoriousIncidentReportedByAnEmployeeSlice'
 import {
-    retrieveTheValueOfIncidentsReportedByAnEmployee,
-    selectTheValueOfIncidentsReportedByAnEmployee
+	retrieveTheValueOfIncidentsReportedByAnEmployee,
+	selectTheValueOfIncidentsReportedByAnEmployee
 } from '@/redux/features/employees/retrieveTheValueOfIncidentsReportedByAnEmployeeSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useEffect } from 'react'
@@ -38,11 +34,19 @@ type Props = {
 const EmployeeIncidentsPage = ({ params: { employeeId } }: Props) => {
 	const dispatch = useAppDispatch()
 
-    const numberOfIncidents = useAppSelector(selectTheNumberOfIncidentsReportedByAnEmployee)
-    const valueOfIncidents = useAppSelector(selectTheValueOfIncidentsReportedByAnEmployee)
-    const avgValueOfIncidents = useAppSelector(selectTheAverageValueOfIncidentsReportedByAnEmployee)
-    const {total_value} = useAppSelector(selectTheMostNotoriousIncidentReportedByAnEmployee)
-    const incidents = useAppSelector(selectTheTenMostNotoriousIncidentsReportedByAnEmployee)
+	const numberOfIncidents = useAppSelector(
+		selectTheNumberOfIncidentsReportedByAnEmployee
+	)
+	const valueOfIncidents = useAppSelector(
+		selectTheValueOfIncidentsReportedByAnEmployee
+	)
+	const avgValueOfIncidents = valueOfIncidents / numberOfIncidents
+	const { total_value } = useAppSelector(
+		selectTheMostNotoriousIncidentReportedByAnEmployee
+	)
+	const incidents = useAppSelector(
+		selectTheTenMostNotoriousIncidentsReportedByAnEmployee
+	)
 
 	const {
 		employee_email,
@@ -60,11 +64,22 @@ const EmployeeIncidentsPage = ({ params: { employeeId } }: Props) => {
 
 	useEffect(() => {
 		dispatch(retrieveSingleEmployee(Number(employeeId)))
-        dispatch(retrieveTheNumberOfIncidentsReportedByAnEmployee(Number(employeeId)))
-        dispatch(retrieveTheValueOfIncidentsReportedByAnEmployee(Number(employeeId)))
-        dispatch(retrieveTheAverageValueOfIncidentsReportedByAnEmployee(Number(employeeId)))
-        dispatch(retrieveTheMostNotoriousIncidentReportedByAnEmployee(Number(employeeId)))
-        dispatch(retrieveTheTenMostNotoriousIncidentsReportedByAnEmployee(Number(employeeId)))
+		dispatch(
+			retrieveTheNumberOfIncidentsReportedByAnEmployee(Number(employeeId))
+		)
+		dispatch(
+			retrieveTheValueOfIncidentsReportedByAnEmployee(Number(employeeId))
+		)
+		dispatch(
+			retrieveTheMostNotoriousIncidentReportedByAnEmployee(
+				Number(employeeId)
+			)
+		)
+		dispatch(
+			retrieveTheTenMostNotoriousIncidentsReportedByAnEmployee(
+				Number(employeeId)
+			)
+		)
 	}, [])
 
 	return (
@@ -81,11 +96,19 @@ const EmployeeIncidentsPage = ({ params: { employeeId } }: Props) => {
 				dashboardCard4Value={total_value}
 				dashboardCard4Title={'The Most Notorious Incident'}
 				chartCardTitle={'Employee Incidents Trend'}
-				chartCardDescription={'The trend of all incidents reported by an employee'}
-				chartCardContent={<EmployeeValueChart employeeId={Number(employeeId)} />}
+				chartCardDescription={
+					'The trend of all incidents reported by an employee'
+				}
+				chartCardContent={
+					<EmployeeValueChart employeeId={Number(employeeId)} />
+				}
 				scrollCardTitle={'The 20 most valuable incidents'}
-				scrollCardDescription={'The 20 incidents with the highest value'}
-				scrollCardContent={<TopStoreSectionsIncidentsCard incidents={incidents} />}
+				scrollCardDescription={
+					'The 20 incidents with the highest value'
+				}
+				scrollCardContent={
+					<TopStoreSectionsIncidentsCard incidents={incidents} />
+				}
 			/>
 		</div>
 	)

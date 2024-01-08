@@ -11,33 +11,28 @@ from services.incident_services import (
     retrieve_all_incident_in_a_store_service,
     retrieve_all_incidents_by_an_employee_service,
     retrieve_all_incidents_in_a_region_service, retrieve_all_incidents_service,
-    retrieve_one_incident_service, retrieve_the_value_of_incidents_by_store_section_service,
+    retrieve_one_incident_service,
+    retrieve_the_most_notorious_incident_in_a_store_section_service,
+    retrieve_the_most_notorious_incident_reported_by_an_employee_service,
+    retrieve_the_most_notorious_region_service,
+    retrieve_the_most_notorious_store_section_service,
+    retrieve_the_most_notorious_store_service,
+    retrieve_the_number_of_all_incidents_submitted_by_an_employee_service,
+    retrieve_the_number_of_incidents_in_a_region_service,
+    retrieve_the_number_of_incidents_in_a_store_section_service,
+    retrieve_the_number_of_incidents_in_a_store_service,
+    retrieve_the_number_of_overall_incidents_service,
+    retrieve_the_overall_top_twenty_most_valuable_incidents_service,
+    retrieve_the_ten_most_valuable_incidents_reported_by_an_employee_service,
     retrieve_the_top_twenty_most_valuable_incidents_in_a_region_service,
     retrieve_the_top_twenty_most_valuable_incidents_in_a_store_section_service,
     retrieve_the_top_twenty_most_valuable_incidents_in_a_store_service,
-    retrieve_the_number_of_incidents_in_a_store_service,
-    retrieve_the_value_of_incidents_in_a_store_service,
-    retrieve_the_average_value_of_incidents_in_a_store_service,
-    retrieve_the_most_notorious_store_section_service,
-    retrieve_the_number_of_incidents_in_a_region_service,
     retrieve_the_value_of_all_incidents_in_a_region_service,
-    retrieve_the_most_notorious_store_service,
-    retrieve_the_overall_top_twenty_most_valuable_incidents_service,
-    retrieve_the_average_value_of_all_incidents_in_a_region_service,
-    retrieve_the_number_of_overall_incidents_service,
-    retrieve_the_average_value_of_all_incidents_service,
-    retrieve_the_most_notorious_region_service,
-    retrieve_the_number_of_incidents_in_a_store_section_service,
-    retrieve_the_value_of_overall_incidents_service,
-    retrieve_the_value_of_incidents_in_a_store_section_service,
-    retrieve_the_average_value_of_incidents_in_a_store_section_service,
-    retrieve_the_most_notorious_incident_in_a_store_section_service,
-    retrieve_the_average_value_of_all_incidents_reported_by_an_employee_service,
-    retrieve_the_most_notorious_incident_reported_by_an_employee_service,
-    retrieve_the_number_of_all_incidents_submitted_by_an_employee_service,
-    retrieve_the_ten_most_valuable_incidents_reported_by_an_employee_service,
     retrieve_the_value_of_all_incidents_reported_by_an_employee_service,
-    update_incident_service)
+    retrieve_the_value_of_incidents_by_store_section_service,
+    retrieve_the_value_of_incidents_in_a_store_section_service,
+    retrieve_the_value_of_incidents_in_a_store_service,
+    retrieve_the_value_of_overall_incidents_service, update_incident_service)
 from sqlalchemy.orm import Session
 from utils.oauth2 import get_current_user
 
@@ -412,28 +407,6 @@ async def retrieve_the_value_of_incidents_in_a_store_by_the_store_section_router
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
 
-@incidents_router.get("/store/average/{_store_id}")
-async def retrieve_the_average_value_of_incidents_in_a_store_router(
-    _store_id: int,
-):
-    """The endpoint to retrieve the average value of incidents
-
-    Args:
-        _store_id (int): The id of the store
-
-    Raises:
-        HTTPException: A 400 is raised when there is an issue with the endpoint
-
-    Returns:
-        dict: A dict
-    """
-    try:
-        return await retrieve_the_average_value_of_incidents_in_a_store_service(_store_id)
-    except Exception as exc:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
-
-
 @incidents_router.get("/store/max/store_sections/{_store_id}")
 async def retrieve_the_most_notorious_store_section_router(
     _store_id: int,
@@ -499,30 +472,6 @@ async def retrieve_the_value_of_incidents_in_a_region_router(
     """
     try:
         return await retrieve_the_value_of_all_incidents_in_a_region_service(_region_id)
-    except Exception as exc:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(exc)
-        ) from exc
-
-
-@incidents_router.get("/region/average/{_region_id}")
-async def retrieve_the_average_value_of_incidents_in_a_region_router(
-    _region_id: int
-):
-    """The endpoint to get the average value of all incidents in a region
-
-    Args:
-        _region_id (int): The region id
-
-    Raises:
-        HTTPException: A 400 is raised if anything goes wrong
-
-    Returns:
-        dict: The dictionary with the average value
-    """
-    try:
-        return await retrieve_the_average_value_of_all_incidents_in_a_region_service(_region_id)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -623,25 +572,6 @@ async def retrieve_the_overall_value_of_incidents_router():
         ) from exc
 
 
-@incidents_router.get("/overall/average")
-async def retrieve_the_overall_average_value_of_incidents_router():
-    """The router to get the average value of all the incidents
-
-    Raises:
-        HTTPException: A 400 is raised if anything goes wrong
-
-    Returns:
-        dict: A dict with the appropriate value
-    """
-    try:
-        return await retrieve_the_average_value_of_all_incidents_service()
-    except Exception as exc:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(exc)
-        ) from exc
-
-
 @incidents_router.get("/overall/max/region")
 async def retrieve_the_overall_most_notorious_region_router(
     _db: Session = Depends(get_db)
@@ -709,30 +639,6 @@ async def retrieve_the_value_of_incidents_in_a_store_section_router(
     """
     try:
         return await retrieve_the_value_of_incidents_in_a_store_section_service(_store_section_id)
-    except Exception as exc:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(exc)
-        ) from exc
-
-
-@incidents_router.get("/store_section/average/{_store_section_id}")
-async def retrieve_the_average_value_of_incidents_in_a_store_section_router(
-    _store_section_id: int
-):
-    """The endpoint to get the average value of all incidents in a store section
-
-    Args:
-        _store_section_id (int): The store section id
-
-    Raises:
-        HTTPException: A 400 is raised if anything goes wrong
-
-    Returns:
-        dict: A dict containing the average value
-    """
-    try:
-        return await retrieve_the_average_value_of_incidents_in_a_store_section_service(_store_section_id)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -809,30 +715,6 @@ async def retrieve_the_value_of_all_incidents_reported_by_an_employee_router(
     """
     try:
         return await retrieve_the_value_of_all_incidents_reported_by_an_employee_service(_employee_id)
-    except Exception as exc:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(exc)
-        ) from exc
-
-
-@incidents_router.get("/employee/average/{_employee_id}")
-async def retrieve_the_average_value_of_all_incidents_reported_by_an_employee_router(
-    _employee_id: int
-):
-    """The endpoint to get the average value of all incidents reported by an employee
-
-    Args:
-        _employee_id (int): Employee Id
-
-    Raises:
-        HTTPException: A 400 is raised incase anything goes wrong
-
-    Returns:
-        average: The average value of all incidents reported by an employee
-    """
-    try:
-        return await retrieve_the_average_value_of_all_incidents_reported_by_an_employee_service(_employee_id)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

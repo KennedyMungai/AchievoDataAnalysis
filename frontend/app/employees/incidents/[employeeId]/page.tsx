@@ -40,7 +40,6 @@ const EmployeeIncidentsPage = ({ params: { employeeId } }: Props) => {
 	const valueOfIncidents = useAppSelector(
 		selectTheValueOfIncidentsReportedByAnEmployee
 	)
-	const avgValueOfIncidents = valueOfIncidents / numberOfIncidents
 	const { total_value } = useAppSelector(
 		selectTheMostNotoriousIncidentReportedByAnEmployee
 	)
@@ -91,10 +90,8 @@ const EmployeeIncidentsPage = ({ params: { employeeId } }: Props) => {
 				dashboardCard1Title={'Number Of All Incidents'}
 				dashboardCard2Value={valueOfIncidents}
 				dashboardCard2Title={'Value Of All Incidents'}
-				dashboardCard3Value={avgValueOfIncidents}
-				dashboardCard3Title={'Average Value Of All Incidents'}
-				dashboardCard4Value={total_value}
-				dashboardCard4Title={'The Most Notorious Incident'}
+				dashboardCard3Value={total_value}
+				dashboardCard3Title={'The Most Notorious Incident'}
 				chartCardTitle={'Employee Incidents Trend'}
 				chartCardDescription={
 					'The trend of all incidents reported by an employee'

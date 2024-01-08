@@ -802,7 +802,7 @@ async def retrieve_the_ten_most_valuable_incidents_reported_by_an_employee_route
         ) from exc
 
 
-@incidents_router.get("/incidents/overall/graphing_data/{_region_id}")
+@incidents_router.get("/incidents/region/graphing_data/{_region_id}")
 async def retrieve_the_overall_graphing_data_router(_region_id: int):
     """The endpoint to retrieve the overall graphing data
 

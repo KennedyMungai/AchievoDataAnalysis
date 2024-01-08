@@ -605,3 +605,32 @@ async def retrieve_the_ten_most_valuable_incidents_reported_by_an_employee_servi
     ).order_by(
         Incidents.total_value.desc()
     ).limit(20).all()
+
+
+async def retrieve_the_overall_graphing_data_service():
+    """The endpoint to retrieve the overall graphing data
+
+    Returns:
+        dict: A dictionary with the graphing data
+    """
+    query = 'SELECT * FROM incidents'
+    query_2 = 'SELECT * FROM regions'
+
+    df = pd.read_sql(query, conn)
+    filtered_df = df.groupby('region_id')['total_value'].sum()
+
+    df_2 = pd.read_sql(query_2, conn)
+    filtered_df_2 = df_2.groupby('region_id')[
+        'region_name'].first()
+
+    common_df = pd.merge(filtered_df, filtered_df_2, on='region_id')
+
+    # store_section_names = list(
+    #     common_df['region_name'].to_dict().values())
+    # total_values = list(common_df['total_value'].to_dict().values())
+
+    print(common_df)
+
+    return {
+        "some_jokes": "lol"
+    }

@@ -304,8 +304,8 @@ async def retrieve_the_value_of_incidents_by_store_section_service(
     print(total_values)
 
     return {
-        'store_section_names': store_section_names,
-        'total_values': total_values
+        'labels': store_section_names,
+        'data': total_values
     }
 
 

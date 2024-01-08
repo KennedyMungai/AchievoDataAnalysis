@@ -50,10 +50,8 @@ type Props = {
 	dashboardCard1Title: string
 	dashboardCard2Value: number
 	dashboardCard2Title: string
-	dashboardCard3Value: number
+	dashboardCard3Value: number | string
 	dashboardCard3Title: string
-	dashboardCard4Value: number | string
-	dashboardCard4Title: string
 	chartCardTitle: string
 	chartCardDescription: string
 	chartCardContent: ReactNode
@@ -106,8 +104,6 @@ const DashboardTemplate = ({
 	dashboardCard2Value,
 	dashboardCard3Title,
 	dashboardCard3Value,
-	dashboardCard4Title,
-	dashboardCard4Value,
 	scrollCardContent,
 	scrollCardDescription,
 	scrollCardTitle
@@ -496,7 +492,13 @@ const DashboardTemplate = ({
 								onSelect={setDate}
 								initialFocus
 							/>
-							<Button className='w-full' variant={'outline'} onClick={updateGlobalDate}>Set Date</Button>
+							<Button
+								className='w-full'
+								variant={'outline'}
+								onClick={updateGlobalDate}
+							>
+								Set Date
+							</Button>
 						</PopoverContent>
 					</Popover>
 				</div>
@@ -513,10 +515,6 @@ const DashboardTemplate = ({
 						value={dashboardCard3Value}
 						title={dashboardCard3Title}
 					/>
-					<DashboardCards
-						value={dashboardCard4Value}
-						title={dashboardCard4Title}
-					/>
 				</div>
 				<div className='p-4 flex gap-2 flex-col md:flex-row items-center'>
 					<div className='w-[40rem] h-full rounded-lg'>
@@ -532,8 +530,9 @@ const DashboardTemplate = ({
 							title={scrollCardTitle}
 							description={scrollCardDescription}
 						>
-							<ScrollArea className='w-full h-[60vh] rounded-lg p-5'>{scrollCardContent}</ScrollArea>
-							
+							<ScrollArea className='w-full h-[60vh] rounded-lg p-5'>
+								{scrollCardContent}
+							</ScrollArea>
 						</ChartCardTemplate>
 					</div>
 				</div>

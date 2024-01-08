@@ -3,10 +3,6 @@ import StoreValueChart from '@/components/Charts/StoreValueChart'
 import TopIncidentsCard from '@/components/Stores/TopIncidentsCard'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 import {
-	retrieveSingleStoreAverageIncidentValue,
-	selectSingleStoreAverageIncidentValue
-} from '@/redux/features/stores/retrieveSingleStoreIncidentsAverageSlice'
-import {
 	retrieveSingleStoreIncidentsCount,
 	selectSingleStoreIncidentsCount
 } from '@/redux/features/stores/retrieveSingleStoreIncidentsCountSlice'
@@ -18,7 +14,10 @@ import {
 	retrieveSingleStore,
 	selectSingleStore
 } from '@/redux/features/stores/retrieveSingleStoreSlice'
-import { retrieveTheMostNotoriousStoreSection, selectMostNotoriousSectionData } from '@/redux/features/stores/retrieveTheMostNotoriousStoreSectionSlice'
+import {
+	retrieveTheMostNotoriousStoreSection,
+	selectMostNotoriousSectionData
+} from '@/redux/features/stores/retrieveTheMostNotoriousStoreSectionSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useEffect } from 'react'
 
@@ -32,20 +31,20 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 	const storeData = useAppSelector(selectSingleStore)
 	const singleStoreCount = useAppSelector(selectSingleStoreIncidentsCount)
 	const singleStoreValue = useAppSelector(selectSingleStoreIncidentsValue)
-	const singleStoreAverage = useAppSelector(
-		selectSingleStoreAverageIncidentValue
+	const singleStoreAverage =
+		Number(singleStoreValue.total_values) / singleStoreCount
+	const { max_value, store_section_name } = useAppSelector(
+		selectMostNotoriousSectionData
 	)
-	const {max_value, store_section_name} = useAppSelector(selectMostNotoriousSectionData)
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
 		dispatch(retrieveSingleStore(Number(storeId)))
 		dispatch(retrieveSingleStoreIncidentsCount(Number(storeId)))
 		dispatch(retrieveSingleStoresIncidentsValue(Number(storeId)))
-		dispatch(retrieveSingleStoreAverageIncidentValue(Number(storeId)))
 		dispatch(retrieveTheMostNotoriousStoreSection(Number(storeId)))
 	}, [])
-	
+
 	return (
 		<div className='min-h-screen ml-[5rem] bg-slate-100 dark:bg-slate-800 overflow-x-hidden'>
 			<DashboardTemplate
@@ -56,7 +55,7 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 				dashboardCard1Title={'Number of all incidents'}
 				dashboardCard2Value={singleStoreValue.total_values}
 				dashboardCard2Title={'Value of all incidents'}
-				dashboardCard3Value={singleStoreAverage.average_value}
+				dashboardCard3Value={singleStoreAverage}
 				dashboardCard3Title={'The average value of all incidents'}
 				dashboardCard4Value={`${store_section_name} with KSH ${max_value}`}
 				dashboardCard4Title={'Most Notorious Store Section'}
@@ -67,7 +66,9 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 				scrollCardDescription={
 					'The 20 incidents with the highest value'
 				}
-				scrollCardContent={<TopIncidentsCard storeId={Number(storeId)} />}
+				scrollCardContent={
+					<TopIncidentsCard storeId={Number(storeId)} />
+				}
 			/>
 		</div>
 	)

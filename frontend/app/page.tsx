@@ -3,10 +3,6 @@ import OverallValueChart from '@/components/Charts/OverallValueChart'
 import TopOverallIncidentsCard from '@/components/OverAll/TopOverallIncidentsCard'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
 import {
-	retrieveTheAverageValueOfOverallIncidents,
-	selectTheAverageValueOfAllIncidents
-} from '@/redux/features/overall/retrieveTheAverageValueOfOverallIncidentsSlice'
-import {
 	retrieveTheMostNotoriousRegion,
 	selectTheMostNotoriousRegionOverall
 } from '@/redux/features/overall/retrieveTheMostNotoriousRegionSlice'
@@ -25,7 +21,7 @@ export default function Home() {
 	const dispatch = useAppDispatch()
 	const overallCount = useAppSelector(selectTheNumberOfOverallIncidents)
 	const overallValue = useAppSelector(selectTheOverallTotalValueOfIncidents)
-	const overallAverage = useAppSelector(selectTheAverageValueOfAllIncidents)
+	const overallAverage = Number(overallValue) / overallCount
 	const { region_name, max_value } = useAppSelector(
 		selectTheMostNotoriousRegionOverall
 	)
@@ -35,7 +31,6 @@ export default function Home() {
 	useEffect(() => {
 		dispatch(retrieveTheNumberOfOverallIncidents())
 		dispatch(retrieveTheValueOfOverallIncidents())
-		dispatch(retrieveTheAverageValueOfOverallIncidents())
 		dispatch(retrieveTheMostNotoriousRegion())
 	}, [])
 

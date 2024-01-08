@@ -681,7 +681,8 @@ async def retrieve_a_store_sections_graphing_data_service(
     Returns:
         dict: A dictionary containing the graphing data
     """
-    query = f'SELECT * FROM incidents WHERE store_section_id = {_store_section_id}'
+    query = f'SELECT * FROM incidents WHERE store_section_id = {
+        _store_section_id}'
 
     df = pd.read_sql(query, conn)
     filtered_df = df.groupby('store_id')['total_value'].sum()

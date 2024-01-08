@@ -668,3 +668,24 @@ async def retrieve_a_regions_graphing_data_service(
         "labels": region_names,
         "data": total_values
     }
+
+
+async def retrieve_a_store_sections_graphing_data_service(
+    _store_section_id: int
+):
+    """The service function to get the graphing data for a specific store section
+
+    Args:
+        _store_section_id (int): The id of a store section
+
+    Returns:
+        dict: A dictionary containing the graphing data
+    """
+    query = f'SELECT * FROM incidents WHERE store_section_id = {_store_section_id}'
+
+    df = pd.read_sql(query, conn)
+    filtered_df = df.groupby('store_id')['total_value'].sum()
+
+    return {
+        "some_jokes": "lol"
+    }

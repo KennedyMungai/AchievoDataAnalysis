@@ -629,9 +629,41 @@ async def retrieve_the_overall_graphing_data_service():
         common_df['region_name'].to_dict().values())
     total_values = list(common_df['total_value'].to_dict().values())
 
-    print(common_df)
-
     return {
         "labels": region_names,
         "data": total_values
+    }
+
+
+async def retrieve_a_regions_graphing_data_service(
+    _region_id: int
+):
+    """The service function to retrieve a regions graphing data 
+
+    Args:
+        _region_id (int): The region id
+
+    Returns:
+        dict: A dictionary with the graphing data
+    """
+    query = f'SELECT * FROM incidents WHERE region_id = {_region_id}'
+    query_2 = f'SELECT * FROM stores WHERE region_id = {_region_id}'
+
+    df = pd.read_sql(query, conn)
+    filtered_df = df.groupby('store_id')['total_value'].sum()
+
+    df_2 = pd.read_sql(query_2, conn)
+    filtered_df_2 = df_2.groupby('store_id')[
+        'region_name'].first()
+
+    common_df = pd.merge(filtered_df, filtered_df_2, on='store_id')
+
+    # region_names = list(
+    #     common_df['store_name'].to_dict().values())
+    # total_values = list(common_df['total_value'].to_dict().values())
+
+    print(common_df)
+
+    return {
+        "some_jokes": "lol"
     }

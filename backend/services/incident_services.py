@@ -688,8 +688,10 @@ async def retrieve_a_store_sections_graphing_data_service(
 
     some_dict = df.to_dict()
 
-    labels = list(some_dict['total_value'].keys())
+    labels = list(some_dict['product_name'].values())
     data = list(some_dict['total_value'].values())
+    
+    print(some_dict)
 
     return {
         "labels": labels,

@@ -654,16 +654,17 @@ async def retrieve_a_regions_graphing_data_service(
 
     df_2 = pd.read_sql(query_2, conn)
     filtered_df_2 = df_2.groupby('store_id')[
-        'region_name'].first()
+        'store_name'].first()
 
     common_df = pd.merge(filtered_df, filtered_df_2, on='store_id')
 
-    # region_names = list(
-    #     common_df['store_name'].to_dict().values())
-    # total_values = list(common_df['total_value'].to_dict().values())
+    region_names = list(
+        common_df['store_name'].to_dict().values())
+    total_values = list(common_df['total_value'].to_dict().values())
 
     print(common_df)
 
     return {
-        "some_jokes": "lol"
+        "labels": region_names,
+        "data": total_values
     }

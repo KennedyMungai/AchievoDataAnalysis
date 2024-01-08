@@ -290,25 +290,6 @@ async def retrieve_the_value_of_incidents_by_store_section_service(
     return {'some jokes': 'lol'}
 
 
-async def retrieve_the_average_value_of_incidents_in_a_store_service(
-    _store_id: int
-):
-    """The service function to retrieve the average value of incidents in a store section by store section id.
-
-    Args:
-        _store_section_id (int): The store section id
-
-    Returns:
-        Dict: A dictionary of the average value of incidents
-    """
-    query = f'SELECT * FROM incidents where store_id = {_store_id}'
-    df = pd.read_sql(query, conn)
-    filtered_df = df.groupby('store_id')['total_value'].mean()
-    some_df = filtered_df.to_dict()
-    some_variable = list(some_df.values())[0]
-    return {"average_value": some_variable}
-
-
 async def retrieve_the_most_notorious_store_section_service(
     _store_id: int,
     _db: Session

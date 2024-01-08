@@ -156,7 +156,7 @@ interface INotoriousRegionData extends INotoriousRegion {
 }
 
 interface IGraph {
-    labels: string[] | number[],
+    labels: string[],
     data: number[]
 }
 

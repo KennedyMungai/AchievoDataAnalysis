@@ -31,6 +31,7 @@ import retrieveTheMostNotoriousStoreSectionReducer from './stores/retrieveTheMos
 import retrieveTopTwentyMostValuableIncidentsInAStoreReducer from './stores/retrieveTopTwentyMostValuableIncidentsInAStoreSlice'
 import retrieveTheStoreGraphingDataReducer from './stores/retrieveTheStoreGraphingDataSlice'
 import retrieveTheOverallGraphingDataReducer from './overall/retrieveTheOverallGraphingDataSlice'
+import retrieveARegionsGraphingDataSlice from './regions/retrieveARegionsGraphingDataSlice'
 
 
 const store = configureStore({
@@ -67,6 +68,7 @@ const store = configureStore({
         theTenMostNotoriousIncidentsReportedByAnEmployee: retrieveTheTenMostNotoriousIncidentReportedByAnEmployeeReducer,
         theStoreGraphingData: retrieveTheStoreGraphingDataReducer,
         theOverallGraphingData: retrieveTheOverallGraphingDataReducer,
+        theRegionsGraphingData: retrieveARegionsGraphingDataSlice,
     }
 })
 

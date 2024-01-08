@@ -34,6 +34,7 @@ from services.incident_services import (
     retrieve_the_value_of_incidents_in_a_store_section_service,
     retrieve_the_value_of_incidents_in_a_store_service,
     retrieve_the_value_of_overall_incidents_service,
+    retrieve_an_employees_graphing_data_service,
     retrieve_a_store_sections_graphing_data_service,
     update_incident_service
 )
@@ -842,6 +843,30 @@ async def retrieve_a_store_sections_graphing_data_router(
     """
     try:
         return await retrieve_a_store_sections_graphing_data_service(_store_section_id)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc)
+        ) from exc
+
+
+@incidents_router.get("/incidents/employee/graphing_data/{_employee_id}")
+async def retrieve_an_employees_graphing_data_router(
+    _employee_id: int
+):
+    """The router function to get an employees graphing data
+
+    Args:
+        _employee_id (int): The id of the employee
+
+    Raises:
+        HTTPException: A 400 is raised incase anything goes wring
+
+    Returns:
+        dict: A dict with the graphing data
+    """
+    try:
+        return await retrieve_an_employees_graphing_data_service(_employee_id)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

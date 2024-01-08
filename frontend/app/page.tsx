@@ -21,7 +21,6 @@ export default function Home() {
 	const dispatch = useAppDispatch()
 	const overallCount = useAppSelector(selectTheNumberOfOverallIncidents)
 	const overallValue = useAppSelector(selectTheOverallTotalValueOfIncidents)
-	const overallAverage = Number(overallValue) / overallCount
 	const { region_name, max_value } = useAppSelector(
 		selectTheMostNotoriousRegionOverall
 	)
@@ -52,10 +51,8 @@ export default function Home() {
 				dashboardCard1Title={'Number of all incidents'}
 				dashboardCard2Value={overallValue.total_values}
 				dashboardCard2Title={'Value of all Incidents'}
-				dashboardCard3Value={overallAverage}
-				dashboardCard3Title={'The average value of all incidents'}
-				dashboardCard4Value={`${region_name} with KSH ${max_value}`}
-				dashboardCard4Title={'Most Notorious Region'}
+				dashboardCard3Value={`${region_name} with KSH ${max_value}`}
+				dashboardCard3Title={'Most Notorious Region'}
 				chartCardTitle={'All Regions Trends'}
 				chartCardDescription={
 					'The trends in all the regions on a daily basis'

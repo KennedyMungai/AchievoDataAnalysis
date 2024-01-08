@@ -102,14 +102,6 @@ interface ITotalData extends ITotal {
     is_loaded: boolean
 }
 
-interface IAverage {
-    average_value: number
-}
-
-interface IAverageData extends IAverage {
-    is_loaded: boolean
-}
-
 interface IIncident {
     incident_description: string
     product_name: string

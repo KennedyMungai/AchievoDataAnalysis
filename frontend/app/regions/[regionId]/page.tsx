@@ -7,10 +7,6 @@ import {
 	selectSingleRegion
 } from '@/redux/features/regions/retrieveSingleRegionSlice'
 import {
-	retrieveTheAverageValueOfAllIncidentsInARegion,
-	selectAverageValueOfAllIncidentsInARegion
-} from '@/redux/features/regions/retrieveTheAverageValueOfAllIncidentsInARegionSlice'
-import {
 	retrieveTheMostNotoriousStoreInARegion,
 	selectTheMostNotoriousStoreInARegion
 } from '@/redux/features/regions/retrieveTheMostNotoriousStoreInARegionSlice'
@@ -38,9 +34,7 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 	const incidentsValue = useAppSelector(
 		selectTheTotalValueOfIncidentsInARegion
 	)
-	const incidentsAvg = useAppSelector(
-		selectAverageValueOfAllIncidentsInARegion
-	)
+	const incidentsAvg = Number(incidentsValue) / incidentsCount
 	const { store_name, max_value } = useAppSelector(
 		selectTheMostNotoriousStoreInARegion
 	)
@@ -49,9 +43,6 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 		dispatch(retrieveSingleRegion(Number(regionId)))
 		dispatch(retrieveTheNumberOfIncidentsInAGivenRegion(Number(regionId)))
 		dispatch(retrieveTheTotalValueOfAllIncidentsInARegion(Number(regionId)))
-		dispatch(
-			retrieveTheAverageValueOfAllIncidentsInARegion(Number(regionId))
-		)
 		dispatch(retrieveTheMostNotoriousStoreInARegion(Number(regionId)))
 	}, [])
 

@@ -12,6 +12,7 @@ from services.incident_services import (
     retrieve_all_incidents_by_an_employee_service,
     retrieve_all_incidents_in_a_region_service, retrieve_all_incidents_service,
     retrieve_one_incident_service,
+    retrieve_the_graphing_data_of_incidents_by_store_section_service,
     retrieve_the_most_notorious_incident_in_a_store_section_service,
     retrieve_the_most_notorious_incident_reported_by_an_employee_service,
     retrieve_the_most_notorious_region_service,
@@ -22,6 +23,7 @@ from services.incident_services import (
     retrieve_the_number_of_incidents_in_a_store_section_service,
     retrieve_the_number_of_incidents_in_a_store_service,
     retrieve_the_number_of_overall_incidents_service,
+    retrieve_the_overall_graphing_data_service,
     retrieve_the_overall_top_twenty_most_valuable_incidents_service,
     retrieve_the_ten_most_valuable_incidents_reported_by_an_employee_service,
     retrieve_the_top_twenty_most_valuable_incidents_in_a_region_service,
@@ -29,10 +31,11 @@ from services.incident_services import (
     retrieve_the_top_twenty_most_valuable_incidents_in_a_store_service,
     retrieve_the_value_of_all_incidents_in_a_region_service,
     retrieve_the_value_of_all_incidents_reported_by_an_employee_service,
-    retrieve_the_graphing_data_of_incidents_by_store_section_service,
     retrieve_the_value_of_incidents_in_a_store_section_service,
     retrieve_the_value_of_incidents_in_a_store_service,
-    retrieve_the_value_of_overall_incidents_service, update_incident_service)
+    retrieve_the_value_of_overall_incidents_service,
+    update_incident_service
+)
 from sqlalchemy.orm import Session
 from utils.oauth2 import get_current_user
 
@@ -394,8 +397,8 @@ async def retrieve_the_total_value_of_incidents_in_a_store_router(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
 
-@incidents_router.get("/store/value/store_sections/{_store_id}")
-async def retrieve_the_value_of_incidents_in_a_store_by_the_store_section_router(
+@incidents_router.get("/store/value/graphing_data/{_store_id}")
+async def retrieve_the_graphing_data_of_incidents_by_store_section_router(
     _store_id: int,
 ):
     """The route to retrieve a dictionary of the number of incidents by the store service
@@ -792,6 +795,25 @@ async def retrieve_the_ten_most_valuable_incidents_reported_by_an_employee_route
     """
     try:
         return await retrieve_the_ten_most_valuable_incidents_reported_by_an_employee_service(_employee_id, _db)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc)
+        ) from exc
+
+
+@incidents_router.get("/incidents/overall/graphing_data")
+async def retrieve_the_overall_graphing_data_router():
+    """The router function for the overall graphing data
+
+    Raises:
+        HTTPException: A 400 is raised incase anything goes wrong
+
+    Returns:
+        dict: A dict containing the graphing data
+    """
+    try:
+        return await retrieve_the_overall_graphing_data_service()
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

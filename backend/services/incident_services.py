@@ -274,7 +274,7 @@ async def retrieve_the_value_of_incidents_in_a_store_service(
     return {"total_values": some_variable}
 
 
-async def retrieve_the_value_of_incidents_by_store_section_service(
+async def retrieve_the_graphing_data_of_incidents_by_store_section_service(
     _store_id: int,
 ):
     """The service function to group the number of incidents in store sections by the number of incidents

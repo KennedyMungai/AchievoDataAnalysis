@@ -29,7 +29,7 @@ from services.incident_services import (
     retrieve_the_top_twenty_most_valuable_incidents_in_a_store_service,
     retrieve_the_value_of_all_incidents_in_a_region_service,
     retrieve_the_value_of_all_incidents_reported_by_an_employee_service,
-    retrieve_the_value_of_incidents_by_store_section_service,
+    retrieve_the_graphing_data_of_incidents_by_store_section_service,
     retrieve_the_value_of_incidents_in_a_store_section_service,
     retrieve_the_value_of_incidents_in_a_store_service,
     retrieve_the_value_of_overall_incidents_service, update_incident_service)
@@ -410,7 +410,7 @@ async def retrieve_the_value_of_incidents_in_a_store_by_the_store_section_router
         dict: A dictionary of store_sections_with_their_counts
     """
     try:
-        return await retrieve_the_value_of_incidents_by_store_section_service(_store_id)
+        return await retrieve_the_graphing_data_of_incidents_by_store_section_service(_store_id)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc

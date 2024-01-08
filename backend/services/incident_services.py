@@ -685,8 +685,7 @@ async def retrieve_a_store_sections_graphing_data_service(
         _store_section_id}'
 
     df = pd.read_sql(query, conn)
-    filtered_df = df.groupby('store_id')['total_value'].sum()
 
-    return {
-        "some_jokes": "lol"
-    }
+    some_dict = df.to_dict()
+
+    return some_dict['total_value']

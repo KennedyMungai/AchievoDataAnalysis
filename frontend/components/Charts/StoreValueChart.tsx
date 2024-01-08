@@ -3,7 +3,7 @@ import Chart from 'chart.js/auto'
 import { CategoryScale } from 'chart.js'
 import { Line } from 'react-chartjs-2'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { retrieveTheStoreGraphingData, selectTheGraphingData, selectTheGraphingDataLabels } from '@/redux/features/stores/retrieveTheStoreGraphingDataSlice'
+import { retrieveTheStoreGraphingData, selectTheStoreGraphingData, selectTheStoreGraphingDataLabels } from '@/redux/features/stores/retrieveTheStoreGraphingDataSlice'
 import { useEffect } from 'react'
 
 
@@ -15,8 +15,8 @@ Chart.register(CategoryScale)
 
 const StoreValueChart = ({ storeId }: Props) => {
 	const dispatch = useAppDispatch()
-	const data = useAppSelector(selectTheGraphingData)
-	const labels = useAppSelector(selectTheGraphingDataLabels)
+	const data = useAppSelector(selectTheStoreGraphingData)
+	const labels = useAppSelector(selectTheStoreGraphingDataLabels)
 
 	useEffect(() => {
 		dispatch(retrieveTheStoreGraphingData(storeId))

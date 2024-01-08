@@ -36,7 +36,7 @@ export const retrieveTheStoreGraphingDataSlice = createSlice({
     }
 })
 
-export const selectTheGraphingDataLabels = (state: RootState) => state.theStoreGraphingData.labels
-export const selectTheGraphingData = (state: RootState) => state.theStoreGraphingData.data
+export const selectTheStoreGraphingDataLabels = (state: RootState) => state.theStoreGraphingData.labels
+export const selectTheStoreGraphingData = (state: RootState) => state.theStoreGraphingData.data
 
 export default retrieveTheStoreGraphingDataSlice.reducer

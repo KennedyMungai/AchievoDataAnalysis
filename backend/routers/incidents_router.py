@@ -34,6 +34,7 @@ from services.incident_services import (
     retrieve_the_value_of_incidents_in_a_store_section_service,
     retrieve_the_value_of_incidents_in_a_store_service,
     retrieve_the_value_of_overall_incidents_service,
+    retrieve_a_store_sections_graphing_data_service,
     update_incident_service
 )
 from sqlalchemy.orm import Session
@@ -817,6 +818,30 @@ async def retrieve_the_overall_graphing_data_router(_region_id: int):
     """
     try:
         return await retrieve_a_regions_graphing_data_service(_region_id)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc)
+        ) from exc
+
+
+@incidents_router.get("/incidents/store_section/graphing_data/{_store_section_id}")
+async def retrieve_a_store_sections_graphing_data_router(
+    _store_section_id: int
+):
+    """The router function to get the graphing data of a single store section
+
+    Args:
+        _store_section_id (int): The id of the store section
+
+    Raises:
+        HTTPException: A 400 is raised incase anything goes wrong
+
+    Returns:
+        dict: The graphing data
+    """
+    try:
+        return await retrieve_a_store_sections_graphing_data_service(_store_section_id)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

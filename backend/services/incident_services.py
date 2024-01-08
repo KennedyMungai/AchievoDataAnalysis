@@ -285,9 +285,28 @@ async def retrieve_the_value_of_incidents_by_store_section_service(
     Returns:
         Dict: A dictionary of the count of incidents
     """
-    # TODO: Implement the sorting logic
+    query = f'SELECT * FROM incidents where store_id = {_store_id}'
+    query_2 = f'SELECT * FROM store_sections where store_id = {_store_id}'
 
-    return {'some jokes': 'lol'}
+    df = pd.read_sql(query, conn)
+    filtered_df = df.groupby('store_section_id')['total_value'].sum()
+
+    df_2 = pd.read_sql(query_2, conn)
+    filtered_df_2 = df_2.groupby('store_section_id')[
+        'store_section_name'].first()
+
+    common_df = pd.merge(filtered_df, filtered_df_2, on='store_section_id')
+
+    store_section_names = list(
+        common_df['store_section_name'].to_dict().values())
+    total_values = list(common_df['total_value'].to_dict().values())
+
+    print(total_values)
+
+    return {
+        'store_section_names': store_section_names,
+        'total_values': total_values
+    }
 
 
 async def retrieve_the_most_notorious_store_section_service(

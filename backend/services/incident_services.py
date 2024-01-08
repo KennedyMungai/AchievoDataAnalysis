@@ -695,3 +695,29 @@ async def retrieve_a_store_sections_graphing_data_service(
         "labels": labels,
         "data": data
     }
+
+
+async def retrieve_an_employees_graphing_data_service(
+    _employee_id: int
+):
+    """The service function to get all of an employees graphing data
+
+    Args:
+        _employee_id (int): The if of an employee
+
+    Returns:
+        dict: A dict showing the results
+    """
+    query = f'SELECT * FROM incidents WHERE employee_id = {_employee_id}'
+
+    df = pd.read_sql(query, conn)
+
+    some_dict = df.to_dict()
+
+    labels = list(some_dict['product_name'].values())
+    data = list(some_dict['total_value'].values())
+
+    return {
+        "labels": labels,
+        "data": data
+    }

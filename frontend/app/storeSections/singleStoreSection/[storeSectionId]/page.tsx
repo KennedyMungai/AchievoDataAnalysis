@@ -45,8 +45,6 @@ const SingleStoreSectionPage = ({ params: { storeSectionId } }: Props) => {
 	const storeSectionIncidentCount = useAppSelector(
 		selectTheNumberOfIncidentsInAStoreSection
 	)
-	const storeSectionIncidentsAverage =
-		storeSectionIncidentsValue / storeSectionIncidentsValue
 	const { total_value } = useAppSelector(
 		selectTheMostNotoriousIncidentInAStoreSection
 	)
@@ -82,10 +80,8 @@ const SingleStoreSectionPage = ({ params: { storeSectionId } }: Props) => {
 				dashboardCard1Title={'Number of all Incidents'}
 				dashboardCard2Value={storeSectionIncidentsValue}
 				dashboardCard2Title={'The value of all incidents'}
-				dashboardCard3Value={storeSectionIncidentsAverage}
-				dashboardCard3Title={'The average value of incidents'}
-				dashboardCard4Value={total_value}
-				dashboardCard4Title={'The most notorious incident'}
+				dashboardCard3Value={total_value}
+				dashboardCard3Title={'The most notorious incident'}
 				chartCardTitle={'All incidents trends'}
 				chartCardDescription={
 					'The trend for all the incidents inside a store section'

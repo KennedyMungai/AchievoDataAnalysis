@@ -34,7 +34,6 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 	const incidentsValue = useAppSelector(
 		selectTheTotalValueOfIncidentsInARegion
 	)
-	const incidentsAvg = Number(incidentsValue) / incidentsCount
 	const { store_name, max_value } = useAppSelector(
 		selectTheMostNotoriousStoreInARegion
 	)
@@ -56,10 +55,8 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 				dashboardCard1Title={'Number of all Incidents'}
 				dashboardCard2Value={incidentsValue.total_values}
 				dashboardCard2Title={'Value Of all Incidents'}
-				dashboardCard3Value={incidentsAvg}
-				dashboardCard3Title={'The average value of all incidents'}
-				dashboardCard4Value={`${store_name} with KSH ${max_value}`}
-				dashboardCard4Title={'Most Notorious Store'}
+				dashboardCard3Value={`${store_name} with KSH ${max_value}`}
+				dashboardCard3Title={'Most Notorious Store'}
 				chartCardTitle={'All branch trends'}
 				chartCardDescription={
 					'The trends in the branches on a day to day basis'

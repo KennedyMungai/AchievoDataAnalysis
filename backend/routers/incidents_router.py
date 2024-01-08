@@ -23,7 +23,7 @@ from services.incident_services import (
     retrieve_the_number_of_incidents_in_a_store_section_service,
     retrieve_the_number_of_incidents_in_a_store_service,
     retrieve_the_number_of_overall_incidents_service,
-    retrieve_the_overall_graphing_data_service,
+    retrieve_a_regions_graphing_data_service,
     retrieve_the_overall_top_twenty_most_valuable_incidents_service,
     retrieve_the_ten_most_valuable_incidents_reported_by_an_employee_service,
     retrieve_the_top_twenty_most_valuable_incidents_in_a_region_service,
@@ -802,18 +802,21 @@ async def retrieve_the_ten_most_valuable_incidents_reported_by_an_employee_route
         ) from exc
 
 
-@incidents_router.get("/incidents/overall/graphing_data")
-async def retrieve_the_overall_graphing_data_router():
-    """The router function for the overall graphing data
+@incidents_router.get("/incidents/overall/graphing_data/{_region_id}")
+async def retrieve_the_overall_graphing_data_router(_region_id: int):
+    """The endpoint to retrieve the overall graphing data
+
+    Args:
+        _region_id (int): The region id
 
     Raises:
-        HTTPException: A 400 is raised incase anything goes wrong
+        HTTPException: A 400 is raised when the router goes wrong
 
     Returns:
         dict: A dict containing the graphing data
     """
     try:
-        return await retrieve_the_overall_graphing_data_service()
+        return await retrieve_a_regions_graphing_data_service(_region_id)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

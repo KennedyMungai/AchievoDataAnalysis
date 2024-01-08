@@ -29,6 +29,8 @@ import retrieveSingleStoreIncidentsValueReducer from './stores/retrieveSingleSto
 import retrieveSingleStoreReducer from './stores/retrieveSingleStoreSlice'
 import retrieveTheMostNotoriousStoreSectionReducer from './stores/retrieveTheMostNotoriousStoreSectionSlice'
 import retrieveTopTwentyMostValuableIncidentsInAStoreReducer from './stores/retrieveTopTwentyMostValuableIncidentsInAStoreSlice'
+import retrieveTheStoreGraphingDataReducer from './stores/retrieveTheStoreGraphingDataSlice'
+
 
 
 const store = configureStore({
@@ -63,6 +65,7 @@ const store = configureStore({
         valueOfIncidentsReportedByAnEmployee: retrieveTheValueOfIncidentsReportedByAnEmployee,
         theMostNotoriousIncidentReportedByAnEmployee: retrieveTheMostNotoriousIncidentReportedByAnEmployeeReducer,
         theTenMostNotoriousIncidentsReportedByAnEmployee: retrieveTheTenMostNotoriousIncidentReportedByAnEmployeeReducer,
+        theStoreGraphingData: retrieveTheStoreGraphingDataReducer,
     }
 })
 

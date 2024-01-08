@@ -18,7 +18,7 @@ type Props = {}
 
 const SideBar = (props: Props) => {
 	return (
-		<nav className='w-[5rem] h-screen flex flex-col justify-between border-r-[1px] dark:border-slate-500 border-slate-300 p-5 fixed bg-slate-50 dark:bg-slate-900'>
+		<nav className='w-[5rem] h-screen flex flex-col justify-between border-r-[1px] dark:border-slate-500 border-slate-300 p-5 fixed bg-slate-50 dark:bg-slate-900 scrollbar-hide'>
 			<div className=''>
 				<div className='hover:bg-slate-200 p-1 rounded-md mb-3 dark:hover:bg-slate-700'>
 					<Link href={'/'}>

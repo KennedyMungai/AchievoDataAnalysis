@@ -200,7 +200,7 @@ const DashboardTemplate = ({
 	}
 
 	return (
-		<div className='overflow-x-hidden'>
+		<div className='overflow-x-hidden scrollbar-hide'>
 			<TopBar pageTitle={title} />
 			<div className='p-4 '>
 				<div className='flex items-center justify-around'>

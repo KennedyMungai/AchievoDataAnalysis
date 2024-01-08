@@ -31,8 +31,6 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 	const storeData = useAppSelector(selectSingleStore)
 	const singleStoreCount = useAppSelector(selectSingleStoreIncidentsCount)
 	const singleStoreValue = useAppSelector(selectSingleStoreIncidentsValue)
-	const singleStoreAverage =
-		Number(singleStoreValue.total_values) / singleStoreCount
 	const { max_value, store_section_name } = useAppSelector(
 		selectMostNotoriousSectionData
 	)
@@ -55,10 +53,8 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 				dashboardCard1Title={'Number of all incidents'}
 				dashboardCard2Value={singleStoreValue.total_values}
 				dashboardCard2Title={'Value of all incidents'}
-				dashboardCard3Value={singleStoreAverage}
-				dashboardCard3Title={'The average value of all incidents'}
-				dashboardCard4Value={`${store_section_name} with KSH ${max_value}`}
-				dashboardCard4Title={'Most Notorious Store Section'}
+				dashboardCard3Value={`${store_section_name} with KSH ${max_value}`}
+				dashboardCard3Title={'Most Notorious Store Section'}
 				chartCardTitle={'All store section trends'}
 				chartCardDescription={'The trends in individual store sections'}
 				chartCardContent={<StoreValueChart storeId={Number(storeId)} />}

@@ -154,3 +154,13 @@ interface INotoriousRegion {
 interface INotoriousRegionData extends INotoriousRegion {
     is_loaded: boolean
 }
+
+interface IGraph {
+    labels: string[],
+    data: number[]
+}
+
+
+interface IGraphData extends IGraph {
+    is_loaded: boolean
+}

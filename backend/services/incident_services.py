@@ -625,12 +625,13 @@ async def retrieve_the_overall_graphing_data_service():
 
     common_df = pd.merge(filtered_df, filtered_df_2, on='region_id')
 
-    # store_section_names = list(
-    #     common_df['region_name'].to_dict().values())
-    # total_values = list(common_df['total_value'].to_dict().values())
+    region_names = list(
+        common_df['region_name'].to_dict().values())
+    total_values = list(common_df['total_value'].to_dict().values())
 
     print(common_df)
 
     return {
-        "some_jokes": "lol"
+        "labels": region_names,
+        "data": total_values
     }

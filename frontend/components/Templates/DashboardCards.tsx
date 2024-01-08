@@ -9,7 +9,7 @@ type Props = {
 
 const DashboardCards = ({ title, value }: Props) => {
 	return (
-		<Card className='w-[20rem]'>
+		<Card className='w-[30rem]'>
 			<CardHeader>
 				<CardTitle className='text-md text-center'>{title}</CardTitle>
 			</CardHeader>

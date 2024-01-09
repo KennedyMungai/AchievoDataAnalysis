@@ -52,7 +52,7 @@ const StoreSectionValueChart = ({ storeSectionId }: Props) => {
 
 	return (
 		<div className='lg:w-full w-[80vw] border rounded-lg bg-white h-[60vh] dark:bg-slate-900 p-5 flex items-center justify-center'>
-			<Line options={options} data={data} />
+			<Line options={options} data={graphingData} />
 		</div>
 	)
 }

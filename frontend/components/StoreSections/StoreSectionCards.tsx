@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useEffect } from 'react'
 import AddStoreSectionCard from './AddStoreSectionCard'
 import StoreSectionCard from './StoreSectionCard'
+import { LuClipboardList } from "react-icons/lu"
 
 type Props = {
 	storeId: number
@@ -27,7 +28,7 @@ const StoreSectionCards = ({ storeId }: Props) => {
                     key={storeSection.store_section_id}
 					title={storeSection.store_section_name}
 					link={`/storeSections/singleStoreSection/${storeSection.store_section_id}`}
-					content={'Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam recusandae exercitationem repellat eum saepe iure ab similique provident laboriosam a maxime soluta asperiores, adipisci architecto tempore nisi molestias sit. Reprehenderit fugiat magni odio dicta earum.'}
+					content={<LuClipboardList className="text-8xl" />}
 					createdAt={storeSection.created_at}
 					storeSectionId={0}
 				/>

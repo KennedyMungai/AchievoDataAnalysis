@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import {
 	ContextMenu,
 	ContextMenuContent,
@@ -22,7 +22,7 @@ import toast from 'react-hot-toast'
 type Props = {
 	title: string
 	link: string
-	content: string
+	content: ReactNode
 	createdAt: Date
 	storeSectionId: number
 }
@@ -46,7 +46,7 @@ const StoreSectionCard = ({
 						</CardHeader>
 						<Separator />
 						{/* TODO: Add some proper formatting */}
-						<CardContent className='flex flex-1 py-3'>
+						<CardContent className='flex flex-1 py-20 items-center justify-center'>
 							{content}
 						</CardContent>
 						<Separator />

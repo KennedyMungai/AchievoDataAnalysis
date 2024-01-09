@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import {
 	Card,
 	CardContent,
@@ -22,7 +22,7 @@ import toast from 'react-hot-toast'
 type Props = {
 	title: string
 	link: string
-	content: string
+	content: ReactNode
 	createdAt: Date
 	regionId: number
 }
@@ -45,7 +45,7 @@ const RegionCardTemplate = ({
 							</CardTitle>
 						</CardHeader>
 						<Separator />
-						<CardContent className='flex flex-1 py-3'>
+						<CardContent className='flex flex-1 py-20 items-center justify-center'>
 							{content}
 						</CardContent>
 						<Separator />

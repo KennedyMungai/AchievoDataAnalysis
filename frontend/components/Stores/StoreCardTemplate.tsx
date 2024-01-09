@@ -53,7 +53,7 @@ const StoreCardTemplate = ({
 						<CardFooter className='flex items-end justify-end w-full'>
 							<p className='text-sm '>
 								{moment(createdAt).format(
-									'DD-MMM-YYYY HH:mm:ss'
+									'DD-MMM-YYYY'
 								)}
 							</p>
 						</CardFooter>

@@ -3,7 +3,8 @@ import Chart from 'chart.js/auto'
 import { CategoryScale } from 'chart.js'
 import { Line } from 'react-chartjs-2'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { selectTheOverallGraphingData, selectTheOverallGraphingDataLabels } from '@/redux/features/overall/retrieveTheOverallGraphingDataSlice'
+import { retrieveTheOverallGraphingData, selectTheOverallGraphingData, selectTheOverallGraphingDataLabels } from '@/redux/features/overall/retrieveTheOverallGraphingDataSlice'
+import { useEffect } from 'react'
 
 Chart.register(CategoryScale)
 
@@ -11,6 +12,11 @@ const OverallValueChart = () => {
 	const dispatch = useAppDispatch()
 	const data = useAppSelector(selectTheOverallGraphingData)
 	const labels = useAppSelector(selectTheOverallGraphingDataLabels)
+
+	useEffect(() => {
+		dispatch(retrieveTheOverallGraphingData())
+	}, [])
+	
 
 	const graphingData = {
 		labels,

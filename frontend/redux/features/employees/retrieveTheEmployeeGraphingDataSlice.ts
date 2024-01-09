@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit"
 import axios from "axios"
+import { RootState } from "../store"
 
 
 export const retrieveTheEmployeeGraphingData = createAsyncThunk("employee/graphingData", async (employeeId: number) => {
@@ -35,5 +36,7 @@ export const retrieveTheEmployeeGraphingDataSlice = createSlice({
     }
 })
 
+export const selectTheEmployeeGraphingDataLabels = (state: RootState) => state.theEmployeeGraphingData.labels
+export const selectTheEmployeeGraphingData = (state: RootState) => state.theEmployeeGraphingData.data
 
 export default retrieveTheEmployeeGraphingDataSlice.reducer

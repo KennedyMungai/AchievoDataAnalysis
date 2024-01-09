@@ -33,7 +33,7 @@ import retrieveTheStoreGraphingDataReducer from './stores/retrieveTheStoreGraphi
 import retrieveTheOverallGraphingDataReducer from './overall/retrieveTheOverallGraphingDataSlice'
 import retrieveARegionsGraphingDataSlice from './regions/retrieveARegionsGraphingDataSlice'
 import retrieveTheStoreSectionGraphingDataReducer from './storeSections/retrieveTheGraphingDataForTheStoreSectionsSlice'
-
+import retrieveTheEmployeeGraphingDataReducer from './employees/retrieveTheEmployeeGraphingDataSlice'
 
 
 const store = configureStore({
@@ -72,6 +72,7 @@ const store = configureStore({
         theOverallGraphingData: retrieveTheOverallGraphingDataReducer,
         theRegionsGraphingData: retrieveARegionsGraphingDataSlice,
         theStoreSectionGraphingData: retrieveTheStoreSectionGraphingDataReducer,
+        theEmployeeGraphingData: retrieveTheEmployeeGraphingDataReducer,
     }
 })
 

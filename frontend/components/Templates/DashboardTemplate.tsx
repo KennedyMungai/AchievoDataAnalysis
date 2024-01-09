@@ -19,6 +19,12 @@ import {
 import { ScrollArea } from '../ui/scroll-area'
 import ChartCardTemplate from './ChartCardTemplate'
 import DashboardCards from './DashboardCards'
+import * as z from "zod"
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
+import { Input } from '../ui/input'
+
 
 type Props = {
 	title: string
@@ -37,6 +43,10 @@ type Props = {
 	scrollCardDescription: string
 	scrollCardContent: ReactNode
 }
+
+const formSchema = z.object({
+	product_name: z.string().min(1, {message: "The product name must be input"})
+})
 
 const DashboardTemplate = ({
 	title,
@@ -61,6 +71,17 @@ const DashboardTemplate = ({
 	const loginData = useAppSelector(selectAuthStateData)
 
 	const isLoggedIn = loginData.is_logged_in
+
+	const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
+		defaultValues: {
+			product_name: ''
+		}
+	})
+
+	function onSubmit(values: z.infer<typeof formSchema>){
+		console.log(values)
+	}
 
 	return (
 		<div className='overflow-x-hidden scrollbar-hide'>
@@ -91,7 +112,25 @@ const DashboardTemplate = ({
 									</DialogDescription>
 								</DialogHeader>
 								<div className='w-90'>
-									
+									<Form {...form}>
+										<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+											<FormField 
+												control={form.control}
+												name='product_name'
+												render={({field}) => (
+													<FormItem>
+														<FormLabel>Product Name</FormLabel>
+														<FormControl>
+															<Input placeholder='Product Name' {...field} />
+														</FormControl>
+														<FormDescription>This is the product name</FormDescription>
+														<FormMessage />
+													</FormItem>
+												)}
+											/>
+											<Button type='submit'>Submit</Button>
+										</form>
+									</Form>
 								</div>
 							</DialogContent>
 						</Dialog>

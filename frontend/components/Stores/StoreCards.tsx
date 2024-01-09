@@ -1,5 +1,4 @@
 'use client'
-import { selectAuthStateData } from '@/redux/features/auth/authSlice'
 import { selectSingleRegion } from '@/redux/features/regions/retrieveSingleRegionSlice'
 import {
 	retrieveRegionStores,
@@ -7,7 +6,7 @@ import {
 } from '@/redux/features/stores/retrieveAllRegionStoresSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useEffect } from 'react'
-import CardTemplate from '../Templates/CardTemplate'
+import { LuStore } from "react-icons/lu"
 import TopBar from '../TopBar/TopBar'
 import AddStoreCardTemplate from './AddStoreCardTemplate'
 import StoreCardTemplate from './StoreCardTemplate'
@@ -37,9 +36,7 @@ const RegionStoresCards = ({ regionId }: Props) => {
 									key={storeData.store_id}
 									title={storeData.store_name}
 									link={`/stores/singleStore/${storeData.store_id}`}
-									content={
-										'Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam recusandae exercitationem repellat eum saepe iure ab similique provident laboriosam a maxime soluta asperiores, adipisci architecto tempore nisi molestias sit. Reprehenderit fugiat magni odio dicta earum.'
-									}
+									content={<LuStore className='text-8xl' />}
 									createdAt={storeData.created_at!}
 									storeId={storeData.store_id}
 								/>

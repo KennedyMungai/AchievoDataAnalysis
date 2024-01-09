@@ -17,11 +17,12 @@ import {
     ContextMenuTrigger
 } from '../ui/context-menu'
 import { Separator } from '../ui/separator'
+import { ReactNode } from 'react'
 
 type Props = {
 	title: string
 	link: string
-	content: string
+	content: ReactNode
 	createdAt: Date
 	storeId: number
 }
@@ -45,7 +46,7 @@ const StoreCardTemplate = ({
 						</CardHeader>
 						<Separator />
 						{/* TODO: Add some proper formatting */}
-						<CardContent className='flex flex-1 py-3'>
+						<CardContent className='flex flex-1 py-20 items-center justify-center'>
 							{content}
 						</CardContent>
 						<Separator />

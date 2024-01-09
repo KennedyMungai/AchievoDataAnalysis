@@ -4,9 +4,11 @@ import { CategoryScale } from 'chart.js'
 import { Line } from 'react-chartjs-2'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import {
+	retrieveARegionsGraphingData,
 	selectARegionsGraphingData,
 	selectARegionsGraphingDataLabels
 } from '@/redux/features/regions/retrieveARegionsGraphingDataSlice'
+import { useEffect } from 'react'
 
 type Props = {
 	regionId: number
@@ -14,10 +16,15 @@ type Props = {
 
 Chart.register(CategoryScale)
 
-const RegionValueChart = ({ regionId: storeId }: Props) => {
+const RegionValueChart = ({ regionId }: Props) => {
 	const dispatch = useAppDispatch()
 	const data = useAppSelector(selectARegionsGraphingData)
 	const labels = useAppSelector(selectARegionsGraphingDataLabels)
+
+	useEffect(() => {
+		dispatch(retrieveARegionsGraphingData(regionId))
+	}, [])
+	
 
 	const graphingData = {
 		labels,

@@ -25,6 +25,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { Input } from '../ui/input'
 import toast from 'react-hot-toast'
+import { Checkbox } from '../ui/checkbox'
 
 
 type Props = {
@@ -46,7 +47,16 @@ type Props = {
 }
 
 const formSchema = z.object({
-	incident_description: z.string().min(1, {message: "The product name must be input"})
+	incident_description: z.string().min(1, {message: "The product name must be input"}),
+	product_name: z.string().min(1, {message: "The product name must be input"}),
+	product_code: z.string().min(1, {message: "The product code must be input"}),
+	product_quantity: z.string().min(1, {message: "The product quantity must be input"}),
+	product_price: z.string().min(1, {message: "The product price must be input"}),
+	store_section_id: z.string().min(1, {message: "The store section must be input"}),
+	store_id: z.string().min(1, {message: "The store must be input"}),
+	region_id: z.string().min(1, {message: "The region must be input"}),
+	employee_id: z.string().min(1, {message: "The employee id must be input"}),
+	is_resolved: z.boolean(),
 })
 
 const DashboardTemplate = ({
@@ -76,7 +86,16 @@ const DashboardTemplate = ({
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			incident_description: ''
+			incident_description: '',
+			product_name: '',
+			product_code: '',
+			product_quantity: '',
+			product_price: '',
+			store_section_id: '',
+			store_id: '',
+			region_id: '',
+			employee_id: '',
+			is_resolved: false
 		}
 	})
 
@@ -115,12 +134,12 @@ const DashboardTemplate = ({
 										Add an incident
 									</DialogDescription>
 								</DialogHeader>
-								<div className='w-90'>
+								<ScrollArea className='w-90 h-80 px-5'>
 									<Form {...form}>
 										<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
 											<FormField 
 												control={form.control}
-												name='product_name'
+												name='incident_description'
 												render={({field}) => (
 													<FormItem>
 														<FormLabel>Incident Description</FormLabel>
@@ -132,10 +151,136 @@ const DashboardTemplate = ({
 													</FormItem>
 												)}
 											/>
+											<FormField 
+												control={form.control}
+												name='product_name'
+												render={({field}) => (
+													<FormItem>
+														<FormLabel>Product Name</FormLabel>
+														<FormControl>
+															<Input placeholder='Product Name' {...field} />
+														</FormControl>
+														<FormDescription>The name of the product</FormDescription>
+														<FormMessage />
+													</FormItem>
+												)}
+											/>
+											<FormField 
+												control={form.control}
+												name='product_code'
+												render={({field}) => (
+													<FormItem>
+														<FormLabel>Product Code</FormLabel>
+														<FormControl>
+															<Input placeholder='Product Code' {...field} />
+														</FormControl>
+														<FormDescription>The code of the product</FormDescription>
+														<FormMessage />
+													</FormItem>
+												)}
+											/>
+											<FormField 
+												control={form.control}
+												name='product_quantity'
+												render={({field}) => (
+													<FormItem>
+														<FormLabel>Product Quantity</FormLabel>
+														<FormControl>
+															<Input placeholder='Product Quantity' {...field} />
+														</FormControl>
+														<FormDescription>The quantity of the product</FormDescription>
+														<FormMessage />
+													</FormItem>
+												)}
+											/>
+											<FormField 
+												control={form.control}
+												name='product_price'
+												render={({field}) => (
+													<FormItem>
+														<FormLabel>Product Price</FormLabel>
+														<FormControl>
+															<Input placeholder='Product Price' {...field} />
+														</FormControl>
+														<FormDescription>The price of the product</FormDescription>
+														<FormMessage />
+													</FormItem>
+												)}
+											/>
+											<FormField 
+												control={form.control}
+												name='store_section_id'
+												render={({field}) => (
+													<FormItem>
+														<FormLabel>Store Section Id</FormLabel>
+														<FormControl>
+															<Input placeholder='Store Section Id' {...field} />
+														</FormControl>
+														<FormDescription>The Id of the store section</FormDescription>
+														<FormMessage />
+													</FormItem>
+												)}
+											/>
+											<FormField 
+												control={form.control}
+												name='store_id'
+												render={({field}) => (
+													<FormItem>
+														<FormLabel>Store Id</FormLabel>
+														<FormControl>
+															<Input placeholder='Store Id' {...field} />
+														</FormControl>
+														<FormDescription>The Id of the store</FormDescription>
+														<FormMessage />
+													</FormItem>
+												)}
+											/>
+											<FormField 
+												control={form.control}
+												name='region_id'
+												render={({field}) => (
+													<FormItem>
+														<FormLabel>Region Id</FormLabel>
+														<FormControl>
+															<Input placeholder='Region Id' {...field} />
+														</FormControl>
+														<FormDescription>The Id of the region</FormDescription>
+														<FormMessage />
+													</FormItem>
+												)}
+											/>
+											<FormField
+													control={form.control}
+													name='is_resolved'
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>
+																Is Resolved
+															</FormLabel>
+															<FormDescription>
+																A check to show
+																if the issue has
+																been resolved
+															</FormDescription>
+															<FormControl>
+																<Checkbox
+																	checked={
+																		field.value
+																	}
+																	onCheckedChange={
+																		field.onChange
+																	}
+																	disabled
+																/>
+															</FormControl>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
 											<Button type='submit'>Submit</Button>
 										</form>
 									</Form>
-								</div>
+								</ScrollArea>
 							</DialogContent>
 						</Dialog>
 					)}

@@ -175,9 +175,19 @@ const DashboardTemplate = ({
 	}
 
 	async function onEmployeeSubmit(
-		values: z.infer<typeof employeeFormSchema>
+		{employee_name, employee_email, employee_phone_number, employee_job_title, employee_password}: z.infer<typeof employeeFormSchema>
 	) {
-		console.log(values)
+		const valuesToSubmit = {
+			employee_name,
+			employee_email,
+			employee_phone_number,
+			employee_job_title,
+			store_id: storeData.store_id,
+			region_id: regionData.region_id,
+			employee_password
+		}
+
+		console.log(valuesToSubmit)
 	}
 
 	return (

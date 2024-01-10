@@ -45,7 +45,6 @@ const StoreCardTemplate = ({
 							</CardTitle>
 						</CardHeader>
 						<Separator />
-						{/* TODO: Add some proper formatting */}
 						<CardContent className='flex flex-1 py-20 items-center justify-center'>
 							{content}
 						</CardContent>

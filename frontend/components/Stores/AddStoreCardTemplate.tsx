@@ -134,7 +134,6 @@ const AddStoreCardTemplate = ({ regionId }: Props) => {
 										</FormItem>
 									)}
 								/>
-								{/* TODO: Find a way to solve this */}
 								<FormField
 									control={form.control}
 									name='region_id'

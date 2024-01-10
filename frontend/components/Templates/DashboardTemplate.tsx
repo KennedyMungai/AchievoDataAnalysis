@@ -45,6 +45,7 @@ import {
 } from '../ui/sheet'
 import ChartCardTemplate from './ChartCardTemplate'
 import DashboardCards from './DashboardCards'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../ui/select'
 
 type Props = {
 	title: string
@@ -471,10 +472,24 @@ const DashboardTemplate = ({
 																	Title
 																</FormLabel>
 																<FormControl>
-																	<Input
-																		placeholder='Employee Job Title'
-																		{...field}
-																	/>
+																	<Select onValueChange={field.onChange} defaultValue={field.value}>
+																		<SelectTrigger className='w-[180px]'>
+																			<SelectValue placeholder='Select Job Title' />
+																		</SelectTrigger>
+																		<SelectContent>
+																			<SelectGroup>
+																				<SelectLabel className='uppercase text-center'>Job Titles</SelectLabel>
+																				<Separator />
+																				<SelectItem value='administrator'>Administrator</SelectItem>
+																				<SelectItem value='area_manager'>Area Manager</SelectItem>
+																				<SelectItem value='lcm'>LCM</SelectItem>
+																				<SelectItem value='fec'>FEC</SelectItem>
+																				<SelectItem value='cro'>CRO</SelectItem>
+																				<SelectItem value='dc'>DC</SelectItem>
+																				<SelectItem value='receiving_clerk'>Receiving Clerk</SelectItem>
+																			</SelectGroup>
+																		</SelectContent>
+																	</Select>
 																</FormControl>
 																<FormDescription>
 																	Please input

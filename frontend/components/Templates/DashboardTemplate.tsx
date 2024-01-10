@@ -106,8 +106,16 @@ const DashboardTemplate = ({
 		}
 	})
 
-	function onSubmit(values: z.infer<typeof formSchema>) {
-		console.log(values)
+	function onSubmit({
+		incident_description,
+		product_code,
+		product_name,
+		product_price,
+		product_quantity
+	}: z.infer<typeof formSchema>) {
+		const submittedValues = {}
+
+		console.log(submittedValues)
 		toast.success('Submitted Successfully')
 
 		form.reset()

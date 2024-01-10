@@ -197,6 +197,8 @@ const DashboardTemplate = ({
 		} catch (error: any) {
 			toast.error(error.message)
 		}
+
+		employeeForm.reset()
 	}
 
 	return (

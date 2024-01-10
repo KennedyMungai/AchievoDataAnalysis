@@ -110,10 +110,17 @@ const DashboardTemplate = ({
 		incident_description,
 		product_code,
 		product_name,
-		product_price,
-		product_quantity
+		product_price: product_price_string,
+		product_quantity: product_quantity_string
 	}: z.infer<typeof formSchema>) {
-		const submittedValues = {}
+		const submittedValues = {
+			incident_description,
+			product_name,
+			product_code,
+			product_quantity: Number(product_quantity_string),
+			product_price: Number(product_price_string),
+			total_value: Number(product_quantity_string) * Number(product_price_string)
+		}
 
 		console.log(submittedValues)
 		toast.success('Submitted Successfully')

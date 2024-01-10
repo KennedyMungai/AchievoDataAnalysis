@@ -31,9 +31,8 @@ import {
 	FormMessage
 } from '../ui/form'
 import { Input } from '../ui/input'
-import { ScrollArea, ScrollBar } from '../ui/scroll-area'
-import ChartCardTemplate from './ChartCardTemplate'
-import DashboardCards from './DashboardCards'
+import { ScrollArea } from '../ui/scroll-area'
+import { Separator } from '../ui/separator'
 import {
 	Sheet,
 	SheetClose,
@@ -44,7 +43,8 @@ import {
 	SheetTitle,
 	SheetTrigger
 } from '../ui/sheet'
-import { Separator } from '../ui/separator'
+import ChartCardTemplate from './ChartCardTemplate'
+import DashboardCards from './DashboardCards'
 
 type Props = {
 	title: string
@@ -174,9 +174,13 @@ const DashboardTemplate = ({
 		form.reset()
 	}
 
-	async function onEmployeeSubmit(
-		{employee_name, employee_email, employee_phone_number, employee_job_title, employee_password}: z.infer<typeof employeeFormSchema>
-	) {
+	async function onEmployeeSubmit({
+		employee_name,
+		employee_email,
+		employee_phone_number,
+		employee_job_title,
+		employee_password
+	}: z.infer<typeof employeeFormSchema>) {
 		const valuesToSubmit = {
 			employee_name,
 			employee_email,

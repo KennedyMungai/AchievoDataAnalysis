@@ -301,8 +301,6 @@ async def retrieve_the_graphing_data_of_incidents_by_store_section_service(
         common_df['store_section_name'].to_dict().values())
     total_values = list(common_df['total_value'].to_dict().values())
 
-    print(total_values)
-
     return {
         'labels': store_section_names,
         'data': total_values
@@ -661,8 +659,6 @@ async def retrieve_a_regions_graphing_data_service(
     region_names = list(
         common_df['store_name'].to_dict().values())
     total_values = list(common_df['total_value'].to_dict().values())
-
-    print(common_df)
 
     return {
         "labels": region_names,

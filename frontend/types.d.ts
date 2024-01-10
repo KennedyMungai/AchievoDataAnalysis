@@ -109,7 +109,6 @@ interface IIncident {
     product_quantity: string
     product_price: string
     total_value: string
-    is_resolved: boolean
     store_section_id: number
     employee_id: number
     store_id: number

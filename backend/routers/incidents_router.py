@@ -7,11 +7,13 @@ from schemas.incident_schema import (CreateIncident, ReadIncident,
                                      UpdateIncident)
 from services.incident_services import (
     create_incident_service, delete_incident_service,
+    retrieve_a_regions_graphing_data_service,
+    retrieve_a_store_sections_graphing_data_service,
     retrieve_all_incident_in_a_store_section_service,
     retrieve_all_incident_in_a_store_service,
     retrieve_all_incidents_by_an_employee_service,
     retrieve_all_incidents_in_a_region_service, retrieve_all_incidents_service,
-    retrieve_one_incident_service,
+    retrieve_an_employees_graphing_data_service, retrieve_one_incident_service,
     retrieve_the_graphing_data_of_incidents_by_store_section_service,
     retrieve_the_most_notorious_incident_in_a_store_section_service,
     retrieve_the_most_notorious_incident_reported_by_an_employee_service,
@@ -23,7 +25,7 @@ from services.incident_services import (
     retrieve_the_number_of_incidents_in_a_store_section_service,
     retrieve_the_number_of_incidents_in_a_store_service,
     retrieve_the_number_of_overall_incidents_service,
-    retrieve_a_regions_graphing_data_service,
+    retrieve_the_overall_graphing_data_service,
     retrieve_the_overall_top_twenty_most_valuable_incidents_service,
     retrieve_the_ten_most_valuable_incidents_reported_by_an_employee_service,
     retrieve_the_top_twenty_most_valuable_incidents_in_a_region_service,
@@ -33,11 +35,7 @@ from services.incident_services import (
     retrieve_the_value_of_all_incidents_reported_by_an_employee_service,
     retrieve_the_value_of_incidents_in_a_store_section_service,
     retrieve_the_value_of_incidents_in_a_store_service,
-    retrieve_the_value_of_overall_incidents_service,
-    retrieve_an_employees_graphing_data_service,
-    retrieve_a_store_sections_graphing_data_service,
-    update_incident_service
-)
+    retrieve_the_value_of_overall_incidents_service, update_incident_service)
 from sqlalchemy.orm import Session
 from utils.oauth2 import get_current_user
 
@@ -805,7 +803,7 @@ async def retrieve_the_ten_most_valuable_incidents_reported_by_an_employee_route
 
 
 @incidents_router.get("/incidents/region/graphing_data/{_region_id}")
-async def retrieve_the_overall_graphing_data_router(_region_id: int):
+async def retrieve_the_region_graphing_data_router(_region_id: int):
     """The endpoint to retrieve the overall graphing data
 
     Args:
@@ -867,6 +865,25 @@ async def retrieve_an_employees_graphing_data_router(
     """
     try:
         return await retrieve_an_employees_graphing_data_service(_employee_id)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc)
+        ) from exc
+
+
+@incidents_router.get("/incidents/overall/graphing_data")
+async def retrieve_the_overall_graphing_data_router():
+    """The router function to get the overall graphing data
+
+    Raises:
+        HTTPException: A 400 is raised incase anything goes wrong
+
+    Returns:
+        dict: A dict with the graphing data
+    """
+    try:
+        return await retrieve_the_overall_graphing_data_service()
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

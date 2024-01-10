@@ -31,9 +31,11 @@ import {
 	FormMessage
 } from '../ui/form'
 import { Input } from '../ui/input'
-import { ScrollArea } from '../ui/scroll-area'
+import { ScrollArea, ScrollBar } from '../ui/scroll-area'
 import ChartCardTemplate from './ChartCardTemplate'
 import DashboardCards from './DashboardCards'
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet'
+import { Separator } from '../ui/separator'
 
 type Props = {
 	title: string
@@ -147,150 +149,169 @@ const DashboardTemplate = ({
 							<Button variant={'outline'}>{buttonName}</Button>
 						</Link>
 					) : (
-						<Dialog>
-							<DialogTrigger asChild>
-								<Button
-									variant={'default'}
-									disabled={!isLoggedIn}
-								>
-									{buttonName}
-								</Button>
-							</DialogTrigger>
-							<DialogContent className='sm:max-w-[50rem]'>
-								<DialogHeader>
-									<DialogTitle className='flex justify-center uppercase'>
-										Add Incident
-									</DialogTitle>
-									<DialogDescription className='flex justify-center font-semibold'>
-										Add an incident
-									</DialogDescription>
-								</DialogHeader>
-								<ScrollArea className='w-90 h-80 px-5'>
-									<Form {...form}>
-										<form
-											onSubmit={form.handleSubmit(
-												onSubmit
-											)}
-											className='space-y-8'
-										>
-											<FormField
-												control={form.control}
-												name='incident_description'
-												render={({ field }) => (
-													<FormItem>
-														<FormLabel>
-															Incident Description
-														</FormLabel>
-														<FormControl>
-															<Input
-																placeholder='Incident Description'
-																{...field}
-															/>
-														</FormControl>
-														<FormDescription>
-															A description of the
-															incident
-														</FormDescription>
-														<FormMessage />
-													</FormItem>
+						<>
+							<Dialog>
+								<DialogTrigger asChild>
+									<Button
+										variant={'default'}
+										disabled={!isLoggedIn}
+									>
+										{buttonName}
+									</Button>
+								</DialogTrigger>
+								<DialogContent className='sm:max-w-[50rem]'>
+									<DialogHeader>
+										<DialogTitle className='flex justify-center uppercase'>
+											Add Incident
+										</DialogTitle>
+										<DialogDescription className='flex justify-center font-semibold'>
+											Add an incident
+										</DialogDescription>
+									</DialogHeader>
+									<ScrollArea className='w-90 h-80 px-5'>
+										<Form {...form}>
+											<form
+												onSubmit={form.handleSubmit(
+													onSubmit
 												)}
-											/>
-											<FormField
-												control={form.control}
-												name='product_name'
-												render={({ field }) => (
-													<FormItem>
-														<FormLabel>
-															Product Name
-														</FormLabel>
-														<FormControl>
-															<Input
-																placeholder='Product Name'
-																{...field}
-															/>
-														</FormControl>
-														<FormDescription>
-															The name of the
-															product
-														</FormDescription>
-														<FormMessage />
-													</FormItem>
-												)}
-											/>
-											<FormField
-												control={form.control}
-												name='product_code'
-												render={({ field }) => (
-													<FormItem>
-														<FormLabel>
-															Product Code
-														</FormLabel>
-														<FormControl>
-															<Input
-																placeholder='Product Code'
-																{...field}
-															/>
-														</FormControl>
-														<FormDescription>
-															The code of the
-															product
-														</FormDescription>
-														<FormMessage />
-													</FormItem>
-												)}
-											/>
-											<FormField
-												control={form.control}
-												name='product_quantity'
-												render={({ field }) => (
-													<FormItem>
-														<FormLabel>
-															Product Quantity
-														</FormLabel>
-														<FormControl>
-															<Input
-																placeholder='Product Quantity'
-																{...field}
-															/>
-														</FormControl>
-														<FormDescription>
-															The quantity of the
-															product
-														</FormDescription>
-														<FormMessage />
-													</FormItem>
-												)}
-											/>
-											<FormField
-												control={form.control}
-												name='product_price'
-												render={({ field }) => (
-													<FormItem>
-														<FormLabel>
-															Product Price
-														</FormLabel>
-														<FormControl>
-															<Input
-																placeholder='Product Price'
-																{...field}
-															/>
-														</FormControl>
-														<FormDescription>
-															The price of the
-															product
-														</FormDescription>
-														<FormMessage />
-													</FormItem>
-												)}
-											/>
-											<Button type='submit'>
-												Submit
-											</Button>
-										</form>
-									</Form>
-								</ScrollArea>
-							</DialogContent>
-						</Dialog>
+												className='space-y-8'
+											>
+												<FormField
+													control={form.control}
+													name='incident_description'
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>
+																Incident
+																Description
+															</FormLabel>
+															<FormControl>
+																<Input
+																	placeholder='Incident Description'
+																	{...field}
+																/>
+															</FormControl>
+															<FormDescription>
+																A description of
+																the incident
+															</FormDescription>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+												<FormField
+													control={form.control}
+													name='product_name'
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>
+																Product Name
+															</FormLabel>
+															<FormControl>
+																<Input
+																	placeholder='Product Name'
+																	{...field}
+																/>
+															</FormControl>
+															<FormDescription>
+																The name of the
+																product
+															</FormDescription>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+												<FormField
+													control={form.control}
+													name='product_code'
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>
+																Product Code
+															</FormLabel>
+															<FormControl>
+																<Input
+																	placeholder='Product Code'
+																	{...field}
+																/>
+															</FormControl>
+															<FormDescription>
+																The code of the
+																product
+															</FormDescription>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+												<FormField
+													control={form.control}
+													name='product_quantity'
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>
+																Product Quantity
+															</FormLabel>
+															<FormControl>
+																<Input
+																	placeholder='Product Quantity'
+																	{...field}
+																/>
+															</FormControl>
+															<FormDescription>
+																The quantity of
+																the product
+															</FormDescription>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+												<FormField
+													control={form.control}
+													name='product_price'
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>
+																Product Price
+															</FormLabel>
+															<FormControl>
+																<Input
+																	placeholder='Product Price'
+																	{...field}
+																/>
+															</FormControl>
+															<FormDescription>
+																The price of the
+																product
+															</FormDescription>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+												<Button type='submit'>
+													Submit
+												</Button>
+											</form>
+										</Form>
+									</ScrollArea>
+								</DialogContent>
+							</Dialog>
+							<Sheet>
+								<SheetTrigger asChild>
+									<Button variant={'outline'}>Add Employee</Button>
+								</SheetTrigger>
+								<SheetContent>
+									<SheetHeader>
+										<SheetTitle>
+											Add an Employee
+										</SheetTitle>
+										<SheetDescription>
+											This is a form used to create a new employee
+										</SheetDescription>
+									</SheetHeader>
+									<Separator className='my-3' />
+								</SheetContent>
+							</Sheet>
+						</>
 					)}
 				</div>
 				<div className='p-4 flex flex-col items-center w-full gap-2 md:flex-row md:items-center md:gap-1'>

@@ -46,7 +46,7 @@ type Props = {
 }
 
 const formSchema = z.object({
-	product_name: z.string().min(1, {message: "The product name must be input"})
+	incident_description: z.string().min(1, {message: "The product name must be input"})
 })
 
 const DashboardTemplate = ({
@@ -76,7 +76,7 @@ const DashboardTemplate = ({
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			product_name: ''
+			incident_description: ''
 		}
 	})
 
@@ -123,11 +123,11 @@ const DashboardTemplate = ({
 												name='product_name'
 												render={({field}) => (
 													<FormItem>
-														<FormLabel>Product Name</FormLabel>
+														<FormLabel>Incident Description</FormLabel>
 														<FormControl>
-															<Input placeholder='Product Name' {...field} />
+															<Input placeholder='Incident Description' {...field} />
 														</FormControl>
-														<FormDescription>This is the product name</FormDescription>
+														<FormDescription>A description of the incident</FormDescription>
 														<FormMessage />
 													</FormItem>
 												)}

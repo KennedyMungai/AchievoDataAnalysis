@@ -11,7 +11,7 @@ const TopStoreSectionsIncidentCard = ({ incident }: Props) => {
 			<span className='float-right'>
 				{moment(incident.created_at).format('HH:mm:ss')}
 			</span>
-			<span className='text-left'>{incident.incident_description}</span>
+			<span className='text-xs font-bold'>{incident.incident_description}</span>
 			<span>KSH {incident.total_value}</span>
 		</div>
 	)

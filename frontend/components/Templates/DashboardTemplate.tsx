@@ -191,7 +191,12 @@ const DashboardTemplate = ({
 			employee_password
 		}
 
-		console.log(valuesToSubmit)
+		try {
+			await axios.post('http://localhost:8000/employees', valuesToSubmit)
+			toast.success('Employee Successfully Created')
+		} catch (error: any) {
+			toast.error(error.message)
+		}
 	}
 
 	return (

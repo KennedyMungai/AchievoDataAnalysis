@@ -4,8 +4,13 @@ import { selectSingleRegion } from '@/redux/features/regions/retrieveSingleRegio
 import { selectSingleStoreSection } from '@/redux/features/storeSections/retrieveSingleStoreSectionSlice'
 import { selectSingleStore } from '@/redux/features/stores/retrieveSingleStoreSlice'
 import { useAppSelector } from '@/redux/hooks'
+import { zodResolver } from '@hookform/resolvers/zod'
+import axios from 'axios'
 import Link from 'next/link'
 import { ReactNode } from 'react'
+import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
+import * as z from 'zod'
 import TopBar from '../TopBar/TopBar'
 import { Button } from '../ui/button'
 import {
@@ -16,12 +21,6 @@ import {
 	DialogTitle,
 	DialogTrigger
 } from '../ui/dialog'
-import { ScrollArea } from '../ui/scroll-area'
-import ChartCardTemplate from './ChartCardTemplate'
-import DashboardCards from './DashboardCards'
-import * as z from 'zod'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
 import {
 	Form,
 	FormControl,
@@ -32,9 +31,9 @@ import {
 	FormMessage
 } from '../ui/form'
 import { Input } from '../ui/input'
-import toast from 'react-hot-toast'
-import { Checkbox } from '../ui/checkbox'
-import axios from 'axios'
+import { ScrollArea } from '../ui/scroll-area'
+import ChartCardTemplate from './ChartCardTemplate'
+import DashboardCards from './DashboardCards'
 
 type Props = {
 	title: string

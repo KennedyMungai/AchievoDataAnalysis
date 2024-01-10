@@ -34,7 +34,14 @@ import { Input } from '../ui/input'
 import { ScrollArea, ScrollBar } from '../ui/scroll-area'
 import ChartCardTemplate from './ChartCardTemplate'
 import DashboardCards from './DashboardCards'
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet'
+import {
+	Sheet,
+	SheetContent,
+	SheetDescription,
+	SheetHeader,
+	SheetTitle,
+	SheetTrigger
+} from '../ui/sheet'
 import { Separator } from '../ui/separator'
 
 type Props = {
@@ -71,6 +78,20 @@ const formSchema = z.object({
 	product_price: z
 		.string()
 		.min(1, { message: 'The product price must be input' })
+})
+
+const employeeFormSchema = z.object({
+	employee_name: z.string().min(1, { message: 'The name must be input' }),
+	employee_email: z.string().min(1, { message: 'The email must be input' }),
+	employee_phone_number: z
+		.string()
+		.min(1, { message: 'The phone number must be input' }),
+	employee_job_title: z
+		.string()
+		.min(1, { message: 'The job title must be input' }),
+	employee_password: z
+		.string()
+		.min(1, { message: 'The password must be input' })
 })
 
 const DashboardTemplate = ({
@@ -137,6 +158,10 @@ const DashboardTemplate = ({
 		}
 
 		form.reset()
+	}
+
+	async function onEmployeeSubmit() {
+		console.log('Employee Created')
 	}
 
 	return (
@@ -297,18 +322,24 @@ const DashboardTemplate = ({
 							</Dialog>
 							<Sheet>
 								<SheetTrigger asChild>
-									<Button variant={'outline'}>Add Employee</Button>
+									<Button variant={'outline'}>
+										Add Employee
+									</Button>
 								</SheetTrigger>
 								<SheetContent>
 									<SheetHeader>
-										<SheetTitle>
-											Add an Employee
-										</SheetTitle>
+										<SheetTitle>Add an Employee</SheetTitle>
 										<SheetDescription>
-											This is a form used to create a new employee
+											This is a form used to create a new
+											employee
 										</SheetDescription>
 									</SheetHeader>
 									<Separator className='my-3' />
+									<ScrollArea>
+										<div className='w-full h-80'>
+											<Form></Form>
+										</div>
+									</ScrollArea>
 								</SheetContent>
 							</Sheet>
 						</>

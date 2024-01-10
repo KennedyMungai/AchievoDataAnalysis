@@ -480,6 +480,7 @@ const DashboardTemplate = ({
 																			<SelectGroup>
 																				<SelectLabel className='uppercase text-center'>Job Titles</SelectLabel>
 																				<Separator />
+																				{/* TODO: Add some role based selective rendering */}
 																				<SelectItem value='administrator'>Administrator</SelectItem>
 																				<SelectItem value='area_manager'>Area Manager</SelectItem>
 																				<SelectItem value='lcm'>LCM</SelectItem>

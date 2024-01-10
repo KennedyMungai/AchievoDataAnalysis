@@ -36,8 +36,10 @@ import ChartCardTemplate from './ChartCardTemplate'
 import DashboardCards from './DashboardCards'
 import {
 	Sheet,
+	SheetClose,
 	SheetContent,
 	SheetDescription,
+	SheetFooter,
 	SheetHeader,
 	SheetTitle,
 	SheetTrigger
@@ -92,6 +94,7 @@ const employeeFormSchema = z.object({
 	employee_password: z
 		.string()
 		.min(1, { message: 'The password must be input' })
+	// TODO: Implement confirm password field
 })
 
 const DashboardTemplate = ({
@@ -129,6 +132,17 @@ const DashboardTemplate = ({
 		}
 	})
 
+	const employeeForm = useForm<z.infer<typeof employeeFormSchema>>({
+		resolver: zodResolver(employeeFormSchema),
+		defaultValues: {
+			employee_name: '',
+			employee_email: '',
+			employee_phone_number: '',
+			employee_job_title: '',
+			employee_password: ''
+		}
+	})
+
 	async function onSubmit({
 		incident_description,
 		product_code,
@@ -160,8 +174,10 @@ const DashboardTemplate = ({
 		form.reset()
 	}
 
-	async function onEmployeeSubmit() {
-		console.log('Employee Created')
+	async function onEmployeeSubmit(
+		values: z.infer<typeof employeeFormSchema>
+	) {
+		console.log(values)
 	}
 
 	return (
@@ -337,7 +353,153 @@ const DashboardTemplate = ({
 									<Separator className='my-3' />
 									<ScrollArea>
 										<div className='w-full h-80'>
-											<Form></Form>
+											<Form {...employeeForm}>
+												<form
+													onSubmit={employeeForm.handleSubmit(
+														onEmployeeSubmit
+													)}
+													className='space-y-8'
+												>
+													<FormField
+														control={
+															employeeForm.control
+														}
+														name='employee_name'
+														render={({ field }) => (
+															<FormItem>
+																<FormLabel>
+																	Employee
+																	Name
+																</FormLabel>
+																<FormControl>
+																	<Input
+																		placeholder='Employee Name'
+																		{...field}
+																	/>
+																</FormControl>
+																<FormDescription>
+																	Please input
+																	the employee
+																	Name
+																</FormDescription>
+																<FormMessage />
+															</FormItem>
+														)}
+													/>
+													<FormField
+														control={
+															employeeForm.control
+														}
+														name='employee_email'
+														render={({ field }) => (
+															<FormItem>
+																<FormLabel>
+																	Employee
+																	Email
+																</FormLabel>
+																<FormControl>
+																	<Input
+																		placeholder='Employee Email'
+																		{...field}
+																	/>
+																</FormControl>
+																<FormDescription>
+																	Please input
+																	the Employee
+																	Email
+																</FormDescription>
+																<FormMessage />
+															</FormItem>
+														)}
+													/>
+													<FormField
+														control={
+															employeeForm.control
+														}
+														name='employee_phone_number'
+														render={({ field }) => (
+															<FormItem>
+																<FormLabel>
+																	Employee
+																	Phone Number
+																</FormLabel>
+																<FormControl>
+																	<Input
+																		placeholder='Employee Phone Number'
+																		{...field}
+																	/>
+																</FormControl>
+																<FormDescription>
+																	Please input
+																	the Employee
+																	Phone Number
+																</FormDescription>
+																<FormMessage />
+															</FormItem>
+														)}
+													/>
+													<FormField
+														control={
+															employeeForm.control
+														}
+														name='employee_job_title'
+														render={({ field }) => (
+															<FormItem>
+																<FormLabel>
+																	Employee Job
+																	Title
+																</FormLabel>
+																<FormControl>
+																	<Input
+																		placeholder='Employee Job Title'
+																		{...field}
+																	/>
+																</FormControl>
+																<FormDescription>
+																	Please input
+																	the Employee
+																	Job Title
+																</FormDescription>
+																<FormMessage />
+															</FormItem>
+														)}
+													/>
+													<FormField
+														control={
+															employeeForm.control
+														}
+														name='employee_password'
+														render={({ field }) => (
+															<FormItem>
+																<FormLabel>
+																	Employee
+																	Password
+																</FormLabel>
+																<FormControl>
+																	<Input
+																		placeholder='Employee Password'
+																		type='password'
+																		{...field}
+																	/>
+																</FormControl>
+																<FormDescription>
+																	Please input
+																	the Employee
+																	Password
+																</FormDescription>
+																<FormMessage />
+															</FormItem>
+														)}
+													/>
+													<SheetFooter className='fixed bottom-0 right-0 p-3'>
+														<SheetClose asChild>
+															<Button type='submit'>
+																Save Changes
+															</Button>
+														</SheetClose>
+													</SheetFooter>
+												</form>
+											</Form>
 										</div>
 									</ScrollArea>
 								</SheetContent>

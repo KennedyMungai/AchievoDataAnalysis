@@ -34,6 +34,7 @@ import {
 import { Input } from '../ui/input'
 import toast from 'react-hot-toast'
 import { Checkbox } from '../ui/checkbox'
+import axios from 'axios'
 
 type Props = {
 	title: string
@@ -106,7 +107,7 @@ const DashboardTemplate = ({
 		}
 	})
 
-	function onSubmit({
+	async function onSubmit({
 		incident_description,
 		product_code,
 		product_name,
@@ -127,8 +128,11 @@ const DashboardTemplate = ({
 			region_id: regionData.region_id
 		}
 
-		console.log(submittedValues)
-		toast.success('Submitted Successfully')
+		try {
+			await axios.post('http://localhost:8000/incidents', submittedValues)
+		} catch (error: any) {
+			toast.error(error.message)
+		}
 
 		form.reset()
 	}

@@ -130,6 +130,7 @@ const DashboardTemplate = ({
 
 		try {
 			await axios.post('http://localhost:8000/incidents', submittedValues)
+			toast.success('Incident Successfully Created')
 		} catch (error: any) {
 			toast.error(error.message)
 		}

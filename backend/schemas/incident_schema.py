@@ -17,7 +17,6 @@ class IncidentBase(BaseModel):
     product_quantity: int
     product_price: float
     total_value: float
-    is_resolved: bool
 
     store_section_id: int
     employee_id: int
@@ -60,7 +59,6 @@ class UpdateIncident(BaseModel):
     product_code: Optional[str]
     product_quantity: Optional[int]
     product_price: Optional[float]
-    is_resolved: Optional[bool]
 
     class Config:
         """The config class for reading data from the database

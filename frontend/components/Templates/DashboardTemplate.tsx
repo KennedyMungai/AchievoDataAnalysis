@@ -24,6 +24,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { Input } from '../ui/input'
+import toast from 'react-hot-toast'
 
 
 type Props = {
@@ -81,6 +82,9 @@ const DashboardTemplate = ({
 
 	function onSubmit(values: z.infer<typeof formSchema>){
 		console.log(values)
+		toast.success('Submitted Successfully')
+		
+		form.reset()
 	}
 
 	return (

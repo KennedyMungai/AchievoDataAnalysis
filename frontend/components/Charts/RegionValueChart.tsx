@@ -30,7 +30,7 @@ const RegionValueChart = ({ regionId }: Props) => {
 		labels,
 		datasets: [
 			{
-				label: 'Stores $',
+				label: 'Stores KSH',
 				data,
 				borderColor: 'rgb(53, 162, 235)',
 				backgroundColor: 'rgb(53, 162, 235, 0.4'

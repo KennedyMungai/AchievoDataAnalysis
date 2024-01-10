@@ -22,7 +22,7 @@ const OverallValueChart = () => {
 		labels,
 		datasets: [
 			{
-				label: 'Regions $',
+				label: 'Regions KSH',
 				data,
 				borderColor: 'rgb(53, 162, 235)',
 				backgroundColor: 'rgb(53, 162, 235, 0.4'

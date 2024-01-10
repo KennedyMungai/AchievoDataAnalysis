@@ -29,7 +29,7 @@ const StoreSectionValueChart = ({ storeSectionId }: Props) => {
 		labels,
 		datasets: [
 			{
-				label: 'Incidents $',
+				label: 'Incidents KSH',
 				data,
 				borderColor: 'rgb(53, 162, 235)',
 				backgroundColor: 'rgb(53, 162, 235, 0.4'

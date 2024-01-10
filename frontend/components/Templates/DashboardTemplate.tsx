@@ -122,6 +122,7 @@ const DashboardTemplate = ({
 			total_value:
 				Number(product_quantity_string) * Number(product_price_string),
 			store_section_id: storeSectionData.store_section_id,
+			employee_id: loginData.employee_id,
 			store_id: storeData.store_id,
 			region_id: regionData.region_id
 		}

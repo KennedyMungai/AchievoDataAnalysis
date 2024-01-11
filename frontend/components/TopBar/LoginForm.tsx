@@ -71,17 +71,15 @@ const LoginButton = (props: Props) => {
 					employee_password: password
 				})
 			)
-			
-			if(response.payload.status === 200) {
+
+			if (response.payload.status === 200) {
 				toast.success('Successfully Logged in')
 				dispatch(logIn())
-			}
-			else
-			{
-				toast.error("Invalid Credentials")
+			} else {
+				toast.error('Invalid Credentials')
 			}
 		} catch (error: any) {
-			toast.error(error.message)
+			toast.error("Invalid Credentials")
 		}
 
 		form.reset()

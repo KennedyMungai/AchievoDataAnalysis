@@ -307,6 +307,7 @@ async def retrieve_the_graphing_data_of_incidents_by_store_section_service(
     }
 
 
+# TODO: Rethink the logic
 async def retrieve_the_most_notorious_store_section_service(
     _store_id: int,
     _db: Session
@@ -372,6 +373,7 @@ async def retrieve_the_value_of_all_incidents_in_a_region_service(
     return {"total_values": regions_total}
 
 
+# TODO: Rethink the logic
 async def retrieve_the_most_notorious_store_service(
     _region_id: int,
     _db: Session
@@ -443,6 +445,7 @@ async def retrieve_the_value_of_overall_incidents_service():
     return {"total_values": regions_total}
 
 
+# TODO: Rethink the logic
 async def retrieve_the_most_notorious_region_service(
     _db: Session
 ):
@@ -506,6 +509,7 @@ async def retrieve_the_value_of_incidents_in_a_store_section_service(
     return {"total_values": some_variable}
 
 
+# TODO: Rethink the logic
 async def retrieve_the_most_notorious_incident_in_a_store_section_service(
     _store_section_id: int,
     _db: Session
@@ -565,6 +569,7 @@ async def retrieve_the_value_of_all_incidents_reported_by_an_employee_service(
     return {"total_values": max_value}
 
 
+# TODO: Rethink the logic
 async def retrieve_the_most_notorious_incident_reported_by_an_employee_service(
     _employee_id: int,
     _db: Session

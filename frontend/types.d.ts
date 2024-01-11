@@ -4,6 +4,10 @@ interface IToken {
     employee_id: number
     employee_name: string
     employee_job_title: string
+}
+
+interface ITokenData extends IToken
+{
     is_loaded: boolean
     is_logged_in: boolean
 }

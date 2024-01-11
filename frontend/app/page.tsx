@@ -53,7 +53,7 @@ export default function Home() {
 				buttonLink={'/regions'}
 				dashboardCard1Value={
 					is_logged_in &&
-					!(employee_job_title === 'administrator') ? (
+					(employee_job_title === 'EmployeeJobTitle.ADMINISTRATOR') ? (
 						overallCount
 					) : (
 						<LuEyeOff className='text-2xl' />
@@ -62,7 +62,7 @@ export default function Home() {
 				dashboardCard1Title={'Number of all incidents'}
 				dashboardCard2Value={
 					is_logged_in &&
-					!(employee_job_title === 'administrator') ? (
+					(employee_job_title === 'EmployeeJobTitle.ADMINISTRATOR') ? (
 						overallValue.total_values
 					) : (
 						<LuEyeOff className='text-2xl' />
@@ -71,7 +71,7 @@ export default function Home() {
 				dashboardCard2Title={'Value of all Incidents'}
 				dashboardCard3Value={
 					is_logged_in &&
-					!(employee_job_title === 'administrator') ? (
+					(employee_job_title === 'EmployeeJobTitle.ADMINISTRATOR') ? (
 						`${region_name} with KSH ${max_value}`
 					) : (
 						<LuEyeOff className='text-2xl' />
@@ -84,7 +84,7 @@ export default function Home() {
 				}
 				chartCardContent={
 					is_logged_in &&
-					!(employee_job_title === 'administrator') ? (
+					(employee_job_title === 'EmployeeJobTitle.ADMINISTRATOR') ? (
 						<OverallValueChart />
 					) : (
 						<LuEyeOff className='text-8xl' />
@@ -96,7 +96,7 @@ export default function Home() {
 				}
 				scrollCardContent={
 					is_logged_in &&
-					!(employee_job_title === 'administrator') ? (
+					(employee_job_title === 'EmployeeJobTitle.ADMINISTRATOR') ? (
 						<TopOverallIncidentsCard />
 					) : (
 						<LuEyeOff className='text-8xl' />

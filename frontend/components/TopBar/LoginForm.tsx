@@ -37,6 +37,7 @@ import {
 	FormMessage
 } from '../ui/form'
 import { Input } from '../ui/input'
+import axios from 'axios'
 
 type Props = {}
 
@@ -65,14 +66,21 @@ const LoginButton = (props: Props) => {
 		password
 	}: z.infer<typeof formSchema>) => {
 		try {
-			dispatch(
-				getAuthToken({
-					employee_email: userEmail,
-					employee_password: password
-				})
-			)
-			dispatch(logIn())
-			toast.success('Successfully Logged in')
+			const credentialsForm = new FormData()
+			credentialsForm.append("username", userEmail)
+			credentialsForm.append("password", password)
+
+			const response = await axios.post('http://localhost:8000/auth/login', credentialsForm)
+
+			if(response.status === 200)
+			{
+				dispatch(logIn())
+				toast.success('Successfully Logged in')
+			}
+			else
+			{
+				toast.error('Invalid Credentials')
+			}
 		} catch (error) {
 			toast.error('Something went wrong')
 		}

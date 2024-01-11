@@ -1,12 +1,12 @@
 'use client'
 import {
+	getAuthToken,
 	logIn,
 	logOut,
 	selectAuthStateData
 } from '@/redux/features/auth/authSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { zodResolver } from '@hookform/resolvers/zod'
-import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { z } from 'zod'
@@ -65,28 +65,19 @@ const LoginButton = (props: Props) => {
 		password
 	}: z.infer<typeof formSchema>) => {
 		try {
-			const credentialsForm = new FormData()
-			credentialsForm.append('username', userEmail)
-			credentialsForm.append('password', password)
-
-			const response = await axios.post(
-				'http://localhost:8000/auth/login',
-				credentialsForm
+			dispatch(
+				getAuthToken({
+					employee_email: userEmail,
+					employee_password: password
+				})
 			)
-
-			if (response.status === 200) {
-				dispatch(logIn())
-				toast.success('Successfully Logged in')
-			} else {
-				toast.error('Invalid Credentials')
-			}
-		} catch (error) {
-			toast.error('Something went wrong')
+			dispatch(logIn())
+			toast.success('Successfully Logged in')
+		} catch (error: any) {
+			toast.error(error.message)
 		}
 
 		form.reset()
-		form.setValue('userEmail', '')
-		form.setValue('password', '')
 		form.clearErrors()
 	}
 

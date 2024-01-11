@@ -2,6 +2,7 @@
 import RegionValueChart from '@/components/Charts/RegionValueChart'
 import TopRegionsIncidentsCard from '@/components/Stores/TopRegionsIncidentsCard'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
+import { selectAuthStateData } from '@/redux/features/auth/authSlice'
 import {
 	retrieveSingleRegion,
 	selectSingleRegion
@@ -20,6 +21,7 @@ import {
 } from '@/redux/features/regions/retrieveTheValueOfAllIncidentsInARegionSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useEffect } from 'react'
+import { LuEyeOff } from 'react-icons/lu'
 
 type Props = {
 	params: {
@@ -37,6 +39,8 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 	const { store_name, max_value } = useAppSelector(
 		selectTheMostNotoriousStoreInARegion
 	)
+	const { employee_job_title, is_logged_in } =
+		useAppSelector(selectAuthStateData)
 
 	useEffect(() => {
 		dispatch(retrieveSingleRegion(Number(regionId)))
@@ -62,14 +66,28 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 					'The trends in the branches on a day to day basis'
 				}
 				chartCardContent={
-					<RegionValueChart regionId={Number(regionId)} />
+					(is_logged_in &&
+						employee_job_title ===
+							'EmployeeJobTitle.AREA_MANAGER') ||
+					employee_job_title === 'EmployeeJobTitle.ADMINISTRATOR' ? (
+						<RegionValueChart regionId={Number(regionId)} />
+					) : (
+						<LuEyeOff className='text-8xl' />
+					)
 				}
 				scrollCardTitle={'Top 20 most valuable incidents'}
 				scrollCardDescription={
 					'The 20 incidents with the highest value'
 				}
 				scrollCardContent={
-					<TopRegionsIncidentsCard regionId={Number(regionId)} />
+					(is_logged_in &&
+						employee_job_title ===
+							'EmployeeJobTitle.AREA_MANAGER') ||
+					employee_job_title === 'EmployeeJobTitle.ADMINISTRATOR' ? (
+						<TopRegionsIncidentsCard regionId={Number(regionId)} />
+					) : (
+						<LuEyeOff className='text-8xl' />
+					)
 				}
 			/>
 		</div>

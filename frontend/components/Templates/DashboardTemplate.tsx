@@ -32,7 +32,15 @@ import {
 } from '../ui/form'
 import { Input } from '../ui/input'
 import { ScrollArea } from '../ui/scroll-area'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../ui/select'
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectTrigger,
+	SelectValue
+} from '../ui/select'
 import { Separator } from '../ui/separator'
 import {
 	Sheet,
@@ -51,11 +59,11 @@ type Props = {
 	title: string
 	buttonLink?: string
 	buttonName: string
-	dashboardCard1Value: number
+	dashboardCard1Value: number | Element
 	dashboardCard1Title: string
-	dashboardCard2Value: number
+	dashboardCard2Value: number | Element
 	dashboardCard2Title: string
-	dashboardCard3Value: number | string
+	dashboardCard3Value: number | string | Element
 	dashboardCard3Title: string
 	chartCardTitle: string
 	chartCardDescription: string
@@ -83,20 +91,34 @@ const formSchema = z.object({
 		.min(1, { message: 'The product price must be input' })
 })
 
-const employeeFormSchema = z.object({
-	employee_name: z.string().min(1, { message: 'The name must be input' }),
-	employee_email: z.string().min(1, { message: 'The email must be input' }),
-	employee_phone_number: z
-		.string()
-		.min(1, { message: 'The phone number must be input' }),
-	employee_job_title: z
-		.string()
-		.min(1, { message: 'The job title must be input' }),
-	employee_password: z
-		.string()
-		.min(1, { message: 'The password must be input' })
-	// TODO: Implement confirm password field
-})
+const employeeFormSchema = z
+	.object({
+		employee_name: z.string().min(1, { message: 'The name must be input' }),
+		employee_email: z
+			.string()
+			.min(1, { message: 'The email must be input' }),
+		employee_phone_number: z
+			.string()
+			.min(1, { message: 'The phone number must be input' }),
+		employee_job_title: z
+			.string()
+			.min(1, { message: 'The job title must be input' }),
+		employee_password: z
+			.string()
+			.min(1, { message: 'The password must be input' }),
+		confirm_employee_password: z
+			.string()
+			.min(1, { message: 'The password must be input a second time' })
+	})
+	.refine(
+		(data) => data.employee_password === data.confirm_employee_password,
+		{
+			message: 'The passwords to not match',
+			path: ['confirm_employee_password']
+		}
+	)
+
+// employeeFormSchema.parse({})
 
 const DashboardTemplate = ({
 	title,
@@ -140,7 +162,8 @@ const DashboardTemplate = ({
 			employee_email: '',
 			employee_phone_number: '',
 			employee_job_title: '',
-			employee_password: ''
+			employee_password: '',
+			confirm_employee_password: ''
 		}
 	})
 
@@ -472,22 +495,48 @@ const DashboardTemplate = ({
 																	Title
 																</FormLabel>
 																<FormControl>
-																	<Select onValueChange={field.onChange} defaultValue={field.value}>
+																	<Select
+																		onValueChange={
+																			field.onChange
+																		}
+																		defaultValue={
+																			field.value
+																		}
+																	>
 																		<SelectTrigger className='w-[180px]'>
 																			<SelectValue placeholder='Select Job Title' />
 																		</SelectTrigger>
 																		<SelectContent>
 																			<SelectGroup>
-																				<SelectLabel className='uppercase text-center'>Job Titles</SelectLabel>
+																				<SelectLabel className='uppercase text-center'>
+																					Job
+																					Titles
+																				</SelectLabel>
 																				<Separator />
 																				{/* TODO: Add some role based selective rendering */}
-																				<SelectItem value='administrator'>Administrator</SelectItem>
-																				<SelectItem value='area_manager'>Area Manager</SelectItem>
-																				<SelectItem value='lcm'>LCM</SelectItem>
-																				<SelectItem value='fec'>FEC</SelectItem>
-																				<SelectItem value='cro'>CRO</SelectItem>
-																				<SelectItem value='dc'>DC</SelectItem>
-																				<SelectItem value='receiving_clerk'>Receiving Clerk</SelectItem>
+																				<SelectItem value='administrator'>
+																					Administrator
+																				</SelectItem>
+																				<SelectItem value='area_manager'>
+																					Area
+																					Manager
+																				</SelectItem>
+																				<SelectItem value='lcm'>
+																					LCM
+																				</SelectItem>
+																				<SelectItem value='fec'>
+																					FEC
+																				</SelectItem>
+																				<SelectItem value='cro'>
+																					CRO
+																				</SelectItem>
+																				<SelectItem value='dc'>
+																					DC
+																				</SelectItem>
+																				<SelectItem value='receiving_clerk'>
+																					Receiving
+																					Clerk
+																				</SelectItem>
 																			</SelectGroup>
 																		</SelectContent>
 																	</Select>
@@ -528,17 +577,46 @@ const DashboardTemplate = ({
 															</FormItem>
 														)}
 													/>
-													<SheetFooter className='fixed bottom-0 right-0 p-3'>
-														<SheetClose asChild>
-															<Button type='submit'>
-																Save Changes
-															</Button>
-														</SheetClose>
-													</SheetFooter>
+													<FormField
+														control={
+															employeeForm.control
+														}
+														name='confirm_employee_password'
+														render={({ field }) => (
+															<FormItem>
+																<FormLabel>
+																	Confirm
+																	Employee
+																	Password
+																</FormLabel>
+																<FormControl>
+																	<Input
+																		placeholder='Confirm Employee Password'
+																		type='password'
+																		{...field}
+																	/>
+																</FormControl>
+																<FormDescription>
+																	Please input
+																	the Employee
+																	Password
+																</FormDescription>
+																<FormMessage />
+															</FormItem>
+														)}
+													/>
+													<Button type='submit'>
+														Submit Changes
+													</Button>
 												</form>
 											</Form>
 										</div>
 									</ScrollArea>
+									<SheetFooter className='fixed bottom-0 right-0 p-3'>
+										<SheetClose asChild>
+											<Button>Close</Button>
+										</SheetClose>
+									</SheetFooter>
 								</SheetContent>
 							</Sheet>
 						</>

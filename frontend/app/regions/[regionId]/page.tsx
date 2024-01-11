@@ -55,11 +55,38 @@ const SingleRegionPage = ({ params: { regionId } }: Props) => {
 				title={region.region_name}
 				buttonLink={`/stores/${regionId}`}
 				buttonName={'Stores'}
-				dashboardCard1Value={incidentsCount}
+				dashboardCard1Value={
+					(is_logged_in &&
+						employee_job_title ===
+							'EmployeeJobTitle.ADMINISTRATOR') ||
+					employee_job_title === 'EmployeeJobTitle.AREA_MANAGER' ? (
+						incidentsCount
+					) : (
+						<LuEyeOff className='text-2xl' />
+					)
+				}
 				dashboardCard1Title={'Number of all Incidents'}
-				dashboardCard2Value={incidentsValue.total_values}
+				dashboardCard2Value={
+					(is_logged_in &&
+						employee_job_title ===
+							'EmployeeJobTitle.ADMINISTRATOR') ||
+					employee_job_title === 'EmployeeJobTitle.AREA_MANAGER' ? (
+						incidentsValue.total_values
+					) : (
+						<LuEyeOff className='text-2xl' />
+					)
+				}
 				dashboardCard2Title={'Value Of all Incidents'}
-				dashboardCard3Value={`${store_name} with KSH ${max_value}`}
+				dashboardCard3Value={
+					(is_logged_in &&
+						employee_job_title ===
+							'EmployeeJobTitle.ADMINISTRATOR') ||
+					employee_job_title === 'EmployeeJobTitle.AREA_MANAGER' ? (
+						`${store_name} with KSH ${max_value}`
+					) : (
+						<LuEyeOff className='text-2xl' />
+					)
+				}
 				dashboardCard3Title={'Most Notorious Store'}
 				chartCardTitle={'All branch trends'}
 				chartCardDescription={

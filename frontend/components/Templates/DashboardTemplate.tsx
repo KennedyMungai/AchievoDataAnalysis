@@ -237,7 +237,9 @@ const DashboardTemplate = ({
 								<DialogTrigger asChild>
 									<Button
 										variant={'default'}
-										disabled={!is_logged_in}
+										disabled={
+											!is_logged_in
+										}
 									>
 										{buttonName}
 									</Button>

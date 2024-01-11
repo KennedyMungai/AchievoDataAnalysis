@@ -441,7 +441,6 @@ async def retrieve_the_value_of_overall_incidents_service():
     return {"total_values": regions_total}
 
 
-# TODO: Rethink the logic
 async def retrieve_the_most_notorious_region_service(
     _db: Session
 ):
@@ -456,13 +455,12 @@ async def retrieve_the_most_notorious_region_service(
     query = "SELECT * FROM incidents"
     df = pd.read_sql(query, conn)
     filtered_df = df.groupby('region_id')['total_value'].sum()
-    some_dict = filtered_df.to_dict()
-    max_value = max(some_dict.values())
-    region = await retrieve_one_region_service(max(some_dict.keys()), _db)
-    region_data = {}
-    region_data["region_name"] = region.region_name
-    region_data["max_value"] = max_value
-    return region_data
+    sorted_df = filtered_df.sort_values(ascending=False)
+    some_dict = sorted_df.to_dict()
+    max_value = list(some_dict.values())[0]
+    region_id = list(some_dict.keys())[0]
+    region = await retrieve_one_region_service(region_id, _db)
+    return {"region_name": region.region_name, "max_value": max_value}
 
 
 async def retrieve_the_number_of_incidents_in_a_store_section_service(

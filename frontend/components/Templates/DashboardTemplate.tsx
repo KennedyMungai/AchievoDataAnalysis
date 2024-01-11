@@ -118,7 +118,6 @@ const employeeFormSchema = z
 		}
 	)
 
-
 const DashboardTemplate = ({
 	title,
 	buttonLink,
@@ -139,7 +138,8 @@ const DashboardTemplate = ({
 	const storeSectionData = useAppSelector(selectSingleStoreSection)
 	const storeData = useAppSelector(selectSingleStore)
 	const regionData = useAppSelector(selectSingleRegion)
-	const {is_logged_in, employee_job_title, employee_id} = useAppSelector(selectAuthStateData)
+	const { is_logged_in, employee_job_title, employee_id } =
+		useAppSelector(selectAuthStateData)
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -380,7 +380,23 @@ const DashboardTemplate = ({
 							</Dialog>
 							<Sheet>
 								<SheetTrigger asChild>
-									<Button variant={'outline'}>
+									<Button
+										variant={'outline'}
+										disabled={
+											!(
+												employee_job_title ===
+												'EmployeeJobTitle.ADMINISTRATOR'
+											) &&
+											!(
+												employee_job_title ===
+												'EmployeeJobTitle.AREA_MANAGER'
+											) &&
+											!(
+												employee_job_title ===
+												'EmployeeJobTitle.LCM'
+											)
+										}
+									>
 										Add Employee
 									</Button>
 								</SheetTrigger>
@@ -510,30 +526,75 @@ const DashboardTemplate = ({
 																					Titles
 																				</SelectLabel>
 																				<Separator />
-																				{/* TODO: Add some role based selective rendering */}
-																				<SelectItem value='administrator'>
-																					Administrator
-																				</SelectItem>
-																				<SelectItem value='area_manager'>
-																					Area
-																					Manager
-																				</SelectItem>
-																				<SelectItem value='lcm'>
-																					LCM
-																				</SelectItem>
-																				<SelectItem value='fec'>
-																					FEC
-																				</SelectItem>
-																				<SelectItem value='cro'>
-																					CRO
-																				</SelectItem>
-																				<SelectItem value='dc'>
-																					DC
-																				</SelectItem>
-																				<SelectItem value='receiving_clerk'>
-																					Receiving
-																					Clerk
-																				</SelectItem>
+																				{is_logged_in &&
+																					employee_job_title ===
+																						'EmployeeJobTitle.ADMINISTRATOR' && (
+																						<SelectItem value='administrator'>
+																							Administrator
+																						</SelectItem>
+																					)}
+																				{is_logged_in &&
+																					employee_job_title ===
+																						'EmployeeJobTitle.ADMINISTRATOR' && (
+																						<SelectItem value='area_manager'>
+																							Area
+																							Manager
+																						</SelectItem>
+																					)}
+																				{(is_logged_in &&
+																					employee_job_title ===
+																						'EmployeeJobTitle.ADMINISTRATOR') ||
+																					(employee_job_title ===
+																						'EmployeeJobTitle.AREA_MANAGER' && (
+																						<SelectItem value='lcm'>
+																							LCM
+																						</SelectItem>
+																					))}
+																				{(is_logged_in &&
+																					employee_job_title ===
+																						'EmployeeJobTitle.LCM') ||
+																					employee_job_title ===
+																						'EmployeeJobTitle.ADMINISTRATOR' ||
+																					(employee_job_title ===
+																						'EmployeeJobTitle.AREA_MANAGER' && (
+																						<SelectItem value='fec'>
+																							FEC
+																						</SelectItem>
+																					))}
+																				{(is_logged_in &&
+																					employee_job_title ===
+																						'EmployeeJobTitle.LCM') ||
+																					employee_job_title ===
+																						'EmployeeJobTitle.ADMINISTRATOR' ||
+																					(employee_job_title ===
+																						'EmployeeJobTitle.AREA_MANAGER' && (
+																						<SelectItem value='cro'>
+																							CRO
+																						</SelectItem>
+																					))}
+																				{(is_logged_in &&
+																					employee_job_title ===
+																						'EmployeeJobTitle.LCM') ||
+																					employee_job_title ===
+																						'EmployeeJobTitle.ADMINISTRATOR' ||
+																					(employee_job_title ===
+																						'EmployeeJobTitle.AREA_MANAGER' && (
+																						<SelectItem value='dc'>
+																							DC
+																						</SelectItem>
+																					))}
+																				{(is_logged_in &&
+																					employee_job_title ===
+																						'EmployeeJobTitle.LCM') ||
+																					employee_job_title ===
+																						'EmployeeJobTitle.ADMINISTRATOR' ||
+																					(employee_job_title ===
+																						'EmployeeJobTitle.AREA_MANAGER' && (
+																						<SelectItem value='receiving_clerk'>
+																							Receiving
+																							Clerk
+																						</SelectItem>
+																					))}
 																			</SelectGroup>
 																		</SelectContent>
 																	</Select>

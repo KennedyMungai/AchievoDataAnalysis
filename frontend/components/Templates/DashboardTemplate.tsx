@@ -32,6 +32,7 @@ import {
 } from '../ui/form'
 import { Input } from '../ui/input'
 import { ScrollArea } from '../ui/scroll-area'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../ui/select'
 import { Separator } from '../ui/separator'
 import {
 	Sheet,
@@ -45,7 +46,6 @@ import {
 } from '../ui/sheet'
 import ChartCardTemplate from './ChartCardTemplate'
 import DashboardCards from './DashboardCards'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../ui/select'
 
 type Props = {
 	title: string

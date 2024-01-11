@@ -41,6 +41,9 @@ const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+            .addCase(getAuthToken.pending, (state) => {
+                state.is_loaded = false
+            })
             .addCase(getAuthToken.fulfilled, (state, action) => {
                 state.is_loaded = true
                 state.token_type = action.payload.token_type
@@ -50,9 +53,6 @@ const authSlice = createSlice({
                 state.employee_name = action.payload.employee_name
             })
             .addCase(getAuthToken.rejected, (state) => {
-                state.is_loaded = false
-            })
-            .addCase(getAuthToken.pending, (state) => {
                 state.is_loaded = false
             })
     }

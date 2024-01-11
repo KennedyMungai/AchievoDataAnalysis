@@ -65,14 +65,21 @@ const LoginButton = (props: Props) => {
 		password
 	}: z.infer<typeof formSchema>) => {
 		try {
-			dispatch(
+			const response = await dispatch(
 				getAuthToken({
 					employee_email: userEmail,
 					employee_password: password
 				})
 			)
-			dispatch(logIn())
-			toast.success('Successfully Logged in')
+			
+			if(response.payload.status === 200) {
+				toast.success('Successfully Logged in')
+				dispatch(logIn())
+			}
+			else
+			{
+				toast.error("Invalid Credentials")
+			}
 		} catch (error: any) {
 			toast.error(error.message)
 		}

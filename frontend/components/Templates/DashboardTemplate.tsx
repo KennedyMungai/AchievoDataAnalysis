@@ -118,7 +118,6 @@ const employeeFormSchema = z
 		}
 	)
 
-// employeeFormSchema.parse({})
 
 const DashboardTemplate = ({
 	title,
@@ -140,9 +139,7 @@ const DashboardTemplate = ({
 	const storeSectionData = useAppSelector(selectSingleStoreSection)
 	const storeData = useAppSelector(selectSingleStore)
 	const regionData = useAppSelector(selectSingleRegion)
-	const loginData = useAppSelector(selectAuthStateData)
-
-	const isLoggedIn = loginData.is_logged_in
+	const {is_logged_in, employee_job_title, employee_id} = useAppSelector(selectAuthStateData)
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -183,7 +180,7 @@ const DashboardTemplate = ({
 			total_value:
 				Number(product_quantity_string) * Number(product_price_string),
 			store_section_id: storeSectionData.store_section_id,
-			employee_id: loginData.employee_id,
+			employee_id,
 			store_id: storeData.store_id,
 			region_id: regionData.region_id
 		}
@@ -240,7 +237,7 @@ const DashboardTemplate = ({
 								<DialogTrigger asChild>
 									<Button
 										variant={'default'}
-										disabled={!isLoggedIn}
+										disabled={!is_logged_in}
 									>
 										{buttonName}
 									</Button>

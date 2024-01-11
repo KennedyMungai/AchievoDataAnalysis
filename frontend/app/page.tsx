@@ -51,11 +51,32 @@ export default function Home() {
 				title={'Achievo Limited'}
 				buttonName={'Regions'}
 				buttonLink={'/regions'}
-				dashboardCard1Value={is_logged_in && !(employee_job_title === 'administrator') ? overallCount : (<LuEyeOff className='text-2xl' />)}
+				dashboardCard1Value={
+					is_logged_in &&
+					!(employee_job_title === 'administrator') ? (
+						overallCount
+					) : (
+						<LuEyeOff className='text-2xl' />
+					)
+				}
 				dashboardCard1Title={'Number of all incidents'}
-				dashboardCard2Value={is_logged_in && !(employee_job_title === 'administrator') ? overallValue.total_values : (<LuEyeOff className='text-2xl' />)}
+				dashboardCard2Value={
+					is_logged_in &&
+					!(employee_job_title === 'administrator') ? (
+						overallValue.total_values
+					) : (
+						<LuEyeOff className='text-2xl' />
+					)
+				}
 				dashboardCard2Title={'Value of all Incidents'}
-				dashboardCard3Value={is_logged_in && !(employee_job_title === 'administrator') ? `${region_name} with KSH ${max_value}` : (<LuEyeOff className='text-2xl' />)}
+				dashboardCard3Value={
+					is_logged_in &&
+					!(employee_job_title === 'administrator') ? (
+						`${region_name} with KSH ${max_value}`
+					) : (
+						<LuEyeOff className='text-2xl' />
+					)
+				}
 				dashboardCard3Title={'Most Notorious Region'}
 				chartCardTitle={'All Regions Trends'}
 				chartCardDescription={

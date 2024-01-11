@@ -58,7 +58,8 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 					(is_logged_in &&
 						employee_job_title ===
 							'EmployeeJobTitle.ADMINISTRATOR') ||
-					employee_job_title === 'EmployeeJobTitle.AREA_MANAGER' ? (
+					employee_job_title === 'EmployeeJobTitle.AREA_MANAGER' ||
+					employee_job_title === 'EmployeeJobTitle.LCM' ? (
 						singleStoreCount
 					) : (
 						<LuEyeOff className='text-2xl' />
@@ -69,7 +70,8 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 					(is_logged_in &&
 						employee_job_title ===
 							'EmployeeJobTitle.ADMINISTRATOR') ||
-					employee_job_title === 'EmployeeJobTitle.AREA_MANAGER' ? (
+					employee_job_title === 'EmployeeJobTitle.AREA_MANAGER' ||
+					employee_job_title === 'EmployeeJobTitle.LCM' ? (
 						singleStoreValue.total_values
 					) : (
 						<LuEyeOff className='text-2xl' />
@@ -80,7 +82,8 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 					(is_logged_in &&
 						employee_job_title ===
 							'EmployeeJobTitle.ADMINISTRATOR') ||
-					employee_job_title === 'EmployeeJobTitle.AREA_MANAGER' ? (
+					employee_job_title === 'EmployeeJobTitle.AREA_MANAGER' ||
+					employee_job_title === 'EmployeeJobTitle.LCM' ? (
 						`${store_section_name} with KSH ${max_value}`
 					) : (
 						<LuEyeOff className='text-2xl' />
@@ -93,7 +96,8 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 					(is_logged_in &&
 						employee_job_title ===
 							'EmployeeJobTitle.ADMINISTRATOR') ||
-					employee_job_title === 'EmployeeJobTitle.AREA_MANAGER' ? (
+					employee_job_title === 'EmployeeJobTitle.AREA_MANAGER' ||
+					employee_job_title === 'EmployeeJobTitle.LCM' ? (
 						<StoreValueChart storeId={Number(storeId)} />
 					) : (
 						<LuEyeOff className='text-8xl' />
@@ -107,7 +111,8 @@ const SingleStorePage = ({ params: { storeId } }: Props) => {
 					(is_logged_in &&
 						employee_job_title ===
 							'EmployeeJobTitle.ADMINISTRATOR') ||
-					employee_job_title === 'EmployeeJobTitle.AREA_MANAGER' ? (
+					employee_job_title === 'EmployeeJobTitle.AREA_MANAGER' ||
+					employee_job_title === 'EmployeeJobTitle.LCM' ? (
 						<TopIncidentsCard storeId={Number(storeId)} />
 					) : (
 						<LuEyeOff className='text-8xl' />

@@ -10,6 +10,7 @@ import { LuStore } from "react-icons/lu"
 import TopBar from '../TopBar/TopBar'
 import AddStoreCardTemplate from './AddStoreCardTemplate'
 import StoreCardTemplate from './StoreCardTemplate'
+import { selectAuthStateData } from '@/redux/features/auth/authSlice'
 
 type Props = {
 	regionId: number
@@ -18,6 +19,8 @@ type Props = {
 const RegionStoresCards = ({ regionId }: Props) => {
 	const regionStores = useAppSelector(selectAllRegionStores)
 	const region = useAppSelector(selectSingleRegion)
+	const {is_logged_in, employee_job_title} = useAppSelector(selectAuthStateData)
+
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
@@ -42,7 +45,7 @@ const RegionStoresCards = ({ regionId }: Props) => {
 								/>
 							)
 						})}
-						<AddStoreCardTemplate regionId={regionId} />
+						{is_logged_in && employee_job_title === "EmployeeJobTitle.ADMINISTRATOR" && <AddStoreCardTemplate regionId={regionId} />}
 					</>
 				</div>
 			</div>

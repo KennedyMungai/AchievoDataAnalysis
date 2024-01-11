@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit"
 import axios from 'axios'
 import { RootState } from "../store"
 
@@ -9,13 +9,11 @@ export const getAuthToken = createAsyncThunk("auth/login", async (values: ICrede
     credentialsForm.append("password", values.employee_password)
 
     const response = await axios.post("http://localhost:8000/auth/login", credentialsForm)
-    const data = response.data
-
-    return data
+    return response
 })
 
 
-const initialState: IToken = {
+const initialState: ITokenData = {
     token_type: "",
     access_token: "",
     is_loaded: false,
@@ -46,11 +44,12 @@ const authSlice = createSlice({
             })
             .addCase(getAuthToken.fulfilled, (state, action) => {
                 state.is_loaded = true
-                state.token_type = action.payload.token_type
-                state.access_token = action.payload.access_token
-                state.employee_id = action.payload.employee_id
-                state.employee_job_title = action.payload.employee_job_title
-                state.employee_name = action.payload.employee_name
+                state.access_token = action.payload.data.access_token
+                state.token_type = action.payload.data.token_type
+                state.is_logged_in = true
+                state.employee_id = action.payload.data.employee_id
+                state.employee_name = action.payload.data.employee_name
+                state.employee_job_title = action.payload.data.employee_job_title
             })
             .addCase(getAuthToken.rejected, (state) => {
                 state.is_loaded = false

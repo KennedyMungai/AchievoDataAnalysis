@@ -2,6 +2,7 @@
 import OverallValueChart from '@/components/Charts/OverallValueChart'
 import TopOverallIncidentsCard from '@/components/OverAll/TopOverallIncidentsCard'
 import DashboardTemplate from '@/components/Templates/DashboardTemplate'
+import { selectAuthStateData } from '@/redux/features/auth/authSlice'
 import {
 	retrieveTheMostNotoriousRegion,
 	selectTheMostNotoriousRegionOverall
@@ -16,6 +17,7 @@ import {
 } from '@/redux/features/overall/retrieveTheValueOfOverallIncidentsSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useEffect, useState } from 'react'
+import { LuEyeOff } from 'react-icons/lu'
 
 export default function Home() {
 	const dispatch = useAppDispatch()
@@ -24,6 +26,8 @@ export default function Home() {
 	const { region_name, max_value } = useAppSelector(
 		selectTheMostNotoriousRegionOverall
 	)
+	const { employee_job_title, is_logged_in } =
+		useAppSelector(selectAuthStateData)
 
 	const [isLoaded, setIsLoaded] = useState<boolean>(false)
 
@@ -57,12 +61,26 @@ export default function Home() {
 				chartCardDescription={
 					'The trends in all the regions on a daily basis'
 				}
-				chartCardContent={<OverallValueChart />}
+				chartCardContent={
+					is_logged_in &&
+					!(employee_job_title === 'administrator') ? (
+						<OverallValueChart />
+					) : (
+						<LuEyeOff className='text-8xl' />
+					)
+				}
 				scrollCardTitle={'Top twenty most valuable incidents'}
 				scrollCardDescription={
 					'The twenty incidents with the highest value'
 				}
-				scrollCardContent={<TopOverallIncidentsCard />}
+				scrollCardContent={
+					is_logged_in &&
+					!(employee_job_title === 'administrator') ? (
+						<TopOverallIncidentsCard />
+					) : (
+						<LuEyeOff className='text-8xl' />
+					)
+				}
 			/>
 		</main>
 	)

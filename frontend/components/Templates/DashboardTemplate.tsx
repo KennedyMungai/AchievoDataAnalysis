@@ -1,5 +1,6 @@
 'use client'
 import { selectAuthStateData } from '@/redux/features/auth/authSlice'
+import { selectGlobalDate, setGlobalDate } from '@/redux/features/date/dateSlice'
 import { selectSingleRegion } from '@/redux/features/regions/retrieveSingleRegionSlice'
 import { selectSingleStoreSection } from '@/redux/features/storeSections/retrieveSingleStoreSectionSlice'
 import { selectSingleStore } from '@/redux/features/stores/retrieveSingleStoreSlice'
@@ -58,7 +59,6 @@ import {
 } from '../ui/sheet'
 import ChartCardTemplate from './ChartCardTemplate'
 import DashboardCards from './DashboardCards'
-import { selectGlobalDate, setGlobalDate } from '@/redux/features/date/dateSlice'
 
 type Props = {
 	title: string

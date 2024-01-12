@@ -17,6 +17,6 @@ export const dateSlice = createSlice({
 
 export const {setGlobalDate} = dateSlice.actions
 
-export const selectDate = (state: RootState) => state.dateState
+export const selectGlobalDate = (state: RootState) => state.dateState.date
 
 export default dateSlice.reducer

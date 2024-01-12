@@ -58,7 +58,7 @@ import {
 } from '../ui/sheet'
 import ChartCardTemplate from './ChartCardTemplate'
 import DashboardCards from './DashboardCards'
-import { selectGlobalDate } from '@/redux/features/date/dateSlice'
+import { selectGlobalDate, setGlobalDate } from '@/redux/features/date/dateSlice'
 
 type Props = {
 	title: string
@@ -145,6 +145,7 @@ const DashboardTemplate = ({
 	const regionData = useAppSelector(selectSingleRegion)
 	const { is_logged_in, employee_job_title, employee_id } =
 		useAppSelector(selectAuthStateData)
+	const globalDate = useAppSelector(selectGlobalDate)
 
 	const dispatch = useAppDispatch()
 
@@ -230,7 +231,7 @@ const DashboardTemplate = ({
 	}
 
 	const handleDateClick = (args: any) => {
-		dispatch(selectGlobalDate(args.date))
+		dispatch(setGlobalDate(args.date))
 	}
 
 	return (

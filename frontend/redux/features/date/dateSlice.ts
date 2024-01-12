@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { RootState } from "../store"
 
 const initialState = {
-    date: Date
+    date: new Date(Date.now())
 }
 
 export const dateSlice = createSlice({

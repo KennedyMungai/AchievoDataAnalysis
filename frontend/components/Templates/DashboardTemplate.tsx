@@ -4,6 +4,9 @@ import { selectSingleRegion } from '@/redux/features/regions/retrieveSingleRegio
 import { selectSingleStoreSection } from '@/redux/features/storeSections/retrieveSingleStoreSectionSlice'
 import { selectSingleStore } from '@/redux/features/stores/retrieveSingleStoreSlice'
 import { useAppSelector } from '@/redux/hooks'
+import dayGridPlugin from "@fullcalendar/daygrid"
+import InteractionPlugin from "@fullcalendar/interaction"
+import FullCalendar from "@fullcalendar/react"
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
 import Link from 'next/link'
@@ -21,10 +24,6 @@ import {
 	DialogTitle,
 	DialogTrigger
 } from '../ui/dialog'
-import FullCalendar from "@fullcalendar/react"
-import InteractionPlugin from "@fullcalendar/interaction"
-import dayGridPlugin from "@fullcalendar/daygrid"
-import {Popover, PopoverTrigger, PopoverContent} from '../ui/popover'
 import {
 	Form,
 	FormControl,
@@ -35,6 +34,7 @@ import {
 	FormMessage
 } from '../ui/form'
 import { Input } from '../ui/input'
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { ScrollArea } from '../ui/scroll-area'
 import {
 	Select,

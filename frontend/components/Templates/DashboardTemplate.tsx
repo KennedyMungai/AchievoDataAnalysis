@@ -1,6 +1,9 @@
 'use client'
 import { selectAuthStateData } from '@/redux/features/auth/authSlice'
-import { selectGlobalDate, setGlobalDate } from '@/redux/features/date/dateSlice'
+import {
+	selectGlobalDate,
+	setGlobalDate
+} from '@/redux/features/date/dateSlice'
 import { selectSingleRegion } from '@/redux/features/regions/retrieveSingleRegionSlice'
 import { selectSingleStoreSection } from '@/redux/features/storeSections/retrieveSingleStoreSectionSlice'
 import { selectSingleStore } from '@/redux/features/stores/retrieveSingleStoreSlice'
@@ -232,6 +235,7 @@ const DashboardTemplate = ({
 
 	const handleDateClick = (args: any) => {
 		dispatch(setGlobalDate(args.date))
+		console.log(args.dateStr)
 	}
 
 	return (
@@ -696,10 +700,12 @@ const DashboardTemplate = ({
 							<Button variant={'outline'}>Set Global Date</Button>
 						</PopoverTrigger>
 						<PopoverContent className={'w-full'}>
-							<FullCalendar
-								plugins={[dayGridPlugin, InteractionPlugin]}
-								dateClick={handleDateClick}
-							/>
+							<div className='w-[30rem]'>
+								<FullCalendar
+									plugins={[dayGridPlugin, InteractionPlugin]}
+									dateClick={handleDateClick}
+								/>
+							</div>
 						</PopoverContent>
 					</Popover>
 				</div>

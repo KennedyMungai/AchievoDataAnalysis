@@ -62,6 +62,7 @@ import {
 } from '../ui/sheet'
 import ChartCardTemplate from './ChartCardTemplate'
 import DashboardCards from './DashboardCards'
+import moment from 'moment'
 
 type Props = {
 	title: string
@@ -697,7 +698,7 @@ const DashboardTemplate = ({
 					)}
 					<Popover>
 						<PopoverTrigger asChild>
-							<Button variant={'outline'}>Set Global Date</Button>
+							<Button variant={'outline'}>{moment(globalDate).format("DD/MM/YYYY")}</Button>
 						</PopoverTrigger>
 						<PopoverContent className={'w-full'}>
 							<div className='w-[30rem]'>

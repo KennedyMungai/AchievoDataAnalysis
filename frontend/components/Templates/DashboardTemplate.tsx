@@ -21,6 +21,7 @@ import {
 	DialogTitle,
 	DialogTrigger
 } from '../ui/dialog'
+import {Popover, PopoverTrigger, PopoverContent} from '../ui/popover'
 import {
 	Form,
 	FormControl,
@@ -681,6 +682,14 @@ const DashboardTemplate = ({
 							</Sheet>
 						</>
 					)}
+					<Popover>
+						<PopoverTrigger asChild>
+							<Button variant={'outline'}>Set Global Date</Button>
+						</PopoverTrigger>
+						<PopoverContent className={'w-full'}>
+							
+						</PopoverContent>
+					</Popover>
 				</div>
 				<div className='p-4 flex flex-col items-center w-full gap-2 md:flex-row md:items-center md:gap-1'>
 					<DashboardCards

@@ -3,10 +3,10 @@ import { selectAuthStateData } from '@/redux/features/auth/authSlice'
 import { selectSingleRegion } from '@/redux/features/regions/retrieveSingleRegionSlice'
 import { selectSingleStoreSection } from '@/redux/features/storeSections/retrieveSingleStoreSectionSlice'
 import { selectSingleStore } from '@/redux/features/stores/retrieveSingleStoreSlice'
-import { useAppSelector } from '@/redux/hooks'
-import dayGridPlugin from "@fullcalendar/daygrid"
-import InteractionPlugin from "@fullcalendar/interaction"
-import FullCalendar from "@fullcalendar/react"
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import InteractionPlugin from '@fullcalendar/interaction'
+import FullCalendar from '@fullcalendar/react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
 import Link from 'next/link'
@@ -58,6 +58,7 @@ import {
 } from '../ui/sheet'
 import ChartCardTemplate from './ChartCardTemplate'
 import DashboardCards from './DashboardCards'
+import { selectGlobalDate } from '@/redux/features/date/dateSlice'
 
 type Props = {
 	title: string
@@ -145,6 +146,8 @@ const DashboardTemplate = ({
 	const { is_logged_in, employee_job_title, employee_id } =
 		useAppSelector(selectAuthStateData)
 
+	const dispatch = useAppDispatch()
+
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -227,7 +230,7 @@ const DashboardTemplate = ({
 	}
 
 	const handleDateClick = (args: any) => {
-		console.log(args.date)
+		dispatch(selectGlobalDate(args.date))
 	}
 
 	return (
@@ -245,9 +248,7 @@ const DashboardTemplate = ({
 								<DialogTrigger asChild>
 									<Button
 										variant={'default'}
-										disabled={
-											!is_logged_in
-										}
+										disabled={!is_logged_in}
 									>
 										{buttonName}
 									</Button>

@@ -21,6 +21,9 @@ import {
 	DialogTitle,
 	DialogTrigger
 } from '../ui/dialog'
+import FullCalendar from "@fullcalendar/react"
+import InteractionPlugin from "@fullcalendar/interaction"
+import dayGridPlugin from "@fullcalendar/daygrid"
 import {Popover, PopoverTrigger, PopoverContent} from '../ui/popover'
 import {
 	Form,
@@ -221,6 +224,10 @@ const DashboardTemplate = ({
 		}
 
 		employeeForm.reset()
+	}
+
+	const handleDateClick = (args: any) => {
+		console.log(args.date)
 	}
 
 	return (
@@ -687,7 +694,10 @@ const DashboardTemplate = ({
 							<Button variant={'outline'}>Set Global Date</Button>
 						</PopoverTrigger>
 						<PopoverContent className={'w-full'}>
-							
+							<FullCalendar
+								plugins={[dayGridPlugin, InteractionPlugin]}
+								dateClick={handleDateClick}
+							/>
 						</PopoverContent>
 					</Popover>
 				</div>
